@@ -1,0 +1,8 @@
+Font Awesome
+http://fortawesome.github.io/Font-Awesome
+License: http://fortawesome.github.io/Font-Awesome/license/
+
+
+Poole
+http://getpoole.com
+License: https://github.com/poole/poole/blob/master/LICENSE.md

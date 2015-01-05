@@ -1,0 +1,13 @@
+# Contains a dictionary of all tags, used in blog posts.
+- name: .NET
+  slug: dotnet
+- name: AppVeyor
+  slug: appveyor
+- name: CI
+  slug: ci
+- name: Coverity
+  slug: coverity
+- name: PowerShell
+  slug: powershell
+- name: Static Analysis
+  slug: static-analysis

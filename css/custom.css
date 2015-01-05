@@ -1,0 +1,13 @@
+---
+---
+
+body {
+  background-image: url("{{ site.baseurl }}images/background.png");
+}
+
+.nav-icon {
+  margin-right: 0.5rem;
+}
+.nav-icon:hover {
+  color: #313131;
+}

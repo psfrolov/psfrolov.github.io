@@ -11,3 +11,9 @@ body {
 .nav-icon:hover {
   color: #313131;
 }
+.message {
+  color: white;
+  background-color: #ac4142;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}

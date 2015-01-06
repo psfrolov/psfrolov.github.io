@@ -345,7 +345,6 @@ triaging discovered issues.
 Here is full [appveyor.yml][url-my-appveyor-yml] using approach described in
 the article.
 
-
 [url-appveyor]: http://www.appveyor.com
 [url-travis-ci]: https://travis-ci.org
 [url-appveyor-installed-software]: http://www.appveyor.com/docs/installed-software

@@ -342,8 +342,8 @@ Coverity Scan project web GUI and the final results will be delivered to you
 by e-mail. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
 
-Here is full [appveyor.yml][url-my-appveyor-yml] using approach described in
-the article.
+Here is full [appveyor.yml][url-my-appveyor-yml] utilizing approach described
+in the article.
 
 [url-appveyor]: http://www.appveyor.com
 [url-travis-ci]: https://travis-ci.org

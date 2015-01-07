@@ -17,9 +17,10 @@ baseurl: "/"
       
 # Sitewide custom variables.
 title: &id1 "arkfps"
-author: *id1
+author: "Pavel Frolov"
 disqus_shortname: *id1
 tagline: "programming blog"
 description: "Random technical stuff."
 url: "https://arkfps.github.io"
 github_profile: https://github.com/arkfps
+linkedin_profile: https://ru.linkedin.com/in/psfrolov

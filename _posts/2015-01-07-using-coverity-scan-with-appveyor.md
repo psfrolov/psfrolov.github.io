@@ -5,12 +5,12 @@ tags: appveyor ci coverity dotnet powershell static-analysis
 
 [AppVeyor][url-appveyor] is an awesome SaaS CI server similar to
 [Travis CI][url-travis-ci] but for Windows developers. It enables you to build,
-test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX among
+test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX, among
 others (see [Installed Software][url-appveyor-installed-software]). Moreover,
 it is completely free for Open Source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
-[Coverity][url-coverity] - static code analysis solution for C/C++, C# and
+[Coverity][url-coverity], static code analysis solution for C/C++, C# and
 Java. Coverity Scan is used by some major Open Source projects such as Linux,
 Python, PostgreSQL, Apache Software Foundation projects.
 
@@ -22,7 +22,7 @@ build process.
 <div class="message">
 <i class="fa fa-exclamation-triangle" title="Warning"></i>
 The rest of the article assumes that you have GitHub repository registered with
-both AppVeyor and Coverity Scan and you are familiar with Coverity Scan
+both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e, manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).
 </div>
@@ -42,7 +42,7 @@ One important thing to note when working with Coverity Scan is build
 submissions frequency. Coverity Scan [limits maximum number of submitted builds
 on daily and weekly basis][url-coverity-scan-build-freq]. But even with limits
 left out of scope it is probably impractical to run each and every build with
-Coverity Scan since it takes noticeably longer time to complete. Let's see how
+Coverity Scan, since it takes noticeably longer time to complete. Let's see how
 we can deal with it.
 
 #### Using Dedicated Branch
@@ -56,10 +56,10 @@ inconvenient: we need to keep `analyze` branch in sync with `develop` branch
 #### Using Scheduled Builds
 Alternatively, we can use AppVeyor
 [Scheduled Builds][url-appveyor-scheduled-builds] feature to run Coverity Scan.
-For example I use the following crontab expression to launch Coverity build at
+For example, I use the following crontab expression to launch Coverity build at
 5:00 p.m. UTC+03 on Friday: `0 14 * * 5`. There is built-in variable named
 `APPVEYOR_SCHEDULED_BUILD` which is set to `True` when the build is a scheduled
-one. I find this approach more convenient so I'll stick to it for the rest of
+one. I find this approach more convenient, so I'll stick to it for the rest of
 the article.
 
 ### Downloading Coverity Build Tool
@@ -70,7 +70,7 @@ Coverity Scan project name and token as part of download request. Second, the
 download link is specific to you project language. See more on
 [Coverity Community discussion page][url-coverity-community].
 
-We will use PowerShell and the right place to put our script is `install` hook
+We will use PowerShell, and the right place to put our script is `install` hook
 in `appveyor.yml`:
 {% highlight yaml %}
 install:
@@ -118,7 +118,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -eq "True") {
 {% endhighlight %}
 
 ### Building Project with Coverity Build Tool
-The next step is to build our project with Coverity Build Tool. This means
+The next step is to build the project with Coverity Build Tool. This means
 passing your build command to `cov-build.exe`:
 {% highlight batch %}
 cov-build.exe --dir cov-int <build command>
@@ -129,7 +129,7 @@ For example, if your build command is
 {% highlight batch %}
 "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
-Than corresponding Coverity Build command becomes
+Then, corresponding Coverity Build command becomes
 {% highlight batch %}
 cov-build.exe --dir cov-int "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
@@ -184,8 +184,8 @@ worker. However, I'll demonstrate you pure PowerShell/.NET way of doing this
 which involves some nasty .NET bug and one cool PowerShell trick to workaround
 it.
 
-Currently, the only way of creating ZIP archive in PowerShell out of the box
-(that I'm aware of) is to use .NET
+Currently, the only way to create ZIP archive in PowerShell which is available
+out of the box (that I'm aware of) is to use .NET
 [System.IO.Compression.ZipFile API][url-dotnet-zipfile]:
 {% highlight powershell %}
 [IO.Compression.ZipFile]::CreateFromDirectory(
@@ -198,12 +198,12 @@ Unfortunately, if you try to upload ZIP file created with
 which file names inside ZIP archive are encoded with backslashes as path
 separators (according to [ZIP format specification][url-zip-format-spec] only
 forward slashes are permitted).
-As a result such an archive cannot be unpacked on *nix systems (Coverity Scan
+As a result, such an archive cannot be unpacked on *nix systems (Coverity Scan
 is using Ubuntu currently).
 
 To workaround the bug we need to create custom encoder for ZIP file name
-entries which means defining .NET class. Can we do this from PowerShell script?
-Yep, we can!
+entries, which means defining .NET class. Can we do this from PowerShell
+script? Yep, we can!
 {% highlight powershell %}
 # Compress results.
 "Compressing Coverity results..."
@@ -227,7 +227,7 @@ Add-Type -TypeDefinition $zipEncoderDef
 {% endhighlight %}
 Things to note:
 
-* `Add-Type -TypeDefinition $zipEncoderDef` defines new C# class - a custom
+* `Add-Type -TypeDefinition $zipEncoderDef` defines new C# class, a custom
   encoder which replaces back slashes with forward slashes.
   The object of this class is passed as last parameter to `CreateFromDirectory`
   method.
@@ -242,7 +242,7 @@ Things to note:
 
 That last step is the most complex one. In order to upload scan data to
 Coverity Scan server we need to send [multipart/form-data][url-rfc2388] HTML
-form containing scan data archive file along with some build metadata (the
+form containing archived scan data along with some build metadata (the
 process is documented in **Upload a Project Build** page of your Coverity Scan
 project web GUI). This can be accomplished in many ways, I'll use
 [System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form-data].
@@ -308,7 +308,7 @@ $form.Add($formField, "version")
 {% endhighlight %}
 
 #### `description` field
-Arbitrary text describing your build.
+An Arbitrary text describing your build:
 {% highlight powershell %}
 # Fill description field.
 $formField = New-Object Net.Http.StringContent("AppVeyor scheduled build.")
@@ -338,7 +338,7 @@ Things to note:
 ### Examining the Results
   
 After uploading the scan data you can examine intermediate results in your
-Coverity Scan project web GUI and the final results will be delivered to you
+Coverity Scan project web GUI, and the final results will be delivered to you
 by e-mail. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
 

@@ -3,6 +3,6 @@ http://fortawesome.github.io/Font-Awesome
 License: http://fortawesome.github.io/Font-Awesome/license/
 
 
-Poole
-http://getpoole.com
-License: https://github.com/poole/poole/blob/master/LICENSE.md
+Hyde
+http://hyde.getpoole.com
+License: https://github.com/poole/hyde/blob/master/LICENSE.md

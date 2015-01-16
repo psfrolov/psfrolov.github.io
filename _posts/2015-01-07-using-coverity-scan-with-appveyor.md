@@ -158,7 +158,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
 
 # Else, build project with Coverity Scan.
 "Building project with Coverity Scan..."
-& ".\cov-analysis-win64-7.5.0\bin\cov-build.exe" `
+& ".\cov-analysis-win64-7.6.0\bin\cov-build.exe" `
   --dir cov-int `
   $buildCmd $buildArgs
   
@@ -172,7 +172,7 @@ Things to note here:
 
 * I'm using predefined `CONFIGURATION` and `PLATFORM` variables to simulate
   behaviour of AppVeyour buit-in MSBuild provider.
-* The directory `cov-analysis-win64-7.5.0` is created by extracting Coverity
+* The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity
   Build Tool ZIP archive on the previous step.
 * After building the project with Coverity Build Tool there will be directory
   named `cov-int` under `APPVEYOR_BUILD_FOLDER`.

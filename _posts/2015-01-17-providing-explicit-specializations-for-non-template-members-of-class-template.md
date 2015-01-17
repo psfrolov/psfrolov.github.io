@@ -151,7 +151,7 @@ built-in type like `int` or `void*`. For example, if our `OsHandle` and
 specialization will not work. For that reason, in real life you almost
 certainly should apply [type-safe handle idiom][url-type-safe-handles] to your
 wrapper class which is described in the recent [isocpp.org][url-isocpp] post by
-Emil Ernerfeldt. Than you can specialize `Clenaup` method on handle tag (which
+Emil Ernerfeldt. Then you can specialize `Clenaup` method on handle tag (which
 is effectively a form of [tag dispatching][url-tag-dispatching]).
 
 ### Conclusion

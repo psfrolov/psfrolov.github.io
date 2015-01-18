@@ -1,6 +1,7 @@
 ---
 title: Providing Explicit Specializations for Non-Template Members of Class Template
 tags: cpp generic-programming
+permalink: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template/
 ---
 
 C++ is full of surprises (albeit not always good ones :-). It is a well known

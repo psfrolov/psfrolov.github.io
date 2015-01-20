@@ -145,15 +145,16 @@ template<> void Handle<OsInternetHandle>::Cleanup() {
 This is much better for maintainability and works exactly like the class
 specialization above.
 
-> Note that our handle wrapper is somewhat simplified. It assumes that various
-`HandleType` arguments are in fact different types, not an aliases for some
-built-in type like `int` or `void*`. For example, if our `OsHandle` and
-`OsInternetHandle` are both defined as synonyms for `int`, the above
-specialization will not work. For that reason, in real life you almost
-certainly should apply [type-safe handle idiom][url-type-safe-handles] to your
-wrapper class which is described in the recent [isocpp.org][url-isocpp] post by
-Emil Ernerfeldt. Then you can specialize `Cleanup` method on handle tag (which
-is effectively a form of [tag dispatching][url-tag-dispatching]).
+> Note that our handle wrapper is somewhat simplified for the purpose of the
+article. It is assumed that various `HandleType` arguments are in fact
+different types, not an aliases for some built-in type like `int` or `void*`.
+For example, if our `OsHandle` and `OsInternetHandle` are both defined as
+synonyms for `int`, the above specialization will not work. For that reason, in
+real life you almost certainly should apply
+[type-safe handle idiom][url-type-safe-handles] to your wrapper class which is
+described in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then
+you can specialize `Cleanup` method on handle tag (which is effectively a form
+of [tag dispatching][url-tag-dispatching]).
 
 ### Conclusion
 Although described in **Section 14.7 [temp.spec] of the C++ ISO/IEC standard**,

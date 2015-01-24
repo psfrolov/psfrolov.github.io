@@ -19,8 +19,8 @@ baseurl: "/"
 title: &id1 "arkfps"
 author: "Pavel Frolov"
 disqus_shortname: *id1
-tagline: "programming blog"
-description: "Random technical stuff."
+description: "programming blog"
+tagline: "“O(1) complexity, baby! Now we’re cooking!”"
 url: "https://arkfps.github.io"
 github_profile: https://github.com/arkfps
 linkedin_profile: https://www.linkedin.com/in/psfrolov

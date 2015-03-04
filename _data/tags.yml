@@ -15,3 +15,5 @@
   slug: powershell
 - name: Static Analysis
   slug: static-analysis
+- name: Windows API
+  slug: windows-api

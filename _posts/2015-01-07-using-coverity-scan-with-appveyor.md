@@ -64,6 +64,12 @@ the article.
 
 ### Downloading Coverity Build Tool
 
+<div class="message">
+<i class="fa fa-exclamation-triangle" title="Warning"></i>
+UPDATE. Coverity Build Tool now comes preinstalled on AppVeyor builder. See the
+link in comment by Mark Clearwater below the article for more information.
+</div>
+
 The first step may sound simple, but _one does not simply download Coverity
 Build Tool_. First, for security and legal reasons you need to pass your
 Coverity Scan project name and token as part of download request. Second, the

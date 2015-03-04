@@ -314,7 +314,7 @@ $form.Add($formField, "version")
 {% endhighlight %}
 
 #### `description` field
-An Arbitrary text describing your build:
+An arbitrary text describing your build:
 {% highlight powershell %}
 # Fill description field.
 $formField = New-Object Net.Http.StringContent("AppVeyor scheduled build.")
@@ -336,8 +336,8 @@ $fs.Close()
 {% endhighlight %}
 Things to note:
 
-* We need to pass project name in `owner-name/repo-name` format in query
-  string.
+* We need to pass the project name in `owner-name/repo-name` format in the
+  query string.
 * On time-out `$task.Wait()` will throw `System.AggregateException` containing
   nested `System.Threading.Tasks.TaskCanceledException`.
 
@@ -348,8 +348,8 @@ Coverity Scan project web GUI, and the final results will be delivered to you
 by e-mail. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
 
-Here is full [appveyor.yml][url-my-appveyor-yml] utilizing approach described
-in the article.
+Here is full [appveyor.yml][url-my-appveyor-yml] utilizing the approach
+described in the article.
 
 [url-appveyor]: http://www.appveyor.com
 [url-travis-ci]: https://travis-ci.org

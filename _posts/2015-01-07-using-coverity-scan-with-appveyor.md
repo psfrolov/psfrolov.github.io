@@ -366,4 +366,4 @@ described in the article.
 [url-dotnet-multipart-form-data]: http://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
 [url-rfc2388]: https://tools.ietf.org/html/rfc2388
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
-[url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/develop/appveyor.yml
+[url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml

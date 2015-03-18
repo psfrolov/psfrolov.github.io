@@ -86,8 +86,9 @@ install:
 
 Let's deal with input data.
 
-**Project name** is just your repository name in `owner-name/repo-name` format.
-Conveniently, AppVeyor provides it in `APPVEYOR_REPO_NAME` variable.
+**Project name** is your Coverity Scan project name as seen in web UI. Usually
+it's the same as GitHub project name (`owner-name/repo-name`), in which case
+you can use `APPVEYOR_REPO_NAME` built-in variable for it.
 
 **Project token** is used by Coverity Scan for automated build submissions. You
 can examine and regenerate it in your Coverity Scan web GUI **Project

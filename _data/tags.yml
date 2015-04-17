@@ -3,14 +3,20 @@
   slug: dotnet
 - name: AppVeyor
   slug: appveyor
+- name: Boost
+  slug: boost
 - name: C++
   slug: cpp
 - name: CI
   slug: ci
 - name: Coverity
   slug: coverity
+- name: Design Patterns
+  slug: design-patterns
 - name: Generic Programming
   slug: generic-programming
+- name: OOP
+  slug: oop 
 - name: PowerShell
   slug: powershell
 - name: Static Analysis

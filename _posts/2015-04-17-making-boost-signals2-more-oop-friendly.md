@@ -235,9 +235,10 @@ private:
 };
 {% endhighlight %}
 
-The Observable class maintains a table (`std::tuple` in our case) of observers
-the definition of which is passed as class template parameter `Observers`. An
-example of such an argument is the `WindowObervers` structure defined earlier.
+The `Observable` class maintains a table (`std::tuple` in our case) of
+observers the definition of which is passed as class template parameter
+`Observers`. An example of such an argument is the `WindowObervers` structure
+defined earlier.
 
 The class provides `Register` method which is used obviously for observers
 registration. The function takes an arbitrary callable object (whatever

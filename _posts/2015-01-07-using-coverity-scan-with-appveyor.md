@@ -276,7 +276,7 @@ Coverity Build Tool.
 # Fill token field.
 [Net.Http.HttpContent]$formField =
   New-Object Net.Http.StringContent($env:CoverityProjectToken)
-$form.Add($formField, "token")
+$form.Add($formField, "\"token\"")
 {% endhighlight %}
 
 #### `email` field
@@ -285,7 +285,7 @@ notification about analysis results.
 {% highlight powershell %}
 # Fill email field.
 $formField = New-Object Net.Http.StringContent($env:CoverityNotificationEmail)
-$form.Add($formField, "email")
+$form.Add($formField, "\"email\"")
 {% endhighlight %}
 I recommend you to secure your e-mail:
 {% highlight yaml %}
@@ -303,7 +303,7 @@ $fs = New-Object IO.FileStream(
   [IO.FileMode]::Open,
   [IO.FileAccess]::Read)
 $formField = New-Object Net.Http.StreamContent($fs)
-$form.Add($formField, "file", "$env:APPVEYOR_PROJECT_NAME.zip")
+$form.Add($formField, "\"file\"", "$env:APPVEYOR_PROJECT_NAME.zip")
 {% endhighlight %}
 
 #### `version` field
@@ -311,7 +311,7 @@ Your need to set this field to the version of your build:
 {% highlight powershell %}
 # Fill version field.
 $formField = New-Object Net.Http.StringContent($env:APPVEYOR_BUILD_VERSION)
-$form.Add($formField, "version")
+$form.Add($formField, "\"version\"")
 {% endhighlight %}
 
 #### `description` field
@@ -319,7 +319,7 @@ An arbitrary text describing your build:
 {% highlight powershell %}
 # Fill description field.
 $formField = New-Object Net.Http.StringContent("AppVeyor scheduled build.")
-$form.Add($formField, "description")
+$form.Add($formField, "\"description\"")
 {% endhighlight %}
 
 Finally, we can submit the form:

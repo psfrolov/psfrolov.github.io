@@ -16,6 +16,8 @@ defaults:
 
 baseurl: "/"      
 
+exclude: [Gemfile, Gemfile.lock, start-server.cmd, THIRD-PARTY.TXT]
+
 # Sitewide custom variables.
 title: &id1 "arkfps"
 author: "Pavel Frolov"

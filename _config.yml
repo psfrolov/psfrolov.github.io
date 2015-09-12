@@ -3,8 +3,9 @@ permalink: pretty
 paginate: 5
 gems:
   - jekyll-sitemap
+  - jekyll-feed
   - jemoji
-  
+
 # Default layouts.
 defaults:
   - scope:
@@ -14,7 +15,7 @@ defaults:
       comments: true
 
 baseurl: "/"      
-      
+
 # Sitewide custom variables.
 title: &id1 "arkfps"
 author: "Pavel Frolov"
@@ -24,3 +25,9 @@ tagline: "“O(1) complexity, baby! Now we’re cooking!”"
 url: "https://arkfps.github.io"
 github_profile: https://github.com/arkfps
 linkedin_profile: https://www.linkedin.com/in/psfrolov
+
+# Feed settings.
+feed:
+  path: atom.xml
+name: *id1
+ 

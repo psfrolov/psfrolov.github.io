@@ -19,6 +19,10 @@ defaults:
     values:
       layout: post
       comments: true
+  - scope:
+      path: posts-by-tag
+    values:
+      layout: posts-by-tag    
 
 # Feed.
 feed:

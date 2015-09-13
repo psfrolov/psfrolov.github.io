@@ -1,4 +1,4 @@
-# Build settings.
+# Build.
 permalink: pretty
 paginate: 5
 gems:
@@ -6,30 +6,31 @@ gems:
   - jekyll-feed
   - jemoji
 
+# Serving.
+baseurl: /
+
+# Reading.
+exclude: [Gemfile, Gemfile.lock, start-server.cmd, THIRD-PARTY.txt]
+
 # Default layouts.
 defaults:
   - scope:
-      type: "posts"
+      type: posts
     values:
-      layout: "post"
+      layout: post
       comments: true
 
-baseurl: "/"      
-
-exclude: [Gemfile, Gemfile.lock, start-server.cmd, THIRD-PARTY.TXT]
-
-# Sitewide custom variables.
-title: &id1 "arkfps"
-author: "Pavel Frolov"
-disqus_shortname: *id1
-description: "programming blog"
-tagline: "“O(1) complexity, baby! Now we’re cooking!”"
-url: "https://arkfps.github.io"
-github_profile: https://github.com/arkfps
-linkedin_profile: https://www.linkedin.com/in/psfrolov
-
-# Feed settings.
+# Feed.
 feed:
   path: atom.xml
+
+# Custom variables.
+title: &id1 arkfps
 name: *id1
- 
+disqus_shortname: *id1
+description: Programming Blog
+tagline: “O(1) complexity, baby! Now we’re cooking!”
+author: Pavel Frolov
+url: https://arkfps.github.io
+github_profile: https://github.com/arkfps
+linkedin_profile: https://www.linkedin.com/in/psfrolov

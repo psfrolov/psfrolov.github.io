@@ -5,11 +5,7 @@ layout: default
     <!-- Post content. -->
     <div>
       <h1>{{ page.title }}</h1>
-      <p>
-        <i class="fa fa-clock-o" title="Post Date"></i> {{ page.date | date_to_string }}
-        </br>
-        <i class="fa fa-tags" title="Post Tags"></i> {{ page | tags }}
-      </p>
+      {% include post-meta.html context=page %}
       <article>
         {{ content }}
       </article>

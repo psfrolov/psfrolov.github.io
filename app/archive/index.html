@@ -7,10 +7,6 @@ title: Archive
       <h2>
         <a href="{{ post.url }}">{{ post.title }}</a>
       </h2>
-      <p>
-        <i class="fa fa-clock-o" title="Post Date"></i> {{ post.date | date_to_string }}
-        </br>
-        <i class="fa fa-tags" title="Post Tags"></i> {{ post | tags }}
-      </p>
+      {% include post-meta.html context=post %}
       {{ post.excerpt }}
       {% endfor %}

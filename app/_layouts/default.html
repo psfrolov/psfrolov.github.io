@@ -10,30 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Page title. -->
-    <title>{% if page.title %}{{ page.title }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title | liquify }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     
     <!-- Page description. -->
     {% if page.description %}
-    <meta name="description" content="{{ page.description }}">
-    {% elsif page.is_home %}
-    <meta name="description" content="{{ site.description }}">
+    <meta name="description" content="{{ page.description | liquify }}">
     {% endif %}
     
     <!-- Page keywords. -->
     {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords }}"/>
+    <meta name="keywords" content="{{ page.keywords | liquify }}"/>
     {% elsif page.tags %}
     <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
     <meta name="keywords" content="{{ page | keywords }}"/>
-    {% elsif page.is_home %}
-    <meta name="keywords" content="{{ site.keywords | join: ',' }}"/>
     {% endif %}
     
     <!-- Page author. -->
     <meta name="author" content="{{ site.author }}"/>
 
     <!-- Canonical page URL for serch engines. -->
-    {% if page.url == "/" %}
+    {% if page.is_home %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
     {% else %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}">

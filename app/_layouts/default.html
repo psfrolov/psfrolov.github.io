@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <!-- Internet Explorer compatibility. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!--Mobile devices resposivness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Page title. -->
+    <title>{% if page.title %}{{ page.title }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    
+    <!-- Page description. -->
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    {% elsif page.is_home %}
+    <meta name="description" content="{{ site.description }}">
+    {% endif %}
+    
+    <!-- Page keywords. -->
+    {% if page.keywords %}
+    <meta name="keywords" content="{{ page.keywords }}"/>
+    {% elsif page.tags %}
+    <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
+    <meta name="keywords" content="{{ page | keywords }}"/>
+    {% elsif page.is_home %}
+    <meta name="keywords" content="{{ site.keywords | join: ',' }}"/>
+    {% endif %}
+    
+    <!-- Page author. -->
+    <meta name="author" content="{{ site.author }}"/>
+
+    <!-- Canonical page URL for serch engines. -->
+    {% if page.url == "/" %}
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
+    {% else %}
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}">
+    {% endif %}
+
+    <!-- Web feed. -->
+    {% feed_meta %}
+    
+    <!-- CSS. -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+    
+    <!-- Pygmets syntax highlighting. -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
+                                   
+    <!-- Font Awesome. -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+    
+    <!-- TODO: favicons. -->
+  </head>
+  
+  <body>
+    <aside>
+      <h1>
+        <a href="{{ site.baseurl }}/"><i class="fa fa-balance-scale"></i><br/>{{ site.title }}</a>
+      </h1>
+      <p>{{ site.description }}</p>
+      <hr/>
+      <p><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud }}</p>
+      <hr/>
+      <nav>
+        <a href="{{ site.baseurl }}/archive"><i class="fa fa-list fa-lg" title="Blog Archive"></i></a>
+        <a href="{{ site.feed.path }}"><i class="fa fa-feed fa-lg" title="News Feed"></i></a>
+        <a href="{{ site.baseurl }}/contact"><i class="fa fa-paper-plane fa-lg" title="Contact"></i></a>
+        <a href="{{ site.baseurl }}/about"><i class="fa fa-user fa-lg" title="About"></i></a>
+        </nav>
+        <p>Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
+      </nav>
+    </aside>
+    
+    {{ content }}
+  </body>
+</html>

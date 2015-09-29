@@ -1,0 +1,37 @@
+---
+layout: page
+is_home: true
+---
+
+      <!-- Posts preview. -->
+      <div>
+        {% for post in paginator.posts %}
+        <h2>
+          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <p>
+          <i class="fa fa-clock-o" title="Post Date"></i> {{ post.date | date_to_string }}
+          </br>
+          <i class="fa fa-tags" title="Post Tags"></i> {{ post | tags }}
+        </p>
+        {{ post.excerpt }}
+        {% endfor %}
+      </div>
+
+      <!-- Pager. -->
+      <div>
+        {% if paginator.next_page %}
+        <a href="{{ site.baseurl }}/page{{paginator.next_page}}"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</a>
+        {% else %}
+        <span><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</span>
+        {% endif %}
+        {% if paginator.previous_page %}
+        {% if paginator.page == 2 %}
+        <a href="{{ site.baseurl }}">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+        {% else %}
+        <a href="{{ site.baseurl }}/page{{paginator.previous_page}}">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+        {% endif %}
+        {% else %}
+        <span>Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></span>
+        {% endif %}
+      </div>

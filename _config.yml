@@ -1,0 +1,49 @@
+# Build settings.
+source: app
+destination: dist
+kramdown:
+  # Github Flavored Markdown. 
+  input: GFM
+gems:
+  - jekyll-feed
+  - jemoji
+  - jekyll/tagging
+  # Sitemap plugin must come last to cover other plugins's (possible) output.
+  - jekyll-sitemap
+permalink: pretty
+paginate: 5
+
+# Default page layouts.
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      comments: true
+  - scope:
+      path: posts-by-tag
+    values:
+      layout: posts-by-tag    
+
+# Web feed (jekyll-feed).
+feed:
+  path: atom.xml
+  # Jekyll-feed also makes use of url, name, description and author variables.
+
+# Tagging (jekyll-tagging).
+tag_page_layout: tag-page
+tag_page_dir: tag
+  
+# Custom variables.
+url: https://arkfps.github.io
+name: &sitename The Hermetic Vault
+title: *sitename
+description: Software Craftsmanship Compendium
+keywords: [Software Development, Programming, C++, Templates, Generic]
+author: Pavel Frolov
+email: your-email@yourdomain.com
+disqus_shortname: arkfps
+github_profile: https://github.com/arkfps
+linkedin_profile: https://linkedin.com/in/psfrolov
+facebook_profile: https://www.facebook.com/psfrolov
+google_analytics_id: UA-XXXXX-X

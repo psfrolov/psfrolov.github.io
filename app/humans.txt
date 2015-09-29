@@ -1,0 +1,66 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# AUTHOR
+
+  Pavel Frolov
+
+# TECHNOLOGY COLOPHON
+
+  Languages:
+    HTML
+    http://www.w3.org/html/
+    
+    Sass
+    http://sass-lang.com
+    
+    Liquid
+    http://liquidmarkup.org
+    
+    Markdown
+    https://daringfireball.net/projects/markdown/
+    
+  Front-End Framework:
+    Foundation
+    http://foundation.zurb.com
+  
+  Blog Publishing System:
+    Jekyll
+    https://jekyllrb.com
+ 
+  Icons:
+    Font Awesome
+    https://fortawesome.github.io/Font-Awesome
+    
+    Real Favicon Generator
+    https://realfavicongenerator.net
+    
+  Fonts:
+    Google Fonts
+    https://www.google.com/fonts  
+    
+  Scaffolding:
+    Yeoman
+    http://yeoman.io
+    
+    generator-gulp-webapp
+    https://github.com/yeoman/generator-gulp-webapp#readme
+    
+    HTML5 Boilerplate
+    https://html5boilerplate.com
+    
+  Web Hosting:
+    GitHub Pages
+    https://pages.github.com
+
+  Blog Comment Hosting:
+    Disqus
+    https://publishers.disqus.com
+
+  Web Analytics:
+    Google Analytics
+    https://www.google.com/analytics
+
+  Security:
+    SRI Hash Generator
+    https://srihash.org

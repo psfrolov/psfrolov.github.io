@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Must be within first 1024 bytes. -->
     <meta charset="utf-8">
     
-    <!-- Internet Explorer compatibility. -->
+    <!-- Internet Explorer compatibility. Needs to be specified early. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!--Mobile devices resposivness. -->
@@ -15,6 +16,8 @@
     <!-- Page description. -->
     {% if page.description %}
     <meta name="description" content="{{ page.description | liquify }}">
+    {% elsif page.excerpt %}
+    <meta name="description" content="{{ page.excerpt | strip_html }}">
     {% endif %}
     
     <!-- Page keywords. -->
@@ -27,6 +30,9 @@
     
     <!-- Page author. -->
     <meta name="author" content="{{ site.author }}"/>
+    
+    <!-- Page icon. -->
+    <!-- TODO -->
 
     <!-- Canonical page URL for serch engines. -->
     {% if page.is_home %}
@@ -34,12 +40,21 @@
     {% else %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}">
     {% endif %}
-
-    <!-- Web feed. -->
-    {% feed_meta %}
     
-    <!-- CSS. -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+    <!-- Exclude page from inedxing by search engines. -->
+    {% if page.noindex %}
+    <meta name="robots" content="noindex"/>
+    {% endif %}
+
+    <!-- Web feed link. -->
+    {% if page.is_home %}
+    {% feed_meta %}
+    {% endif %}
+    
+    <!-- Sitemap link. -->
+    {% if page.is_home %}
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
+    {% endif %}
     
     <!-- Pygmets syntax highlighting. -->
     <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
@@ -47,7 +62,11 @@
     <!-- Font Awesome. -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
     
-    <!-- TODO: favicons. -->
+    <!-- Google Fonts. -->
+    <!-- TODO -->
+    
+    <!-- Main CSS. -->
+    <!-- TODO -->
   </head>
   
   <body>
@@ -70,5 +89,15 @@
     </aside>
     
     {{ content }}
+    
+    <!-- Google Analytics. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','{{ site.google_analytics_id }}','auto');ga('send','pageview');
+    </script>
   </body>
 </html>

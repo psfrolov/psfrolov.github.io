@@ -1,6 +1,11 @@
 ---
 title: Using Coverity Scan with AppVeyor
 tags: [AppVeyor, CI, Coverity, .NET, PowerShell, Static Analysis]
+excerpt: |
+  Unlike Travis Ci, AppVeyor currently lacks out of the box integration with
+  Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
+  analysis for your project by injecting custom PowerShell scripts into
+  AppVeyorbuild process.
 ---
 
 [AppVeyor][url-appveyor] is an awesome SaaS CI server similar to
@@ -14,10 +19,7 @@ it is completely free for Open Source projects.
 Java. Coverity Scan is used by some major Open Source projects such as Linux,
 Python, PostgreSQL, Apache Software Foundation projects.
 
-Unlike Travis Ci, AppVeyor currently lacks out of the box integration with
-Coverity Scan. In this article I'll show you how to enable Coverity Scan code
-analysis for your project by injecting custom PowerShell scripts into AppVeyor
-build process.
+{{ page.excerpt }}
 
 <div class="message">
 <i class="fa fa-exclamation-triangle" title="Warning"></i>

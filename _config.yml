@@ -39,7 +39,7 @@ url: https://arkfps.github.io
 name: &sitename The Hermetic Vault
 title: *sitename
 description: Software Craftsmanship Compendium
-keywords:[C++, Generic Programming]
+keywords: [C++, Generic Programming]
 author: Pavel Frolov
 email: your-email@yourdomain.com
 disqus_shortname: arkfps

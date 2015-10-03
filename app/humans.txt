@@ -11,8 +11,8 @@
     HTML
     http://www.w3.org/html/
     
-    Sass
-    http://sass-lang.com
+    CSS
+    http://www.w3.org/Style/CSS/
     
     Liquid
     http://liquidmarkup.org
@@ -39,15 +39,8 @@
     Google Fonts
     https://www.google.com/fonts  
     
-  Scaffolding:
-    Yeoman
-    http://yeoman.io
+  Build System:
     
-    generator-gulp-webapp
-    https://github.com/yeoman/generator-gulp-webapp#readme
-    
-    HTML5 Boilerplate
-    https://html5boilerplate.com
     
   Web Hosting:
     GitHub Pages

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
   <head>
     <!-- Must be within first 1024 bytes. -->
     <meta charset="utf-8">
     
-    <!-- Internet Explorer compatibility. Needs to be specified early. -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!--Mobile devices resposivness. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Mobile devices responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Page title. -->
     <title>{% if page.title %}{{ page.title | liquify }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
@@ -22,28 +19,28 @@
     
     <!-- Page keywords. -->
     {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords | liquify }}"/>
+    <meta name="keywords" content="{{ page.keywords | liquify }}">
     {% elsif page.tags %}
     <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
-    <meta name="keywords" content="{{ page | keywords }}"/>
+    <meta name="keywords" content="{{ page | keywords }}">
     {% endif %}
     
     <!-- Page author. -->
-    <meta name="author" content="{{ site.author }}"/>
+    <meta name="author" content="{{ site.author }}">
     
     <!-- Page icon. -->
     <!-- TODO -->
 
-    <!-- Canonical page URL for serch engines. -->
+    <!-- Canonical page URL for search engines. -->
     {% if page.is_home %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
     {% else %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}">
     {% endif %}
     
-    <!-- Exclude page from inedxing by search engines. -->
+    <!-- Exclude page from indexing by search engines. -->
     {% if page.noindex %}
-    <meta name="robots" content="noindex"/>
+    <meta name="robots" content="noindex">
     {% endif %}
 
     <!-- Web feed link. -->
@@ -56,7 +53,7 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
     {% endif %}
     
-    <!-- Pygmets syntax highlighting. -->
+    <!-- Pygments syntax highlighting. -->
     <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
                                    
     <!-- Font Awesome. -->
@@ -65,14 +62,16 @@
     <!-- Google Fonts. -->
     <!-- TODO -->
     
-    <!-- Main CSS. -->
-    <!-- TODO -->
+    <!-- Foundation. -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <script src="js/vendor/modernizr.js"></script>
   </head>
   
   <body>
     <aside>
       <h1>
-        <a href="{{ site.baseurl }}/"><i class="fa fa-balance-scale"></i><br/>{{ site.title }}</a>
+        <a href="{{ site.baseurl }}/"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
       </h1>
       <p>{{ site.description }}</p>
       <hr/>

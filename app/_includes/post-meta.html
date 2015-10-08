@@ -1,7 +1,6 @@
 <!-- Inserted just after post tile. -->
 <p>
-  <i class="fa fa-clock-o" title="Post Date"></i> {{ include.context.date | date_to_string }}
-  </br>
-  <i class="fa fa-tags" title="Post Tags"></i> {{ include.context | tags }}
+  <span class="muted"><i class="fa fa-clock-o" title="Post Date"></i> {{ include.context.date | date_to_string }}</span>
+  <br>
+  <i class="fa fa-tags muted" title="Post Tags"></i> {{ include.context | tags }}
 </p>
- 

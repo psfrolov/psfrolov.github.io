@@ -4,6 +4,7 @@ destination: dist
 kramdown:
   # Github Flavored Markdown. 
   input: GFM
+  hard_wrap: false
 gems:
   - jekyll-feed
   - jemoji
@@ -36,7 +37,7 @@ tag_page_dir: tag
   
 # Custom variables.
 url: https://arkfps.github.io
-name: &sitename The Hermetic Vault
+name: &sitename The Hermetic Dungeon
 title: *sitename
 description: Software Craftsmanship Compendium
 keywords: [C++, Generic Programming]

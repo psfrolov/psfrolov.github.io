@@ -5,7 +5,7 @@ excerpt: |
   Unlike Travis Ci, AppVeyor currently lacks out of the box integration with
   Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
   analysis for your project by injecting custom PowerShell scripts into
-  AppVeyorbuild process.
+  AppVeyor build process.
 ---
 
 [AppVeyor][url-appveyor] is an awesome SaaS CI server similar to
@@ -23,8 +23,8 @@ Python, PostgreSQL, Apache Software Foundation projects.
 
 <div class="message">
 <i class="fa fa-exclamation-triangle" title="Warning"></i>
-The rest of the article assumes that you have GitHub repository registered with
-both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
+The rest of the article assumes that you have a GitHub repository registered
+with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e, manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).
 </div>

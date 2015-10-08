@@ -20,13 +20,13 @@
     Markdown
     https://daringfireball.net/projects/markdown/
     
-  Front-End Framework:
-    Foundation
-    http://foundation.zurb.com
-  
   Blog Publishing System:
     Jekyll
     https://jekyllrb.com
+ 
+  Site Template:
+    Hyde
+    http://hyde.getpoole.com
  
   Icons:
     Font Awesome
@@ -37,7 +37,13 @@
     
   Fonts:
     Google Fonts
-    https://www.google.com/fonts  
+    https://www.google.com/fonts
+    
+    PT Sans
+    https://www.google.com/fonts/specimen/PT+Sans
+    
+    PT Serif
+    https://www.google.com/fonts/specimen/PT+Serif
     
   Build System:
     
@@ -54,6 +60,12 @@
     Google Analytics
     https://www.google.com/analytics
 
-  Security:
+  Miscellaneous:
+    Normalize.css
+    https://necolas.github.io/normalize.css/
+  
+    solarized-light.css
+    https://gist.github.com/nicolashery/5765395#file-solarized-light-css
+
     SRI Hash Generator
     https://srihash.org

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
   <head>
     <!-- Must be within first 1024 bytes. -->
     <meta charset="utf-8">
@@ -53,42 +53,49 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
     {% endif %}
     
-    <!-- Pygments syntax highlighting. -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
-                                   
-    <!-- Font Awesome. -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
-    
     <!-- Google Fonts. -->
-    <!-- TODO -->
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|PT+Serif|PT+Mono'
+          rel='stylesheet'>
+          <!-- Could not use SRI here as generated stylesheet is browser-specific. -->
     
-    <!-- Foundation. -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/foundation.css">
-    <script src="js/vendor/modernizr.js"></script>
+    <!-- Font Awesome. -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
+          crossorigin="anonymous">
+    
+    <!-- Normalize.css -->
+    <link href="{{ site.baseurl }}/css/normalize.css" rel="stylesheet">
+          
+    <!-- Pygments syntax highlighting. -->
+    <link href="{{ site.baseurl }}/css/syntax.css" rel="stylesheet">
+                                   
+    <!-- Custom stylesheet. -->
+    <link href="{{ site.baseurl }}/css/app.css" rel="stylesheet">
   </head>
   
   <body>
-    <aside>
+    <aside class="sticky-sidebar container">
       <h1>
-        <a href="{{ site.baseurl }}/"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
+        <a href="{{ site.baseurl }}/" title="Home"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
       </h1>
-      <p>{{ site.description }}</p>
-      <hr/>
-      <p><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud }}</p>
-      <hr/>
+      <p class="italic">{{ site.description }}</p>
+      <br>
+      <p class="bold"><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
+      <br>
       <nav>
-        <a href="{{ site.baseurl }}/archive"><i class="fa fa-list fa-lg" title="Blog Archive"></i></a>
-        <a href="{{ site.feed.path }}"><i class="fa fa-feed fa-lg" title="News Feed"></i></a>
-        <a href="{{ site.baseurl }}/contact"><i class="fa fa-paper-plane fa-lg" title="Contact"></i></a>
-        <a href="{{ site.baseurl }}/about"><i class="fa fa-user fa-lg" title="About"></i></a>
-        </nav>
-        <p>Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
+        <a href="{{ site.baseurl }}/archive"><i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i></a>&nbsp;&nbsp;
+        <a href="{{ site.baseurl }}/{{ site.feed.path }}"><i class="fa fa-feed fa-2x nav-icon" title="News Feed"></i></a>&nbsp;&nbsp;
+        <a href="{{ site.baseurl }}/contact"><i class="fa fa-paper-plane fa-2x nav-icon" title="Contact"></i></a>&nbsp;&nbsp;
+        <a href="{{ site.baseurl }}/about"><i class="fa fa-user fa-2x nav-icon" title="About"></i></a>
       </nav>
+      <hr class="muted-light">
+      <p class="smaller muted-light">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
     </aside>
-    
-    {{ content }}
-    
+    <div class="content container">
+      {{ content }}
+    </div>
+      
     <!-- Google Analytics. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

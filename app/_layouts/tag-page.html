@@ -4,13 +4,13 @@ title: 'Posts tagged "{{ page.tag }}"'
 keywords: "{{ page.tag }}"
 ---
 
-    <div>
-      <h1>{{ page.title | liquify }}</h1>
-      {% for post in page.posts %}
-      <h2>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-      </h2>
-      {% include post-meta.html context=post %}
-      {{ post.excerpt }}
-      {% endfor %}
-    </div>
+
+        <h1>{{ page.title | liquify }}</h1>
+        {% for post in page.posts %}
+        <h2>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        {% include post-meta.html context=post %}
+        {{ post.excerpt }}
+        <br>
+        {% endfor %}

@@ -84,13 +84,26 @@
       <p class="bold"><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
       <br>
       <nav>
-        <a href="{{ site.baseurl }}/archive"><i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i></a>&nbsp;&nbsp;
-        <a href="{{ site.baseurl }}/{{ site.feed.path }}"><i class="fa fa-feed fa-2x nav-icon" title="News Feed"></i></a>&nbsp;&nbsp;
-        <a href="{{ site.baseurl }}/contact"><i class="fa fa-paper-plane fa-2x nav-icon" title="Contact"></i></a>&nbsp;&nbsp;
-        <a href="{{ site.baseurl }}/about"><i class="fa fa-user fa-2x nav-icon" title="About"></i></a>
+        <a href="{{ site.baseurl }}/archive">
+          <span>
+            <i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i>
+          </span>
+        </a>
+        &nbsp;&nbsp;
+        <a href="{{ site.baseurl }}/{{ site.feed.path }}">
+          <span>
+            <i class="fa fa-feed fa-2x nav-icon" title="News Feed"></i>
+          </span>
+        </a>
+        &nbsp;
+        <a href="{{ site.baseurl }}/contact">
+          <span>
+            <i class="fa fa-phone fa-2x nav-icon" title="Contact"></i>
+          </span>
+        </a>
       </nav>
       <hr class="muted-light">
-      <p class="smaller muted-light">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
+      <p class="smaller muted-light">&copy; {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</p>
     </aside>
     <div class="content container">
       {{ content }}

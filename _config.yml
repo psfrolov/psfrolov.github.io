@@ -20,11 +20,7 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true
-  - scope:
-      path: posts-by-tag
-    values:
-      layout: posts-by-tag    
+      comments: true  
 
 # Web feed (jekyll-feed).
 feed:
@@ -37,12 +33,12 @@ tag_page_dir: tag
   
 # Custom variables.
 url: https://arkfps.github.io
-name: &sitename The Hermetic Dungeon
+name: &sitename The Hermetic Vault
 title: *sitename
 description: Software Craftsmanship Compendium
 keywords: [C++, Generic Programming]
 author: Pavel Frolov
-email: your-email@yourdomain.com
+email: '"your" + "email" + "@" + "yourdomain" + "." + "com"'
 disqus_shortname: arkfps
 github_profile: https://github.com/arkfps
 linkedin_profile: https://linkedin.com/in/psfrolov

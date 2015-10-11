@@ -4,5 +4,70 @@ title: Contact
 noindex: true
 ---
 
-        <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
-        <!-- TODO Form. -->
+
+<p>
+  Want to get in touch with me? Fill out the form below to send me a message
+  and I will try to get back to you as soon as possible.
+</p>
+
+<form class="form" name="contact" method="post" target="_blank">
+  <div class="form-row">
+    <input type="text"
+           name="name"
+           placeholder="&#xf007 Name"
+           maxlength="20"
+           required>
+  </div>
+  <div class="form-row">
+    <input type="email"
+           name="_replyto"
+           placeholder="&#xf0e0 Email"
+           maxlength="50"
+           required>
+    <input type="hidden"
+           name="_subject"
+           value="{{ site.name }} Contact"
+           maxlength="50"
+           required>
+  </div>
+  <div class="form-row">
+    <textarea name="message"
+              placeholder="&#xf075 Message"
+              maxlength="5000"
+              spellcheck="true"
+              required></textarea>
+    <input type="text"
+           name="_gotcha"
+           style="display:none"
+           maxlength="20">
+  </div>
+  <div class="form-row">
+    <button type="submit"><i class="fa fa-send" title="Send"></i> Send</button>
+  </div>
+</form>
+<!-- Dynamically construct email to make it harder for bots to sniff. -->
+<script>
+  document.forms["contact"].setAttribute("action", "https://" + "formspree.io/" + {{ site.email }});
+</script>
+
+<hr>
+
+<address>
+  <a href="{{ site.github_profile }}">
+    <span class="fa-lg content-icon">
+      <i class="fa fa-github-square fa-2x" title="GitHub Profile"></i>
+    </span>
+  </a>
+  &nbsp;
+  <a href="{{ site.linkedin_profile }}">
+    <span class="fa-lg content-icon">
+      <i class="fa fa-linkedin-square fa-2x" title="LinkedIn Profile"></i>
+    </span>
+  </a>
+  &nbsp;
+  <a href="{{ site.facebook_profile }}">
+    <span class="fa-lg content-icon">
+      <i class="fa fa-facebook-square fa-2x" title="Facebook Profile"></i>
+    </span>
+  </a>
+</address>

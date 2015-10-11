@@ -46,7 +46,8 @@
     https://www.google.com/fonts/specimen/PT+Serif
     
   Build System:
-    
+    Gulp
+    http://gulpjs.com
     
   Web Hosting:
     GitHub Pages
@@ -55,6 +56,10 @@
   Blog Comment Hosting:
     Disqus
     https://publishers.disqus.com
+    
+  Web Form Endpoint:
+    Formspree
+    https://formspree.io  
 
   Web Analytics:
     Google Analytics

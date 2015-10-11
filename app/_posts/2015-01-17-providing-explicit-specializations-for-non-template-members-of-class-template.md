@@ -145,7 +145,7 @@ template<> void Handle<OsInternetHandle>::Cleanup() {
 This is much better for maintainability and works exactly like the class
 specialization above.
 
-> Note that our handle wrapper is somewhat simplified for the purpose of the
+Note that our handle wrapper is somewhat simplified for the purpose of the
 article. It is assumed that various `HandleType` arguments are in fact
 different types, not an aliases for some built-in type like `int` or `void*`.
 For example, if our `OsHandle` and `OsInternetHandle` are both defined as

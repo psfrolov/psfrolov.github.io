@@ -152,8 +152,8 @@ blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
   color: #313131;
-  border-left: .25rem solid #ac4142;
-  font-style: italic;
+  border-left: .25rem solid #313131;
+  opacity: 0.8;
 }
 blockquote p:last-child {
   margin-bottom: 0;
@@ -190,7 +190,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
 }
-pre, .gist .highlight, .gist .gist-meta {
+input, textarea, pre, .gist .highlight, .gist .gist-meta {
   background: scroll url({{ site.baseurl }}/img/code-bg.png) !important;
 }
 pre code , .gist .blob-code-inner {
@@ -243,7 +243,6 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", sans-serif;
   color: #e5e5e5;
   text-align: center;
 }
@@ -255,7 +254,8 @@ tbody tr:nth-child(odd) th {
 .pagination-item:first-child {
   margin-bottom: -1px;
 }
-a.pagination-item:hover {
+a.pagination-item:hover,
+a.pagination-item:focus {
   background-color: rgba(128,128,128, 0.25);
 }
 @media (min-width: 30em) {
@@ -312,13 +312,64 @@ aside * {
 }
 
 
+/* Forms. */
+.form {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+.form .form-row {
+  margin-bottom: 1.5rem;
+}
+.form input {
+  width: 15rem;
+  padding: 0.3rem;
+  border: 1px solid #e5e5e5;
+  font-family: 'PT Sans', sans-serif, 'FontAwesome';
+}
+.form textarea {
+  width: 100%;
+  height: 7.5rem;
+  padding: 0.3rem;
+  border: 1px solid #e5e5e5;
+  resize: vertical;
+  font-family: 'PT Sans', sans-serif, 'FontAwesome';
+}
+.form button {
+  display: block;
+  font-weight: bold;
+  padding: 0.3rem;
+  background-color: #ac4142;
+  color: white;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}
+.form button:hover {
+  text-decoration: underline;
+  background-color: #313131;
+}
+.form button:focus {
+  text-decoration: underline;
+}
+::-webkit-input-placeholder {
+  color: rgba(128,128,128, 0.7);
+}
+::-moz-placeholder {
+  color: rgba(128,128,128, 0.7);
+}
+:-ms-input-placeholder {
+  color: rgba(128,128,128, 0.7);
+}
+
+
 /* Icons. */
 .nav-icon:hover,
 .nav-icon:focus {
   color: #ac4142;
 }
-.share-icon:hover,
-.share-icon:focus {
+.content-icon:hover,
+.content-icon:focus {
   color: #313131;
 }
 

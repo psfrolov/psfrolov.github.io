@@ -3,11 +3,12 @@ layout: page
 title: Archive
 ---
 
-        {% for post in site.posts %}
-        <h2>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </h2>
-        {% include post-meta.html context=post %}
-        {{ post.excerpt }}
-        <br>
-        {% endfor %}
+
+{% for post in site.posts %}
+<h2>
+  <a href="{{ post.url }}">{{ post.title }}</a>
+</h2>
+{% include post-meta.html context=post %}
+{{ post.excerpt }}
+<br>
+{% endfor %}

@@ -28,12 +28,21 @@
     Hyde
     http://hyde.getpoole.com
  
-  Icons:
+  Images, Icons, Textures:
     Font Awesome
     https://fortawesome.github.io/Font-Awesome
     
     Real Favicon Generator
     https://realfavicongenerator.net
+    
+    Inkscape
+    https://inkscape.org
+    
+    GIMP
+    http://www.gimp.org
+    
+    X-Icon Editor
+    http://www.xiconeditor.com
     
   Fonts:
     Google Fonts
@@ -44,10 +53,6 @@
     
     PT Serif
     https://www.google.com/fonts/specimen/PT+Serif
-    
-  Build System:
-    Gulp
-    http://gulpjs.com
     
   Web Hosting:
     GitHub Pages
@@ -64,7 +69,15 @@
   Web Analytics:
     Google Analytics
     https://www.google.com/analytics
-
+  
+  Build System:
+    Gulp
+    http://gulpjs.com
+    
+  Asset Compression
+    FileOptimizer
+    http://nikkhokkho.sourceforge.net/static.php?page=FileOptimizer
+    
   Miscellaneous:
     Normalize.css
     https://necolas.github.io/normalize.css/

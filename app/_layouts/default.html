@@ -29,7 +29,24 @@
     <meta name="author" content="{{ site.author }}">
     
     <!-- Page icon. -->
-    <!-- TODO -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ site.baseurl }}/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ site.baseurl }}/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ site.baseurl }}/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ site.baseurl }}/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ site.baseurl }}/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ site.baseurl }}/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ site.baseurl }}/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ site.baseurl }}/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
+    <meta name="msapplication-TileColor" content="#ac4142">
+    <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
+    <meta name="theme-color" content="#ac4142">
 
     <!-- Canonical page URL for search engines. -->
     {% if page.is_home %}
@@ -53,12 +70,12 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
     {% endif %}
     
-    <!-- Google Fonts. -->
+    <!-- Fonts. -->
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|PT+Serif|PT+Mono'
           rel='stylesheet'>
           <!-- Could not use SRI here as generated stylesheet is browser-specific. -->
     
-    <!-- Font Awesome. -->
+    <!-- Icons. -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
           rel="stylesheet"
           integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
@@ -84,19 +101,19 @@
       <p class="bold"><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
       <br>
       <nav>
-        <a href="{{ site.baseurl }}/archive">
+        <a class="link-icon" href="{{ site.baseurl }}/archive">
           <span>
             <i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i>
           </span>
         </a>
         &nbsp;&nbsp;
-        <a href="{{ site.baseurl }}/{{ site.feed.path }}">
+        <a class="link-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
           <span>
             <i class="fa fa-feed fa-2x nav-icon" title="News Feed"></i>
           </span>
         </a>
         &nbsp;
-        <a href="{{ site.baseurl }}/contact">
+        <a class="link-icon" href="{{ site.baseurl }}/contact">
           <span>
             <i class="fa fa-phone fa-2x nav-icon" title="Contact"></i>
           </span>

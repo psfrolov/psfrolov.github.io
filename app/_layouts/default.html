@@ -27,6 +27,7 @@
     
     <!-- Page author. -->
     <meta name="author" content="{{ site.author }}">
+    <link type="text/plain" rel="author" href="{{ site.baseurl }}/humans.txt">
     
     <!-- Page icon. -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ site.baseurl }}/apple-touch-icon-57x57.png">
@@ -44,6 +45,7 @@
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
+    <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="#ac4142">
     <meta name="msapplication-TileColor" content="#ac4142">
     <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
     <meta name="theme-color" content="#ac4142">
@@ -68,6 +70,14 @@
     <!-- Sitemap link. -->
     {% if page.is_home %}
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
+    {% endif %}
+    
+    <!-- Pagination hints for search engines. -->
+    {% if paginator.previous_page_path %}
+    <link rel="prev" href="{{ site.baseurl }}{{ paginator.previous_page_path }}">
+    {% endif %}
+    {% if paginator.next_page_path %}
+    <link rel="next" href="{{ site.baseurl }}{{ paginator.next_page_path }}">
     {% endif %}
     
     <!-- Fonts. -->
@@ -96,7 +106,7 @@
       <h1>
         <a href="{{ site.baseurl }}/" title="Home"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
       </h1>
-      <p class="italic">{{ site.description }}</p>
+      <p class="italic">{{ site.tagline }}</p>
       <br>
       <p class="bold"><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
       <br>

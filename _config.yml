@@ -1,6 +1,7 @@
 # Build settings.
 source: app
 destination: dist
+include: [.nojekyll]
 kramdown:
   # Github Flavored Markdown. 
   input: GFM
@@ -9,7 +10,7 @@ gems:
   - jekyll-feed
   - jemoji
   - jekyll/tagging
-  # Sitemap plugin must come last to cover other plugins's (possible) output.
+  # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
 permalink: pretty
 paginate: 5
@@ -35,8 +36,9 @@ tag_page_dir: tag
 url: https://arkfps.github.io
 name: &sitename The Hermetic Vault
 title: *sitename
-description: Software Craftsmanship Compendium
-keywords: [C++, Generic Programming]
+description: A miscellanea of C++ programming techniques.
+tagline: typedef typename template
+keywords: [C++, Programming]
 author: Pavel Frolov
 email: '"your" + "email" + "@" + "yourdomain" + "." + "com"'
 disqus_shortname: arkfps

@@ -3,10 +3,10 @@ title: Resource Management with Explicit Template Specializations
 tags: [C++, Generic Programming, Windows API]
 ---
 
-Here’s my article from the [April 2015 issue of Overload journal]
-[url-overload]. It presents a simple, easy-to-use, generic RAII wrapper based
-on an interesting static polymorphism technique which I introduced in the
-[previous post][url-previous-post].
+<span class="drop-letter">H</span><span>ere’s</span> my article from the [April
+2015 issue of Overload journal][url-overload]. It presents a simple,
+easy-to-use, generic RAII wrapper based on an interesting static polymorphism
+technique which I introduced in the [previous post][url-previous-post].
 
 ## [Resource Management with Explicit Template Specializations][url-overload-article]
 

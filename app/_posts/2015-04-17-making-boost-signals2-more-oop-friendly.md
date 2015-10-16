@@ -3,16 +3,16 @@ title: Making Boost.Signals2 More OOP-Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
 ---
 
-The [observer design pattern][url-observer] is by far the most popular and
-widely known among [behavioural patterns][url-behavioural-patterns].
-Unfortunately, unlike other mainstream languages out there, the C++ standard
-library doesn't provide out of the box observer implementation. Luckily,
-[Boost][url-boost] contains [Signals2][url-signals2], a [signal/slot]
-[url-signal-slot] library which can serve as a basis for an observer. Using
-Signals2 as it is, however, is not so convenient in object-oriented program due
-to the need of manually coded _register_ and _notify_ class methods for each of
-signal/slot pairs. This article suggests an _observable_ [mixin][url-mixin]
-which attempts to solve the outlined problem.
+<span class="drop-letter">T</span><span>he</span> [observer design pattern]
+[url-observer] is by far the most popular and widely known among [behavioural
+patterns][url-behavioural-patterns]. Unfortunately, unlike other mainstream
+languages out there, the C++ standard library doesn't provide out of the box
+observer implementation. Luckily, [Boost][url-boost] contains [Signals2]
+[url-signals2], a [signal/slot][url-signal-slot] library which can serve as a
+basis for an observer. Using Signals2 as it is, however, is not so convenient
+in object-oriented program due to the need of manually coded _register_ and
+_notify_ class methods for each of signal/slot pairs. This article suggests an
+_observable_ [mixin][url-mixin] which attempts to solve the outlined problem.
 
 ### Motivating Example
 
@@ -151,7 +151,7 @@ the previous section.
   Window --|> WindowObservable;
   Application "1" o-- "1" Window;
   @enduml;
-'>
+' alt="Observable Mixin UML Class Diagram">
 
 #### The `WindowObservers` class
 

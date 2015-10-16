@@ -23,9 +23,11 @@ gulp.task("lint-xml", "TODO"));
 gulp.task("lint-css", "TODO"));
 gulp.task("lint-js", "TODO"));
 gulp.task("lint", "TODO"));
+*/
 
-gulp.task("build", ["jekyll-build", "optimize", "lint"]);
+gulp.task("build", ["jekyll-build"]);
 
+/*
 //gulp.task("deploy", ["TODO"]);
 */
 

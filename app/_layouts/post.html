@@ -14,13 +14,13 @@ layout: default
 <!-- Social share buttons. -->
 <div>
   {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-  <a class="link-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&text={{ page.title | uri_escape}}&hashtags={{ page.tags | join: ", " }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&hashtags={{ page.tags | join:', ' | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-twitter fa-stack-1x fa-inverse" title="Share on Twitter"></i>
     </span>
   </a>
-  <a class="link-icon" href="https://www.linkedin.com/shareArticle?mini=true&url={{ post_url | uri_escape }}&title={{ page.title | uri_escape}}&source={{ site.title | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://www.linkedin.com/shareArticle?mini=true&url={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-linkedin fa-stack-1x fa-inverse" title="Share on LinkedIn"></i>

@@ -8,11 +8,12 @@ excerpt: |
   AppVeyor build process.
 ---
 
-[AppVeyor][url-appveyor] is an awesome SaaS CI server similar to
-[Travis CI][url-travis-ci] but for Windows developers. It enables you to build,
-test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX, among
-others (see [Installed Software][url-appveyor-installed-software]). Moreover,
-it is completely free for Open Source projects.
+[<span class="drop-letter">A</span><span>ppVeyor</span>][url-appveyor] is an
+awesome SaaS CI server similar to [Travis CI][url-travis-ci] but for Windows
+developers. It enables you to build, test and deploy all sorts of projects:
+C/C++, .NET, IIS, SQL Server, WiX, among others (see [Installed Software]
+[url-appveyor-installed-software]). Moreover, it is completely free for Open
+Source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
 [Coverity][url-coverity], static code analysis solution for C/C++, C# and

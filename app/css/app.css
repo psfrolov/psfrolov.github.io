@@ -30,7 +30,12 @@ html {
   }
 }
 body {
-  background: scroll url({{ site.baseurl }}/img/bg.jpg);
+  background: scroll url({{ site.baseurl }}/img/content-bg-small.jpg);
+}
+@media (min-width: 48em) {
+  body {
+    background: scroll url({{ site.baseurl }}/img/content-bg-large.jpg);
+  }
 }
 
 /* Grid. */
@@ -285,7 +290,7 @@ a.pagination-item:focus {
 
 /* Sidebar. */
 aside {
-  background: scroll url({{ site.baseurl }}/img/sidebar-bg.jpg) no-repeat;
+  background: scroll url({{ site.baseurl }}/img/sidebar-bg-small.jpg) no-repeat;
   background-size: cover;
   text-align: center;
   font-family: 'PT Serif', serif;
@@ -294,20 +299,14 @@ aside {
 @media (min-width: 48rem) {
   aside {
     position: fixed;
+    background: scroll url({{ site.baseurl }}/img/sidebar-bg-large.jpg) no-repeat;
+    background-size: cover;
     top: 0;
     left: 0;
     bottom: 0;
     width: 18rem;
     text-align: center;
     overflow: auto;
-  }
-}
-@media (min-width: 48em) {
-  .sidebar-sticky {
-    position: absolute;
-    right:  1rem;
-    bottom: 1rem;
-    left:   1rem;
   }
 }
 aside * {
@@ -378,13 +377,6 @@ aside * {
 }
 .drop-letter + span{
   margin-left: -0.25em;
-}
-
-/* Emoji. */
-.emoji {
-  display: inline;
-  padding: 0;
-  margin-bottom: 0.3rem;
 }
 
 /* Icons. */

@@ -1,6 +1,6 @@
 <!-- Inserted just after post tile. -->
 <p>
-  <span class="muted"><i class="fa fa-clock-o" title="Post Date"></i> {{ include.context.date | date_to_string }}</span>
+  <span class="muted"><i class="fa fa-clock-o" title="Post Date"></i> Published: {{ include.context.date | date_to_string }}.&emsp;<i class="fa fa-newspaper-o" title="Estimated Reading Time"></i> Reading time: {% if include.context.reading_time %}{{ include.context.reading_time | pluralize:'minute' }}{% else %}{{ include.context.content | reading_time | pluralize:'minute' }}{% endif %}.</span>
   <br>
-  <i class="fa fa-tags muted" title="Post Tags"></i> {{ include.context | tags }}
+  <i class="fa fa-tags muted" title="Post Tags"></i> {{ include.context | tags }}.
 </p>

@@ -1,6 +1,6 @@
 # Build settings.
 source: app
-destination: dist
+destination: dist/jekyll-build
 include: [.nojekyll]
 kramdown:
   # Github Flavored Markdown. 
@@ -8,10 +8,10 @@ kramdown:
   hard_wrap: false
 gems:
   - jekyll-feed
-  - jemoji
   - jekyll/tagging
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
+  - liquid_pluralize
 permalink: pretty
 paginate: 5
 

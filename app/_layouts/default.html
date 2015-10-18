@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Must be within first 1024 bytes. -->
     <meta charset="utf-8">
+    
+    <!-- Security. -->
+    <meta http-equiv="Content-Security-Policy" content="
+      {% if jekyll.environment == "development" %}
+      default-src http: https: data: 'unsafe-inline';
+      {% else %}
+      default-src https: data: 'unsafe-inline';
+      {% endif %}
+      form-action https:;
+      block-all-mixed-content;
+      reflected-xss block;
+      base-uri 'self';
+      referrer origin">
     
     <!--Mobile devices responsiveness. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,22 +74,22 @@
     <meta name="robots" content="noindex">
     {% endif %}
 
-    <!-- Web feed link. -->
-    {% if page.is_home %}
-    {% feed_meta %}
-    {% endif %}
-    
-    <!-- Sitemap link. -->
+    <!-- Sitemap link for search engines. -->
     {% if page.is_home %}
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
     {% endif %}
     
     <!-- Pagination hints for search engines. -->
     {% if paginator.previous_page_path %}
-    <link rel="prev" href="{{ site.baseurl }}{{ paginator.previous_page_path }}">
+    <link rel="prev" href="{{ site.url }}{{ site.baseurl }}{{ paginator.previous_page_path }}">
     {% endif %}
     {% if paginator.next_page_path %}
-    <link rel="next" href="{{ site.baseurl }}{{ paginator.next_page_path }}">
+    <link rel="next" href="{{ site.url }}{{ site.baseurl }}{{ paginator.next_page_path }}">
+    {% endif %}
+    
+    <!-- Web feed link. -->
+    {% if page.is_home %}
+    {% feed_meta %}
     {% endif %}
     
     <!-- Fonts. -->
@@ -102,7 +114,7 @@
   </head>
   
   <body>
-    <aside class="sticky-sidebar container">
+    <aside class="container">
       <h1>
         <a href="{{ site.baseurl }}/" title="Home"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
       </h1>
@@ -137,6 +149,7 @@
     </div>
       
     <!-- Google Analytics. -->
+    {% if jekyll.environment == "production" %}
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -145,5 +158,6 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','{{ site.google_analytics_id }}','auto');ga('send','pageview');
     </script>
+    {% endif %}
   </body>
 </html>

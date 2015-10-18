@@ -85,5 +85,6 @@
     solarized-light.css
     https://gist.github.com/nicolashery/5765395#file-solarized-light-css
 
-    SRI Hash Generator
-    https://srihash.org
+    CSP Builder
+    https://report-uri.io/home/generate
+ 

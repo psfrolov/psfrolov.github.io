@@ -1,6 +1,7 @@
 ---
 title: Resource Management with Explicit Template Specializations
 tags: [C++, Generic Programming, Windows API]
+reading_time: 15
 ---
 
 <span class="drop-letter">H</span><span>ere’s</span> my article from the [April

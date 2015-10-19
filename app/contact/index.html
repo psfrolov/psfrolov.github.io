@@ -10,44 +10,70 @@ noindex: true
   and I will try to get back to you as soon as possible.
 </p>
 
-<form class="form" name="contact" method="post" target="_blank">
-  <div class="form-row">
-    <input type="text"
-           name="name"
-           placeholder="&#xf007 Name"
-           maxlength="20"
-           required>
-  </div>
-  <div class="form-row">
-    <input type="email"
-           name="_replyto"
-           placeholder="&#xf0e0 Email"
-           maxlength="50"
-           required>
-    <input type="hidden"
-           name="_subject"
-           value="{{ site.name }} Contact"
-           maxlength="50"
-           required>
-  </div>
-  <div class="form-row">
-    <textarea name="message"
-              placeholder="&#xf075 Message"
-              maxlength="5000"
-              spellcheck="true"
-              required></textarea>
-    <input type="text"
-           name="_gotcha"
-           style="display:none"
-           maxlength="20">
-  </div>
-  <div class="form-row">
-    <button type="submit"><i class="fa fa-send" title="Send"></i> Send</button>
+<form name="contact" method="post" target="_blank">
+    <div>
+      <label for="name">Name<span class="red">*</span></label>
+      <div>
+        <input type="text"
+               id="name"
+               name="name"
+               autocomplete="name"
+               placeholder="&#xf007 ..."
+               maxlength="20"
+               required>
+      </div>
+    </div> 
+    <div>    
+      <label for="email">Email<span class="red">*</span></label>
+      <div>
+        <input type="email"
+               id="email"
+               name="_replyto"
+               autocomplete="email"
+               placeholder="&#xf0e0 name@example.com"
+               maxlength="50"
+               required>
+        <input type="hidden"
+               name="_subject"
+               value="{{ site.name }} Contact"
+               maxlength="50"
+               required>
+      </div>
+    </div>
+    <div>    
+      <label for="message">Message<span class="red">*</span></label>
+      <div>
+        <textarea id="message"
+                  name="message"
+                  placeholder="&#xf075 ..."
+                  maxlength="5000"
+                  spellcheck="true"
+                  required></textarea>
+        <input type="text"
+               name="_gotcha"
+               style="display:none"
+               maxlength="20">
+      </div>
+    </div>
+  <div>
+    <div>
+      <button type="submit"><i class="fa fa-send" title="Send"></i> Send</button>
+    </div>
   </div>
 </form>
-<!-- Dynamically construct email to make it harder for bots to sniff. -->
 <script>
-  document.forms["contact"].setAttribute("action", "https://" + "formspree.io/" + {{ site.email }});
+  var form = document.forms["contact"];
+  <!-- Dynamically construct email to make it harder for bots to sniff. -->
+  form.setAttribute("action", "https://" + "formspree.io/" + {{ site.email }});
+  <!-- Prevents submitting invalid form (for older browsers). -->
+  form.addEventListener("submit", function(evt) {
+    if (form.checkValidity() === false) {
+      evt.preventDefault();
+      alert("Please fill out all form fields correctly.");
+      return false;
+    }
+    return true;
+  });
 </script>
 
 <hr>

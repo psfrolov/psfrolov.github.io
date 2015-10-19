@@ -118,6 +118,10 @@ without the use of macros. Or think of [Qt signals and slots]
 Here is a _class diagram_ which presents a high-level view on what we will
 be discussing in this section. We'll continue to use the window example from
 the previous section.
+{% if jekyll.environment == "production" %}
+<img src="{{ site.baseurl }}/img/posts/observable-mixin-uml-class-diagram.png"
+     alt="Observable Mixin UML Class Diagram">
+{% else %}
 <img src='http://g.gravizo.com/g?
   @startuml;
   skinparam monochrome false;
@@ -152,6 +156,7 @@ the previous section.
   Application "1" o-- "1" Window;
   @enduml;
 ' alt="Observable Mixin UML Class Diagram">
+{% endif %}
 
 #### The `WindowObservers` class
 

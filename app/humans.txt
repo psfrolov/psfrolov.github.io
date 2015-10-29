@@ -59,8 +59,8 @@
     https://pages.github.com
 
   Blog Comment Hosting:
-    Disqus
-    https://publishers.disqus.com
+    Disqus Engage
+    https://publishers.disqus.com/engage
     
   Web Form Endpoint:
     Formspree

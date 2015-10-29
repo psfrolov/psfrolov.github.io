@@ -8,12 +8,13 @@ kramdown:
   hard_wrap: false
 gems:
   - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
   - jekyll/tagging
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
   - liquid_pluralize
 permalink: pretty
-paginate: 5
 
 # Default page layouts.
 defaults:
@@ -23,6 +24,9 @@ defaults:
       layout: post
       comments: true  
 
+# Pagination.
+paginate: 5
+  
 # Web feed (jekyll-feed).
 feed:
   path: atom.xml

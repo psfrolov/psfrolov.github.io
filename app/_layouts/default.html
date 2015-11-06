@@ -99,9 +99,9 @@
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     {% endif %}
     
-    <!-- Exclude page from indexing by search engines. -->
-    {% if page.noindex %}
-    <meta name="robots" content="noindex">
+    <!-- Search engines indexing. -->
+    {% if page.robots %}
+    <meta name="robots" content="{{ page.robots }}">
     {% endif %}
 
     <!-- Sitemap link for search engines. -->

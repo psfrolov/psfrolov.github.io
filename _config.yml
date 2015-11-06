@@ -19,10 +19,19 @@ permalink: pretty
 # Default page layouts.
 defaults:
   - scope:
+      type: pages
+    values:
+      schema: "http://schema.org/WebPage"
+      og_prefix: "website: http://ogp.me/ns/website#"
+      og_type: website
+  - scope:
       type: posts
     values:
       layout: post
-      comments: true  
+      comments: true
+      schema: "http://schema.org/BlogPosting"
+      og_prefix: "article: http://ogp.me/ns/article#"
+      og_type: article
 
 # Pagination.
 paginate: 5
@@ -43,10 +52,14 @@ title: *sitename
 description: A miscellanea of C++ programming techniques.
 tagline: typedef typename template
 keywords: [C++, Programming]
+topic: Software Development
 author: Pavel Frolov
 email: '"your" + "email" + "@" + "yourdomain" + "." + "com"'
 disqus_shortname: arkfps
+google_analytics_id: UA-58552086-1
 github_profile: https://github.com/arkfps
 linkedin_profile: https://linkedin.com/in/psfrolov
 facebook_profile: https://www.facebook.com/psfrolov
-google_analytics_id: UA-58552086-1
+twitter:
+  site_id: ___
+  creator_id: ___

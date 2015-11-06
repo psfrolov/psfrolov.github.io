@@ -1,5 +1,6 @@
 ---
 layout: page
+schema: "http://schema.org/ContactPage"
 title: Contact
 noindex: true
 ---
@@ -10,7 +11,7 @@ noindex: true
   and I will try to get back to you as soon as possible.
 </p>
 
-<form name="contact" method="post" target="_blank">
+<form name="contact" method="post">
     <div>
       <label for="name">Name<span class="red">*</span></label>
       <div>
@@ -22,15 +23,15 @@ noindex: true
                maxlength="20"
                required>
       </div>
-    </div> 
-    <div>    
+    </div>
+    <div>
       <label for="email">Email<span class="red">*</span></label>
       <div>
         <input type="email"
                id="email"
-               name="_replyto"
+               name="email"
                autocomplete="email"
-               placeholder="&#xf0e0 name@example.com"
+               placeholder="&#xf0e0 youremail@example.com"
                maxlength="50"
                required>
         <input type="hidden"

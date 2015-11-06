@@ -1,14 +1,19 @@
 ---
 layout: page
+schema: "http://schema.org/CollectionPage"
 title: Archive
 ---
 
 
 {% for post in site.posts %}
-<h2>
-  <a href="{{ post.url }}">{{ post.title }}</a>
-</h2>
-{% include post-meta.html context=post %}
-{{ post.excerpt }}
+<div itemscope itemtype="http://schema.org/BlogPosting">
+  <h2 itemprop="name headline">
+    <a href="{{ post.url }}" itemprop="url">{{ post.title }}</a>
+  </h2>
+  {% include post-meta.html context=post %}
+  <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url | liquify }}">
+  {{ post.excerpt }}
+</div>
 <br>
 {% endfor %}
+

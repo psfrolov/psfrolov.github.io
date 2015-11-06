@@ -1,36 +1,54 @@
 ---
 layout: page
+schema: "http://schema.org/Blog"
+title: "{{ site.title }}"
+image:
+  url: "{{ site.baseurl }}/img/sidebar-bg-large.jpg"
 description: "{{ site.description }}"
 keywords: "{{ site.keywords | join:',' }}"
 is_home: true
 ---
 
-        <!-- Posts preview. -->
-        <div>
-          {% for post in paginator.posts %}
-          <h2>
-            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-          </h2>
-          {% include post-meta.html context=post %}
-          {{ post.excerpt }}
-          <br>
-          {% endfor %}
-        </div>
 
-        <!-- Pager. -->
-        <div class="pagination">
-          {% if paginator.next_page %}
-          <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</a>
-          {% else %}
-          <span class="pagination-item older"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</span>
-          {% endif %}
-          {% if paginator.previous_page %}
-          {% if paginator.page == 2 %}
-          <a class="pagination-item newer" href="{{ site.baseurl }}/">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
-          {% else %}
-          <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
-          {% endif %}
-          {% else %}
-          <span class="pagination-item newer">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></span>
-          {% endif %}
-        </div>
+<!-- Posts preview. -->
+<div>
+  {% for post in paginator.posts %}
+  <div itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <h2 itemprop="name headline">
+      <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a>
+    </h2>
+    {% include post-meta.html context=post %}
+    <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url | liquify }}">
+    {{ post.excerpt }}
+  </div>
+  <br>
+  {% endfor %}
+</div>
+
+<!-- Pager. -->
+<div class="pagination">
+  {% if paginator.next_page %}
+  <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</a>
+  {% else %}
+  <span class="pagination-item older"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+  {% if paginator.page == 2 %}
+  <a class="pagination-item newer" href="{{ site.baseurl }}/">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+  {% else %}
+  <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+  {% endif %}
+  {% else %}
+  <span class="pagination-item newer">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></span>
+  {% endif %}
+</div>
+
+<!-- https://developers.google.com/structured-data/site-name -->
+<script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "WebSite",
+    "name" : "{{ site.name }}",
+    "url" : "{{ site.url }}"
+  }
+</script>

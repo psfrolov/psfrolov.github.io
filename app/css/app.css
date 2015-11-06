@@ -40,6 +40,7 @@ body {
   }
 }
 
+
 /* Grid. */
 .container {
   max-width: 38rem;
@@ -51,7 +52,6 @@ body {
   padding-top:    1rem;
   padding-bottom: 4rem;
 }
-
 @media (min-width: 48em) {
   .content {
     max-width: 38rem;
@@ -59,7 +59,6 @@ body {
     margin-right: 2rem;
   }
 }
-
 @media (min-width: 64em) {
   .content {
     margin-left: 22rem;
@@ -86,6 +85,7 @@ a:active, a>i:active {
 .link-icon:focus {
   text-decoration: none;
 }
+
 
 /* Headings. */
 h1, h2, h3, h4, h5, h6 {
@@ -213,7 +213,7 @@ pre code , .gist .blob-code-inner {
 
 /* Pygments via Jekyll */
 .highlight {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   border-radius: 4px;
 }
 .highlight pre {
@@ -227,6 +227,22 @@ img {
   max-width: 100%;
   margin: 0 0 1rem;
   border-radius: 5px;
+}
+figure {
+  margin: 1rem 0;
+}
+figure:after {
+  /* Clearfix. */
+  content: "";
+  display: table;
+  clear: both;
+}
+figure > img {
+  margin-bottom: 0.1rem;
+}
+figure > figcaption {
+  font-size: smaller;
+  text-align: center;
 }
 
 
@@ -420,6 +436,7 @@ textarea:invalid {
   margin-left: -0.25em;
 }
 
+
 /* Icons. */
 .nav-icon {
   transition:
@@ -476,6 +493,9 @@ textarea:invalid {
 .red {
   color: #ac4142;
 }
+.right {
+  float: right;
+}
 
 
 /* Messages. */
@@ -485,5 +505,5 @@ textarea:invalid {
   color: white;
   background-color: #ac4142;
   border: 1px solid #e5e5e5;
-  border-radius: 3px;
+  border-radius: 5px;
 }

@@ -1,6 +1,11 @@
 ---
 title: Providing Explicit Specializations for Non-Template Members of Class Template
 tags: [C++, Generic Programming]
+image:
+  url: /img/posts/specialization.jpg
+  source:
+    name: "Jenna A, 6th grade (Thomas Middle School, Arlington Heights)"
+    url: http://www.econed-il.org/icee/econposter_11.shtml
 permalink: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template/
 ---
 

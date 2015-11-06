@@ -6,6 +6,8 @@ excerpt: |
   Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
   analysis for your project by injecting custom PowerShell scripts into
   AppVeyor build process.
+image:
+  url: /img/posts/code-in-space.jpg
 ---
 
 [<span class="drop-letter">A</span><span>ppVeyor</span>][url-appveyor] is an

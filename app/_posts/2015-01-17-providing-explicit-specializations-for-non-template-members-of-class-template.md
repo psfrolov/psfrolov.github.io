@@ -163,12 +163,14 @@ you can specialize `Cleanup` method on handle tag (which is effectively a form
 of [tag dispatching][url-tag-dispatching]).
 
 ### Conclusion
-Although described in **Section 14.7 [temp.spec] of the C++ ISO/IEC standard**,
-this unobvious feature is poorly documented elsewhere. In fact, I've found
-only a couple of reference manuals mentioning it:
+Although described in <cite>Section 14.7 [temp.spec] of the C++ ISO/IEC
+standard</cite>, this unobvious feature is poorly documented elsewhere. In
+fact, I've found only a couple of reference manuals mentioning it:
 
 * [cppreference.com][url-cppreference];
 * [z/OS XL C/C++ Language Reference][url-zos-xl-cpp-reference].
+
+*[RAII]: Resource Acquisition Is Initialization
 
 [url-cppreference]: http://en.cppreference.com/w/cpp/language/template_specialization
 [url-zos-xl-cpp-reference]: http://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm

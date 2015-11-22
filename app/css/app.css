@@ -149,7 +149,6 @@ abbr {
   font-size: 85%;
   font-weight: bold;
   color: #313131;
-  text-transform: uppercase;
 }
 abbr[title] {
   cursor: help;

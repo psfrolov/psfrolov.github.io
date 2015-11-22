@@ -25,6 +25,8 @@ and so on.
 
 Also available [in Russian][url-russian-article].
 
+*[RAII]: Resource Acquisition Is Initialization
+
 [url-overload]: http://accu.org/index.php/journals/c348/
 [url-previous-post]: {% post_url 2015-01-17-providing-explicit-specializations-for-non-template-members-of-class-template %}
 [url-overload-article]: http://accu.org/index.php/journals/2086

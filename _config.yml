@@ -55,11 +55,15 @@ keywords: [C++, Programming]
 topic: Software Development
 author: Pavel Frolov
 email: '"your" + "email" + "@" + "yourdomain" + "." + "com"'
+
 disqus_shortname: arkfps
 google_analytics_id: UA-58552086-1
 github_profile: https://github.com/arkfps
 linkedin_profile: https://linkedin.com/in/psfrolov
-facebook_profile: https://www.facebook.com/psfrolov
+facebook:
+  profile: https://www.facebook.com/psfrolov
+  id: 100005735232020
 twitter:
-  site_id: ___
-  creator_id: ___
+  profile: https://twitter.com/arkfps
+  site_id: &twitter_site_id 4133911523
+  creator_id: *twitter_site_id

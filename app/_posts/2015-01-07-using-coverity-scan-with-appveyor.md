@@ -7,7 +7,7 @@ excerpt: |
   analysis for your project by injecting custom PowerShell scripts into
   AppVeyor build process.
 image:
-  url: /img/posts/code-in-space.jpg
+  url: /img/posts/coverity-scan-and-appveyor.png
 ---
 
 [<span class="drop-letter">A</span><span>ppVeyor</span>][url-appveyor] is an

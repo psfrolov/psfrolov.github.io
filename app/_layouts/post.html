@@ -6,7 +6,7 @@ layout: default
 <!-- Post content. -->
 <div>
   <figure>
-    <img src="{{ site.baseurl }}{{ page.image.url | liquify }}">
+    <img src="{{ site.baseurl }}{{ page.image.url }}">
     {% if page.image.source %}
     <figcaption class="right italic muted-light">Image by <a href="{{ page.image.source.url }}">{{ page.image.source.name }}</a></figcaption>
     {% endif %}

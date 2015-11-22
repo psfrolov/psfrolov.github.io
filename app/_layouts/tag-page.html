@@ -13,7 +13,7 @@ keywords: "{{ page.tag }}"
       <a href="{{ post.url }}" itemprop="url">{{ post.title }}</a>
     </h2>
     {% include post-meta.html context=post %}
-    <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url | liquify }}">
+    <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url }}">
     {{ post.excerpt }}
   </div>
   <br>

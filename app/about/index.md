@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 schema: "http://schema.org/AboutPage"
 og_prefix: "fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#"
 og_type: profile
@@ -8,6 +8,9 @@ image:
   url: /img/profile.jpg
 ---
 
+<figure><img src="{{ site.baseurl }}/img/about.jpg"></figure>
+
+# {{ page.title | liquify }}
 <span class="drop-letter">W</span><span>elcome</span> to my place, stranger!
 The name's Paul. Once a SCADA/DCS applications builder involved in space
 ground-based infrastructure projects (namely, Angara Space Rocket Complex and

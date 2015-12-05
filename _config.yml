@@ -1,6 +1,6 @@
 # Build settings.
 source: app
-destination: dist/jekyll-build
+destination: dist/manual-jekyll-build
 include: [.nojekyll]
 kramdown:
   # Github Flavored Markdown. 

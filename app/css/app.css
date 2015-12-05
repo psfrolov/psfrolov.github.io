@@ -486,9 +486,6 @@ textarea:invalid {
 .italic {
   font-style: italic;
 }
-.smaller {
-  font-size: smaller;
-}
 .red {
   color: #ac4142;
 }

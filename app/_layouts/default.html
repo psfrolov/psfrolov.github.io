@@ -9,16 +9,12 @@
     
     <!-- Security. -->
     <meta http-equiv="Content-Security-Policy" content="
-      {% if jekyll.environment == 'development' %}
-      default-src http: https: data: 'unsafe-inline';
-      {% else %}
-      default-src https: data: 'unsafe-inline';
-      {% endif %}
+      default-src https: data: 'unsafe-inline' wss:;
       form-action https:;
       block-all-mixed-content;
       reflected-xss block;
-      base-uri 'self';
-      referrer origin">
+      base-uri 'self'
+      referrer origin-when-cross-origin">
     
     <!--Mobile devices responsiveness. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -142,14 +138,14 @@
           integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
           crossorigin="anonymous">
     
+    <!-- build:css {{ site.baseurl }}/css/combined.css -->
     <!-- Normalize.css -->
     <link href="{{ site.baseurl }}/css/normalize.css" rel="stylesheet">
-          
     <!-- Pygments syntax highlighting. -->
     <link href="{{ site.baseurl }}/css/syntax.css" rel="stylesheet">
-                                   
     <!-- Custom stylesheet. -->
     <link href="{{ site.baseurl }}/css/app.css" rel="stylesheet">
+    <!-- endbuild -->
   </head>
   
   <body>
@@ -187,7 +183,7 @@
         </a>
       </nav>
       <hr class="muted-light">
-      <p class="smaller muted-light">&copy; {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</p>
+      <p class="muted-light"><small>&copy; {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small></p>
     </aside>
     <div class="content container">
       {{ content }}

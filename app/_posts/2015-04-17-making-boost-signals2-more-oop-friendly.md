@@ -124,45 +124,8 @@ Here is a _class diagram_ which presents a high-level view on what we will
 be discussing in this section. We'll continue to use the window example from
 the previous section.
 <figure>
-  {% if jekyll.environment == "production" %}
   <img src="{{ site.baseurl }}/img/posts/observable-mixin-uml-class-diagram.png"
        alt="Observable Mixin UML Class Diagram">
-  {% else %}
-  <img src='http://g.gravizo.com/g?
-    @startuml;
-    skinparam monochrome false;
-    skinparam backgroundColor transparent;
-    skinparam classAttributeIconSize 0;
-    package "Library Code" {;
-      class Observer<Signature: typename> {;
-        -signal_ : boost::signals2::signal<Signature>;
-      };
-      class Observable<Observers: typename> {;
-        +boost::signals2::connection Register(F&& f);
-        %23Observer::Result Notify(Args&&... args) const;
-        -signals_ : Observers::ObserverTable;
-      };
-    };
-    package "User Code" {;
-      class WindowObservers;
-      class "Observable<WindowObservers>" as WindowObservable;
-      class Window {;
-        +void Show();
-        +bool Close(bool force_close = false);
-      };
-      class Application {;
-        -void OnWindowShow();
-        -bool OnWindowClose(bool force_close);
-      };
-    };
-    Observable .|> Observer : <<friend>>;
-    Observer "1..\*" --\* "1" WindowObservers;
-    WindowObservable ..|> Observable : <<bind>>\nObservers -> WindowObservers;
-    Window --|> WindowObservable;
-    Application "1" o-- "1" Window;
-    @enduml;
-  ' alt="Observable Mixin UML Class Diagram">
-  {% endif %}
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 

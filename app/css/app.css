@@ -88,13 +88,13 @@ a:active, a>i:active {
 
 
 /* Headings. */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .site-title {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
   color: #313131;
 }
-h1 {
+h1, .site-title {
   font-size: 2rem;
 }
 h2 {
@@ -224,6 +224,7 @@ pre code , .gist .blob-code-inner {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
   margin: 0 0 1rem;
   border-radius: 5px;
 }

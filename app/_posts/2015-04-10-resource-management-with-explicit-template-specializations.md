@@ -3,7 +3,7 @@ title: Resource Management with Explicit Template Specializations
 tags: [C++, Generic Programming, Windows API]
 reading_time: 15
 image:
-  url: /img/posts/overload-126.png
+  url: /img/pages/overload-126.png
 ---
 
 

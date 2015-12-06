@@ -63,14 +63,14 @@ robots: noindex
   </div>
 </form>
 <script>
-  var form = document.forms["contact"];
-  <!-- Dynamically construct email to make it harder for bots to sniff. -->
-  form.setAttribute("action", "https://" + "formspree.io/" + {{ site.email }});
-  <!-- Prevents submitting invalid form (for older browsers). -->
-  form.addEventListener("submit", function(evt) {
+  var form = document.forms.contact;
+  // Dynamically construct email to make it harder for bots to sniff.
+  form.setAttribute('action', 'https://' + 'formspree.io/' + 'your' + 'email' + '@' + 'yourdomain' + '.' + 'com');
+  // Prevents submitting invalid form (for older browsers).
+  form.addEventListener('submit', function(evt) {
     if (form.checkValidity() === false) {
       evt.preventDefault();
-      alert("Please fill out all form fields correctly.");
+      alert('Please fill out all form fields correctly.');
       return false;
     }
     return true;

@@ -22,31 +22,31 @@ layout: default
 <!-- Social share buttons. -->
 <div>
   {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-  <a class="link-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | url_param_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-facebook fa-stack-1x fa-inverse" title="Share on Facebook"></i>
     </span>
   </a>
-  <a class="link-icon" href="https://twitter.com/share?url={{ post_url | url_param_escape }}&hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | url_param_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-twitter fa-stack-1x fa-inverse" title="Share on Twitter"></i>
     </span>
   </a>
-  <a class="link-icon" href="https://www.reddit.com/submit?url={{ post_url | url_param_escape }}&title={{ page.title | url_param_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-reddit fa-stack-1x fa-inverse" title="Share on Reddit"></i>
     </span>
   </a>
-  <a class="link-icon" href="https://www.linkedin.com/shareArticle?mini=true&url={{ post_url | url_param_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-linkedin fa-stack-1x fa-inverse" title="Share on LinkedIn"></i>
     </span>
   </a>
-  <a class="link-icon" href="https://plus.google.com/share?url={{ post_url | url_param_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  <a class="link-icon" href="https://plus.google.com/share?url={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
     <span class="fa-stack fa-lg content-icon">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-google-plus fa-stack-1x fa-inverse" title="Share on Google+"></i>

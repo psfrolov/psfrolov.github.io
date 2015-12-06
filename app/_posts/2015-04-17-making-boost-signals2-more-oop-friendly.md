@@ -2,7 +2,7 @@
 title: Making Boost.Signals2 More OOP-Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
 image:
-  url: /img/posts/observer-design-pattern.png
+  url: /img/pages/observer-design-pattern.png
   source:
     name: Tom McFarlin
     url: http://tutsplus.com/authors/tom-mcfarlin
@@ -124,7 +124,7 @@ Here is a _class diagram_ which presents a high-level view on what we will
 be discussing in this section. We'll continue to use the window example from
 the previous section.
 <figure>
-  <img src="{{ site.baseurl }}/img/posts/observable-mixin-uml-class-diagram.png"
+  <img src="{{ site.baseurl }}/img/figures/observable-mixin-uml-class-diagram.png"
        alt="Observable Mixin UML Class Diagram">
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>

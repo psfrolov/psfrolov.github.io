@@ -5,10 +5,10 @@ og_prefix: "fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#"
 og_type: profile
 title: About
 image:
-  url: /img/profile.jpg
+  url: /img/pages/profile.jpg
 ---
 
-<figure><img src="{{ site.baseurl }}/img/about.jpg"></figure>
+<figure><img src="{{ site.baseurl }}/img/pages/about.jpg"></figure>
 
 # {{ page.title | liquify }}
 <span class="drop-letter">W</span><span>elcome</span> to my place, stranger!

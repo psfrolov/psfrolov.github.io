@@ -14,6 +14,9 @@
     CSS
     http://www.w3.org/Style/CSS/
     
+    JavaScript
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript
+    
     Liquid
     http://liquidmarkup.org
     
@@ -73,10 +76,6 @@
   Build System:
     Gulp
     http://gulpjs.com
-    
-  Asset Compression
-    FileOptimizer
-    http://nikkhokkho.sourceforge.net/static.php?page=FileOptimizer
     
   Miscellaneous:
     Normalize.css

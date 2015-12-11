@@ -63,7 +63,7 @@ links below.
   }
 </script>
 
-<!-- https://developers.google.com/structured-data/breadcrumbs --> 
+<!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",

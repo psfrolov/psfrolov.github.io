@@ -1,5 +1,5 @@
 Bag Attributes
-    localKeyID: 01 00 00 00 
+    localKeyID: 01 00 00 00
     friendlyName: Server Authentication Certificate for Testing
 subject=/O=Pavel Frolov/CN=Website Test Root CA
 issuer=/O=Pavel Frolov/CN=Website Test Root CA

@@ -1,35 +1,33 @@
 'use strict';
 
 // Gulp plugins.
-let atImport = require("postcss-import"),
-    autoprefixer = require('autoprefixer'),
-    browserSync = require('browser-sync').create(),
-    changed = require('gulp-changed'),
-    cssPropSort = require('css-property-sorter'),
-    del = require('del'),
-    gulp = require('gulp'),
-    htmlhint = require('gulp-htmlhint'),
-    htmlmin = require('gulp-htmlmin'),
-    imageInliner = require('postcss-image-inliner'),
-    imgsizefix = require('gulp-imgsizefix'),
-    minifyCss = require('gulp-minify-css'),
-    minifyHtml = require('gulp-minify-html'),
-    minimist = require('minimist'),
-    mqpacker = require("css-mqpacker"),
-    path = require('path'),
-    prettyData = require('gulp-pretty-data'),
-    psi = require('psi'),
-    postcss = require('gulp-postcss'),
-    revAll = require('gulp-rev-all'),
-    runSeq = require('run-sequence'),
-    shell = require('gulp-shell'),
-    size = require('gulp-size'),
-    uncss = require('gulp-uncss');
+const atImport = require("postcss-import"),
+      autoprefixer = require('autoprefixer'),
+      browserSync = require('browser-sync').create(),
+      cached = require('gulp-cached'),
+      changed = require('gulp-changed'),
+      cssPropSort = require('css-property-sorter'),
+      del = require('del'),
+      gulp = require('gulp'),
+      htmlhint = require('gulp-htmlhint'),
+      htmlmin = require('gulp-htmlmin'),
+      imageInliner = require('postcss-image-inliner'),
+      imgsizefix = require('gulp-imgsizefix'),
+      minifyCss = require('gulp-minify-css'),
+      minifyHtml = require('gulp-minify-html'),
+      minimist = require('minimist'),
+      mqpacker = require("css-mqpacker"),
+      path = require('path'),
+      prettyData = require('gulp-pretty-data'),
+      psi = require('psi'),
+      postcss = require('gulp-postcss'),
+      revAll = require('gulp-rev-all'),
+      runSeq = require('run-sequence'),
+      shell = require('gulp-shell'),
+      size = require('gulp-size'),
+      uncss = require('gulp-uncss');
     
-process.on('uncaughtException', function(e) {
-  console.error(e);
-  process.exit(1);
-});
+process.on('uncaughtException', e => { console.error(e); process.exit(1); });
 
 // Command line options.
 const knownOptions = {
@@ -60,7 +58,7 @@ gulp.task('jekyll-build', shell.task(
 ));
    
 // Process XML and JSON.
-gulp.task('xmljson', ['jekyll-build'], function() {
+gulp.task('xmljson', ['jekyll-build'], () => {
   return gulp.src(xmlAndJsonFiles, { cwd: jekyllBuildDir, cwdbase: true })
     .pipe(changed(buildDir))
     .pipe(prettyData({ type: 'minify' }))
@@ -69,9 +67,8 @@ gulp.task('xmljson', ['jekyll-build'], function() {
 });
 
 // Process CSS.
-gulp.task('css', ['jekyll-build'], function() {
+gulp.task('css', ['jekyll-build'], () => {
   return gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true })
-    .pipe(changed(buildDir))
     .pipe(postcss([
         atImport({ path: jekyllBuildDir })
       , autoprefixer({ browsers: ['last 2 versions'] })
@@ -86,7 +83,7 @@ gulp.task('css', ['jekyll-build'], function() {
 });
 
 // Process HTML.
-gulp.task('html', ['jekyll-build'], function() {
+gulp.task('html', ['jekyll-build'], () => {
   return gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true })
     .pipe(changed(buildDir))
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
@@ -110,7 +107,7 @@ gulp.task('html', ['jekyll-build'], function() {
 });
 
 // Copy miscellaneous files.
-gulp.task('copy', ['jekyll-build'], function() {
+gulp.task('copy', ['jekyll-build'], () => {
   return gulp.src(otherFiles,
                   { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(changed(buildDir))
@@ -119,8 +116,8 @@ gulp.task('copy', ['jekyll-build'], function() {
 }); 
 
 // Revision assets (cache busting).
-gulp.task('revision', ['xmljson', 'css', 'html', 'copy'], function() {
-  let revisor = new revAll({
+gulp.task('revision', ['xmljson', 'css', 'html', 'copy'], () => {
+  const revisor = new revAll({
     dontGlobal: [/^\/\./g, /^\/favicon.ico$/g, /\/img\/pages/g],
     dontRenameFile: [/\.(html|txt)$/g, /^\/(atom|sitemap)\.xml$/g]
   });
@@ -133,10 +130,10 @@ gulp.task('revision', ['xmljson', 'css', 'html', 'copy'], function() {
 // Build.
 gulp.task('clean', del.bind(null, [outDir]));
 gulp.task('build', ['revision']);
-gulp.task('rebuild', function(cb) { runSeq('clean', 'build', cb); });
+gulp.task('rebuild', cb => { runSeq('clean', 'build', cb); });
 
 // Serve local site and watch for changes.
-gulp.task('_browsersync', function() {
+gulp.task('_browsersync', () => {
   browserSync.init({
     server: { baseDir: serveDir },
     https: {
@@ -147,25 +144,23 @@ gulp.task('_browsersync', function() {
   });
   gulp.watch(['*/**'], { cwd: srcDir }, ['build', browserSync.reload]);
 });
-gulp.task('serve', function(cb) { 
-  runSeq('build', '_browsersync', cb);
-});
-gulp.task('serve-clean', function(cb) {
-  runSeq('rebuild', '_browsersync', cb);
-});
+gulp.task('serve', cb => { runSeq('build', '_browsersync', cb); });
+gulp.task('serve-clean', cb => { runSeq('rebuild', '_browsersync', cb); });
 
 // Check source code.
 gulp.task('jekyll-hyde', shell.task(
   'bundle exec jekyll hyde', { 'env': { 'JEKYLL_ENV': options.env } }
 ));
-gulp.task('stylelint', function() {
+gulp.task('stylelint', () => {
   return gulp.src(cssFiles, { cwd: serveDir, cwdbase: true })
+    .pipe(cached('stylelint'))
     .pipe(csslint())
     .pipe(csslint.reporter())
     .pipe(csslint.failReporter());
 });
-gulp.task('htmlhint', function() {
+gulp.task('htmlhint', () => {
   return gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true })
+    .pipe(cached('htmlhint'))
     .pipe(htmlhint())
     .pipe(htmlhint.reporter())
     .pipe(htmlhint.failReporter());
@@ -177,13 +172,13 @@ gulp.task('lint', ['jekyll-hyde', 'stylelint', 'htmlhint']);
 // https://github.com/gulpjs/gulp/blob/master/docs/recipes/automate-release-workflow.md
 
 // Test performance.
-gulp.task('psi-desktop', function() {
+gulp.task('psi-desktop', () => {
   return psi.output(siteUrl, { nokey: 'true', strategy: 'desktop' });
 });
-gulp.task('psi-mobile', function() {
+gulp.task('psi-mobile', () => {
   return psi.output(siteUrl, { nokey: 'true', strategy: 'mobile' });
 });
-gulp.task('psi', function(cb) { runSeq('psi-desktop', 'psi-mobile', cb); });
+gulp.task('psi', cb => { runSeq('psi-desktop', 'psi-mobile', cb); });
 
 // Default task.
 gulp.task('default', ['serve']);

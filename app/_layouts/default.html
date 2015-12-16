@@ -3,33 +3,32 @@
   lang="en"
   itemscope itemtype="{{ page.schema }}"
   prefix="og: http://ogp.me/ns# {{ page.og_prefix }}">
-  
+
   <head>
     <meta charset="utf-8">
-    
+
     <!-- Security. -->
     <meta http-equiv="Content-Security-Policy" content="
       default-src https: data: 'unsafe-inline' wss:;
       form-action https:;
       block-all-mixed-content;
-      reflected-xss block;
       base-uri 'self';
       referrer origin-when-cross-origin">
-    
+
     <!--Mobile devices responsiveness. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Page title. -->
     <title>{{ page.title | liquify }}</title>
     <meta property="og:title" itemprop="name" content="{{ page.title | liquify | escape }}">
-    
+
     <!-- Page description. -->
     {% if page.description %}
     <meta name="description" property="og:description" itemprop="description" content="{{ page.description | liquify | escape }}">
     {% elsif page.excerpt %}
     <meta name="description" property="og:description" itemprop="description" content="{{ page.excerpt | strip_html }}">
     {% endif %}
-    
+
     <!-- Page keywords. -->
     {% if page.keywords %}
     <meta name="keywords" itemprop="keywords" content="{{ page.keywords | liquify }}">
@@ -37,11 +36,11 @@
     <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
     <meta name="keywords" itemprop="keywords" content="{{ page | keywords }}">
     {% endif %}
-    
+
     <!-- Page author. -->
     <meta name="author" itemprop="author" content="{{ site.author }}">
     <link type="text/plain" rel="author" href="{{ site.baseurl }}/humans.txt">
-    
+
     <!-- Page image. -->
     {% if page.image %}
     {% capture page_image %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
@@ -51,7 +50,7 @@
     <meta property="og:image:width" content="{{ page.image.url | image_width }}"/>
     <meta property="og:image:height" content="{{ page.image.url | image_height }}"/>
     {% endif %}
-    
+
     <!-- Open Graph site metadata. -->
     <meta property="og:site_name" content="{{ site.name }}">
     <meta property="og:type" content="{{ page.og_type }}">
@@ -65,7 +64,7 @@
     <meta property="article:tag" content="{{ tag }}">
     {% endfor %}
     {% endif %}
-    
+
     <!-- Open Graph profile metadata. -->
     {% if page.og_type == 'profile' %}
     <meta property="fb:profile_id" content="{{ site.facebook.id }}">
@@ -74,12 +73,12 @@
     <meta property="profile:username" content="arkfps">
     <meta property="profile:gender" content="male">
     {% endif %}
-    
+
     <!-- Twitter Cards. -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site:id" content="{{ site.twitter.site_id }}">
     <meta name="twitter:creator:id" content="{{ site.twitter.creator_id }}">
-    
+
     <!-- Favicon. -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ site.baseurl }}/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ site.baseurl }}/apple-touch-icon-60x60.png">
@@ -109,7 +108,7 @@
     <link rel="canonical" itemprop="url" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     {% endif %}
-    
+
     <!-- Search engines indexing. -->
     {% if page.robots %}
     <meta name="robots" content="{{ page.robots }}">
@@ -119,7 +118,7 @@
     {% if page.is_home %}
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}{{ site.baseurl }}/sitemap.xml">
     {% endif %}
-    
+
     <!-- Pagination hints for search engines. -->
     {% if paginator.previous_page_path %}
     <link rel="prev" href="{{ site.url }}{{ site.baseurl }}{{ paginator.previous_page_path }}">
@@ -127,27 +126,27 @@
     {% if paginator.next_page_path %}
     <link rel="next" href="{{ site.url }}{{ site.baseurl }}{{ paginator.next_page_path }}">
     {% endif %}
-    
+
     <!-- Web feed link. -->
     {% if page.is_home %}
     {% feed_meta %}
     {% endif %}
-    
+
     <!-- Fonts. -->
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|PT+Serif|PT+Mono'
-          rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|PT+Serif|PT+Mono"
+          rel="stylesheet">
           <!-- Could not use SRI here as generated stylesheet is browser-specific. -->
-    
+
     <!-- Icons. -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
           rel="stylesheet"
           integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
           crossorigin="anonymous">
-    
+
     <!-- Styles. -->
     <link href="{{ site.baseurl }}/css/app.css" rel="stylesheet">
   </head>
-  
+
   <body>
     <aside class="container">
       <p class="site-title">
@@ -158,7 +157,7 @@
       <p class="bold"><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
       <br>
       <nav>
-        <a class="link-icon" href="{{ site.baseurl }}/archive">
+        <a class="link-icon" href="{{ site.baseurl }}/archive/">
           <span>
             <i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i>
           </span>
@@ -170,13 +169,13 @@
           </span>
         </a>
         &nbsp;
-        <a class="link-icon" href="{{ site.baseurl }}/contact">
+        <a class="link-icon" href="{{ site.baseurl }}/contact/">
           <span>
             <i class="fa fa-phone fa-2x nav-icon" title="Contact"></i>
           </span>
         </a>
         &nbsp;
-        <a class="link-icon" href="{{ site.baseurl }}/about">
+        <a class="link-icon" href="{{ site.baseurl }}/about/">
           <span>
             <i class="fa fa-info fa-2x nav-icon" title="About"></i>
           </span>
@@ -188,18 +187,18 @@
     <div class="content container">
       {{ content }}
     </div>
-      
+
     <!-- Google Analytics. -->
     {% if jekyll.environment == "production" %}
     <script>
-      <!-- htmlmin:ignore -->
+      /* jshint ignore:start */
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='https://www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','{{ site.google_analytics_id }}','auto');ga('send','pageview');
-      <!-- htmlmin:ignore -->
+      /* jshint ignore:end */
     </script>
     {% endif %}
   </body>

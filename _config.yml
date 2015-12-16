@@ -3,7 +3,7 @@ source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll]
 kramdown:
-  # Github Flavored Markdown. 
+  # GitHub Flavored Markdown.
   input: GFM
   hard_wrap: false
 gems:
@@ -35,7 +35,7 @@ defaults:
 
 # Pagination.
 paginate: 5
-  
+
 # Web feed (jekyll-feed).
 feed:
   path: atom.xml
@@ -44,7 +44,7 @@ feed:
 # Tagging (jekyll-tagging).
 tag_page_layout: tag-page
 tag_page_dir: tag
-  
+
 # Custom variables.
 url: https://arkfps.github.io
 name: &sitename The Hermetic Vault
@@ -54,7 +54,7 @@ tagline: typedef typename template
 keywords: [C++, Programming]
 topic: Software Development
 author: Pavel Frolov
-email: '"your" + "email" + "@" + "yourdomain" + "." + "com"'
+email: eW91cmVtYWlsQHlvdXJkb21haW4uY29t
 
 disqus_shortname: arkfps
 google_analytics_id: UA-58552086-1

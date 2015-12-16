@@ -6,7 +6,6 @@ image:
   url: /img/pages/overload-126.png
 ---
 
-
 <span class="drop-letter">H</span><span>ere’s</span> my article from the [April
 2015 issue of Overload journal][url-overload]. It presents a simple,
 easy-to-use, generic RAII wrapper based on an interesting static polymorphism
@@ -37,7 +36,7 @@ Also available [in Russian][url-russian-article].
 
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org", 
+    "@context": "http://schema.org",
     "@graph": [
       {
         "@id": "#issue",

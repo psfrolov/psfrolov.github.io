@@ -1,7 +1,7 @@
 {
   "tagname-lowercase": true,
   "attr-lowercase": true,
-  "attr-value-double-quotes": false,
+  "attr-value-double-quotes": true,
   "attr-value-not-empty": false,
   "attr-no-duplication": true,
   "doctype-first": true,
@@ -12,7 +12,7 @@
   "src-not-empty": true,
   "title-require": true,
   "head-script-disabled": true,
-  "alt-require": false,
+  "alt-require": true,
   "doctype-html5": true,
   "id-class-value": true,
   "style-disabled": true,
@@ -21,40 +21,44 @@
   "space-tab-mixed-disabled": true,
   "href-abs-or-rel": false,
   "attr-unsafe-chars": true,
-  
+
   "csslint": {
-    
+
   },
-  
+
   "jshint": {
     "bitwise": true,
     "curly": true,
     "eqeqeq": true,
     "forin": true,
     "freeze": true,
-    "funcscope": false,
+    "funcscope": true,
     "futurehostile": true,
     "globals": false,
     "iterator": false,
     "latedef": true,
+
     "maxcomplexity": false,
     "maxdepth": false,
     "maxerr": 50,
     "maxparams": false,
     "maxstatements": false,
+
     "noarg": true,
     "nocomma": false,
     "nonbsp": true,
     "nonew": true,
-    "notypeof": false,
-    "predef": ["ga"],
+    "notypeof": true,
+
+    "predef": false,
     "shadow": false,
-    "singleGroups": false,
-    "strict": false,
+    "singleGroups": true,
+    "strict": true,
     "undef": true,
-    "unused": false,
+    "unused": true,
     "varstmt": false,
-    "asi": true,
+
+    "asi": false,
     "boss": false,
     "debug": false,
     "elision": false,
@@ -71,9 +75,8 @@
     "supernew": false,
     "validthis": false,
     "withstmt": false,
+
     "browser": true,
-    "devel": true,
-    "-W018": true,
-    "-W058": true
+    "devel": true
   }
 }

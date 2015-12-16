@@ -8,7 +8,7 @@ image:
   url: /img/pages/profile.jpg
 ---
 
-<figure><img src="{{ site.baseurl }}/img/pages/about.jpg"></figure>
+<figure><img src="{{ site.baseurl }}/img/pages/about.jpg" alt=""></figure>
 
 # {{ page.title | liquify }}
 <span class="drop-letter">W</span><span>elcome</span> to my place, stranger!
@@ -32,7 +32,7 @@ range of problem domains, but which at the same time are simple to implement,
 understand and maintain.
 
 I hope you'll find something valuable here. Feel free to drop me a line or two
-via [contact form]({{ site.baseurl }}/contact). Or use one of the social
+via [contact form]({{ site.baseurl }}/contact/). Or use one of the social
 links below.
 
 *[DCS]: Distributed Control System

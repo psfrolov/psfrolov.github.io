@@ -17,6 +17,7 @@ explicit specializations for non-template members of class template without
 specializing the class template itself!
 
 ### Technical Details
+
 The following non-template members of class template can be explicitly
 specialized:
 
@@ -41,6 +42,7 @@ Perhaps the most useful part of this feature is the ability to specialize
 member functions. Let's take a look at a concrete example.
 
 ### Implementing Generic RAII Wrapper for Resource Handles
+
 Opaque resource handles are used in many OS, networking and
 database APIs. Usually such handles must be closed with some kind of
 `close_handle` function. When dealing with handles in C++ you almost always
@@ -75,7 +77,7 @@ public:
     Cleanup();
     return &handle_;
   }
-   
+
   explicit operator HandleType() const { return handle_; }
 
 private:
@@ -126,7 +128,7 @@ public:
     Cleanup();
     return &handle_;
   }
-   
+
   explicit operator OsInternetHandle() const { return handle_; }
 
 private:
@@ -163,6 +165,7 @@ you can specialize `Cleanup` method on handle tag (which is effectively a form
 of [tag dispatching][url-tag-dispatching]).
 
 ### Conclusion
+
 Although described in <cite>Section 14.7 [temp.spec] of the C++ ISO/IEC
 standard</cite>, this unobvious feature is poorly documented elsewhere. In
 fact, I've found only a couple of reference manuals mentioning it:

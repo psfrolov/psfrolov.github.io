@@ -40,7 +40,7 @@ class Application {
 public:
   explicit Application(Window& window);
   // ...
- 
+
 private:    
   void OnWindowShow();
   bool OnWindowClose(bool force_close);
@@ -74,8 +74,8 @@ public:
   void Show();
   bool Close(bool force_close = false);
   // ...
-    
-  template<typename F> 
+
+  template<typename F>
   boost::signals2::connection
   RegisterShowObserver(F&& f) {
     return show_signal_.connect(std::forward<F>(f));
@@ -86,18 +86,18 @@ public:
   RegisterCloseObserver(F&& f) {
     return close_signal_.connect(std::forward<F>(f));
   }
-    
+
   // More registrars...  
-    
+
 protected:
   void NotifyShowObservers() const {
     show_signal_();
   }
-    
+
   boost::optional<bool> NotifyCloseObservers(bool force_close) const {
     return close_signal_(force_close);
   }
-    
+
   // More notifiers...
 
 private:
@@ -165,13 +165,13 @@ public:
   Observer(const Observer&) = delete;
   Observer& operator=(const Observer&) = delete;
   Observer() = default;
- 
+
 private:
   template<typename Observers> friend class Observable;
- 
+
   using Signal = boost::signals2::signal<Signature>;
   using SignalResult = typename Signal::result_type;
- 
+
   Signal signal_;
 };
 {% endhighlight %}
@@ -187,7 +187,7 @@ generate the corresponding registration and notification methods:
 template<typename Observers> class Observable {
 private:
   using ObserverTable = typename Observers::ObserverTable;
- 
+
 public:
   // Registers an observer.
   template<size_t ObserverId, typename F>
@@ -195,17 +195,17 @@ public:
   Register(F&& f) {
     return std::get<ObserverId>(signals_).signal_.connect(std::forward<F>(f));
   }
- 
+
 protected:
   Observable() = default;
- 
+
   // Notifies observers.
   template<size_t ObserverId, typename... Args>
   typename std::tuple_element<ObserverId, ObserverTable>::type::SignalResult
   Notify(Args&&... args) const {
     return std::get<ObserverId>(signals_).signal_(std::forward<Args>(args)...);
   }
- 
+
 private:
   ObserverTable signals_;
 };
@@ -246,7 +246,7 @@ public:
     // ...
     Notify<WindowObservers::ShowEvent>();
   }
- 
+
   bool Close(bool force_close = false) {
     const boost::optional<bool> can_close{
       Notify<WindowObservers::CloseEvent>(force_close) };
@@ -257,9 +257,9 @@ public:
     }
     return closing;
   }
-  
+
   // ...
-}; 
+};
 {% endhighlight %}
 
 #### The `Application` class
@@ -277,22 +277,22 @@ public:
       return OnWindowClose(force_close);
     });
   }
-  
+
   // ...
- 
+
 private:    
   void OnWindowShow() {
     // ...
   }
- 
+
   bool OnWindowClose(bool force_close) {
     // ...
     return force_close;
   }
- 
+
   Window& window_;
   // ...  
-}; 
+};
 {% endhighlight %}
 
 ### Putting It All Together
@@ -317,8 +317,8 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 [url-behavioural-patterns]: https://sourcemaking.com/design_patterns/behavioral_patterns
 [url-boost]: http://www.boost.org
 [url-signals2]: http://www.boost.org/doc/libs/release/libs/signals2/
-[url-signal-slot]: http://en.wikipedia.org/wiki/Signals_and_slots
-[url-mixin]: http://en.wikipedia.org/wiki/Mixin
+[url-signal-slot]: https://en.wikipedia.org/wiki/Signals_and_slots
+[url-mixin]: https://en.wikipedia.org/wiki/Mixin
 [url-wxwidgets-event-tables]: http://docs.wxwidgets.org/trunk/overview_events.html#overview_events_eventtables
 [url-mfc-message-maps]: https://msdn.microsoft.com/en-us/library/0x0cx6b1.aspx
 [url-qt-signals-and-slots]: http://doc.qt.io/qt-5/signalsandslots.html

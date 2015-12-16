@@ -62,21 +62,25 @@ robots: noindex
     </div>
   </div>
 </form>
-<script>
-  var form = document.forms.contact;
-  // Dynamically construct email to make it harder for bots to sniff.
-  form.setAttribute('action', 'https://' + 'formspree.io/' + 'your' + 'email' + '@' + 'yourdomain' + '.' + 'com');
-  // Prevents submitting invalid form (for older browsers).
-  form.addEventListener('submit', function(evt) {
-    if (form.checkValidity() === false) {
-      evt.preventDefault();
-      alert('Please fill out all form fields correctly.');
-      return false;
-    }
-    return true;
-  });
-</script>
 
 <hr>
 
 {% include social-profiles.html %}
+
+<script>
+  (function() {
+    'use strict';
+    var form = document.forms.contact;
+    // Dynamically construct email to make it harder for bots to sniff.
+    form.setAttribute('action', 'https://formspree.io/' + window.atob('{{ site.email }}'));
+    // Prevents submitting invalid form (for older browsers).
+    form.addEventListener('submit', function(evt) {
+      if (form.checkValidity() === false) {
+        evt.preventDefault();
+        alert('Please fill out all form fields correctly.');
+        return false;
+      }
+      return true;
+    });
+  }());
+</script>

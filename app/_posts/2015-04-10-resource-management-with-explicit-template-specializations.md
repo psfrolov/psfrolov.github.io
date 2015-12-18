@@ -30,8 +30,8 @@ Also available [in Russian][url-russian-article].
 [url-previous-post]: {% post_url 2015-01-17-providing-explicit-specializations-for-non-template-members-of-class-template %}
 [url-overload-article]: http://accu.org/index.php/journals/2086
 [url-raii]: http://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization
-[url-exception-safety]: http://en.wikipedia.org/wiki/Exception_safety
-[url-smart-pointer]: http://en.wikipedia.org/wiki/Smart_pointer
+[url-exception-safety]: https://en.wikipedia.org/wiki/Exception_safety
+[url-smart-pointer]: https://en.wikipedia.org/wiki/Smart_pointer
 [url-russian-article]: http://habrahabr.ru/company/pt/blog/255487/
 
 <script type="application/ld+json">

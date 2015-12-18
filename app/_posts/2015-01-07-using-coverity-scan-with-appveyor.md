@@ -34,7 +34,7 @@ submitting results to Coverity Scan server).
 
 ### The Necessary Steps
 
-Analysing project source code with Coverity Scan involves the
+Analyzing project source code with Coverity Scan involves the
 following steps:
 
 1. [Download Coverity Build Tool](#downloading-coverity-build-tool).
@@ -149,7 +149,7 @@ Then, corresponding Coverity Build command becomes
 {% highlight batch %}
 cov-build.exe --dir cov-int "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
-For this to work we need to drop AppVeyor built-in MSBuild support in favour of
+For this to work we need to drop AppVeyor built-in MSBuild support in favor of
 custom build script:
 {% highlight yaml %}
 build_script:
@@ -187,7 +187,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
 Things to note here:
 
 * I'm using predefined `CONFIGURATION` and `PLATFORM` variables to simulate
-  behaviour of AppVeyour buit-in MSBuild provider.
+  behavior of AppVeyour buit-in MSBuild provider.
 * The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity
   Build Tool ZIP archive on the previous step.
 * After building the project with Coverity Build Tool there will be directory
@@ -379,10 +379,10 @@ described in the article.
 [url-coverity]: http://www.coverity.com
 [url-coverity-scan-build-freq]: https://scan.coverity.com/faq#frequency
 [url-coverity-community]: https://communities.coverity.com/message/6120#6120
-[url-invoke-webrequest]: http://technet.microsoft.com/en-us/library/hh849901.aspx
-[url-dotnet-zipfile]: http://msdn.microsoft.com/en-us/library/system.io.compression.zipfile(v=vs.110).aspx
+[url-invoke-webrequest]: https://technet.microsoft.com/en-us/library/hh849901.aspx
+[url-dotnet-zipfile]: https://msdn.microsoft.com/en-us/library/system.io.compression.zipfile(v=vs.110).aspx
 [url-dotnet-zipfile-bug]: https://connect.microsoft.com/VisualStudio/feedback/details/862380/archive-created-with-system-io-compression-zipfile-createfromdirectory-does-not-preserve-directories-structure-when-unpacked-on-mac-os
-[url-dotnet-multipart-form-data]: http://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
+[url-dotnet-multipart-form-data]: https://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
 [url-rfc2388]: https://tools.ietf.org/html/rfc2388
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
 [url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml

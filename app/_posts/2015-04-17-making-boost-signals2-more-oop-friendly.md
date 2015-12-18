@@ -9,8 +9,8 @@ image:
 ---
 
 <span class="drop-letter">T</span><span>he</span> [observer design pattern]
-[url-observer] is by far the most popular and widely known among [behavioural
-patterns][url-behavioural-patterns]. Unfortunately, unlike other mainstream
+[url-observer] is by far the most popular and widely known among [behavioral
+patterns][url-behavioral-patterns]. Unfortunately, unlike other mainstream
 languages out there, the C++ standard library doesn't provide out of the box
 observer implementation. Luckily, [Boost][url-boost] contains [Signals2]
 [url-signals2], a [signal/slot][url-signal-slot] library which can serve as a
@@ -133,7 +133,7 @@ the previous section.
 
 Obviously enough, we can't just put our signals into _homogeneous_ container
 like `std::vector` because of different event signatures. Fortunately, the C++
-standard library provides `std::tuple`, an integer-indexed _heterogenous
+standard library provides `std::tuple`, an integer-indexed _heterogeneous
 container_ which solves our needs (alternatively, we can use a tag-indexed
 heterogeneous container, such as `boost::fusion::map`). With the help of
 `std::tuple`, we can define an observer table for our `Window` class as shown
@@ -228,7 +228,7 @@ earlier for particular observer kind (which is given by the means of the
 `ObserverId` template argument). The `Notify` method forwards its function
 arguments (`args`) to the callable object. The function returns the result of
 the last slot called, wrapped into `boost::optional` (this is the default
-behaviour of `boost::signals2::signal`; see the Boost.Signals2 documentation in
+behavior of `boost::signals2::signal`; see the Boost.Signals2 documentation in
 case you need an advanced return semantic).
 
 The constructor of the class is made protected because this class is not
@@ -236,7 +236,7 @@ intended to be used on its own.
 
 #### The `Window` class
 
-Our `Window` class now derives from `Observable` class template parametrised by
+Our `Window` class now derives from `Observable` class template parametrized by
 `WindowsObservers`. This give us a possibility to use `Register` and `Notify`
 methods on `Window` instances.
 {% highlight c++ %}
@@ -314,7 +314,7 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 [url-observable-gist].
 
 [url-observer]: https://sourcemaking.com/design_patterns/observer
-[url-behavioural-patterns]: https://sourcemaking.com/design_patterns/behavioral_patterns
+[url-behavioral-patterns]: https://sourcemaking.com/design_patterns/behavioral_patterns
 [url-boost]: http://www.boost.org
 [url-signals2]: http://www.boost.org/doc/libs/release/libs/signals2/
 [url-signal-slot]: https://en.wikipedia.org/wiki/Signals_and_slots

@@ -10,53 +10,53 @@
   Languages:
     HTML
     http://www.w3.org/html/
-    
+
     CSS
     http://www.w3.org/Style/CSS/
-    
+
     JavaScript
     https://developer.mozilla.org/en-US/docs/Web/JavaScript
-    
+
     Liquid
     http://liquidmarkup.org
-    
+
     Markdown
     https://daringfireball.net/projects/markdown/
-    
+
   Blog Publishing System:
     Jekyll
     https://jekyllrb.com
- 
+
   Site Template:
     Hyde
     http://hyde.getpoole.com
- 
+
   Images, Icons, Textures:
     Font Awesome
     https://fortawesome.github.io/Font-Awesome
-    
+
     Real Favicon Generator
     https://realfavicongenerator.net
-    
+
     Inkscape
     https://inkscape.org
-    
+
     GIMP
     http://www.gimp.org
-    
+
     X-Icon Editor
     http://www.xiconeditor.com
-    
+
   Fonts:
     Google Fonts
     https://www.google.com/fonts
-    
+
     PT Sans
     https://www.google.com/fonts/specimen/PT+Sans
-    
+
     PT Serif
     https://www.google.com/fonts/specimen/PT+Serif
-    
+
   Web Hosting:
     GitHub Pages
     https://pages.github.com
@@ -64,26 +64,25 @@
   Blog Comment Hosting:
     Disqus Engage
     https://publishers.disqus.com/engage
-    
+
   Web Form Endpoint:
     Formspree
-    https://formspree.io  
+    https://formspree.io
 
   Web Analytics:
     Google Analytics
     https://www.google.com/analytics
-  
+
   Build System:
     Gulp
     http://gulpjs.com
-    
+
   Miscellaneous:
     Normalize.css
     https://necolas.github.io/normalize.css/
-  
+
     solarized-light.css
     https://gist.github.com/nicolashery/5765395#file-solarized-light-css
 
     CSP Builder
     https://report-uri.io/home/generate
- 

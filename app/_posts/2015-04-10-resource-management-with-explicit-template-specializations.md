@@ -1,5 +1,5 @@
 ---
-title: Resource Management with Explicit Template Specializations
+title: Resource Management with Explicit Template Specialisations
 tags: [C++, Generic Programming, Windows API]
 description: |
   This article shows how to build an RAII wrapper with the help of
@@ -15,7 +15,7 @@ image:
 easy-to-use, generic RAII wrapper based on an interesting static polymorphism
 technique which I introduced in the [previous post][url-previous-post].
 
-## [Resource Management with Explicit Template Specializations][url-overload-article]
+## [Resource Management with Explicit Template Specialisations][url-overload-article]
 
 > [RAII][url-raii] is one of the most important and useful C++ idioms. RAII
 efficiently relieves the programmer of manual resource management and is a must

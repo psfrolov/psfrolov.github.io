@@ -14,8 +14,8 @@ image:
 [<span class="drop-letter">A</span><span>ppVeyor</span>][url-appveyor] is an
 awesome SaaS CI server similar to [Travis CI][url-travis-ci] but for Windows
 developers. It enables you to build, test and deploy all sorts of projects:
-C/C++, .NET, IIS, SQL Server, WiX, among others (see [Installed Software]
-[url-appveyor-installed-software]). Moreover, it is completely free for Open
+C/C++, .NET, IIS, SQL Server, WiX, among others (see [Instaled Software]
+[url-appveyor-instaled-software]). Moreover, it is completely free for Open
 Source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
@@ -29,13 +29,13 @@ Python, PostgreSQL, Apache Software Foundation projects.
 <i class="fa fa-exclamation-triangle" title="Warning"></i>
 The rest of the article assumes that you have a GitHub repository registered
 with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
-workflow (i.e, manually building your project with Coverity Build Tool and
+workflow (i.e., manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).
 </div>
 
 ### The Necessary Steps
 
-Analyzing project source code with Coverity Scan involves the
+Analysing project source code with Coverity Scan involves the
 following steps:
 
 1. [Download Coverity Build Tool](#downloading-coverity-build-tool).
@@ -49,16 +49,16 @@ One important thing to note when working with Coverity Scan is build
 submissions frequency. Coverity Scan [limits maximum number of submitted builds
 on daily and weekly basis][url-coverity-scan-build-freq]. But even with limits
 left out of scope it is probably impractical to run each and every build with
-Coverity Scan, since it takes noticeably longer time to complete. Let's see how
+Coverity Scan since it takes noticeably longer time to complete. Let's see how
 we can deal with it.
 
 #### Using Dedicated Branch
 
 Coverity Scan documentation suggests us to create separate branch dedicated
-for code analysis (let's call it `analyze`). In that case we can conditionally
+for code analysis (let's call it `analyse`). In that case, we can conditionally
 enable Coverity Scan when building our project using `APPVEYOR_REPO_BRANCH`
 built-in environment variable. Personally, I find this approach somewhat
-inconvenient: we need to keep `analyze` branch in sync with `develop` branch
+inconvenient: we need to keep `analyse` branch in sync with `develop` branch
 (although this can be automated if necessary).
 
 #### Using Scheduled Builds
@@ -75,7 +75,7 @@ the article.
 
 <div class="message">
 <i class="fa fa-exclamation-triangle" title="Warning"></i>
-UPDATE. Coverity Build Tool now comes preinstalled on AppVeyor builder. See the
+UPDATE. Coverity Build Tool now comes preinstaled on AppVeyor builder. See the
 link in comment by Mark Clearwater below the article for more information.
 </div>
 
@@ -85,10 +85,10 @@ Coverity Scan project name and token as part of download request. Second, the
 download link is specific to you project language. See more on
 [Coverity Community discussion page][url-coverity-community].
 
-We will use PowerShell, and the right place to put our script is `install` hook
+We will use PowerShell, and the right place to put our script is `instal` hook
 in `appveyor.yml`:
 {% highlight yaml %}
-install:
+instal:
 - ps: |
     # Here goes our code.
 {% endhighlight %}
@@ -112,7 +112,7 @@ environment:
 
 **Download link** can be obtained from your Coverity Scan web GUI
 **Submit Build** page. Choose link for `Win64` platform (AppVeyor build worker
-is 64-bit Windows Server). In my case (project language is `C++`) the
+is 64-bit Windows Server). In my case (project language is `C++`), the
 download link is `https://scan.coverity.com/download/cxx/win_64`.
 
 Now we can craft the HTTP request with the help of
@@ -150,7 +150,7 @@ Then, corresponding Coverity Build command becomes
 {% highlight batch %}
 cov-build.exe --dir cov-int "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
-For this to work we need to drop AppVeyor built-in MSBuild support in favor of
+For this to work we need to drop AppVeyor built-in MSBuild support in favour of
 custom build script:
 {% highlight yaml %}
 build_script:
@@ -167,7 +167,7 @@ $buildArgs = @(
   "/p:Configuration=$env:CONFIGURATION",
   "/p:Platform=$env:PLATFORM")
 
-# If build is not a scheduled one, than simply build project with MSBuild.
+# If build is not a scheduled one, then simply build project with MSBuild.
 if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
   & $buildCmd $buildArgs
   return  # exit script
@@ -188,7 +188,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
 Things to note here:
 
 * I'm using predefined `CONFIGURATION` and `PLATFORM` variables to simulate
-  behavior of AppVeyour buit-in MSBuild provider.
+  behaviour of AppVeyour buit-in MSBuild provider.
 * The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity
   Build Tool ZIP archive on the previous step.
 * After building the project with Coverity Build Tool there will be directory
@@ -197,8 +197,8 @@ Things to note here:
 ### Compressing Scan Data
 
 Coverity Scan requires the scan data collected during build to be compressed.
-We can easily do this with 7-Zip which comes pre-installed on AppVeyor build
-worker. However, I'll demonstrate you pure PowerShell/.NET way of doing this
+We can easily do this with 7-Zip which comes pre-instaled on AppVeyor build
+worker. However, I'll show you pure PowerShell/.NET way of doing this
 which involves some nasty .NET bug and one cool PowerShell trick to workaround
 it.
 
@@ -219,14 +219,14 @@ forward slashes are permitted).
 As a result, such an archive cannot be unpacked on *nix systems (Coverity Scan
 is using Ubuntu currently).
 
-To workaround the bug we need to create custom encoder for ZIP file name
+To workaround the bug, we need to create custom encoder for ZIP file name
 entries, which means defining .NET class. Can we do this from PowerShell
 script? Yep, we can!
 {% highlight powershell %}
 # Compress results.
 "Compressing Coverity results..."
 $zipEncoderDef = @'
-  namespace AnalyzeCode {
+  namespace AnalyseCode {
     public class PortableFileNameEncoder: System.Text.UTF8Encoding {
       public PortableFileNameEncoder() {}
       public override byte[] GetBytes(string entry) {
@@ -241,7 +241,7 @@ Add-Type -TypeDefinition $zipEncoderDef
   "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip",
   [IO.Compression.CompressionLevel]::Optimal,
   $true,  # include root directory
-  (New-Object AnalyzeCode.PortableFileNameEncoder))
+  (New-Object AnalyseCode.PortableFileNameEncoder))
 {% endhighlight %}
 Things to note:
 
@@ -365,7 +365,7 @@ Coverity Scan project web GUI, and the final results will be delivered to you
 by e-mail. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
 
-Here is full [appveyor.yml][url-my-appveyor-yml] utilizing the approach
+Here is full [appveyor.yml][url-my-appveyor-yml] utilising the approach
 described in the article.
 
 *[CI]: Continuous Integration
@@ -373,7 +373,7 @@ described in the article.
 
 [url-appveyor]: http://www.appveyor.com
 [url-travis-ci]: https://travis-ci.org
-[url-appveyor-installed-software]: http://www.appveyor.com/docs/installed-software
+[url-appveyor-instaled-software]: http://www.appveyor.com/docs/installed-software
 [url-appveyor-scheduled-builds]: http://www.appveyor.com/docs/build-configuration#scheduled-builds
 [url-appveyor-secure-variables]: http://www.appveyor.com/docs/build-configuration#secure-variables
 [url-coverity-scan]: https://scan.coverity.com

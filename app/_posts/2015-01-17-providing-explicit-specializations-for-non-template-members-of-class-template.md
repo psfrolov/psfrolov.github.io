@@ -1,13 +1,13 @@
 ---
-title: Providing Explicit Specializations for Non-Template Members of Class Template
+title: Providing Explicit Specialisations for Non-Template Members of Class Template
 tags: [C++, Generic Programming]
 description: |
-  It is a well known fact that you can provide explicit specializations for
-  function templates and class templates. But it was a total surprise to me,
-  that you can provide explicit specializations for non-template members of
-  class template without specializing the class template itself!
+  It is a well-known fact that you can provide explicit specialisations for
+  function templates and class templates. But it was a total surprise to me
+  that you can define explicit specialisations for non-template members of
+  class template without specialising the class template itself!
 image:
-  url: /img/pages/specialization.jpg
+  url: /img/pages/specialisation.jpg
   source:
     name: "Jenna A, 6th grade (Thomas Middle School, Arlington Heights)"
     url: http://www.econed-il.org/icee/econposter_11.shtml
@@ -21,7 +21,7 @@ not always good ones <i class="fa fa-smile-o" title="Smile"></i>).
 ### Technical Details
 
 The following non-template members of class template can be explicitly
-specialized:
+specialised:
 
 * member function (either static or not);
 * static data member;
@@ -34,22 +34,21 @@ Let's see some examples:
 When this can be useful? Whenever you need some conditional logic for you
 class template based on template parameters, but that logic takes only a small
 fraction of class code. For example, you may have a class containing a dozen of
-methods, but only a couple of them require behavior specific to template
-arguments. In that case, it is not practical to define explicit specialization
+methods, but only a couple of them require behaviour specific to template
+arguments. In that case, it is not practical to define explicit specialisation
 for the whole class due to large amount of code duplication. The better
-solution is to define specializations only for those specific methods. Let's
+solution is to define specialisations only for those specific methods. Let's
 see a concrete example.
 
-Perhaps the most useful part of this feature is the ability to specialize
+Perhaps the most useful part of this feature is the ability to specialise
 member functions. Let's take a look at a concrete example.
 
 ### Implementing Generic RAII Wrapper for Resource Handles
 
-Opaque resource handles are used in many OS, networking and
-database APIs. Usually such handles must be closed with some kind of
-`close_handle` function. When dealing with handles in C++ you almost always
-want to use RAII wrapper to avoid handle leaks. We can define such a wrapper as
-follows:
+Opaque resource handles are used in many OS-level, networking, and database
+APIs. Usually such handles must be closed with some kind of `close_handle`
+function. When dealing with handles in C++ you almost always want to use RAII
+wrapper to avoid handle leaks. We can define such a wrapper as follows:
 {% highlight c++ %}
 #include <cassert>
 #include <memory>  // std::addressof
@@ -103,7 +102,7 @@ Handle<OsFileHandle> handle3;  // OS-specific file handle
 Now suppose we want to use `OsInternetHandle` which requires specific
 `CloseOsInternetHandle` function to be closed (this is also common in Windows
 API: for example, WinHttp `HINTERNET` handle requires `WinHttpCloseHandle`). We
-can specialize our `Handle` class for `OsInternetHandle`:
+can specialise our `Handle` class for `OsInternetHandle`:
 {% highlight c++ %}
 template<> class Handle<OsInternetHandle> {
 public:
@@ -143,9 +142,9 @@ private:
 };
 {% endhighlight %}
 The problem is solved, but the cost is a lot of code duplication. As you
-can see, the only real difference between specialization and primary template
+can see, the only real difference between specialisation and primary template
 is `Cleanup` method. Let's leave our `Handle` class definition as is and define
-specialization for `Cleanup` member function instead:
+specialisation for `Cleanup` member function instead:
 {% highlight c++ %}
 template<> void Handle<OsInternetHandle>::Cleanup() {
   if (handle_)
@@ -153,18 +152,18 @@ template<> void Handle<OsInternetHandle>::Cleanup() {
 }
 {% endhighlight %}
 This is much better for maintainability and works exactly like the class
-specialization above.
+specialisation above.
 
 Note that our handle wrapper is somewhat simplified for the purpose of the
 article. It is assumed that various `HandleType` arguments are in fact
 different types, not an aliases for some built-in type like `int` or `void*`.
 For example, if our `OsHandle` and `OsInternetHandle` are both defined as
-synonyms for `int`, the above specialization will not work. For that reason, in
+synonyms for `int`, the above specialisation will not work. For that reason, in
 real life you almost certainly should apply
-[type-safe handle idiom][url-type-safe-handles] to your wrapper class which is
-described in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then
-you can specialize `Cleanup` method on handle tag (which is effectively a form
-of [tag dispatching][url-tag-dispatching]).
+[type-safe handle idiom][url-type-safe-handles] to your wrapper class described
+in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then you can
+specialise `Cleanup` method on handle tag (which is effectively a form of
+[tag dispatching][url-tag-dispatching]).
 
 ### Conclusion
 

@@ -6,8 +6,8 @@ og_type: profile
 title: About
 description: |
   The intention of this site is to share ideas, tips, idioms, patterns,
-  gotchas, issues, etc., that arises during the course of my professional
-  activity, many of which I think would be useful for other developers.
+  gotchas, issues, etc., that arises over the course of my professional
+  activity, many of which I hope would be useful for other developers.
 image:
   url: /img/pages/profile.jpg
 ---

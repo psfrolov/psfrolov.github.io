@@ -5,7 +5,6 @@ const atImport = require('postcss-import'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
       cached = require('gulp-cached'),
-      checkPages = require('check-pages'),
       cssPropSort = require('css-property-sorter'),
       del = require('del'),
       gulp = require('gulp'),
@@ -22,7 +21,6 @@ const atImport = require('postcss-import'),
       postcss = require('gulp-postcss'),
       postcssReporter = require('postcss-reporter'),
       prettyData = require('gulp-pretty-data'),
-      psi = require('psi'),
       RevAll = require('gulp-rev-all'),
       runSeq = require('run-sequence'),
       shell = require('gulp-shell'),
@@ -43,7 +41,6 @@ const jekyllBuildDir = path.join(outDir, 'jekyll-build');
 const buildDir = path.join(outDir, 'build');
 const certsDir = path.join(__dirname, 'test-certs');
 const serveDir = path.join(outDir, 'serve');
-const siteUrl = 'https://arkfps.github.io';
 
 // Resource patterns.
 const xmlAndJsonFiles = ['*.{xml,json}'];
@@ -184,28 +181,6 @@ gulp.task('lint', ['jekyll-hyde', 'stylelint', 'htmlhint']);
 // Deploy.
 // gulp.task('deploy', ['lint']);
 // https://github.com/gulpjs/gulp/blob/master/docs/recipes/automate-release-workflow.md
-
-// Test performance.
-gulp.task('psi-desktop', () =>
-  psi.output(siteUrl, { nokey: 'true', strategy: 'desktop' })
-);
-gulp.task('psi-mobile', () =>
-  psi.output(siteUrl, { nokey: 'true', strategy: 'mobile' })
-);
-gulp.task('psi', cb => { runSeq('psi-desktop', 'psi-mobile', cb); });
-
-// Validate links.
-gulp.task('check-links', cb => {
-  const settings = {
-    pageUrls: [siteUrl],
-    checkLinks: true,
-    noRedirects: true,
-    noLocalLinks: true,
-    noEmptyFragments: true,
-    summary: true
-  };
-  checkPages(console, settings, cb);
-});
 
 // Default task.
 gulp.task('default', ['serve']);

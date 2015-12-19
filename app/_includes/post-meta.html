@@ -5,4 +5,15 @@
   <i class="fa fa-tags muted" title="Post Tags"></i> {{ include.context | tags }}.
   <meta itemprop="wordCount" content="{{ include.context.content | number_of_words }}">
   <meta itemprop="articleSection about" content="{{ site.topic }}">
+  <meta itemprop="author" content="{{ site.author }}">
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="{{ site.title }}">
+    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+      {% capture logo_url %}{{ site.baseurl }}/img/pages/logo.png{% endcapture %}
+      <link itemprop="url contentUrl" href="{{ logo_url }}">
+      <meta itemprop="width" content="{{ logo_url | image_width }}">
+      <meta itemprop="height" content="{{ logo_url | image_height }}">
+    </div>
+  </div>
+  <meta itemprop="dateModified" content="{{ include.context.path | modified_time | date_to_xmlschema }}">
 </p>

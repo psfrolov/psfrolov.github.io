@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "404: Page Not Found"
+description: "HTTP error 404: file or directory not found."
 permalink: /404.html
 ---
 

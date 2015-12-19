@@ -9,12 +9,7 @@ keywords: "{{ page.tag }}"
 <h1>{{ page.title | liquify }}</h1>
 {% for post in page.posts %}
   <div itemscope itemtype="http://schema.org/BlogPosting">
-    <h2 itemprop="name headline">
-      <a href="{{ post.url }}" itemprop="url">{{ post.title }}</a>
-    </h2>
-    {% include post-meta.html context=post %}
-    <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url }}">
-    {{ post.excerpt }}
+    {% include post-preview.html %}
   </div>
   <br>
 {% endfor %}

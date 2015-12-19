@@ -1,6 +1,10 @@
 ---
 title: Resource Management with Explicit Template Specializations
 tags: [C++, Generic Programming, Windows API]
+description: |
+  This article shows how to build an RAII wrapper with the help of
+  interesting static polymorphism technique based on explicit template
+  specialization.
 reading_time: 15
 image:
   url: /img/pages/overload-126.png
@@ -33,58 +37,3 @@ Also available [in Russian][url-russian-article].
 [url-exception-safety]: https://en.wikipedia.org/wiki/Exception_safety
 [url-smart-pointer]: https://en.wikipedia.org/wiki/Smart_pointer
 [url-russian-article]: http://habrahabr.ru/company/pt/blog/255487/
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@graph": [
-      {
-        "@id": "#issue",
-        "@type": "PublicationIssue",
-        "issueNumber": "126",
-        "about": "C++",
-        "audience": "software developers",
-        "datePublished": "2015-04",
-        "inLanguage": "en-GB",
-        "keywords": "C++,programming",
-        "publisher": "ACCU",
-        "name": "Overload 126",
-        "url": "http://accu.org/index.php/journals/c348/"
-      },
-      {
-        "@id": "#periodical",
-        "@type": "Periodical",
-        "issn": "1354-3172",
-        "about": "C++",
-        "audience": "software developers",
-        "inLanguage": "en-GB",
-        "keywords": "C++,programming",
-        "publisher": "ACCU",
-        "description": "Overload publishes a high standard of articles about all aspects of software development. It relies on a team of advisors who work with authors to ensure that the articles are both clear and accurate.",
-        "name": "Overload",
-        "url": "http://accu.org/index.php/journal"
-      },
-      {
-        "@id": "#article",
-        "@type": "ScholarlyArticle",
-        "pageEnd": "22",
-        "pageStart": "18",
-        "wordCount": "2829",
-        "about": "C++",
-        "audience": "software developers",
-        "author": "{{ site.author }}",
-        "datePublished": "2015-04",
-        "inLanguage": "en-GB",
-        "isPartOf": [ { "@id": "#issue" }, { "@id": "#periodical" } ],
-        "keywords": "{{ page | keywords }}",
-        "publisher": "ACCU",
-        "timeRequired": "PT15M",
-        "description": "RAII is a useful idiom. We present a powerful extension using explicit template specialization.",
-        "name": "{{ page.title }}",
-        "headline": "{{ page.title }}",
-        "image": "{{ site.url }}{{ site.baseurl }}{{ page.image.url | liquify }}",
-        "url": "http://accu.org/index.php/journals/2086"
-      }
-    ]
-  }
-</script>

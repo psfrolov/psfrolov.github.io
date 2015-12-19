@@ -4,6 +4,10 @@ schema: "http://schema.org/AboutPage"
 og_prefix: "fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#"
 og_type: profile
 title: About
+description: |
+  The intention of this site is to share ideas, tips, idioms, patterns,
+  gotchas, issues, etc., that arises during the course of my professional
+  activity, many of which I think would be useful for other developers.
 image:
   url: /img/pages/profile.jpg
 ---
@@ -16,20 +20,17 @@ The name's Paul. Once a SCADA/DCS applications builder involved in space
 ground-based infrastructure projects (namely, Angara Space Rocket Complex and
 Land Launch). Now a software developer in information security field.
 
-The intention of this site is to share ideas, tips, idioms, patterns, gotchas,
-issues, etc., that arises during the course of my professional activity
-from time to time, many of which I think would be useful for other developers.
-My primary programming language (as well as an area of professional interests)
-is C++, so expect the majority of articles to be C++ related. Speaking about
-C++, I'm particularly enthusiastic about generic programming paradigm. But fear
-not thou, my friend <i class="fa fa-smile-o" title="Smile"></i>, as I tend not
-to delve too deep into obscure realms of template metaprogramming and other
-experimental stuff, which, even though quite interesting on its own, is often
-appears to be of insufficient practical value for real world, day-to-day
-application in team-based software development. Rather, I'm trying to come up
-with solutions (in the form of idioms and design patterns) applicable to wide
-range of problem domains, but which at the same time are simple to implement,
-understand and maintain.
+{{ page.description }} My primary programming language (as well as an area of
+professional interests) is C++, so expect the majority of articles to be C++
+related. Speaking about C++, I'm particularly enthusiastic about generic
+programming paradigm. But fear not thou, my friend <i class="fa fa-smile-o"
+title="Smile"></i>, as I tend not to delve too deep into obscure realms of
+template metaprogramming and other experimental stuff, which, even though quite
+interesting on its own, is often appears to be of insufficient practical value
+for real world, day-to-day application in team-based software development.
+Rather, I'm trying to come up with solutions (in the form of idioms and design
+patterns) applicable to wide range of problem domains, but which at the same
+time are simple to implement, understand and maintain.
 
 I hope you'll find something valuable here. Feel free to drop me a line or two
 via [contact form]({{ site.baseurl }}/contact/). Or use one of the social

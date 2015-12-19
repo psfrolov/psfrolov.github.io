@@ -1,11 +1,12 @@
 ---
 title: Using Coverity Scan with AppVeyor
 tags: [AppVeyor, CI, Coverity, .NET, PowerShell, Static Analysis]
-excerpt: |
+description: &description |
   Unlike Travis CI, AppVeyor currently lacks out of the box integration with
   Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
   analysis for your project by injecting custom PowerShell scripts into
   AppVeyor build process.
+excerpt: *description
 image:
   url: /img/pages/coverity-scan-and-appveyor.png
 ---

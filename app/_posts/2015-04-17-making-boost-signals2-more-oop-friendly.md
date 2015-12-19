@@ -1,6 +1,9 @@
 ---
 title: Making Boost.Signals2 More OOP-Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
+description: |
+  This article suggests an observable mixin which makes Boost.Signals(2) more
+  easy to use in C++ classes.
 image:
   url: /img/pages/observer-design-pattern.png
   source:

@@ -23,11 +23,8 @@
     <meta property="og:title" itemprop="name" content="{{ page.title | liquify | escape }}">
 
     <!-- Page description. -->
-    {% if page.description %}
-    <meta name="description" property="og:description" itemprop="description" content="{{ page.description | liquify | escape }}">
-    {% elsif page.excerpt %}
-    <meta name="description" property="og:description" itemprop="description" content="{{ page.excerpt | strip_html }}">
-    {% endif %}
+    <meta name="description" content="{{ page.description | liquify | escape }}">
+    <meta property="og:description" itemprop="description" content="{{ page.description | liquify | escape }}">
 
     <!-- Page keywords. -->
     {% if page.keywords %}
@@ -38,13 +35,19 @@
     {% endif %}
 
     <!-- Page author. -->
-    <meta name="author" itemprop="author" content="{{ site.author }}">
+    <meta name="author" content="{{ site.author }}">
+    {% if page.schema != 'http://schema.org/BlogPosting' %}
+    <meta itemprop="author" content="{{ site.author }}">
+    {% endif %}
     <link type="text/plain" rel="author" href="{{ site.baseurl }}/humans.txt">
 
     <!-- Page image. -->
     {% if page.image %}
     {% capture page_image %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
+    <!-- For posts we define "ImageObject" instead of simple "Image". -->
+    {% if page.schema != 'http://schema.org/BlogPosting' %}
     <link itemprop="image" href="{{ page_image }}">
+    {% endif %}
     <meta property="og:image" content="{{ page_image }}">
     <meta property="og:image:type" content="{{ page.image.url | image_mime_type }}"/>
     <meta property="og:image:width" content="{{ page.image.url | image_width }}"/>
@@ -102,10 +105,10 @@
 
     <!-- Canonical page URL for search engines. -->
     {% if page.is_home %}
-    <link rel="canonical" itemprop="url" href="{{ site.url }}{{ site.baseurl }}">
+    <link rel="canonical" itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}">
     {% else %}
-    <link rel="canonical" itemprop="url" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+    <link rel="canonical" itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     {% endif %}
 

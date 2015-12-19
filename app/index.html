@@ -2,10 +2,10 @@
 layout: default
 schema: "http://schema.org/Blog"
 title: "{{ site.title }}"
-image:
-  url: /img/pages/home.jpg
 description: "{{ site.description }}"
 keywords: "{{ site.keywords | join:',' }}"
+image:
+  url: /img/pages/home.jpg
 is_home: true
 ---
 
@@ -14,12 +14,7 @@ is_home: true
 <div>
   {% for post in paginator.posts %}
   <div itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <h2 itemprop="name headline">
-      <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a>
-    </h2>
-    {% include post-meta.html context=post %}
-    <link itemprop="image" href="{{ site.baseurl }}{{ post.image.url }}">
-    {{ post.excerpt }}
+    {% include post-preview.html %}
   </div>
   <br>
   {% endfor %}

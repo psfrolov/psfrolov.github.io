@@ -20,18 +20,22 @@
 
     <!-- Page title. -->
     <title>{{ page.title | liquify }}</title>
-    <meta property="og:title" itemprop="name" content="{{ page.title | liquify | escape }}">
+    <meta itemprop="name" content="{{ page.title | liquify | escape }}">
+    <meta property="og:title" content="{{ page.title | liquify | escape }}">
 
     <!-- Page description. -->
     <meta name="description" content="{{ page.description | liquify | escape }}">
-    <meta property="og:description" itemprop="description" content="{{ page.description | liquify | escape }}">
+    <meta itemprop="description" content="{{ page.description | liquify | escape }}">
+    <meta property="og:description" content="{{ page.description | liquify | escape }}">
 
     <!-- Page keywords. -->
     {% if page.keywords %}
-    <meta name="keywords" itemprop="keywords" content="{{ page.keywords | liquify }}">
+    <meta name="keywords" content="{{ page.keywords | liquify }}">
+    <meta itemprop="keywords" content="{{ page.keywords | liquify }}">
     {% elsif page.tags %}
     <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
-    <meta name="keywords" itemprop="keywords" content="{{ page | keywords }}">
+    <meta name="keywords" content="{{ page | keywords }}">
+    <meta itemprop="keywords" content="{{ page | keywords }}">
     {% endif %}
 
     <!-- Page author. -->
@@ -105,10 +109,12 @@
 
     <!-- Canonical page URL for search engines. -->
     {% if page.is_home %}
-    <link rel="canonical" itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
+    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}">
     {% else %}
     <link rel="canonical" itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     {% endif %}
 

@@ -6,7 +6,7 @@ layout: default
 <!-- Post content. -->
 <div>
   <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-    <img src="{{ site.baseurl }}{{ page.image.url }}" alt="" itemprop="url contentUrl">
+    <img src="{{ site.baseurl }}{{ page.image.url }}" alt itemprop="url contentUrl">
     <meta itemprop="width" content="{{ page.image.url | image_width }}">
     <meta itemprop="height" content="{{ page.image.url | image_height }}">
     {% if page.image.source %}

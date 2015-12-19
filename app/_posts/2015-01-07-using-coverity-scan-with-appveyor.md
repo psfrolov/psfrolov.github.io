@@ -280,7 +280,7 @@ otherwise exception will be thrown while sending data.
 Next, we'll fill form fields one by one. Those fields are `token`, `email`,
 `file`, `version` and `description`.
 
-#### `token` field
+#### The Token Field
 
 The `token` is our Coverity Scan project token we used before to download
 Coverity Build Tool.
@@ -291,7 +291,7 @@ Coverity Build Tool.
 $form.Add($formField, "`"token`"")
 {% endhighlight %}
 
-#### `email` field
+#### The Email Field
 
 The `email` is an e-mail address to which Coverity Scan will send a
 notification about analysis results.
@@ -307,7 +307,7 @@ environment:
     secure: +eYz1A/Z8lciYhPTNqd7KgfkqxmG1nS/lOJqFjmvRdg=
 {% endhighlight %}
 
-#### `file` field
+#### The File Field
 
 The `file` is our zipped scan data produced earlier:
 {% highlight powershell %}
@@ -320,7 +320,7 @@ $formField = New-Object Net.Http.StreamContent($fs)
 $form.Add($formField, "`"file`"", "$env:APPVEYOR_PROJECT_NAME.zip")
 {% endhighlight %}
 
-#### `version` field
+#### The Version Field
 
 Your need to set this field to the version of your build:
 {% highlight powershell %}
@@ -329,7 +329,7 @@ $formField = New-Object Net.Http.StringContent($env:APPVEYOR_BUILD_VERSION)
 $form.Add($formField, "`"version`"")
 {% endhighlight %}
 
-#### `description` field
+#### The Description Field
 
 An arbitrary text describing your build:
 {% highlight powershell %}

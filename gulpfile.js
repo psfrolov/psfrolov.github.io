@@ -94,7 +94,10 @@ gulp.task('html', ['jekyll-build'], () =>
   gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(newer(buildDir))
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
-    .pipe(minifyHtml())
+    .pipe(minifyHtml({
+      empty: true,
+      loose: true
+    }))
     .pipe(htmlmin({
       removeComments: true,
       collapseWhitespace: true,

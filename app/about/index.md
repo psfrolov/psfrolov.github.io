@@ -12,7 +12,7 @@ image:
   url: /img/pages/profile.jpg
 ---
 
-<figure><img src="{{ site.baseurl }}/img/pages/about.jpg" alt=""></figure>
+<figure><img src="{{ site.baseurl }}/img/pages/about.jpg" alt></figure>
 
 # {{ page.title | liquify }}
 <span class="drop-letter">W</span><span>elcome</span> to my place, stranger!

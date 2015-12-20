@@ -7,82 +7,31 @@
 
 # TECHNOLOGY COLOPHON
 
-  Languages:
-    HTML
-    http://www.w3.org/html/
+  HTML: http://www.w3.org/html/
+  CSS: http://www.w3.org/Style/CSS/
+  JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  Liquid: http://liquidmarkup.org
+  Markdown: https://daringfireball.net/projects/markdown/
 
-    CSS
-    http://www.w3.org/Style/CSS/
+  Atom: https://atom.io/
+  Google Chrome: https://www.google.com/chrome/
+  Real Favicon Generator: https://realfavicongenerator.net
+  Inkscape: https://inkscape.org
+  GIMP: http://www.gimp.org
+  X-Icon Editor: http://www.xiconeditor.com
 
-    JavaScript
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  Jekyll: https://jekyllrb.com
+  Gulp: http://gulpjs.com
+  Browsersync: https://www.browsersync.io
 
-    Liquid
-    http://liquidmarkup.org
+  Hyde: http://hyde.getpoole.com
+  Normalize.css: https://necolas.github.io/normalize.css/
+  Solarized Light CSS: https://gist.github.com/nicolashery/5765395#file-solarized-light-css
 
-    Markdown
-    https://daringfireball.net/projects/markdown/
+  PT Sans: https://www.google.com/fonts/specimen/PT+Sans
+  PT Serif: https://www.google.com/fonts/specimen/PT+Serif
 
-  Blog Publishing System:
-    Jekyll
-    https://jekyllrb.com
-
-  Site Template:
-    Hyde
-    http://hyde.getpoole.com
-
-  Images, Icons, Textures:
-    Font Awesome
-    https://fortawesome.github.io/Font-Awesome
-
-    Real Favicon Generator
-    https://realfavicongenerator.net
-
-    Inkscape
-    https://inkscape.org
-
-    GIMP
-    http://www.gimp.org
-
-    X-Icon Editor
-    http://www.xiconeditor.com
-
-  Fonts:
-    Google Fonts
-    https://www.google.com/fonts
-
-    PT Sans
-    https://www.google.com/fonts/specimen/PT+Sans
-
-    PT Serif
-    https://www.google.com/fonts/specimen/PT+Serif
-
-  Web Hosting:
-    GitHub Pages
-    https://pages.github.com
-
-  Blog Comment Hosting:
-    Disqus Engage
-    https://publishers.disqus.com/engage
-
-  Web Form Endpoint:
-    Formspree
-    https://formspree.io
-
-  Web Analytics:
-    Google Analytics
-    https://www.google.com/analytics
-
-  Build System:
-    Gulp
-    http://gulpjs.com
-
-  Miscellaneous:
-    Normalize.css
-    https://necolas.github.io/normalize.css/
-
-    solarized-light.css
-    https://gist.github.com/nicolashery/5765395#file-solarized-light-css
-
-    CSP Builder
-    https://report-uri.io/home/generate
+  GitHub Pages: https://pages.github.com
+  Disqus Engage: https://publishers.disqus.com/engage
+  Formspree: https://formspree.io
+  Google Analytics: https://www.google.com/analytics

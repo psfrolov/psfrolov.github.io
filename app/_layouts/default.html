@@ -107,14 +107,14 @@
     <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
     <meta name="theme-color" content="#ac4142">
 
-    <!-- Canonical page URL for search engines. -->
+    <!-- Canonical page URL. -->
     {% if page.is_home %}
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
-    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}">
+    <meta itemprop="url mainEntityOfPage" content="{{ site.url }}{{ site.baseurl }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}">
     {% else %}
-    <link rel="canonical" itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+    <meta itemprop="url mainEntityOfPage" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
     {% endif %}
 
@@ -193,9 +193,9 @@
       <hr class="muted-light">
       <p class="muted-light"><small>&copy; {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small></p>
     </aside>
-    <div class="content container">
+    <main class="content container">
       {{ content }}
-    </div>
+    </main>
 
     <!-- Google Analytics. -->
     {% if jekyll.environment == "production" %}

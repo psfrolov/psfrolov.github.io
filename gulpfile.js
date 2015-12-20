@@ -1,17 +1,22 @@
 'use strict';
 
 // Gulp plugins.
-const atImport = require('postcss-import'),
+const accessibility = require('gulp-accessibility'),
+      atImport = require('postcss-import'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
       cached = require('gulp-cached'),
       cssPropSort = require('css-property-sorter'),
       del = require('del'),
+      doiuse = require('doiuse'),
+      ghPages = require('gulp-gh-pages'),
       gulp = require('gulp'),
+      gutil = require('gulp-util'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
       imageInliner = require('postcss-image-inliner'),
       imgsizefix = require('gulp-imgsizefix'),
+      jsonlint = require('gulp-jsonlint'),
       minifyCss = require('gulp-minify-css'),
       minifyHtml = require('gulp-minify-html'),
       minimist = require('minimist'),
@@ -26,7 +31,8 @@ const atImport = require('postcss-import'),
       shell = require('gulp-shell'),
       size = require('gulp-size'),
       stylelint = require('stylelint'),
-      uncss = require('gulp-uncss');
+      uncss = require('gulp-uncss'),
+      w3cjs = require('gulp-w3cjs');
 
 process.on('uncaughtException', er => { console.error(er); process.exit(1); });
 
@@ -41,13 +47,15 @@ const jekyllBuildDir = path.join(outDir, 'jekyll-build');
 const buildDir = path.join(outDir, 'build');
 const certsDir = path.join(__dirname, 'test-certs');
 const serveDir = path.join(outDir, 'serve');
+const publishDir = path.join(outDir, 'publish');
 
 // Resource patterns.
-const xmlAndJsonFiles = ['*.{xml,json}'];
+const jsonFiles = ['*.json'];
+const xmlFiles = ['*.{xml,svg}'];
 const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/**/*.js'];
 const htmlFiles = ['**/*.html'];
-const otherFiles = ['!*.{html,xml,json}', '*', 'img/**/*'];
+const otherFiles = ['!*.{html,json,xml,svg}', '*', 'img/**/*'];
 
 // Jekyll build.
 gulp.task('jekyll-build', shell.task(
@@ -56,12 +64,13 @@ gulp.task('jekyll-build', shell.task(
 ));
 
 // Process XML and JSON.
-gulp.task('xmljson', ['jekyll-build'], () =>
-  gulp.src(xmlAndJsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+gulp.task('xml&json', ['jekyll-build'], () =>
+  gulp.src(jsonFiles.concat(xmlFiles),
+           { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(newer(buildDir))
     .pipe(prettyData({ type: 'minify' }))
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'xmljson' }))
+    .pipe(size({ title: 'xml&json' }))
 );
 
 // Process CSS.
@@ -126,7 +135,7 @@ gulp.task('copy', ['jekyll-build'], () =>
 );
 
 // Revision assets (cache busting).
-gulp.task('revision', ['xmljson', 'css', 'js', 'html', 'copy'], () => {
+gulp.task('revision', ['xml&json', 'css', 'js', 'html', 'copy'], () => {
   const revisor = new RevAll({
     dontGlobal: [/^\/\./g, /^\/favicon.ico$/g, /\/img\/pages/g],
     dontRenameFile: [/\.(html|txt)$/g, /^\/(atom|sitemap)\.xml$/g],
@@ -141,7 +150,7 @@ gulp.task('revision', ['xmljson', 'css', 'js', 'html', 'copy'], () => {
 // Build.
 gulp.task('clean', del.bind(null, [outDir]));
 gulp.task('build', ['revision']);
-gulp.task('rebuild', cb => { runSeq('clean', 'build', cb); });
+gulp.task('rebuild', cb => runSeq('clean', 'build', cb));
 
 // Serve local site and watch for changes.
 gulp.task('_browsersync', () => {
@@ -157,18 +166,29 @@ gulp.task('_browsersync', () => {
   });
   gulp.watch(['*/**'], { cwd: srcDir }, ['build', bs.reload]);
 });
-gulp.task('serve', cb => { runSeq('build', '_browsersync', cb); });
-gulp.task('serve-clean', cb => { runSeq('rebuild', '_browsersync', cb); });
+gulp.task('serve', cb => runSeq('build', '_browsersync', cb));
+gulp.task('serve-clean', cb => runSeq('rebuild', '_browsersync', cb));
 
 // Check source code.
 gulp.task('jekyll-hyde', shell.task(
   'bundle exec jekyll hyde', { env: { JEKYLL_ENV: options.env } }
 ));
+gulp.task('jsonlint', () =>
+  gulp.src(jsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+    .pipe(cached('jsonlint'))
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter())
+    .pipe(jsonlint.failAfterError())
+);
 gulp.task('stylelint', () =>
   gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(cached('stylelint'))
     .pipe(postcss([
       stylelint,
+      doiuse({
+        browsers: ['last 2 versions'],
+        ignore: ['css-resize', 'font-feature', 'rem', 'word-break']
+      }),
       postcssReporter({ clearMessages: true, throwError: true })
     ]))
 );
@@ -179,11 +199,35 @@ gulp.task('htmlhint', () =>
     .pipe(htmlhint.reporter())
     .pipe(htmlhint.failReporter({ suppress: true }))
 );
-gulp.task('lint', ['jekyll-hyde', 'stylelint', 'htmlhint']);
+gulp.task('w3c', () =>
+  gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
+    .pipe(cached('w3c'))
+    .pipe(w3cjs())
+    .pipe(w3cjs.reporter())
+);
+gulp.task('a11y', () =>
+  gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
+    .pipe(accessibility({ accessibilityLevel: 'WCAG2AAA' }))
+);
+gulp.task('lint',
+  ['jekyll-hyde', 'jsonlint', 'stylelint', 'htmlhint', 'w3c', 'a11y']
+);
 
 // Deploy.
-// gulp.task('deploy', ['lint']);
-// https://github.com/gulpjs/gulp/blob/master/docs/recipes/automate-release-workflow.md
+gulp.task('_publish', () => {
+  if (options.env !== 'production') {
+    const msg = 'only "production" build can be published';
+    throw new gutil.PluginError({ plugin: '<none>', message: msg });
+  }
+  return gulp.src(['**/*'], { cwd: serveDir, cwdbase: true, dot: true })
+    .pipe(ghPages({
+      cacheDir: publishDir,
+      remoteUrl: 'https://github.com/arkfps/arkfps.github.io.git',
+      branch: 'master',
+      push: false
+    }));
+});
+gulp.task('deploy', cb => runSeq('clean', 'build', 'lint', '_publish', cb));
 
 // Default task.
 gulp.task('default', ['serve']);

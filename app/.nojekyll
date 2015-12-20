@@ -1,1 +1,1 @@
-Disable Jekyll on GitHub Pages since we build the whole site locally prior to deployment.
+Disable Jekyll on GitHub Pages since the site is deployed fully developed.

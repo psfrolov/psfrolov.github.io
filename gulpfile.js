@@ -18,7 +18,6 @@ const accessibility = require('gulp-accessibility'),
       imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
       minifyCss = require('gulp-minify-css'),
-      minifyHtml = require('gulp-minify-html'),
       minimist = require('minimist'),
       mqpacker = require('css-mqpacker'),
       newer = require('gulp-newer'),
@@ -55,7 +54,7 @@ const xmlFiles = ['*.{xml,svg}'];
 const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/**/*.js'];
 const htmlFiles = ['**/*.html'];
-const otherFiles = ['!*.{html,json,xml,svg}', '*', 'img/**/*'];
+const otherFiles = ['!*.{html,json,xml,svg}', '*', 'img/**/*', 'fnt/**/*'];
 
 // Jekyll build.
 gulp.task('jekyll-build', shell.task(
@@ -103,10 +102,6 @@ gulp.task('html', ['jekyll-build'], () =>
   gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(newer(buildDir))
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
-    .pipe(minifyHtml({
-      empty: true,
-      loose: true
-    }))
     .pipe(htmlmin({
       removeComments: true,
       collapseWhitespace: true,

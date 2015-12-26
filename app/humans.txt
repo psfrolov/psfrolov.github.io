@@ -7,30 +7,38 @@
 
 # TECHNOLOGY COLOPHON
 
+  # Languages
   HTML: http://www.w3.org/html/
   CSS: http://www.w3.org/Style/CSS/
   JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript
   Liquid: http://liquidmarkup.org
   Markdown: https://daringfireball.net/projects/markdown/
 
+  # Development Tools
   Atom: https://atom.io/
   Google Chrome: https://www.google.com/chrome/
-  Real Favicon Generator: https://realfavicongenerator.net
   Inkscape: https://inkscape.org
   GIMP: http://www.gimp.org
   X-Icon Editor: http://www.xiconeditor.com
+  Real Favicon Generator: https://realfavicongenerator.net
+  Font Squirell: http://www.fontsquirrel.com
 
+  # Build Tools
   Jekyll: https://jekyllrb.com
   Gulp: http://gulpjs.com
   Browsersync: https://www.browsersync.io
 
+  # Styles
   Hyde: http://hyde.getpoole.com
   Normalize.css: https://necolas.github.io/normalize.css/
   Solarized Light CSS: https://gist.github.com/nicolashery/5765395#file-solarized-light-css
 
+  # Fonts
   PT Sans: https://www.google.com/fonts/specimen/PT+Sans
-  PT Serif: https://www.google.com/fonts/specimen/PT+Serif
+  Ubuntu Mono: http://font.ubuntu.com
+  Metamorphous: https://www.google.com/fonts/specimen/Metamorphous
 
+  # Services
   GitHub Pages: https://pages.github.com
   Disqus Engage: https://publishers.disqus.com/engage
   Formspree: https://formspree.io

@@ -12,6 +12,7 @@
 /* Inlined during post-processing. */
 @import '/css/normalize.css';
 @import '/css/syntax.css';
+@import '/css/fonts.css';
 
 
 /* Sizing algorithm. */
@@ -25,7 +26,7 @@ html {
 
 /* Body. */
 html {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sans', sans-serif;
 }
 @media (min-width: 48em) {
   html {
@@ -96,13 +97,13 @@ a:active, a > i:active {
 
 
 /* Headings. */
-h1, h2, h3, h4, h5, h6, .site-title {
+h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
   color: #313131;
 }
-h1, .site-title {
+h1 {
   font-size: 2rem;
 }
 h2 {
@@ -154,7 +155,6 @@ hr {
 
 /* Abbreviations. */
 abbr {
-  font-size: 85%;
   font-weight: bold;
   color: #313131;
 }
@@ -187,11 +187,11 @@ blockquote p:last-child {
 code,
 pre,
 .gist .blob-code {
-  font-family: 'PT Mono', monospace !important;
+  font-family: 'ubuntu_mono', monospace !important;
 }
 code {
-  padding: .25em .5em;
-  font-size: 85%;
+  padding: .1rem;
+  font-size: .8rem;
   color: #ac4142;
   background-color: rgba(164, 164, 164, .25);
   border-radius: 3px;
@@ -212,7 +212,7 @@ input, textarea, pre, .gist .highlight, .gist .gist-meta {
 }
 pre code, .gist .blob-code-inner {
   padding: 0;
-  font-size: .65rem !important;
+  font-size: .8rem !important;
   color: inherit;
   background-color: transparent;
 }
@@ -335,7 +335,7 @@ aside {
     no-repeat;
   background-size: cover;
   text-align: center;
-  font-family: 'PT Serif', serif;
+  font-family: 'metamorphous', serif;
   padding: 1rem 1rem;
 }
 @media (min-width: 48rem) {
@@ -391,13 +391,11 @@ textarea {
   padding: .3rem;
   border: 1px solid #e5e5e5;
   resize: vertical;
-  font-family: 'PT Sans', sans-serif, 'FontAwesome';
 }
 input {
   width: 15rem;
   padding: .3rem;
   border: 1px solid #e5e5e5;
-  font-family: 'PT Sans', sans-serif, 'FontAwesome';
 }
 button {
   display: block;
@@ -443,7 +441,7 @@ textarea:invalid {
 /* Dropped capital letter. */
 .drop-letter {
   float: left;
-  font-family: Georgia;
+  font-family: 'metamorphous', 'Georgia';
   text-shadow:
     -2px -2px 0 #000,
     2px -2px 0 #000,
@@ -515,7 +513,9 @@ textarea:invalid {
 .right {
   float: right;
 }
-
+.site-title {
+  font-size: 2rem;
+}
 
 /* Messages. */
 .message {

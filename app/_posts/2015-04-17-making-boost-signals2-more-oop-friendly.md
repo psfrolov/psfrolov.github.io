@@ -132,7 +132,7 @@ the previous section.
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 
-#### The `WindowObservers` Class
+#### The WindowObservers Class
 
 Obviously enough, we can't just put our signals into _homogeneous_ container
 like `std::vector` because of different event signatures. Fortunately, the C++
@@ -158,7 +158,7 @@ accordingly. The tag-based heterogeneous containers are more immune to this
 issue due to the fact that the tag is mentioned explicitly as part of container
 element type.
 
-#### The `Observer` Class Template
+#### The Observer Class Template
 
 The `Observer` type used in the above code fragment is just a simple
 convenience wrapper for `boost::signals2::signal`:
@@ -182,7 +182,7 @@ private:
 Aside from the signal itself, the type contains a couple of convenience type
 aliases and a friend declaration for the `Observable` class.
 
-#### The `Observable` Class Template
+#### The Observable Class Template
 
 The `Observable` class is what makes use of our `WindowObservers` structure to
 generate the corresponding registration and notification methods:
@@ -237,7 +237,7 @@ case you need an advanced return semantic).
 The constructor of the class is made protected because this class is not
 intended to be used on its own.
 
-#### The `Window` Class
+#### The Window Class
 
 Our `Window` class now derives from `Observable` class template parametrised by
 `WindowsObservers`. This give us a possibility to use `Register` and `Notify`
@@ -265,7 +265,7 @@ public:
 };
 {% endhighlight %}
 
-#### The `Application` Class
+#### The Application Class
 
 Finally, the application class registers the callbacks for
 `WindowObservers::ShowEvent` and `WindowObservers::CloseEvent` events:

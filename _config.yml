@@ -1,19 +1,20 @@
 # Build settings.
 source: app
 destination: dist/manual-jekyll-build
-include: [.nojekyll]
+include: [.nojekyll]  # disable Jekyll on GitHub Pages
 kramdown:
   # GitHub Flavored Markdown.
   input: GFM
   hard_wrap: false
 gems:
-  - jekyll-feed
+  - jekyll
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging
+  - liquid_pluralize
+  - jekyll-feed
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
-  - liquid_pluralize
 permalink: pretty
 
 # Default page layouts.
@@ -49,9 +50,9 @@ tag_page_dir: tag
 url: https://arkfps.github.io
 name: &sitename The Hermetic Vault
 title: *sitename
-description: A miscellanea of C++ programming techniques.
+description: A miscellanea of software development techniques.
 tagline: typedef typename template
-keywords: [C++, Programming]
+keywords: [C++, Programming, Software, Development]
 topic: Software Development
 author: Pavel Frolov
 email: eW91cmVtYWlsQHlvdXJkb21haW4uY29t

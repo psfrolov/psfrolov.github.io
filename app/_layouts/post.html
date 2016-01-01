@@ -24,35 +24,40 @@ layout: default
 <!-- Social share buttons. -->
 <div>
   {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-  <a class="link-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-    <span class="fa-stack fa-lg content-icon">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-facebook fa-stack-1x fa-inverse" title="Share on Facebook"></i>
-    </span>
+  <a class="link-icon content-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | uri_escape }}" target="_blank">
+    <svg class="icon icon-facebook-square">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-facebook-square">
+        <title>Share on Facebook</title>
+      </use>
+    </svg>
   </a>
-  <a class="link-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-    <span class="fa-stack fa-lg content-icon">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-twitter fa-stack-1x fa-inverse" title="Share on Twitter"></i>
-    </span>
+  <a class="link-icon content-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}" target="_blank">
+    <svg class="icon icon-twitter-square">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-twitter-square">
+        <title>Share on Twitter</title>
+      </use>
+    </svg>
   </a>
-  <a class="link-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-    <span class="fa-stack fa-lg content-icon">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-reddit fa-stack-1x fa-inverse" title="Share on Reddit"></i>
-    </span>
+  <a class="link-icon content-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank">
+    <svg class="icon icon-reddit-square">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-reddit-square">
+        <title>Share on Reddit</title>
+      </use>
+    </svg>
   </a>
-  <a class="link-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-    <span class="fa-stack fa-lg content-icon">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-linkedin fa-stack-1x fa-inverse" title="Share on LinkedIn"></i>
-    </span>
+  <a class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" target="_blank">
+    <svg class="icon icon-linkedin-square">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-linkedin-square">
+        <title>Share on LinkedIn</title>
+      </use>
+    </svg>
   </a>
-  <a class="link-icon" href="https://plus.google.com/share?url={{ post_url | uri_escape }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-    <span class="fa-stack fa-lg content-icon">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-google-plus fa-stack-1x fa-inverse" title="Share on Google+"></i>
-    </span>
+  <a class="link-icon content-icon" href="https://plus.google.com/share?url={{ post_url | uri_escape }}" target="_blank">
+    <svg class="icon icon-google-plus-square">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-google-plus-square">
+        <title>Share on Google+</title>
+      </use>
+    </svg>
   </a>
 </div>
 

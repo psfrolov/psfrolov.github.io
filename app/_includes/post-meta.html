@@ -1,8 +1,26 @@
 <!-- Inserted just after post tile. -->
 <p>
-  <span class="muted"><i class="fa fa-clock-o" title="Post Date"></i> Published: <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.&emsp;<i class="fa fa-newspaper-o" title="Estimated Reading Time"></i> Reading time: {% if include.context.reading_time %}<time datetime="PT{{ include.context.reading_time }}M" itemprop="timeRequired">{{ include.context.reading_time | pluralize:'minute' }}</time>{% else %}<time datetime="PT{{ include.context.content | reading_time }}M" itemprop="timeRequired">{{ include.context.content | reading_time | pluralize:'minute' }}</time>{% endif %}.</span>
+  <span class="muted">
+    <svg class="icon icon-clock-o">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-clock-o">
+        <title>Clock</title>
+      </use>
+    </svg>
+    Published: <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.&emsp;
+    <svg class="icon icon-newspaper-o">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-newspaper-o">
+        <title>Newspaper</title>
+      </use>
+    </svg>
+    Reading time: {% if include.context.reading_time %}<time datetime="PT{{ include.context.reading_time }}M" itemprop="timeRequired">{{ include.context.reading_time | pluralize:'minute' }}</time>{% else %}<time datetime="PT{{ include.context.content | reading_time }}M" itemprop="timeRequired">{{ include.context.content | reading_time | pluralize:'minute' }}</time>{% endif %}.
+  </span>
   <br>
-  <i class="fa fa-tags muted" title="Post Tags"></i> {{ include.context | tags }}.
+  <svg class="icon icon-tags muted">
+    <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
+      <title>Tags</title>
+    </use>
+  </svg>
+  {{ include.context | tags }}.
   <meta itemprop="wordCount" content="{{ include.context.content | number_of_words }}">
   <meta itemprop="articleSection about" content="{{ site.topic }}">
   <meta itemprop="author" content="{{ site.author }}">

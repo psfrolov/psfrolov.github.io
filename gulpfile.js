@@ -9,12 +9,14 @@ const accessibility = require('gulp-accessibility'),
       cssPropSort = require('css-property-sorter'),
       del = require('del'),
       doiuse = require('doiuse'),
+      extReplace = require('gulp-ext-replace'),
       ghPages = require('gulp-gh-pages'),
       gulp = require('gulp'),
       gutil = require('gulp-util'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
       imageInliner = require('postcss-image-inliner'),
+      imagemin = require('gulp-imagemin'),
       imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
       minifyCss = require('gulp-minify-css'),
@@ -30,8 +32,11 @@ const accessibility = require('gulp-accessibility'),
       shell = require('gulp-shell'),
       size = require('gulp-size'),
       stylelint = require('stylelint'),
+      uglify = require('gulp-uglify'),
       uncss = require('gulp-uncss'),
-      w3cjs = require('gulp-w3cjs');
+      url = require('url'),
+      w3cjs = require('gulp-w3cjs'),
+      zopfli = require('gulp-zopfli');
 
 process.on('uncaughtException', er => { console.error(er); process.exit(1); });
 
@@ -53,8 +58,14 @@ const jsonFiles = ['*.json'];
 const xmlFiles = ['*.{xml,svg}'];
 const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/**/*.js'];
+const svgFiles = ['svg/**/*.svg'];
 const htmlFiles = ['**/*.html'];
-const otherFiles = ['!*.{html,json,xml,svg}', '*', 'img/**/*', 'fnt/**/*'];
+const otherFiles = [
+  '!*.{html,json,xml,svg}',
+  '*',
+  'img/**/*',
+  'fnt/**/*'
+];
 
 // Jekyll build.
 gulp.task('jekyll-build', shell.task(
@@ -93,8 +104,27 @@ gulp.task('css', ['jekyll-build'], () =>
 gulp.task('js', ['jekyll-build'], () =>
   gulp.src(jsFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(newer(buildDir))
+    .pipe(uglify())
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'js' }))
+);
+
+// Process SVG.
+gulp.task('svg', ['jekyll-build'], () =>
+  gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+    .pipe(newer({ dest: buildDir, ext: '.svgz' }))
+    .pipe(imagemin({
+      multipass: true,
+      svgoPlugins: [
+        { removeTitle: true },
+        { cleanupIDs: false },
+        { sortAttrs: true }
+      ]
+    }))
+    .pipe(zopfli({ append: false }))
+    .pipe(extReplace('.svgz'))
+    .pipe(gulp.dest(buildDir))
+    .pipe(size({ title: 'svg' }))
 );
 
 // Process HTML.
@@ -130,7 +160,7 @@ gulp.task('copy', ['jekyll-build'], () =>
 );
 
 // Revision assets (cache busting).
-gulp.task('revision', ['xml&json', 'css', 'js', 'html', 'copy'], () => {
+gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () => {
   const revisor = new RevAll({
     dontGlobal: [/^\/\./g, /^\/favicon.ico$/g, /\/img\/pages/g],
     dontRenameFile: [/\.(html|txt)$/g, /^\/(atom|sitemap)\.xml$/g],
@@ -151,7 +181,15 @@ gulp.task('rebuild', cb => runSeq('clean', 'build', cb));
 gulp.task('_browsersync', () => {
   const bs = browserSync.create();
   bs.init({
-    server: { baseDir: serveDir },
+    server: {
+      baseDir: serveDir,
+      middleware: (req, res, next) => {
+        // Correctly serve SVGZ assets.
+        if (url.parse(req.url).pathname.match(/\.svgz$/))
+          res.setHeader('Content-Encoding', 'gzip');
+        next();
+      }
+    },
     https: {
       key: path.join(certsDir, 'srv-auth.key'),
       cert: path.join(certsDir, 'srv-auth.crt')

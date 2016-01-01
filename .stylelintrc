@@ -13,7 +13,7 @@
     "number-no-trailing-zeros": true,
     "number-zero-length-no-unit": true,
 
-    "function-blacklist": [],
+    "function-blacklist": null,
     "function-calc-no-unspaced-operator": true,
     "function-comma-newline-after": null,
     "function-comma-newline-before": null,
@@ -32,12 +32,12 @@
     "value-list-comma-space-after": "always-single-line",
     "value-list-comma-space-before": "never",
 
-    "unit-blacklist": [],
+    "unit-blacklist": null,
     "unit-whitelist": ["px", "em", "rem", "%", "ms"],
 
-    "property-blacklist": [],
+    "property-blacklist": null,
     "property-no-vendor-prefix": true,
-    "property-unit-blacklist": [],
+    "property-unit-blacklist": null,
 
     "custom-property-no-outside-root": true,
     "custom-property-pattern": null,
@@ -88,7 +88,7 @@
     "rule-no-duplicate-properties": true,
     "rule-no-shorthand-property-overrides": true,
     "rule-non-nested-empty-line-before": null,
-    "rule-properties-order": [],
+    "rule-properties-order": null,
     "rule-trailing-semicolon": null,
 
     "root-no-standard-properties": true,

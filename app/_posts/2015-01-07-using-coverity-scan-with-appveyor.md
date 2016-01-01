@@ -11,7 +11,7 @@ image:
   url: /img/pages/coverity-scan-and-appveyor.png
 ---
 
-[<span class="drop-letter">A</span><span>ppVeyor</span>][url-appveyor] is an
+<span class="drop-letter">A</span>[<span>ppVeyor</span>][url-appveyor] is an
 awesome SaaS CI server similar to [Travis CI][url-travis-ci] but for Windows
 developers. It enables you to build, test and deploy all sorts of projects:
 C/C++, .NET, IIS, SQL Server, WiX, among others (see [Instaled Software]
@@ -26,7 +26,7 @@ Python, PostgreSQL, Apache Software Foundation projects.
 {{ page.excerpt }}
 
 <div class="message">
-<i class="fa fa-exclamation-triangle" title="Warning"></i>
+<svg class="icon icon-exclamation-triangle"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-exclamation-triangle"/></svg>
 The rest of the article assumes that you have a GitHub repository registered
 with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e., manually building your project with Coverity Build Tool and
@@ -74,7 +74,7 @@ the article.
 ### Downloading Coverity Build Tool
 
 <div class="message">
-<i class="fa fa-exclamation-triangle" title="Warning"></i>
+<svg class="icon icon-exclamation-triangle"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-exclamation-triangle"/></svg>
 UPDATE. Coverity Build Tool now comes preinstaled on AppVeyor builder. See the
 link in comment by Mark Clearwater below the article for more information.
 </div>

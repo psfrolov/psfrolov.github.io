@@ -14,25 +14,26 @@ robots: noindex
 
 <form name="contact" method="post">
     <div>
-      <label for="name">Name<span class="red">*</span></label>
+      <label for="contact-name">Name<span class="red">*</span>
+      </label>
       <div>
         <input type="text"
-               id="name"
+               id="contact-name"
                name="name"
                autocomplete="name"
-               placeholder="&#xf007; ..."
+               placeholder="Derwydd Wensleydale"
                maxlength="20"
                required>
       </div>
     </div>
     <div>
-      <label for="email">Email<span class="red">*</span></label>
+      <label for="contact-email">Email<span class="red">*</span></label>
       <div>
         <input type="email"
-               id="email"
+               id="contact-email"
                name="email"
                autocomplete="email"
-               placeholder="&#xf0e0; youremail@example.com"
+               placeholder="wiltshire@example.com"
                maxlength="50"
                required>
         <input type="hidden"
@@ -41,11 +42,11 @@ robots: noindex
       </div>
     </div>
     <div>
-      <label for="message">Message<span class="red">*</span></label>
+      <label for="contact-message">Message<span class="red">*</span></label>
       <div>
-        <textarea id="message"
+        <textarea id="contact-message"
                   name="message"
-                  placeholder="&#xf075; ..."
+                  placeholder="So, apart from casting runes, what other hobbies doth thou hast? Forbidden rituals, human sacrifices, torturing?"
                   maxlength="5000"
                   spellcheck="true"
                   required></textarea>
@@ -57,7 +58,7 @@ robots: noindex
     </div>
   <div>
     <div>
-      <button type="submit"><i class="fa fa-send" title="Send"></i> Send</button>
+      <button type="submit">Send <svg class="icon icon-paper-plane-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
     </div>
   </div>
 </form>

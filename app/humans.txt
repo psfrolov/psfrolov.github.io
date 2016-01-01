@@ -22,6 +22,7 @@
   X-Icon Editor: http://www.xiconeditor.com
   Real Favicon Generator: https://realfavicongenerator.net
   Font Squirell: http://www.fontsquirrel.com
+  IcoMoon App: https://icomoon.io/app
 
   # Build Tools
   Jekyll: https://jekyllrb.com
@@ -37,6 +38,10 @@
   PT Sans: https://www.google.com/fonts/specimen/PT+Sans
   Ubuntu Mono: http://font.ubuntu.com
   Metamorphous: https://www.google.com/fonts/specimen/Metamorphous
+
+  # Icons
+  Font Awesome: https://fortawesome.github.io/Font-Awesome/
+  IcoMoon: https://svgmoon.io/#icons-icomoon
 
   # Services
   GitHub Pages: https://pages.github.com

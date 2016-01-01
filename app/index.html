@@ -24,18 +24,53 @@ is_home: true
 <!-- Pager. -->
 <div class="pagination">
   {% if paginator.next_page %}
-  <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</a>
+  <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
+    <svg class="icon icon-chevron-left">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
+        <title>Arrow Left</title>
+      </use>
+    </svg>
+    Older
+  </a>
   {% else %}
-  <span class="pagination-item older"><i class="fa fa-arrow-left" title="Arrow Left"></i> Older</span>
+  <span class="pagination-item older">
+    <svg class="icon icon-chevron-left">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
+        <title>Arrow Left</title>
+      </use>
+    </svg>
+    Older
+  </span>
   {% endif %}
   {% if paginator.previous_page %}
   {% if paginator.page == 2 %}
-  <a class="pagination-item newer" href="{{ site.baseurl }}/">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+  <a class="pagination-item newer" href="{{ site.baseurl }}/">
+    Newer
+    <svg class="icon icon-chevron-right">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+        <title>Arrow Right</title>
+      </use>
+    </svg>
+  </a>
   {% else %}
-  <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></a>
+  <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
+    Newer
+    <svg class="icon icon-chevron-right">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+        <title>Arrow Right</title>
+      </use>
+    </svg>
+  </a>
   {% endif %}
   {% else %}
-  <span class="pagination-item newer">Newer <i class="fa fa-arrow-right" title="Arrow Right"></i></span>
+  <span class="pagination-item newer">
+    Newer
+    <svg class="icon icon-chevron-right">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+        <title>Arrow Right</title>
+      </use>
+    </svg>
+  </span>
   {% endif %}
 </div>
 

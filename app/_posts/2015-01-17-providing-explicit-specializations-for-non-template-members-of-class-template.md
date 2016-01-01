@@ -15,7 +15,7 @@ permalink: /2015/01/12/providing-explicit-specializations-for-non-template-membe
 ---
 
 <span class="drop-letter">C</span><span>++</span> is full of surprises (albeit
-not always good ones <i class="fa fa-smile-o" title="Smile"></i>).
+not always good ones <svg class="icon icon-smile-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"><title>Smiley Face</title></use></svg>).
 {{ page.description}}
 
 ### Technical Details

@@ -1,8 +1,14 @@
+---
+---
+
+
 @font-face {
   font-family: 'ubuntu_mono';
   src:
-    url(/fnt/ubuntumono-r-derivative-custom.woff2) format('woff2'),
-    url(/fnt/ubuntumono-r-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/ubuntumono-r-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/ubuntumono-r-derivative-custom.woff)
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -10,8 +16,10 @@
 @font-face {
   font-family: 'metamorphous';
   src:
-    url(/fnt/metamorphous-regular-derivative-custom.woff2) format('woff2'),
-    url(/fnt/metamorphous-regular-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/metamorphous-regular-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/metamorphous-regular-derivative-custom.woff)
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,8 +27,10 @@
 @font-face {
   font-family: 'pt_sans';
   src:
-    url(/fnt/pts55f-derivative-custom.woff2) format('woff2'),
-    url(/fnt/pts55f-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/pts55f-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/pts55f-derivative-custom.woff)
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -28,8 +38,10 @@
 @font-face {
   font-family: 'pt_sans';
   src:
-    url(/fnt/pts56f-derivative-custom.woff2) format('woff2'),
-    url(/fnt/pts56f-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/pts56f-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/pts56f-derivative-custom.woff)
+    format('woff');
   font-weight: normal;
   font-style: italic;
 }
@@ -37,8 +49,10 @@
 @font-face {
   font-family: 'pt_sans';
   src:
-    url(/fnt/pts75f-derivative-custom.woff2) format('woff2'),
-    url(/fnt/pts75f-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/pts75f-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/pts75f-derivative-custom.woff)
+    format('woff');
   font-weight: bold;
   font-style: normal;
 }
@@ -46,8 +60,10 @@
 @font-face {
   font-family: 'pt_sans';
   src:
-    url(/fnt/pts76f-derivative-custom.woff2) format('woff2'),
-    url(/fnt/pts76f-derivative-custom.woff) format('woff');
+    url({{ site.baseurl }}/fnt/pts76f-derivative-custom.woff2)
+    format('woff2'),
+    url({{ site.baseurl }}/fnt/pts76f-derivative-custom.woff)
+    format('woff');
   font-weight: bold;
   font-style: italic;
 }

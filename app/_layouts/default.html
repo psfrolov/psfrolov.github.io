@@ -138,12 +138,6 @@
     {% feed_meta %}
     {% endif %}
 
-    <!-- Icons. -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-          rel="stylesheet"
-          integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
-          crossorigin="anonymous">
-
     <!-- Styles. -->
     <link href="{{ site.baseurl }}/css/app.css" rel="stylesheet">
   </head>
@@ -151,35 +145,56 @@
   <body>
     <aside class="container">
       <p class="site-title">
-        <a href="{{ site.baseurl }}/" title="Home"><i class="fa fa-balance-scale"></i><br>{{ site.title }}</a>
+        <a class="nav-icon" href="{{ site.baseurl }}/">
+          <svg class="icon icon-balance-scale">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-balance-scale">
+              <title>Balance Scale</title>
+            </use>
+          </svg>
+        </a>
+        <a href="{{ site.baseurl }}/">{{ site.title }}</a>
       </p>
       <p>{{ site.tagline }}</p>
       <br>
-      <p><i class="fa fa-tags" title="Tag Cloud"></i> {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
+      <p>
+        <svg class="icon icon-tags">
+          <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
+            <title>Tags</title>
+          </use>
+        </svg>
+        {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
       <br>
       <nav>
-        <a class="link-icon" href="{{ site.baseurl }}/archive/">
-          <span>
-            <i class="fa fa-list fa-2x nav-icon" title="Blog Archive"></i>
-          </span>
-        </a>
-        &nbsp;&nbsp;
-        <a class="link-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
-          <span>
-            <i class="fa fa-feed fa-2x nav-icon" title="News Feed"></i>
-          </span>
+        <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/">
+          <svg class="icon icon-list">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list">
+              <title>Archive</title>
+            </use>
+          </svg>
         </a>
         &nbsp;
-        <a class="link-icon" href="{{ site.baseurl }}/contact/">
-          <span>
-            <i class="fa fa-phone fa-2x nav-icon" title="Contact"></i>
-          </span>
+        <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
+          <svg class="icon icon-feed">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed">
+              <title>News Feed</title>
+            </use>
+          </svg>
         </a>
         &nbsp;
-        <a class="link-icon" href="{{ site.baseurl }}/about/">
-          <span>
-            <i class="fa fa-info fa-2x nav-icon" title="About"></i>
-          </span>
+        <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/">
+          <svg class="icon icon-question">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question">
+              <title>Contact</title>
+            </use>
+          </svg>
+        </a>
+        &nbsp;
+        <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/">
+          <svg class="icon icon-info">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info">
+              <title>About</title>
+            </use>
+          </svg>
         </a>
       </nav>
       <hr class="muted-light">
@@ -188,6 +203,9 @@
     <main class="content container">
       {{ content }}
     </main>
+
+    <!-- svgxuse polyfill (for loading external SVG in IE9+). -->
+    <script src="{{ site.baseurl }}/js/svgxuse.js"></script>
 
     <!-- Google Analytics. -->
     {% if jekyll.environment == "production" %}

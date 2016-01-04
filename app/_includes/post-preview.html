@@ -13,4 +13,6 @@
     <meta itemprop="description" content="{{ post.description | liquify | escape }}">
   </aside>
 </header>
-{{ post.excerpt }}
+<p class="drop-letter">
+  {{ post.excerpt | remove:'<p>' | remove:'</p>' }}
+</p>

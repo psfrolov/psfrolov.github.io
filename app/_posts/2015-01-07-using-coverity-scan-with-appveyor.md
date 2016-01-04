@@ -11,12 +11,11 @@ image:
   url: /img/pages/coverity-scan-and-appveyor.png
 ---
 
-<span class="drop-letter">A</span>[<span>ppVeyor</span>][url-appveyor] is an
-awesome SaaS CI server similar to [Travis CI][url-travis-ci] but for Windows
-developers. It enables you to build, test and deploy all sorts of projects:
-C/C++, .NET, IIS, SQL Server, WiX, among others (see [Instaled Software]
-[url-appveyor-instaled-software]). Moreover, it is completely free for Open
-Source projects.
+A[ppVeyor][url-appveyor] is an awesome SaaS CI server similar to
+[Travis CI][url-travis-ci] but for Windows developers. It enables you to build,
+test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX,
+among others (see [Instaled Software][url-appveyor-instaled-software]).
+Moreover, it is completely free for open source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
 [Coverity][url-coverity], static code analysis solution for C/C++, C# and

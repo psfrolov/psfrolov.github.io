@@ -19,10 +19,12 @@ image:
 <article markdown="block">
 
 # {{ page.title | liquify | escape }}
-<span class="drop-letter">W</span><span>elcome</span> to my place, stranger!
-The name's Paul. Once a SCADA/DCS applications builder involved in space
-ground-based infrastructure projects (namely, Angara Space Rocket Complex and
-Land Launch). Now a software developer in information security field.
+
+Welcome to my place, stranger! The name's Paul. Once a SCADA/DCS applications
+builder involved in space ground-based infrastructure projects (namely, Angara
+Space Rocket Complex and Land Launch). Now a software developer in
+information security field.
+{: .drop-letter }
 
 {{ page.description }} My primary programming language (as well as an area of
 professional interests) is C++, so expect the majority of articles to be C++

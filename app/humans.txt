@@ -47,4 +47,3 @@
   GitHub Pages: https://pages.github.com
   Disqus Engage: https://publishers.disqus.com/engage
   Formspree: https://formspree.io
-  Google Analytics: https://www.google.com/analytics

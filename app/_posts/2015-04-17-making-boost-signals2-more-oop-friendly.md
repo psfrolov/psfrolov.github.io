@@ -313,17 +313,28 @@ extensions.
 
 I have also experimented with alternative implementations, namely, the one
 based on `boost::fusion::map` instead of `std::tuple` and the other which uses
-`std::function` instead of `boost::signals2::signal`. You can find them [here]
-[url-observable-gist].
+`std::function` instead of `boost::signals2::signal`. You can find them in a
+[gist][url-observable-gist].
 
 [url-observer]: https://sourcemaking.com/design_patterns/observer
+{: rel="external" }
 [url-behavioural-patterns]: https://sourcemaking.com/design_patterns/behavioral_patterns
+{: rel="external" }
 [url-boost]: http://www.boost.org
+{: rel="external" }
 [url-signals2]: http://www.boost.org/doc/libs/release/libs/signals2/
+{: rel="external" }
 [url-signal-slot]: https://en.wikipedia.org/wiki/Signals_and_slots
+{: rel="external" }
 [url-mixin]: https://en.wikipedia.org/wiki/Mixin
+{: rel="external" }
 [url-wxwidgets-event-tables]: http://docs.wxwidgets.org/trunk/overview_events.html#overview_events_eventtables
+{: rel="external" }
 [url-mfc-message-maps]: https://msdn.microsoft.com/en-us/library/0x0cx6b1.aspx
+{: rel="external" }
 [url-qt-signals-and-slots]: http://doc.qt.io/qt-5/signalsandslots.html
+{: rel="external" }
 [url-vc-event-handling]: https://msdn.microsoft.com/en-us/library/ee2k0a7d(v=vs.120).aspx
+{: rel="external" }
 [url-observable-gist]: https://gist.github.com/arkfps/07887b173776ebbb4aac
+{: rel="external" }

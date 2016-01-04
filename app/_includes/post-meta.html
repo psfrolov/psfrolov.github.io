@@ -1,37 +1,55 @@
 <!-- Inserted just after post tile. -->
-<p>
-  <span class="muted">
+<dl class="inline">
+  <dt class="muted">
     <svg class="icon icon-clock-o">
-      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-clock-o">
-        <title>Clock</title>
-      </use>
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-clock-o"/>
     </svg>
-    Published: <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.&emsp;
+    Published:
+  </dt>
+  <dd class="muted">
+    <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.
+  </dd>
+  <dt class="muted">
     <svg class="icon icon-newspaper-o">
-      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-newspaper-o">
-        <title>Newspaper</title>
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-newspaper-o"/>
+    </svg>
+    Reading time:
+  </dt>
+  <dd class="muted">
+    {% if include.context.reading_time %}
+    {% assign reading_time = include.context.reading_time %}
+    {% else %}
+    {% assign reading_time = include.context.content | reading_time %}
+    {% endif %}
+    <time datetime="PT{{ reading_time }}M" itemprop="timeRequired">{{ reading_time | pluralize:'minute' }}</time>.
+  </dd>
+  <dt class="new-line muted">
+    <svg class="icon icon-tags">
+      <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
+        <title>Tags</title>
       </use>
     </svg>
-    Reading time: {% if include.context.reading_time %}<time datetime="PT{{ include.context.reading_time }}M" itemprop="timeRequired">{{ include.context.reading_time | pluralize:'minute' }}</time>{% else %}<time datetime="PT{{ include.context.content | reading_time }}M" itemprop="timeRequired">{{ include.context.content | reading_time | pluralize:'minute' }}</time>{% endif %}.
+  </dt>
+  <dd>
+    <ul class="inline">
+      {% for tag in include.context.tags %}
+      <li>
+        <a href="{{ tag | tag_url }}" rel="tag">{{ tag | escape }}</a>{% if forloop.last %}.{% else %},{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </dd>
+</dl>
+<meta itemprop="wordCount" content="{{ include.context.content | number_of_words }}">
+<meta itemprop="articleSection about" content="{{ site.topic | escape }}">
+<meta itemprop="author" content="{{ site.author | escape }}">
+<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+  <meta itemprop="name" content="{{ site.title | escape }}">
+  <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+    {% capture logo_url %}{{ site.baseurl }}/img/pages/logo.png{% endcapture %}
+    <link itemprop="url contentUrl" href="{{ logo_url }}">
+    <meta itemprop="width" content="{{ logo_url | image_width }}">
+    <meta itemprop="height" content="{{ logo_url | image_height }}">
   </span>
-  <br>
-  <svg class="icon icon-tags muted">
-    <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
-      <title>Tags</title>
-    </use>
-  </svg>
-  {{ include.context | tags }}.
-  <meta itemprop="wordCount" content="{{ include.context.content | number_of_words }}">
-  <meta itemprop="articleSection about" content="{{ site.topic }}">
-  <meta itemprop="author" content="{{ site.author }}">
-  <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-    <meta itemprop="name" content="{{ site.title }}">
-    <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-      {% capture logo_url %}{{ site.baseurl }}/img/pages/logo.png{% endcapture %}
-      <link itemprop="url contentUrl" href="{{ logo_url }}">
-      <meta itemprop="width" content="{{ logo_url | image_width }}">
-      <meta itemprop="height" content="{{ logo_url | image_height }}">
-    </span>
-  </span>
-  <meta itemprop="dateModified" content="{{ include.context.path | modified_time | date_to_xmlschema }}">
-</p>
+</span>
+<meta itemprop="dateModified" content="{{ include.context.path | modified_time | date_to_xmlschema }}">

@@ -6,13 +6,14 @@ keywords: "{{ page.tag }}"
 ---
 
 
-<h1>{{ page.title | liquify }}</h1>
-{% for post in page.posts %}
-  <div itemscope itemtype="http://schema.org/BlogPosting">
-    {% include post-preview.html %}
-  </div>
-  <br>
-{% endfor %}
+<section>
+  <h1>{{ page.title | liquify | escape }}</h1>
+  {% for post in page.posts %}
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+      {% include post-preview.html %}
+    </article>
+  {% endfor %}
+</section>
 
 <!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">
@@ -33,7 +34,7 @@ keywords: "{{ page.tag }}"
         "position": 2,
         "item": {
           "@id": "{{ site.url}}{{ site.baseurl }}{{ page.url }}",
-          "name": "{{ page.tag }}"
+          "name": {{ page.tag | jsonify }}
         }
       }
     ]

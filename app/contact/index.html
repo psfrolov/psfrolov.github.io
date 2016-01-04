@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 schema: "http://schema.org/ContactPage"
 title: Contact
 description: "{{ site.title }} contacts."
@@ -7,15 +7,16 @@ robots: noindex
 ---
 
 
-<p>
-  Want to get in touch with me? Fill out the form below to send me a message
-  and I will try to get back to you as soon as possible.
-</p>
-
-<form name="contact" method="post">
+<section>
+  <h1>{{ page.title | liquify | escape }}</h1>
+  <p>
+    Want to get in touch with me? Fill out the form below to send me a message
+    and I will try to get back to you as soon as possible.
+  </p>
+  <form name="contact" method="post">
+    <noscript class="red">Please enable JavaScript to use contact form.</noscript>
     <div>
-      <label for="contact-name">Name<span class="red">*</span>
-      </label>
+      <label for="contact-name">Name</label>
       <div>
         <input type="text"
                id="contact-name"
@@ -27,7 +28,7 @@ robots: noindex
       </div>
     </div>
     <div>
-      <label for="contact-email">Email<span class="red">*</span></label>
+      <label for="contact-email">Email</label>
       <div>
         <input type="email"
                id="contact-email"
@@ -42,7 +43,7 @@ robots: noindex
       </div>
     </div>
     <div>
-      <label for="contact-message">Message<span class="red">*</span></label>
+      <label for="contact-message">Message</label>
       <div>
         <textarea id="contact-message"
                   name="message"
@@ -56,16 +57,16 @@ robots: noindex
                maxlength="20">
       </div>
     </div>
-  <div>
     <div>
-      <button type="submit">Send <svg class="icon icon-paper-plane-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
+      <div>
+        <button type="submit">Send <svg class="icon icon-paper-plane-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+  <hr>
+  {% include social-profiles.html %}
+</section>
 
-<hr>
-
-{% include social-profiles.html %}
 
 <script>
   (function() {

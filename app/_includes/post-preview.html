@@ -1,11 +1,16 @@
-<h2 itemprop="name headline">
-  <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url mainEntityOfPage">{{ post.title }}</a>
-</h2>
-{% include post-meta.html context=post %}
-<div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-  <link itemprop="url contentUrl" href="{{ site.baseurl }}{{ post.image.url }}">
-  <meta itemprop="width" content="{{ post.image.url | image_width }}">
-  <meta itemprop="height" content="{{ post.image.url | image_height }}">
-</div>
-<meta itemprop="description" content="{{ post.description | liquify | escape }}">
+<header>
+  <h2 itemprop="name headline">
+    <a href="{{ site.baseurl }}{{ post.url }}" itemprop="url mainEntityOfPage">{{ post.title | escape }}</a>
+  </h2>
+  <aside>
+    <h3 class="visuallyhidden">Metadata</h3>
+    {% include post-meta.html context=post %}
+    <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+      <link itemprop="url contentUrl" href="{{ site.baseurl }}{{ post.image.url }}">
+      <meta itemprop="width" content="{{ post.image.url | image_width }}">
+      <meta itemprop="height" content="{{ post.image.url | image_height }}">
+    </div>
+    <meta itemprop="description" content="{{ post.description | liquify | escape }}">
+  </aside>
+</header>
 {{ post.excerpt }}

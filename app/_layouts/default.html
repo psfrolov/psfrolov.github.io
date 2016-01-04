@@ -14,9 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page title. -->
-    <title>{{ page.title | liquify }}</title>
-    <meta itemprop="name" content="{{ page.title | liquify | escape }}">
-    <meta property="og:title" content="{{ page.title | liquify | escape }}">
+    {% if page.layout == post or page.is_home %}
+    {% capture title %}{{ page.title | liquify | escape }}{% endcapture %}
+    {% else %}
+    {% capture title %}{{ page.title | liquify | escape }} · {{ site.title | escape }}{% endcapture %}
+    {% endif %}
+    <title>{{ title }}</title>
+    <meta itemprop="name" content="{{ title }}">
+    <meta property="og:title" content="{{ title }}">
 
     <!-- Page description. -->
     <meta name="description" content="{{ page.description | liquify | escape }}">
@@ -25,20 +30,22 @@
 
     <!-- Page keywords. -->
     {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords | liquify }}">
-    <meta itemprop="keywords" content="{{ page.keywords | liquify }}">
+    {% assign keywords = page.keywords | liquify | escape %}
     {% elsif page.tags %}
     <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
-    <meta name="keywords" content="{{ page | keywords }}">
-    <meta itemprop="keywords" content="{{ page | keywords }}">
+    {% assign keywords = page | keywords | escape %}
+    {% endif %}
+    {% if keywords %}
+    <meta name="keywords" content="{{ keywords }}">
+    <meta itemprop="keywords" content="{{ keywords }}">
     {% endif %}
 
     <!-- Page author. -->
-    <meta name="author" content="{{ site.author }}">
+    <meta name="author" content="{{ site.author | escape }}">
     {% if page.schema != 'http://schema.org/BlogPosting' %}
-    <meta itemprop="author" content="{{ site.author }}">
+    <meta itemprop="author" content="{{ site.author | escape }}">
     {% endif %}
-    <link type="text/plain" rel="author" href="{{ site.baseurl }}/humans.txt">
+    <link type="text/plain" href="{{ site.baseurl }}/humans.txt" rel="author">
 
     <!-- Page image. -->
     {% if page.image %}
@@ -54,7 +61,7 @@
     {% endif %}
 
     <!-- Open Graph site metadata. -->
-    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:site_name" content="{{ site.name | escape }}">
     <meta property="og:type" content="{{ page.og_type }}">
     <meta property="og:locale" content="en_GB">
 
@@ -63,9 +70,9 @@
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
     <meta property="article:modified_time" content="{{ page.path | modified_time | date_to_xmlschema }}">
     <meta property="article:author" content="{{ site.facebook.profile }}">
-    <meta property="article:section" content="{{ site.topic }}">
+    <meta property="article:section" content="{{ site.topic | escape }}">
     {% for tag in page.tags %}
-    <meta property="article:tag" content="{{ tag }}">
+    <meta property="article:tag" content="{{ tag | escape }}">
     {% endfor %}
     {% endif %}
 
@@ -104,16 +111,15 @@
     <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
     <meta name="theme-color" content="#ac4142">
 
-    <!-- Canonical page URL. -->
+    <!-- Page canonical URL. -->
     {% if page.is_home %}
-    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
-    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}">
-    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}">
+    {% capture canonical_url %}{{ site.url }}{{ site.baseurl }}{% endcapture %}
     {% else %}
-    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-    <link itemprop="url mainEntityOfPage" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+    {% capture canonical_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
     {% endif %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link itemprop="url mainEntityOfPage" href="{{ canonical_url }}">
+    <meta property="og:url" content="{{ canonical_url }}">
 
     <!-- Search engines indexing. -->
     {% if page.robots %}
@@ -133,7 +139,7 @@
     <link rel="next" href="{{ site.url }}{{ site.baseurl }}{{ paginator.next_page_path }}">
     {% endif %}
 
-    <!-- Web feed link. -->
+    <!-- Web feed autodiscovery. -->
     {% if page.is_home %}
     {% feed_meta %}
     {% endif %}
@@ -143,82 +149,99 @@
   </head>
 
   <body>
-    <aside class="container">
-      <p class="site-title">
-        <a class="nav-icon" href="{{ site.baseurl }}/">
-          <svg class="icon icon-balance-scale">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-balance-scale">
-              <title>Balance Scale</title>
+    <aside class="sidebar container">
+      <header>
+        <h1>
+          <a href="{{ site.baseurl }}/">
+            <svg class="icon icon-balance-scale">
+              <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-balance-scale"/>
+            </svg><br>
+            {{ site.title | escape }}
+          </a>
+        </h1>
+        <p>
+          {{ site.tagline | escape }}
+        </p>
+      </header>
+      <section>
+        <h2>
+          <svg class="icon icon-tags">
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
+              <title>Site Tags</title>
             </use>
           </svg>
-        </a>
-        <a href="{{ site.baseurl }}/">{{ site.title }}</a>
-      </p>
-      <p>{{ site.tagline }}</p>
-      <br>
-      <p>
-        <svg class="icon icon-tags">
-          <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
-            <title>Tags</title>
-          </use>
-        </svg>
-        {{ site | tag_cloud | replace:'</a> <a','</a> &middot; <a' }}</p>
-      <br>
+        </h2>
+        <ul class="inline">
+          {% assign tags = site.tags | keys | sort %}
+          {% for tag in tags %}
+          <li>
+            <a href="{{ tag | tag_url }}">{{ tag | escape }}</a>{% if forloop.last == false %} ·{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
       <nav>
-        <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/">
-          <svg class="icon icon-list">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list">
-              <title>Archive</title>
-            </use>
-          </svg>
-        </a>
-        &nbsp;
-        <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
-          <svg class="icon icon-feed">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed">
-              <title>News Feed</title>
-            </use>
-          </svg>
-        </a>
-        &nbsp;
-        <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/">
-          <svg class="icon icon-question">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question">
-              <title>Contact</title>
-            </use>
-          </svg>
-        </a>
-        &nbsp;
-        <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/">
-          <svg class="icon icon-info">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info">
-              <title>About</title>
-            </use>
-          </svg>
-        </a>
+        <h2 class="visuallyhidden">Site Navigation</h2>
+        <ul class="inline">
+          <li>
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/">
+              <svg class="icon icon-home">
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-home">
+                  <title>Home</title>
+                </use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/">
+              <svg class="icon icon-list">
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list">
+                  <title>Archive</title>
+                </use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
+              <svg class="icon icon-feed">
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed">
+                  <title>News Feed</title>
+                </use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/">
+              <svg class="icon icon-question">
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question">
+                  <title>Contact</title>
+                </use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/" rel="author">
+              <svg class="icon icon-info">
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info">
+                  <title>About</title>
+                </use>
+              </svg>
+            </a>
+          </li>
+        </ul>
       </nav>
       <hr class="muted-light">
-      <p class="muted-light"><small>&copy; {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small></p>
+      <footer>
+        <p>
+          <small class="muted-light">© {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small>
+        </p>
+      </footer>
     </aside>
     <main class="content container">
       {{ content }}
     </main>
 
-    <!-- svgxuse polyfill (for loading external SVG in IE9+). -->
+    <!-- Svgxuse polyfill (for loading external SVG in IE9+). -->
     <script src="{{ site.baseurl }}/js/svgxuse.js"></script>
-
-    <!-- Google Analytics. -->
-    {% if jekyll.environment == "production" %}
-    <script>
-      /* jshint ignore:start */
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','{{ site.google_analytics_id }}','auto');ga('send','pageview');
-      /* jshint ignore:end */
-    </script>
-    {% endif %}
   </body>
 </html>

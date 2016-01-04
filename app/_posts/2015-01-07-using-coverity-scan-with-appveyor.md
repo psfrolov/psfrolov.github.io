@@ -372,18 +372,34 @@ described in the article.
 *[SaaS]: Software as a Service
 
 [url-appveyor]: http://www.appveyor.com
+{: rel="external" }
 [url-travis-ci]: https://travis-ci.org
+{: rel="external" }
 [url-appveyor-instaled-software]: http://www.appveyor.com/docs/installed-software
+{: rel="external" }
 [url-appveyor-scheduled-builds]: http://www.appveyor.com/docs/build-configuration#scheduled-builds
+{: rel="external" }
 [url-appveyor-secure-variables]: http://www.appveyor.com/docs/build-configuration#secure-variables
+{: rel="external" }
 [url-coverity-scan]: https://scan.coverity.com
+{: rel="external" }
 [url-coverity]: http://www.coverity.com
+{: rel="external" }
 [url-coverity-scan-build-freq]: https://scan.coverity.com/faq#frequency
+{: rel="external" }
 [url-coverity-community]: https://communities.coverity.com/message/6120#6120
+{: rel="external" }
 [url-invoke-webrequest]: https://technet.microsoft.com/en-us/library/hh849901.aspx
+{: rel="external" }
 [url-dotnet-zipfile]: https://msdn.microsoft.com/en-us/library/system.io.compression.zipfile(v=vs.110).aspx
+{: rel="external" }
 [url-dotnet-zipfile-bug]: https://connect.microsoft.com/VisualStudio/feedback/details/862380/archive-created-with-system-io-compression-zipfile-createfromdirectory-does-not-preserve-directories-structure-when-unpacked-on-mac-os
+{: rel="external" }
 [url-dotnet-multipart-form-data]: https://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
+{: rel="external" }
 [url-rfc2388]: https://tools.ietf.org/html/rfc2388
+{: rel="external" }
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
+{: rel="external" }
 [url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml
+{: rel="external" }

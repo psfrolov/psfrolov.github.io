@@ -12,9 +12,13 @@ image:
   url: /img/pages/profile.jpg
 ---
 
-<figure><img src="{{ site.baseurl }}/img/pages/about.jpg" alt></figure>
+<div class="page-image">
+  <img src="{{ site.baseurl }}/img/pages/about.jpg" alt>
+</div>
 
-# {{ page.title | liquify }}
+<article markdown="block">
+
+# {{ page.title | liquify | escape }}
 <span class="drop-letter">W</span><span>elcome</span> to my place, stranger!
 The name's Paul. Once a SCADA/DCS applications builder involved in space
 ground-based infrastructure projects (namely, Angara Space Rocket Complex and
@@ -42,6 +46,8 @@ links below.
 ---
 
 {% include social-profiles.html %}
+
+</article>
 
 <!-- https://developers.google.com/structured-data/customize/social-profiles -->
 <script type="application/ld+json">
@@ -83,7 +89,7 @@ links below.
         "position": 2,
         "item": {
           "@id": "{{ site.url}}{{ site.baseurl }}{{ page.url }}",
-          "name": "{{ page.title }}"
+          "name": {{ page.title | jsonify }}
         }
       }
     ]

@@ -31,9 +31,15 @@ Also available [in Russian][url-russian-article].
 *[RAII]: Resource Acquisition Is Initialization
 
 [url-overload]: http://accu.org/index.php/journals/c348/
+{: rel="external" }
 [url-previous-post]: {% post_url 2015-01-17-providing-explicit-specializations-for-non-template-members-of-class-template %}
 [url-overload-article]: http://accu.org/index.php/journals/2086
+{: rel="external" }
 [url-raii]: http://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization
+{: rel="external" }
 [url-exception-safety]: https://en.wikipedia.org/wiki/Exception_safety
+{: rel="external" }
 [url-smart-pointer]: https://en.wikipedia.org/wiki/Smart_pointer
+{: rel="external" }
 [url-russian-article]: http://habrahabr.ru/company/pt/blog/255487/
+{: rel="external" hreflang="ru-RU" }

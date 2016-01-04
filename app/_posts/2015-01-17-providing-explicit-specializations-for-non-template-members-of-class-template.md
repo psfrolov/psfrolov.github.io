@@ -177,7 +177,12 @@ fact, I've found only a couple of reference manuals mentioning it:
 *[RAII]: Resource Acquisition Is Initialization
 
 [url-cppreference]: http://en.cppreference.com/w/cpp/language/template_specialization
+{: rel="external" }
 [url-zos-xl-cpp-reference]: http://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
+{: rel="external" }
 [url-type-safe-handles]: https://isocpp.org/blog/2015/01/type-safe-handles-in-c-emil-ernerfeldt
+{: rel="external" }
 [url-isocpp]: https://isocpp.org
+{: rel="external" }
 [url-tag-dispatching]: https://isocpp.org/blog/2014/12/tag-dispatching
+{: rel="external" }

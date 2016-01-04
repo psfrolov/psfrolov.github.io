@@ -2,27 +2,32 @@
   display: inline-block;
   width: 1em;
   height: 1em;
+  color: inherit;
   fill: currentColor;
   vertical-align: text-top;
 }
 
 .icon-balance-scale {
   font-size: 1.5em;
+  margin-bottom: .3rem;
 }
 
-.icon-list,
-.icon-feed,
-.icon-question,
+.icon-home, .icon-list, .icon-feed, .icon-question, .icon-info {
+  font-size: 2rem;
+  margin: 0 .3rem;
+}
+.icon-question {
+  margin-left: -.1rem;
+}
 .icon-info {
-  font-size: 2rem;
-  color: inherit;
+
 }
 
-.icon-twitter,
-.icon-facebook,
-.icon-linkedin2,
-.icon-github {
+.icon-twitter, .icon-facebook, .icon-linkedin2, .icon-github {
   font-size: 2rem;
+}
+.icon-github {
+  margin-left: .3rem;
 }
 
 .icon-facebook-square,
@@ -30,7 +35,8 @@
 .icon-reddit-square,
 .icon-linkedin-square,
 .icon-google-plus-square {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  margin: 0 .2rem;
 }
 
 .icon-paper-plane-o {
@@ -38,57 +44,78 @@
 }
 
 
+.icon-home {
+	width: 0.928572153672576em;
+}
+
 .icon-paper-plane-o {
-  width: 1.0005583113525063em;
+	width: 1.0005583113525063em;
 }
+
 .icon-clock-o {
-  width: 0.8571425850192682em;
+	width: 0.8571425850192682em;
 }
+
 .icon-tags {
-  width: 1.0597098506987095em;
+	width: 1.0597098506987095em;
 }
+
 .icon-list {
-  width: 0.9999999906867743em;
+	width: 0.9999999906867743em;
 }
+
 .icon-chevron-left {
-  width: 0.7500009983778em;
+	width: 0.7500009983778em;
 }
+
 .icon-chevron-right {
-  width: 0.6785712540149689em;
+	width: 0.6785712540149689em;
 }
+
 .icon-twitter-square {
-  width: 0.8571416462459638em;
+	width: 0.8571416462459638em;
 }
+
 .icon-facebook-square {
-  width: 0.8571436131993941em;
+	width: 0.8571436131993941em;
 }
+
 .icon-linkedin-square {
-  width: 0.8571416462459638em;
+	width: 0.8571416462459638em;
 }
+
 .icon-feed {
-  width: 0.7864560410380363em;
+	width: 0.7864560410380363em;
 }
+
 .icon-google-plus-square {
-  width: 0.8571416462459638em;
+	width: 0.8571416462459638em;
 }
+
 .icon-smile-o {
-  width: 0.8571425850192682em;
+	width: 0.8571425850192682em;
 }
+
 .icon-frown-o {
-  width: 0.8571425850192682em;
+	width: 0.8571425850192682em;
 }
+
 .icon-question {
-  width: 0.6221200153231621em;
+	width: 0.6221200153231621em;
 }
+
 .icon-info {
-  width: 0.357143547385931em;
+	width: 0.357143547385931em;
 }
+
 .icon-reddit-square {
-  width: 0.8571416462459638em;
+	width: 0.8571416462459638em;
 }
+
 .icon-newspaper-o {
-  width: 1.1428594440221786em;
+	width: 1.1428594440221786em;
 }
+
 .icon-balance-scale {
-  width: 1.2142902165651321em;
+	width: 1.2142902165651321em;
 }

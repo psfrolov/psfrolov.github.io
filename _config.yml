@@ -22,16 +22,16 @@ defaults:
   - scope:
       type: pages
     values:
-      schema: "http://schema.org/WebPage"
-      og_prefix: "website: http://ogp.me/ns/website#"
+      schema: http://schema.org/WebPage
+      og_prefix: 'website: http://ogp.me/ns/website#'
       og_type: website
   - scope:
       type: posts
     values:
       layout: post
       comments: true
-      schema: "http://schema.org/BlogPosting"
-      og_prefix: "article: http://ogp.me/ns/article#"
+      schema: http://schema.org/BlogPosting
+      og_prefix: 'article: http://ogp.me/ns/article#'
       og_type: article
 
 # Pagination.
@@ -56,6 +56,7 @@ keywords: [C++, Programming, Software, Development]
 topic: Software Development
 author: Pavel Frolov
 email: eW91cmVtYWlsQHlvdXJkb21haW4uY29t
+theme_colour: '#ac4142'
 
 disqus_shortname: arkfps
 github_profile: https://github.com/arkfps

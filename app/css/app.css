@@ -1,4 +1,7 @@
 ---
+  colours:
+    # main: {{ site.theme_colour }}
+
 ---
 
 
@@ -281,7 +284,8 @@ input:invalid, textarea:invalid {
   color: #ac4142;
 }
 
-label::after {  /* All form fields are mondatory currently. */
+label::after {
+  /* All form fields are mondatory currently. */
   content: '*';
   color: #ac4142;
 }
@@ -441,24 +445,24 @@ hr {
 
 /* Focus. */
 a:focus, input:focus, textarea:focus, button:focus {
-  outline: #888888 dotted .1rem;
+  outline: #888 dotted .1rem;
 }
 
 /* ------------------------------------------------------------------------- */
 
 /* Links. */
 a {
-  color: #ac4142;
+  color: {{ site.theme_colour }};
   text-decoration: none;
   display: inline-block;  /* for transform transition to work */
   transition: transform 500ms cubic-bezier(.23, 1, .32, 1);
 }
 
-a[rel=external]::after {
+a[rel='external']::after {
   content: '⤴';
 }
 
-a[href^=\#]::before {
+a[href^='#']::before {
   content: '⚓ ';
 }
 

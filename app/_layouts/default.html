@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page title. -->
-    {% if page.layout == post or page.is_home %}
+    {% if page.is_home or page.layout == 'post' %}
     {% capture title %}{{ page.title | liquify | escape }}{% endcapture %}
     {% else %}
     {% capture title %}{{ page.title | liquify | escape }} · {{ site.title | escape }}{% endcapture %}
@@ -106,10 +106,10 @@
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
-    <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="#ac4142">
-    <meta name="msapplication-TileColor" content="#ac4142">
+    <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="{{ site.theme_colour }}">
+    <meta name="msapplication-TileColor" content="{{ site.theme_colour }}">
     <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
-    <meta name="theme-color" content="#ac4142">
+    <meta name="theme-color" content="{{ site.theme_colour }}">
 
     <!-- Page canonical URL. -->
     {% if page.is_home %}

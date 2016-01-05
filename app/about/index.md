@@ -1,10 +1,10 @@
 ---
 layout: default
-schema: "http://schema.org/AboutPage"
-og_prefix: "fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#"
+schema: http://schema.org/AboutPage
+og_prefix: 'fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#'
 og_type: profile
 title: About
-description: |
+description: >-
   The intention of this site is to share ideas, tips, idioms, patterns,
   gotchas, issues, etc., that arises over the course of my professional
   activity, many of which I hope would be useful for other developers.

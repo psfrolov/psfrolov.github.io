@@ -1,7 +1,8 @@
 ---
-title: Providing Explicit Specialisations for Non-Template Members of Class Template
+title: >-
+  Providing Explicit Specialisations for Non-Template Members of Class Template
 tags: [C++, Generic Programming]
-description: |
+description: >-
   It is a well-known fact that you can provide explicit specialisations for
   function templates and class templates. But it was a total surprise to me
   that you can define explicit specialisations for non-template members of
@@ -9,7 +10,7 @@ description: |
 image:
   url: /img/pages/specialisation.jpg
   source:
-    name: "Jenna A, 6th grade (Thomas Middle School, Arlington Heights)"
+    name: Jenna A, 6th grade (Thomas Middle School, Arlington Heights)
     url: http://www.econed-il.org/icee/econposter_11.shtml
 permalink: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template/
 ---

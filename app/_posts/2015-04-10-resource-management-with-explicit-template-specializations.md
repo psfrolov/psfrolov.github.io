@@ -1,7 +1,7 @@
 ---
 title: Resource Management with Explicit Template Specialisations
 tags: [C++, Generic Programming, Windows API]
-description: |
+description: >-
   This article shows how to build an RAII wrapper with the help of
   interesting static polymorphism technique based on explicit template
   specialization.

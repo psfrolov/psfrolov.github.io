@@ -1,11 +1,11 @@
 ---
 title: >-
-  Providing Explicit Specialisations for Non-Template Members of Class Template
+  Providing Explicit Specialisations for Non‐Template Members of Class Template
 tags: [C++, Generic Programming]
 description: >-
   It is a well-known fact that you can provide explicit specialisations for
   function templates and class templates. But it was a total surprise to me
-  that you can define explicit specialisations for non-template members of
+  that you can define explicit specialisations for non‐template members of
   class template without specialising the class template itself!
 image:
   url: /img/pages/specialisation.jpg
@@ -20,7 +20,7 @@ C++ is full of surprises (albeit not always good ones <svg class="icon icon-smil
 
 ### Technical Details
 
-The following non-template members of class template can be explicitly
+The following non‐template members of class template can be explicitly
 specialised:
 
 * member function (either static or not);
@@ -37,16 +37,15 @@ fraction of class code. For example, you may have a class containing a dozen of
 methods, but only a couple of them require behaviour specific to template
 arguments. In that case, it is not practical to define explicit specialisation
 for the whole class due to large amount of code duplication. The better
-solution is to define specialisations only for those specific methods. Let's
-see a concrete example.
+solution is to define specialisations only for those specific methods.
 
 Perhaps the most useful part of this feature is the ability to specialise
 member functions. Let's take a look at a concrete example.
 
 ### Implementing Generic RAII Wrapper for Resource Handles
 
-Opaque resource handles are used in many OS-level, networking, and database
-APIs. Usually such handles must be closed with some kind of `close_handle`
+Opaque resource handles are used in many OS‐level, networking, and database
+APIs. Usually such handles must be closed with some kind of **close_handle**
 function. When dealing with handles in C++ you almost always want to use RAII
 wrapper to avoid handle leaks. We can define such a wrapper as follows:
 {% highlight c++ %}
@@ -142,7 +141,7 @@ private:
 };
 {% endhighlight %}
 The problem is solved, but the cost is a lot of code duplication. As you
-can see, the only real difference between specialisation and primary template
+can see, the only real difference between specialised and primary template
 is `Cleanup` method. Let's leave our `Handle` class definition as is and define
 specialisation for `Cleanup` member function instead:
 {% highlight c++ %}
@@ -156,11 +155,11 @@ specialisation above.
 
 Note that our handle wrapper is somewhat simplified for the purpose of the
 article. It is assumed that various `HandleType` arguments are in fact
-different types, not an aliases for some built-in type like `int` or `void*`.
+different types, not an aliases for some built‐in type like `int` or `void*`.
 For example, if our `OsHandle` and `OsInternetHandle` are both defined as
 synonyms for `int`, the above specialisation will not work. For that reason, in
 real life you almost certainly should apply
-[type-safe handle idiom][url-type-safe-handles] to your wrapper class described
+[type‐safe handle idiom][url-type-safe-handles] to your wrapper class described
 in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then you can
 specialise `Cleanup` method on handle tag (which is effectively a form of
 [tag dispatching][url-tag-dispatching]).

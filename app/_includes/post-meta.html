@@ -1,21 +1,21 @@
 <!-- Inserted just after post tile. -->
-<dl class="inline">
-  <dt class="muted">
+<dl class="inline muted">
+  <dt>
     <svg class="icon icon-clock-o">
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-clock-o"/>
     </svg>
     Published:
   </dt>
-  <dd class="muted">
+  <dd>
     <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.
   </dd>
-  <dt class="muted">
+  <dt>
     <svg class="icon icon-newspaper-o">
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-newspaper-o"/>
     </svg>
     Reading time:
   </dt>
-  <dd class="muted">
+  <dd>
     {% if include.context.reading_time %}
     {% assign reading_time = include.context.reading_time %}
     {% else %}
@@ -23,7 +23,7 @@
     {% endif %}
     <time datetime="PT{{ reading_time }}M" itemprop="timeRequired">{{ reading_time | pluralize:'minute' }}</time>.
   </dd>
-  <dt class="new-line muted">
+  <dt class="new-line">
     <svg class="icon icon-tags">
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
         <title>Tags</title>
@@ -31,7 +31,7 @@
     </svg>
   </dt>
   <dd>
-    <ul class="inline">
+    <ul class="inline muted-light">
       {% for tag in include.context.tags %}
       <li>
         <a href="{{ tag | tag_url }}" rel="tag">{{ tag | escape }}</a>{% if forloop.last %}.{% else %},{% endif %}

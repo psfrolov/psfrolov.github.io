@@ -17,7 +17,7 @@
     {% if page.is_home or page.layout == 'post' %}
     {% capture title %}{{ page.title | liquify | escape }}{% endcapture %}
     {% else %}
-    {% capture title %}{{ page.title | liquify | escape }} · {{ site.title | escape }}{% endcapture %}
+    {% capture title %}{{ page.title | liquify | escape }}—{{ site.title | escape }}{% endcapture %}
     {% endif %}
     <title>{{ title }}</title>
     <meta itemprop="name" content="{{ title }}">
@@ -175,7 +175,7 @@
           {% assign tags = site.tags | keys | sort %}
           {% for tag in tags %}
           <li>
-            <a href="{{ tag | tag_url }}">{{ tag | escape }}</a>{% if forloop.last == false %} ·{% endif %}
+            <a href="{{ tag | tag_url }}">{{ tag | escape }}</a>{% if forloop.last == false %} ‡{% endif %}
           </li>
           {% endfor %}
         </ul>
@@ -184,46 +184,51 @@
         <h2 class="visuallyhidden">Site Navigation</h2>
         <ul class="inline">
           <li>
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/">
+            {% assign title = 'Home' %}
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}">
               <svg class="icon icon-home">
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-home">
-                  <title>Home</title>
+                  <title>{{ title }}</title>
                 </use>
               </svg>
             </a>
           </li>
           <li>
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/">
+            {% assign title = 'Archive' %}
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/" title="{{ title }}">
               <svg class="icon icon-list">
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list">
-                  <title>Archive</title>
+                  <title>{{ title }}</title>
                 </use>
               </svg>
             </a>
           </li>
           <li>
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}">
+            {% assign title = 'News Feed' %}
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}">
               <svg class="icon icon-feed">
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed">
-                  <title>News Feed</title>
+                  <title>{{ title }}</title>
                 </use>
               </svg>
             </a>
           </li>
           <li>
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/">
+            {% assign title = 'Contact' %}
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/" title="{{ title }}">
               <svg class="icon icon-question">
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question">
-                  <title>Contact</title>
+                  <title>{{ title }}</title>
                 </use>
               </svg>
             </a>
           </li>
           <li>
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/" rel="author">
+            {% assign title = 'About' %}
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/" rel="author" title="{{ title }}">
               <svg class="icon icon-info">
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info">
-                  <title>About</title>
+                  <title>{{ title }}</title>
                 </use>
               </svg>
             </a>

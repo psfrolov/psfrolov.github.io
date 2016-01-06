@@ -20,69 +20,57 @@ is_home: true
   {% endfor %}
 
   <!-- Paginator. -->
-  <nav>
+  <nav class="pagination">
     <h2 class="visuallyhidden">Pagination</h2>
-    <ul class="pagination">
-      {% if paginator.next_page %}
-      <li class="pagination-item older">
-        <a href="{{ site.baseurl }}/page{{ paginator.next_page }}">
-          <svg class="icon icon-chevron-left">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
-              <title>Arrow Left</title>
-            </use>
-          </svg>
-          Older
-        </a>
-      </li>
-      {% else %}
-      <li class="pagination-item older">
-        <span>
-          <svg class="icon icon-chevron-left">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
-              <title>Arrow Left</title>
-            </use>
-          </svg>
-          Older
-        </span>
-      </li>
-      {% endif %}
-      {% if paginator.previous_page %}
-      {% if paginator.page == 2 %}
-      <li class="pagination-item newer">
-        <a href="{{ site.baseurl }}/">
-          Newer
-          <svg class="icon icon-chevron-right">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-              <title>Arrow Right</title>
-            </use>
-          </svg>
-        </a>
-      </li>
-      {% else %}
-      <li class="pagination-item newer">
-        <a href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
-          Newer
-          <svg class="icon icon-chevron-right">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-              <title>Arrow Right</title>
-            </use>
-          </svg>
-        </a>
-      </li>
-      {% endif %}
-      {% else %}
-      <li class="pagination-item newer">
-        <span>
-          Newer
-          <svg class="icon icon-chevron-right">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-              <title>Arrow Right</title>
-            </use>
-          </svg>
-        </span>
-      </li>
-      {% endif %}
-    </ul>
+    {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
+      <svg class="icon icon-chevron-left">
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
+          <title>Arrow Left</title>
+        </use>
+      </svg>
+      Older
+    </a>
+    {% else %}
+    <span class="pagination-item older">
+      <svg class="icon icon-chevron-left">
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
+          <title>Arrow Left</title>
+        </use>
+      </svg>
+      Older
+    </span>
+    {% endif %}
+    {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+    <a class="pagination-item newer" href="{{ site.baseurl }}/">
+      Newer
+      <svg class="icon icon-chevron-right">
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+          <title>Arrow Right</title>
+        </use>
+      </svg>
+    </a>
+    {% else %}
+    <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
+      Newer
+      <svg class="icon icon-chevron-right">
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+          <title>Arrow Right</title>
+        </use>
+      </svg>
+    </a>
+    {% endif %}
+    {% else %}
+    <span class="pagination-item newer">
+      Newer
+      <svg class="icon icon-chevron-right">
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
+          <title>Arrow Right</title>
+        </use>
+      </svg>
+    </span>
+    {% endif %}
   </nav>
 </section>
 

@@ -34,46 +34,51 @@ layout: default
     <ul class="inline">
       {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
       <li>
-        <a class="link-icon content-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | uri_escape }}" rel="external" target="_blank">
+        {% assign title = 'Share on Facebook' %}
+        <a class="link-icon content-icon" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url | uri_escape }}" rel="external" target="_blank" title="{{ title }}">
           <svg class="icon icon-facebook-square">
             <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-facebook-square">
-              <title>Share on Facebook</title>
+              <title>{{ title }}</title>
             </use>
           </svg>
         </a>
       </li>
       <li>
-        <a class="link-icon content-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}" rel="external" target="_blank">
+        {% assign title = 'Share on Twitter' %}
+        <a class="link-icon content-icon" href="https://twitter.com/share?url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}" rel="external" target="_blank" title="{{ title }}">
           <svg class="icon icon-twitter-square">
             <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-twitter-square">
-              <title>Share on Twitter</title>
+              <title>{{ title }}</title>
             </use>
           </svg>
         </a>
       </li>
       <li>
-        <a class="link-icon content-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" rel="external" target="_blank">
+        {% assign title = 'Share on Reddit' %}
+        <a class="link-icon content-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" rel="external" target="_blank" title="{{ title }}">
           <svg class="icon icon-reddit-square">
             <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-reddit-square">
-              <title>Share on Reddit</title>
+              <title>{{ title }}</title>
             </use>
           </svg>
         </a>
       </li>
       <li>
-        <a class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" rel="external" target="_blank">
+        {% assign title = 'Share on LinkedIn' %}
+        <a class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" rel="external" target="_blank" title="{{ title }}">
           <svg class="icon icon-linkedin-square">
             <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-linkedin-square">
-              <title>Share on LinkedIn</title>
+              <title>{{ title }}</title>
             </use>
           </svg>
         </a>
       </li>
       <li>
-        <a class="link-icon content-icon" href="https://plus.google.com/share?url={{ post_url | uri_escape }}" rel="external" target="_blank">
+        {% assign title = 'Share on Google+' %}
+        <a class="link-icon content-icon" href="https://plus.google.com/share?url={{ post_url | uri_escape }}" rel="external" target="_blank" title="{{ title }}">
           <svg class="icon icon-google-plus-square">
             <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-google-plus-square">
-              <title>Share on Google+</title>
+              <title>{{ title }}</title>
             </use>
           </svg>
         </a>

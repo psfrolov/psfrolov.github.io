@@ -7,7 +7,6 @@ kramdown:
   input: GFM
   hard_wrap: false
 gems:
-  - jekyll
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging

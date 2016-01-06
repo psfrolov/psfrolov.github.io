@@ -21,7 +21,7 @@ image:
 # {{ page.title | liquify | escape }}
 
 Welcome to my place, stranger! The name's Paul. Once a SCADA/DCS applications
-builder involved in space ground-based infrastructure projects (namely, Angara
+builder involved in space ground‐based infrastructure projects (namely, Angara
 Space Rocket Complex and Land Launch). Now a software developer in
 information security field.
 {: .drop-letter }
@@ -31,12 +31,12 @@ professional interests) is C++, so expect the majority of articles to be C++
 related. Speaking about C++, I'm particularly enthusiastic about generic
 programming paradigm. But fear not thou, my friend <svg class="icon icon-smile-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"><title>Smiley Face</title></use></svg>,
 as I tend not to delve too deep into obscure realms of template metaprogramming
-and other experimental stuff, which, even though quite interesting on its own,
-is often appears to be of insufficient practical value for real world,
-day-to-day application in team-based software development. Rather, I'm trying
-to come up with solutions (in the form of idioms and design patterns)
-applicable to wide range of problem domains, but which at the same time are
-simple to implement, understand and maintain.
+and other experimental stuff, which—even though quite interesting on its own—is
+often appears to be of insufficient practical value for real world, day‐to‐day
+application in team‐based software development. Rather, I'm trying to come up
+with solutions (in the form of idioms and design patterns) applicable to wide
+range of problem domains, but which at the same time are simple to implement,
+understand and maintain.
 
 I hope you'll find something valuable here. Feel free to drop me a line or two
 via [contact form]({{ site.baseurl }}/contact/). Or use one of the social

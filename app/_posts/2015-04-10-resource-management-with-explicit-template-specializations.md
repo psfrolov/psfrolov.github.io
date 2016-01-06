@@ -12,17 +12,17 @@ image:
 
 Here’s my article from the
 [April 2015 issue of Overload journal][url-overload]. It presents a simple,
-easy-to-use, generic RAII wrapper based on an interesting static polymorphism
+easy‐to‐use, generic RAII wrapper based on an interesting static polymorphism
 technique which I introduced in the [previous post][url-previous-post].
 
-## [Resource Management with Explicit Template Specialisations][url-overload-article]
+## <cite>[Resource Management with Explicit Template Specialisations][url-overload-article]</cite>
 
 > [RAII][url-raii] is one of the most important and useful C++ idioms. RAII
 efficiently relieves the programmer of manual resource management and is a must
-for writing [exception-safe][url-exception-safety] code. Perhaps, the most
+for writing [exception‐safe][url-exception-safety] code. Perhaps, the most
 ubiquitous usage of RAII is dynamic memory management with
 [smart pointers][url-smart-pointer], but there are a plenty of other resources
-for which it can be applied, notably in the world of low-level libraries.
+for which it can be applied, notably in the world of low‐level libraries.
 Examples are Windows API handles, POSIX file descriptors, OpenGL primitives,
 and so on.
 

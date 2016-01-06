@@ -1,5 +1,5 @@
 ---
-title: Making Boost.Signals2 More OOP-Friendly
+title: Making Boost.Signals2 More OOP‐Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
 description: >-
   This article suggests an observable mixin which makes Boost.Signals(2) more
@@ -18,7 +18,7 @@ library doesn't provide out of the box observer implementation. Luckily,
 [Boost][url-boost] contains [Signals2][url-signals2], a
 [signal/slot][url-signal-slot] library which can serve as a basis for an
 observer. Using Signals2 as it is, however, is not so convenient in
-object-oriented program due to the need of manually coded _register_ and
+object‐oriented program due to the need of manually coded _register_ and
 _notify_ class methods for each of signal/slot pairs. This article suggests an
 _observable_ [mixin][url-mixin] which attempts to solve the outlined problem.
 
@@ -34,7 +34,7 @@ public:
 };
 {% endhighlight %}
 
-The `Window` class is probably wrapping some third-party GUI library which is
+The `Window` class is probably wrapping some third‐party GUI library which is
 irrelevant for our example. What is relevant, however, is that there exists an
 `Application` class which wants to receive notifications whenever something
 happens in the `Window`:
@@ -112,7 +112,7 @@ private:
 
 The main issue with the above code, as you can see, is that _register_ and
 _notify_ methods need to be written manually for each of events. And a
-real-world window class can easily contain dozens of them! The next section
+real‐world window class can easily contain dozens of them! The next section
 will address this issue by presenting a convenient mixin class which
 automatically generates the needed methods for you given the list of event
 handler signatures. Think of [wxWidgets static event tables]
@@ -123,7 +123,7 @@ without the use of macros. Or think of [Qt signals and slots]
 
 ### Implementing an Observable Mixin
 
-Here is a _class diagram_ which presents a high-level view on what we will
+Here is a _class diagram_ which presents a high‐level view on what we will
 be discussing in this section. We'll continue to use the window example from
 the previous section.
 <figure>
@@ -136,8 +136,8 @@ the previous section.
 
 Obviously enough, we can't just put our signals into _homogeneous_ container
 like `std::vector` because of different event signatures. Fortunately, the C++
-standard library provides `std::tuple`, an integer-indexed _heterogeneous
-container_ which solves our needs (alternatively, we can use a tag-indexed
+standard library provides `std::tuple`, an integer‐indexed _heterogeneous
+container_ which solves our needs (alternatively, we can use a tag‐indexed
 heterogeneous container, such as `boost::fusion::map`). With the help of
 `std::tuple`, we can define an observer table for our `Window` class as shown
 below:
@@ -154,7 +154,7 @@ struct WindowObservers {
 Here, we are making use of enumeration to index observers. This approach is not
 ideal: an insertion or removal of an observer from the tuple definition may
 cause a nasty bug if we are not careful enough to adjust the enumeration
-accordingly. The tag-based heterogeneous containers are more immune to this
+accordingly. The tag‐based heterogeneous containers are more immune to this
 issue due to the fact that the tag is mentioned explicitly as part of container
 element type.
 
@@ -300,7 +300,7 @@ private:
 
 ### Putting It All Together
 
-Here is a self-sufficient test program which puts together the above code
+Here is a self‐sufficient test program which puts together the above code
 snippets:
 {% gist arkfps/07887b173776ebbb4aac boost_signals_plus_std_tuple.cc %}
 

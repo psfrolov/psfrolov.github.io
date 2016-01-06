@@ -24,13 +24,10 @@ Python, PostgreSQL, Apache Software Foundation projects.
 
 {{ page.excerpt }}
 
-<div class="message">
-<svg class="icon icon-exclamation-triangle"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-exclamation-triangle"/></svg>
-The rest of the article assumes that you have a GitHub repository registered
+***The rest of the article assumes that you have a GitHub repository registered
 with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e., manually building your project with Coverity Build Tool and
-submitting results to Coverity Scan server).
-</div>
+submitting results to Coverity Scan server).***
 
 ### The Necessary Steps
 
@@ -45,38 +42,37 @@ following steps:
 ### A Note on Scan Data Submissions Frequency
 
 One important thing to note when working with Coverity Scan is build
-submissions frequency. Coverity Scan [limits maximum number of submitted builds
-on daily and weekly basis][url-coverity-scan-build-freq]. But even with limits
-left out of scope it is probably impractical to run each and every build with
-Coverity Scan since it takes noticeably longer time to complete. Let's see how
-we can deal with it.
+submissions frequency. Coverity Scan [limits maximum number of submitted
+builds][url-coverity-scan-build-freq] on daily and weekly basis. But even with
+limits left out of scope it is probably impractical to run each and every build
+with Coverity Scan since it takes noticeably longer time to complete. Let's see
+how we can deal with it.
 
 #### Using Dedicated Branch
 
-Coverity Scan documentation suggests us to create separate branch dedicated
-for code analysis (let's call it `analyse`). In that case, we can conditionally
-enable Coverity Scan when building our project using `APPVEYOR_REPO_BRANCH`
-built-in environment variable. Personally, I find this approach somewhat
-inconvenient: we need to keep `analyse` branch in sync with `develop` branch
-(although this can be automated if necessary).
+Coverity Scan documentation suggests us to create a separate branch dedicated
+for code analysis (let's call it **analyse**). In that case, we can
+conditionally enable Coverity Scan when building our project using
+`APPVEYOR_REPO_BRANCH` built‐in environment variable. Personally, I find this
+approach somewhat inconvenient: we need to keep our **analyse** branch in sync
+with **develop** branch (although this can be automated if necessary).
 
 #### Using Scheduled Builds
 
 Alternatively, we can use AppVeyor
 [Scheduled Builds][url-appveyor-scheduled-builds] feature to run Coverity Scan.
-For example, I use the following crontab expression to launch Coverity build at
-5:00 p.m. UTC+03 on Friday: `0 14 * * 5`. There is built-in variable named
-`APPVEYOR_SCHEDULED_BUILD` which is set to `True` when the build is a scheduled
-one. I find this approach more convenient, so I'll stick to it for the rest of
-the article.
+For example, I use the following [crontab][url-crontab] expression to launch
+Coverity build at 5:00 p.m. UTC+03 on Friday: `0 14 * * 5`. Also there is a
+handy built‐in variable named `APPVEYOR_SCHEDULED_BUILD` which is set to `True`
+when the build is a scheduled one. I find this approach more convenient,
+so I'll stick to it for the rest of the article.
 
 ### Downloading Coverity Build Tool
 
-<div class="message">
-<svg class="icon icon-exclamation-triangle"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-exclamation-triangle"/></svg>
-UPDATE. Coverity Build Tool now comes preinstaled on AppVeyor builder. See the
-link in comment by Mark Clearwater below the article for more information.
-</div>
+<ins>Coverity Build Tool now comes pre‐instaled on AppVeyor builder so this
+step is not necessary anymore. See the link in
+[comment by Mark Clearwater](#comment-1878112356) for more information.</ins>
+
 
 The first step may sound simple, but _one does not simply download Coverity
 Build Tool_. First, for security and legal reasons you need to pass your
@@ -94,12 +90,12 @@ instal:
 
 Let's deal with input data.
 
-**Project name** is your Coverity Scan project name as seen in web UI. Usually
-it's the same as GitHub project name (`owner-name/repo-name`), in which case
-you can use `APPVEYOR_REPO_NAME` built-in variable for it.
+The **Project name** is your Coverity Scan project name as seen in web UI.
+Usually it's the same as GitHub project name (`owner-name/repo-name`), in which
+case you can use convinient `APPVEYOR_REPO_NAME` built‐in variable for it.
 
-**Project token** is used by Coverity Scan for automated build submissions. You
-can examine and regenerate it in your Coverity Scan web GUI **Project
+The **Project token** is used by Coverity Scan for automated build submissions.
+You can examine and regenerate it in your Coverity Scan web GUI **Project
 Settings** page. The token is meant to be kept in secret, so it is a good
 practice to use AppVeyor [Secure Variables][url-appveyor-secure-variables]
 feature to encrypt it:
@@ -109,9 +105,9 @@ environment:
     secure: iNIJoA5yBGe4K1lV06g9Sta6kvcxeDxhnavNngxeEyE=
 {% endhighlight %}
 
-**Download link** can be obtained from your Coverity Scan web GUI
+The **Download link** can be obtained from your Coverity Scan web GUI
 **Submit Build** page. Choose link for `Win64` platform (AppVeyor build worker
-is 64-bit Windows Server). In my case (project language is `C++`), the
+is 64‐bit Windows Server). In my case (the project language is `C++`), the
 download link is `https://scan.coverity.com/download/cxx/win_64`.
 
 Now we can craft the HTTP request with the help of
@@ -143,13 +139,14 @@ Here `cov-int` is a name of directory to place collected scan data into.
 
 For example, if your build command is
 {% highlight batch %}
-"C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+msbuild "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
 Then, corresponding Coverity Build command becomes
 {% highlight batch %}
-cov-build.exe --dir cov-int "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe" "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+cov-build.exe --dir cov-int msbuild.exe ^
+"/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
-For this to work we need to drop AppVeyor built-in MSBuild support in favour of
+For this to work we need to drop AppVeyor built‐in MSBuild support in favour of
 custom build script:
 {% highlight yaml %}
 build_script:
@@ -166,7 +163,7 @@ $buildArgs = @(
   "/p:Configuration=$env:CONFIGURATION",
   "/p:Platform=$env:PLATFORM")
 
-# If build is not a scheduled one, then simply build project with MSBuild.
+# If build is not a scheduled one, then simply build the project with MSBuild.
 if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
   & $buildCmd $buildArgs
   return  # exit script
@@ -196,7 +193,7 @@ Things to note here:
 ### Compressing Scan Data
 
 Coverity Scan requires the scan data collected during build to be compressed.
-We can easily do this with 7-Zip which comes pre-instaled on AppVeyor build
+We can easily do this with 7‐Zip which comes pre‐instaled on AppVeyor build
 worker. However, I'll show you pure PowerShell/.NET way of doing this
 which involves some nasty .NET bug and one cool PowerShell trick to workaround
 it.
@@ -213,8 +210,9 @@ Unfortunately, if you try to upload ZIP file created with
 `IO.Compression.ZipFile` the analysis will fail. The reason is a
 [bug][url-dotnet-zipfile-bug] in `IO.Compression.ZipFile` implementation due to
 which file names inside ZIP archive are encoded with backslashes as path
-separators (according to [ZIP format specification][url-zip-format-spec] only
-forward slashes are permitted).
+separators (according to <cite>[ZIP format specification][url-zip-format-spec]
+</cite> <q>all slashes MUST be forward slashes '/' as opposed to backwards
+slashes '\\'</q>).
 As a result, such an archive cannot be unpacked on *nix systems (Coverity Scan
 is using Ubuntu currently).
 
@@ -258,11 +256,11 @@ Things to note:
 ### Uploading Scan Data to Coverity Scan Server
 
 That last step is the most complex one. In order to upload scan data to
-Coverity Scan server we need to send [multipart/form-data][url-rfc2388] HTML
+Coverity Scan server we need to send [multipart/form‐data][url-rfc2388] HTML
 form containing archived scan data along with some build metadata (the
 process is documented in **Upload a Project Build** page of your Coverity Scan
 project web GUI). This can be accomplished in many ways, I'll use
-[System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form-data].
+[System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form‐data].
 
 First, we need to initialize `HttpClient` and `MultipartFormDataContent`:
 {% highlight powershell %}
@@ -276,12 +274,12 @@ $form = New-Object Net.Http.MultipartFormDataContent
 Note that `$client.Timeout` value must be large enough for the form to upload,
 otherwise exception will be thrown while sending data.
 
-Next, we'll fill form fields one by one. Those fields are `token`, `email`,
-`file`, `version` and `description`.
+Next, we'll fill form fields one by one. Those fields are **token**, **email**,
+**file**, **version** and **description**.
 
 #### The Token Field
 
-The `token` is our Coverity Scan project token we used before to download
+The **token** is our Coverity Scan project token we used before to download
 Coverity Build Tool.
 {% highlight powershell %}
 # Fill token field.
@@ -292,14 +290,14 @@ $form.Add($formField, "`"token`"")
 
 #### The Email Field
 
-The `email` is an e-mail address to which Coverity Scan will send a
+The **email** is an email address to which Coverity Scan should send a
 notification about analysis results.
 {% highlight powershell %}
 # Fill email field.
 $formField = New-Object Net.Http.StringContent($env:CoverityNotificationEmail)
 $form.Add($formField, "`"email`"")
 {% endhighlight %}
-I recommend you to secure your e-mail:
+I recommend you to secure your email:
 {% highlight yaml %}
 environment:
   CoverityNotificationEmail:
@@ -308,7 +306,7 @@ environment:
 
 #### The File Field
 
-The `file` is our zipped scan data produced earlier:
+The **file** is our zipped scan data produced earlier:
 {% highlight powershell %}
 # Fill file field.
 $fs = New-Object IO.FileStream(
@@ -343,7 +341,7 @@ Finally, we can submit the form:
 $url = "https://scan.coverity.com/builds?project=$env:APPVEYOR_REPO_NAME"
 $task = $client.PostAsync($url, $form)
 try {
-  $task.Wait()  # throws AggregateException on time-out
+  $task.Wait()  # throws AggregateException on timeout
 } catch [AggregateException] {
   throw $_.Exception.InnerException
 }
@@ -354,14 +352,14 @@ Things to note:
 
 * We need to pass the project name in `owner-name/repo-name` format in the
   query string.
-* On time-out `$task.Wait()` will throw `System.AggregateException` containing
+* On timeout `$task.Wait()` will throw `System.AggregateException` containing
   nested `System.Threading.Tasks.TaskCanceledException`.
 
 ### Examining the Results
 
 After uploading the scan data you can examine intermediate results in your
 Coverity Scan project web GUI, and the final results will be delivered to you
-by e-mail. Then use **View Defects** button in Coverity Scan web GUI to start
+by email. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
 
 Here is full [appveyor.yml][url-my-appveyor-yml] utilising the approach
@@ -387,6 +385,8 @@ described in the article.
 [url-coverity-scan-build-freq]: https://scan.coverity.com/faq#frequency
 {: rel="external" }
 [url-coverity-community]: https://communities.coverity.com/message/6120#6120
+{: rel="external" }
+[url-crontab]: https://code.google.com/p/ncrontab/wiki/CrontabExpression
 {: rel="external" }
 [url-invoke-webrequest]: https://technet.microsoft.com/en-us/library/hh849901.aspx
 {: rel="external" }

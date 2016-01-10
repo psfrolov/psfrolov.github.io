@@ -42,7 +42,7 @@ solution is to define specialisations only for those specific methods.
 Perhaps the most useful part of this feature is the ability to specialise
 member functions. Let's take a look at a concrete example.
 
-### Implementing Generic RAII Wrapper for Resource Handles
+### Implementing Generic _RAII_[^fn-raii] Wrapper for Resource Handles
 
 Opaque resource handles are used in many OS‐level, networking, and database
 APIs. Usually such handles must be closed with some kind of **close_handle**
@@ -162,7 +162,7 @@ real life you almost certainly should apply
 [type‐safe handle idiom][url-type-safe-handles] to your wrapper class described
 in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then you can
 specialise `Cleanup` method on handle tag (which is effectively a form of
-[tag dispatching][url-tag-dispatching]).
+_tag dispatching_[^fn-tag-dispatching]).
 
 ### Conclusion
 
@@ -175,6 +175,15 @@ fact, I've found only a couple of reference manuals mentioning it:
 
 *[RAII]: Resource Acquisition Is Initialization
 
+---
+
+[^fn-raii]: [Resource Acquisition Is Initialization][url-raii].
+
+[^fn-tag-dispatching]:
+    Tag dispatching is a way of using function overloading to dispatch based on
+    properties of a type. See
+    [tutorial on tag dispatching][url-tag-dispatching].
+
 [url-cppreference]: http://en.cppreference.com/w/cpp/language/template_specialization
 {: rel="external" }
 [url-zos-xl-cpp-reference]: http://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
@@ -185,3 +194,4 @@ fact, I've found only a couple of reference manuals mentioning it:
 {: rel="external" }
 [url-tag-dispatching]: https://isocpp.org/blog/2014/12/tag-dispatching
 {: rel="external" }
+[url-raii]: https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization

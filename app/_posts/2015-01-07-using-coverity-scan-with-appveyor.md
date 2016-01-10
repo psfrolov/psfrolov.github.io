@@ -11,10 +11,10 @@ image:
   url: /img/pages/coverity-scan-and-appveyor.png
 ---
 
-A[ppVeyor][url-appveyor] is an awesome SaaS CI server similar to
-[Travis CI][url-travis-ci] but for Windows developers. It enables you to build,
-test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX,
-among others (see [Instaled Software][url-appveyor-instaled-software]).
+A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar
+to [Travis CI][url-travis-ci] but for Windows developers. It enables you to
+build, test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server,
+WiX, among others (see [Instaled Software][url-appveyor-instaled-software]).
 Moreover, it is completely free for open source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
@@ -26,7 +26,7 @@ Python, PostgreSQL, Apache Software Foundation projects.
 
 ***The rest of the article assumes that you have a GitHub repository registered
 with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
-workflow (i.e., manually building your project with Coverity Build Tool and
+workflow (i.e. manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).***
 
 ### The Necessary Steps
@@ -256,10 +256,11 @@ Things to note:
 ### Uploading Scan Data to Coverity Scan Server
 
 That last step is the most complex one. In order to upload scan data to
-Coverity Scan server we need to send [multipart/form‐data][url-rfc2388] HTML
-form containing archived scan data along with some build metadata (the
-process is documented in **Upload a Project Build** page of your Coverity Scan
-project web GUI). This can be accomplished in many ways, I'll use
+Coverity Scan server we need to send
+multipart/form‐data[^fn-multipart] HTML form containing archived scan
+data along with some build metadata (the process is documented in **Upload a
+Project Build** page of your Coverity Scan project web GUI). This can be
+accomplished in many ways, I'll use
 [System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form‐data].
 
 First, we need to initialize `HttpClient` and `MultipartFormDataContent`:
@@ -368,6 +369,16 @@ described in the article.
 *[CI]: Continuous Integration
 *[SaaS]: Software as a Service
 
+---
+
+[^fn-saas]: [Software as a Service][url-saas].
+[^fn-ci]: [Continuous Integration][url-ci].
+
+[^fn-multipart]:
+    A multipart/form-data is used to express values submitted through a web
+    form. Originally defined as part of HTML 4.0, it is most commonly used for
+    submitting files via HTTP. Defined in [RFC 2388][url-rfc2388].
+
 [url-appveyor]: http://www.appveyor.com
 {: rel="external" }
 [url-travis-ci]: https://travis-ci.org
@@ -401,4 +412,8 @@ described in the article.
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
 {: rel="external" }
 [url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml
+{: rel="external" }
+[url-saas]: https://en.wikipedia.org/wiki/Software_as_a_service
+{: rel="external" }
+[url-ci]: https://en.wikipedia.org/wiki/Continuous_integration
 {: rel="external" }

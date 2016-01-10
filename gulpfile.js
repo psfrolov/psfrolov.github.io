@@ -69,7 +69,7 @@ const otherFiles = [
 
 // Jekyll build.
 gulp.task('jekyll-build', shell.task(
-  `bundle exec jekyll build -I -d ${jekyllBuildDir}`,
+  `bundle exec jekyll build -d ${jekyllBuildDir}`,
   { env: { JEKYLL_ENV: options.env } }
 ));
 
@@ -194,6 +194,7 @@ gulp.task('_browsersync', () => {
       key: path.join(certsDir, 'srv-auth.key'),
       cert: path.join(certsDir, 'srv-auth.crt')
     },
+    online: false,
     browser: ['chrome', 'opera', 'firefox', 'iexplore'],
     reloadOnRestart: true
   });

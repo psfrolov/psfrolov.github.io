@@ -14,5 +14,5 @@
   </aside>
 </header>
 <p class="drop-letter">
-  {{ post.excerpt | remove:'<p>' | remove:'</p>' }}
+  {{ post.excerpt | strip_footnotes | remove:'<p>' | remove:'</p>' }}
 </p>

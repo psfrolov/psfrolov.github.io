@@ -1,4 +1,5 @@
 require 'fastimage'
+require 'nokogiri'
 
 
 module Jekyll
@@ -109,6 +110,32 @@ module Jekyll
 end
 
 Liquid::Template.register_filter(Jekyll::ReadingTimeFilter)
+
+#------------------------------------------------------------------------------
+
+module Jekyll
+  module StripFootnotesFilter
+
+    def strip_footnotes(raw)
+      doc = Nokogiri::HTML.fragment(raw.encode('UTF-8',
+                                               :invalid => :replace,
+                                               :undef => :replace,
+                                               :replace => ''))
+      # Strip expanded footnontes.
+      for block in ['div', 'a'] do
+        doc.css(block).each do |ele|
+          ele.remove if (ele['class'] == 'footnotes' or
+                         ele['class'] == 'footnote')
+        end
+      end
+      # Strip unexpanded footnontes ([^fn-...]).
+      doc.inner_html = doc.inner_html.gsub(/\[\^fn-.+\]/, '')
+    end
+
+  end
+end
+
+Liquid::Template.register_filter(Jekyll::StripFootnotesFilter)
 
 #------------------------------------------------------------------------------
 

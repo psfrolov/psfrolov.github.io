@@ -11,16 +11,17 @@ image:
     url: http://tutsplus.com/authors/tom-mcfarlin
 ---
 
-The [observer design pattern][url-observer] is by far the most popular and
-widely known among [behavioural patterns][url-behavioural-patterns].
+The _observer_[^fn-observer] design pattern is by far the most popular and
+widely known among _behavioural patterns_[^fn-behavioural-patterns].
 Unfortunately, unlike other mainstream languages out there, the C++ standard
 library doesn't provide out of the box observer implementation. Luckily,
 [Boost][url-boost] contains [Signals2][url-signals2], a
-[signal/slot][url-signal-slot] library which can serve as a basis for an
+_signal/slot_[^fn-signals-slots] library which can serve as a basis for an
 observer. Using Signals2 as it is, however, is not so convenient in
 object‐oriented program due to the need of manually coded _register_ and
-_notify_ class methods for each of signal/slot pairs. This article suggests an
-_observable_ [mixin][url-mixin] which attempts to solve the outlined problem.
+_notify_ class methods for each of signal/slot pairs. This article suggests
+an _observable_ _mixin_[^fn-mixin] which attempts to solve the outlined
+problem.
 
 ### Motivating Example
 
@@ -69,8 +70,8 @@ the window).
 
 Let us define the two events mentioned along with corresponding _register_ and
 _notify_ methods with the help of Boost.Signals2 (note, in the simplest cases
-such as this, e.g., if there are no multiple handlers for a single event, we
-can use just `std::function` instead of `boost::signals2::signal`):
+such as this, e.g. if there are no multiple handlers for a single event, we can
+use just `std::function` instead of `boost::signals2::signal`):
 {% highlight c++ %}
 class Window {
 public:    
@@ -123,12 +124,11 @@ without the use of macros. Or think of [Qt signals and slots]
 
 ### Implementing an Observable Mixin
 
-Here is a _class diagram_ which presents a high‐level view on what we will
-be discussing in this section. We'll continue to use the window example from
-the previous section.
+Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a
+high‐level view on what we will be discussing in this section. We'll continue
+to use the window example from the previous section.
 <figure>
-  <img src="{{ site.baseurl }}/img/figures/observable-mixin-uml-class-diagram.png"
-       alt="Observable Mixin UML Class Diagram">
+  <img src="{{ site.baseurl }}/img/figures/observable-mixin-uml-class-diagram.png" alt>
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 
@@ -316,6 +316,46 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 `std::function` instead of `boost::signals2::signal`. You can find them in a
 [gist][url-observable-gist].
 
+*[UML]: Unified Modeling Language
+
+---
+
+[^fn-observer]:
+    A software design pattern in which an object, called the subject,
+    maintains a list of its dependents, called observers, and notifies them
+    automatically of any state changes, usually by calling one of their
+    methods. The [observer pattern][url-observer] is also a key part in the
+    model–view–controller (MVC) architectural pattern.
+
+[^fn-behavioural-patterns]:
+    Used to manage relationships, interaction, algorithms and responsibilities
+    between objects. The [behavioural pattern][url-behavioural-patterns]
+    focuses on the interaction between the cooperating objects in a manner that
+    the objects are communicating while maintaining loose coupling.
+
+[^fn-signals-slots]:
+    A language construct for communication between objects which makes it easy
+    to implement the Observer pattern while avoiding boilerplate code. For
+    example, GUI widgets can send signals containing event information which can
+    be received by other controls using special functions known as slots.
+
+[^fn-mixin]:
+    A class that acts as the parent class, containing the desired
+    functionality. A subclass can then inherit or simply reuse this
+    functionality, but without creating a rigid, single "is a" relationship
+    ([Wikipedia][url-mixin]).
+
+[^fn-uml]:
+    A general‐purpose, developmental, modeling language in the field of
+    software engineering, that is intended to provide a standard way to
+    visualize the design of a system ([Wikipedia][url-uml]).
+
+[^fn-class-diagram]:
+    In the UML a type of static structure diagram that describes the structure
+    of a system by showing the system's classes, their attributes, operations
+    (or methods), and the relationships among objects
+    ([Wikipedia][url-class-diagram]).
+
 [url-observer]: https://sourcemaking.com/design_patterns/observer
 {: rel="external" }
 [url-behavioural-patterns]: https://sourcemaking.com/design_patterns/behavioral_patterns
@@ -323,8 +363,6 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 [url-boost]: http://www.boost.org
 {: rel="external" }
 [url-signals2]: http://www.boost.org/doc/libs/release/libs/signals2/
-{: rel="external" }
-[url-signal-slot]: https://en.wikipedia.org/wiki/Signals_and_slots
 {: rel="external" }
 [url-mixin]: https://en.wikipedia.org/wiki/Mixin
 {: rel="external" }
@@ -335,6 +373,10 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 [url-qt-signals-and-slots]: http://doc.qt.io/qt-5/signalsandslots.html
 {: rel="external" }
 [url-vc-event-handling]: https://msdn.microsoft.com/en-us/library/ee2k0a7d(v=vs.120).aspx
+{: rel="external" }
+[url-uml]: https://en.wikipedia.org/wiki/Unified_Modeling_Language
+{: rel="external" }
+[url-class-diagram]: https://en.wikipedia.org/wiki/Class_diagram
 {: rel="external" }
 [url-observable-gist]: https://gist.github.com/arkfps/07887b173776ebbb4aac
 {: rel="external" }

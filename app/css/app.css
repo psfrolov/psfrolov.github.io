@@ -25,6 +25,7 @@ colours:
 @import '{{ site.baseurl }}/css/syntax.css';
 @import '{{ site.baseurl }}/css/fonts.css';
 @import '{{ site.baseurl }}/css/icons.css';
+@import '{{ site.baseurl }}/css/print.css';
 
 /* ------------------------------------------------------------------------- */
 

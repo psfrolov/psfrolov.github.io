@@ -80,10 +80,10 @@ Coverity Scan project name and token as part of download request. Second, the
 download link is specific to you project language. See more on
 [Coverity Community discussion page][url-coverity-community].
 
-We will use PowerShell, and the right place to put our script is `instal` hook
+We will use PowerShell, and the right place to put our script is `install` hook
 in `appveyor.yml`:
 {% highlight yaml %}
-instal:
+install:
 - ps: |
     # Here goes our code.
 {% endhighlight %}

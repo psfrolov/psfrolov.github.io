@@ -9,7 +9,7 @@ colours:
   white: '#fff'
   white_muted: rgba(255, 255, 255, .75)
 
-  grey: rgba(0, 0, 0, .54)
+  grey: '#787878'
   grey_muted: '#e0e0e0'
 
   red: '#cb4437'
@@ -42,7 +42,7 @@ html {
 
 /* Body. */
 html {
-  font-family: 'pt_sans', sans-serif;
+  font-family: 'pt_sans', 'Arial', sans-serif;
 }
 
 @media (min-width: 48em) {
@@ -113,7 +113,8 @@ body {
   background-size: cover;
   padding: 1rem 1rem;
   text-align: center;
-  font-family: 'metamorphous', serif;
+  font-family: 'metamorphous', 'Times New Roman', serif;
+  font-size: 1.25rem;
 }
 
 @media (min-width: 48rem) {
@@ -133,19 +134,25 @@ body {
   }
 }
 
+.sidebar header {
+  margin-bottom: 2rem;
+}
+
 .sidebar a, .sidebar h1, .sidebar h2, .sidebar p, .sidebar ul {
   color: {{ page.colours.white }};
   font-weight: normal;
   text-shadow: {{ page.colours.black }} .1em .1em .2em;
 }
 
-.sidebar h2 {
-  display: inline;
-  font-size: 100%;
+.sidebar h1 {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin: .5rem 0;
 }
 
-.sidebar header {
-  margin-bottom: 2rem;
+.sidebar h2 {
+  display: inline;
+  font-size: 1rem;
 }
 
 .sidebar hr {
@@ -154,6 +161,14 @@ body {
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 0.75),
     rgba(255, 255, 255, 0));
+}
+
+.sidebar small {
+  font-size: 70%;
+}
+
+.sidebar .icon {
+  filter: drop-shadow(.1rem .1rem .1rem black);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -365,7 +380,6 @@ figure figcaption {
 
 /* Icons. */
 .nav-icon {
-  filter: drop-shadow(.1rem .1rem .1rem black);
   transition: color 500ms cubic-bezier(.23, 1, .32, 1);
 }
 
@@ -397,12 +411,12 @@ figure figcaption {
 
 /* Code. */
 code, pre, .gist .blob-code {
-  font-family: 'ubuntu_mono', monospace !important;
+  font-family: 'ubuntu_mono', 'Courier New', monospace !important;
 }
 
 code {
   padding: .1rem;
-  font-size: .9rem;
+  font-size: .8rem;
   color: {{ page.colours.blue }};
   border-radius: 3px;
 }
@@ -412,7 +426,7 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .8rem;
+  font-size: .7rem;
   line-height: 1.4;
   white-space: pre;
   word-break: break-all;
@@ -426,7 +440,7 @@ input, textarea {
 
 pre code, .gist .blob-code-inner {
   padding: 0;
-  font-size: .8rem !important;
+  font-size: .7rem !important;
   color: inherit;
   background-color: transparent;
 }
@@ -558,6 +572,10 @@ h4, h5, h6 {
 /* ------------------------------------------------------------------------- */
 
 /* Text. */
+p {
+  line-height: 1.4;
+}
+
 p, aside {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -580,14 +598,14 @@ p.drop-letter, .drop-letter > p:first-child {
 }
 
 p.drop-letter::first-letter, .drop-letter > p:first-child::first-letter {
-  font-family: 'metamorphous', 'Georgia';
+  font-family: 'metamorphous', 'Times New Roman', serif;
   text-shadow:
     -1px -1px 0 {{ page.colours.black }},
     1px -1px 0 {{ page.colours.black }},
     -1px 1px 0 {{ page.colours.black }},
     1px 1px 0 {{ page.colours.black }};
   color: {{ site.theme_colour }};
-  font-size: 2em;
+  font-size: 2.5em;
   line-height: 0;
 }
 

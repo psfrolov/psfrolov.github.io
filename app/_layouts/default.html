@@ -10,7 +10,7 @@
     <!-- Security. -->
     <meta http-equiv="Content-Security-Policy" content="default-src https: data: 'unsafe-inline' wss:; form-action https:; block-all-mixed-content; base-uri 'self'; referrer origin-when-cross-origin">
 
-    <!--Mobile devices responsiveness. -->
+    <!-- Mobile devices responsiveness. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page title. -->
@@ -124,6 +124,8 @@
     <!-- Search engines indexing. -->
     {% if page.robots %}
     <meta name="robots" content="{{ page.robots }}">
+    {% elsif paginator.previous_page %}
+    <meta name="robots" content="noindex">
     {% endif %}
 
     <!-- Sitemap link for search engines. -->
@@ -166,9 +168,8 @@
       <section>
         <h2>
           <svg class="icon icon-tags">
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags">
-              <title>Site Tags</title>
-            </use>
+            <title>Site Tags</title>
+            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags"/>
           </svg>
         </h2>
         <ul class="inline">
@@ -187,9 +188,8 @@
             {% assign title = 'Home' %}
             <a class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}">
               <svg class="icon icon-home">
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-home">
-                  <title>{{ title }}</title>
-                </use>
+                <title>{{ title }}</title>
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-home"/>
               </svg>
             </a>
           </li>
@@ -197,9 +197,8 @@
             {% assign title = 'Archive' %}
             <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive/" title="{{ title }}">
               <svg class="icon icon-list">
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list">
-                  <title>{{ title }}</title>
-                </use>
+                <title>{{ title }}</title>
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-list"/>
               </svg>
             </a>
           </li>
@@ -207,9 +206,8 @@
             {% assign title = 'News Feed' %}
             <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}">
               <svg class="icon icon-feed">
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed">
-                  <title>{{ title }}</title>
-                </use>
+                <title>{{ title }}</title>
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed"/>
               </svg>
             </a>
           </li>
@@ -217,9 +215,8 @@
             {% assign title = 'Contact' %}
             <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact/" title="{{ title }}">
               <svg class="icon icon-question">
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question">
-                  <title>{{ title }}</title>
-                </use>
+                <title>{{ title }}</title>
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-question"/>
               </svg>
             </a>
           </li>
@@ -227,9 +224,8 @@
             {% assign title = 'About' %}
             <a class="link-icon nav-icon" href="{{ site.baseurl }}/about/" rel="author" title="{{ title }}">
               <svg class="icon icon-info">
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info">
-                  <title>{{ title }}</title>
-                </use>
+                <title>{{ title }}</title>
+                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info"/>
               </svg>
             </a>
           </li>

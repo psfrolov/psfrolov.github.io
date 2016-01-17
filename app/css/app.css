@@ -199,7 +199,7 @@ span.pagination-item {
 }
 
 a.pagination-item:hover, a.pagination-item:focus {
-  background-color: {{ page.colours.grey }};
+  background-color: {{ page.colours.white_muted }};
   transition: background-color 500ms cubic-bezier(.23, 1, .32, 1);
 }
 

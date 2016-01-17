@@ -34,7 +34,7 @@ defaults:
       og_type: article
 
 # Pagination.
-paginate: 5
+paginate: 10
 
 # Web feed (jekyll-feed).
 feed:

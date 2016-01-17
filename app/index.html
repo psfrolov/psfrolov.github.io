@@ -25,18 +25,16 @@ is_home: true
     {% if paginator.next_page %}
     <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
       <svg class="icon icon-chevron-left">
-        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
-          <title>Arrow Left</title>
-        </use>
+        <title>Arrow Left</title>
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left"/>
       </svg>
       Older
     </a>
     {% else %}
     <span class="pagination-item older">
       <svg class="icon icon-chevron-left">
-        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left">
-          <title>Arrow Left</title>
-        </use>
+        <title>Arrow Left</title>
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left"/>
       </svg>
       Older
     </span>
@@ -46,18 +44,16 @@ is_home: true
     <a class="pagination-item newer" href="{{ site.baseurl }}/">
       Newer
       <svg class="icon icon-chevron-right">
-        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-          <title>Arrow Right</title>
-        </use>
+        <title>Arrow Right</title>
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
     </a>
     {% else %}
     <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
       Newer
       <svg class="icon icon-chevron-right">
-        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-          <title>Arrow Right</title>
-        </use>
+        <title>Arrow Right</title>
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
     </a>
     {% endif %}
@@ -65,9 +61,8 @@ is_home: true
     <span class="pagination-item newer">
       Newer
       <svg class="icon icon-chevron-right">
-        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right">
-          <title>Arrow Right</title>
-        </use>
+        <title>Arrow Right</title>
+        <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
     </span>
     {% endif %}

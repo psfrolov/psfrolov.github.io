@@ -7,7 +7,7 @@ robots: noindex
 ---
 
 
-<section>
+<article>
   <h1>{{ page.title | liquify | escape }}</h1>
   <p class="drop-letter">
     Want to get in touch with me? Fill out the form below to send me a message
@@ -15,7 +15,7 @@ robots: noindex
   </p>
   <form name="contact" method="post">
     <noscript>
-      <strong>
+      <strong role="alert">
         <em>Please enable JavaScript to use the contact form.</em>
       </strong>
     </noscript>
@@ -63,13 +63,13 @@ robots: noindex
     </div>
     <div>
       <div>
-        <button type="submit">Send <svg class="icon icon-paper-plane-o"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
+        <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
       </div>
     </div>
   </form>
   <hr>
   {% include social-profiles.html %}
-</section>
+</article>
 
 
 <script>

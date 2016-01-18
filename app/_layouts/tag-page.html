@@ -6,14 +6,14 @@ keywords: '{{ page.tag }}'
 ---
 
 
-<section>
+<article>
   <h1>{{ page.title | liquify | escape }}</h1>
   {% for post in page.posts %}
     <article itemscope itemtype="http://schema.org/BlogPosting">
       {% include post-preview.html %}
     </article>
   {% endfor %}
-</section>
+</article>
 
 <!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">

@@ -15,10 +15,10 @@ image:
 permalink: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template/
 ---
 
-C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>).
+C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>).
 {{ page.description}}
 
-### Technical Details
+## Technical Details
 
 The following non‐template members of class template can be explicitly
 specialised:
@@ -42,12 +42,13 @@ solution is to define specialisations only for those specific methods.
 Perhaps the most useful part of this feature is the ability to specialise
 member functions. Let's take a look at a concrete example.
 
-### Implementing Generic _RAII_[^fn-raii] Wrapper for Resource Handles
+## Implementing Generic RAII Wrapper for Resource Handles
 
 Opaque resource handles are used in many OS‐level, networking, and database
 APIs. Usually such handles must be closed with some kind of **close_handle**
-function. When dealing with handles in C++ you almost always want to use RAII
-wrapper to avoid handle leaks. We can define such a wrapper as follows:
+function. When dealing with handles in C++ you almost always want to use
+_RAII_[^fn-raii] wrapper to avoid handle leaks. We can define such a wrapper as
+follows:
 {% highlight c++ %}
 #include <cassert>
 #include <memory>  // std::addressof
@@ -164,7 +165,7 @@ in the recent [isocpp.org][url-isocpp] post by Emil Ernerfeldt. Then you can
 specialise `Cleanup` method on handle tag (which is effectively a form of
 _tag dispatching_[^fn-tag-dispatching]).
 
-### Conclusion
+## Conclusion
 
 Although described in <cite>Section 14.7 [temp.spec] of the C++ ISO/IEC
 standard</cite>, this unobvious feature is poorly documented elsewhere. In

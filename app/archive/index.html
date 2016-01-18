@@ -5,11 +5,11 @@ title: Archive
 description: '{{ site.title }} archive.'
 ---
 
-<section>
+<article>
   <h1>{{ page.title | liquify | escape }}</h1>
   {% for post in site.posts %}
   <article itemscope itemtype="http://schema.org/BlogPosting">
     {% include post-preview.html %}
   </article>
   {% endfor %}
-</section>
+</article>

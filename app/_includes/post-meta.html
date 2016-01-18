@@ -1,7 +1,7 @@
 <!-- Inserted just after post tile. -->
 <dl class="inline grey">
   <dt>
-    <svg class="icon icon-clock-o">
+    <svg class="icon icon-clock-o" role="img">
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-clock-o"/>
     </svg>
     Published:
@@ -10,7 +10,7 @@
     <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.
   </dd>
   <dt>
-    <svg class="icon icon-newspaper-o">
+    <svg class="icon icon-newspaper-o" role="img">
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-newspaper-o"/>
     </svg>
     Reading time:
@@ -24,7 +24,7 @@
     <time datetime="PT{{ reading_time }}M" itemprop="timeRequired">{{ reading_time | pluralize:'minute' }}</time>.
   </dd>
   <dt class="new-line">
-    <svg class="icon icon-tags">
+    <svg class="icon icon-tags" role="img">
       <title>Tags</title>
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-tags"/>
     </svg>

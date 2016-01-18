@@ -29,7 +29,7 @@ with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e. manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).***
 
-### The Necessary Steps
+## The Necessary Steps
 
 Analysing project source code with Coverity Scan involves the
 following steps:
@@ -39,7 +39,7 @@ following steps:
 3. [Compress scan data](#compressing-scan-data).
 4. [Upload scan data to Coverity Scan server](#uploading-scan-data-to-coverity-scan-server).
 
-### A Note on Scan Data Submissions Frequency
+## A Note on Scan Data Submissions Frequency
 
 One important thing to note when working with Coverity Scan is build
 submissions frequency. Coverity Scan [limits maximum number of submitted
@@ -48,7 +48,7 @@ limits left out of scope it is probably impractical to run each and every build
 with Coverity Scan since it takes noticeably longer time to complete. Let's see
 how we can deal with it.
 
-#### Using Dedicated Branch
+### Using Dedicated Branch
 
 Coverity Scan documentation suggests us to create a separate branch dedicated
 for code analysis (let's call it **analyse**). In that case, we can
@@ -57,7 +57,7 @@ conditionally enable Coverity Scan when building our project using
 approach somewhat inconvenient: we need to keep our **analyse** branch in sync
 with **develop** branch (although this can be automated if necessary).
 
-#### Using Scheduled Builds
+### Using Scheduled Builds
 
 Alternatively, we can use AppVeyor
 [Scheduled Builds][url-appveyor-scheduled-builds] feature to run Coverity Scan.
@@ -67,7 +67,7 @@ handy built‐in variable named `APPVEYOR_SCHEDULED_BUILD` which is set to `True
 when the build is a scheduled one. I find this approach more convenient,
 so I'll stick to it for the rest of the article.
 
-### Downloading Coverity Build Tool
+## Downloading Coverity Build Tool
 
 <ins>Coverity Build Tool now comes pre‐instaled on AppVeyor builder so this
 step is not necessary anymore. See the link in
@@ -128,7 +128,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -eq "True") {
 }
 {% endhighlight %}
 
-### Building Project with Coverity Build Tool
+## Building Project with Coverity Build Tool
 
 The next step is to build the project with Coverity Build Tool. This means
 passing your build command to `cov-build.exe`:
@@ -190,7 +190,7 @@ Things to note here:
 * After building the project with Coverity Build Tool there will be directory
   named `cov-int` under `APPVEYOR_BUILD_FOLDER`.
 
-### Compressing Scan Data
+## Compressing Scan Data
 
 Coverity Scan requires the scan data collected during build to be compressed.
 We can easily do this with 7‐Zip which comes pre‐instaled on AppVeyor build
@@ -253,7 +253,7 @@ Things to note:
 * After compressing the scan data there will be file named
   `<APPVEYOR_PROJECT_NAME>.zip` under `APPVEYOR_BUILD_FOLDER`.
 
-### Uploading Scan Data to Coverity Scan Server
+## Uploading Scan Data to Coverity Scan Server
 
 That last step is the most complex one. In order to upload scan data to
 Coverity Scan server we need to send
@@ -278,7 +278,7 @@ otherwise exception will be thrown while sending data.
 Next, we'll fill form fields one by one. Those fields are **token**, **email**,
 **file**, **version** and **description**.
 
-#### The Token Field
+### The Token Field
 
 The **token** is our Coverity Scan project token we used before to download
 Coverity Build Tool.
@@ -289,7 +289,7 @@ Coverity Build Tool.
 $form.Add($formField, "`"token`"")
 {% endhighlight %}
 
-#### The Email Field
+### The Email Field
 
 The **email** is an email address to which Coverity Scan should send a
 notification about analysis results.
@@ -305,7 +305,7 @@ environment:
     secure: +eYz1A/Z8lciYhPTNqd7KgfkqxmG1nS/lOJqFjmvRdg=
 {% endhighlight %}
 
-#### The File Field
+### The File Field
 
 The **file** is our zipped scan data produced earlier:
 {% highlight powershell %}
@@ -318,7 +318,7 @@ $formField = New-Object Net.Http.StreamContent($fs)
 $form.Add($formField, "`"file`"", "$env:APPVEYOR_PROJECT_NAME.zip")
 {% endhighlight %}
 
-#### The Version Field
+### The Version Field
 
 Your need to set this field to the version of your build:
 {% highlight powershell %}
@@ -327,7 +327,7 @@ $formField = New-Object Net.Http.StringContent($env:APPVEYOR_BUILD_VERSION)
 $form.Add($formField, "`"version`"")
 {% endhighlight %}
 
-#### The Description Field
+### The Description Field
 
 An arbitrary text describing your build:
 {% highlight powershell %}
@@ -356,7 +356,7 @@ Things to note:
 * On timeout `$task.Wait()` will throw `System.AggregateException` containing
   nested `System.Threading.Tasks.TaskCanceledException`.
 
-### Examining the Results
+## Examining the Results
 
 After uploading the scan data you can examine intermediate results in your
 Coverity Scan project web GUI, and the final results will be delivered to you

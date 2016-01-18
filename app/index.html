@@ -11,7 +11,7 @@ is_home: true
 
 
 <!-- Posts preview. -->
-<section>
+<article>
   <h1>Articles</h1>
   {% for post in paginator.posts %}
   <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -24,7 +24,7 @@ is_home: true
     <h2 class="visuallyhidden">Pagination</h2>
     {% if paginator.next_page %}
     <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
-      <svg class="icon icon-chevron-left">
+      <svg class="icon icon-chevron-left" role="img">
         <title>Arrow Left</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left"/>
       </svg>
@@ -32,7 +32,7 @@ is_home: true
     </a>
     {% else %}
     <span class="pagination-item older">
-      <svg class="icon icon-chevron-left">
+      <svg class="icon icon-chevron-left" role="img">
         <title>Arrow Left</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left"/>
       </svg>
@@ -43,7 +43,7 @@ is_home: true
     {% if paginator.page == 2 %}
     <a class="pagination-item newer" href="{{ site.baseurl }}/">
       Newer
-      <svg class="icon icon-chevron-right">
+      <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
@@ -51,7 +51,7 @@ is_home: true
     {% else %}
     <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
       Newer
-      <svg class="icon icon-chevron-right">
+      <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
@@ -60,14 +60,14 @@ is_home: true
     {% else %}
     <span class="pagination-item newer">
       Newer
-      <svg class="icon icon-chevron-right">
+      <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-right"/>
       </svg>
     </span>
     {% endif %}
   </nav>
-</section>
+</article>
 
 <!-- https://developers.google.com/structured-data/site-name -->
 <script type="application/ld+json">

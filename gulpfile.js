@@ -162,9 +162,20 @@ gulp.task('copy', ['jekyll-build'], () =>
 // Revision assets (cache busting).
 gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () => {
   const revisor = new RevAll({
-    dontGlobal: [/^\/\./g, /^\/favicon.ico$/g, /\/img\/pages/g],
-    dontRenameFile: [/\.(html|txt)$/g, /^\/(atom|sitemap)\.xml$/g],
-    dontUpdateReference: [/\.(html|txt)$/g, /\/(atom|sitemap)\.xml$/g]
+    dontGlobal: [
+      /^\/\./g,  // dot-files
+      /^\/favicon\.ico$/g,  // favicon
+      /\/img\/pages/g,  // images for social sharing and rich snippets
+      /^\/BingSiteAuth\.xml$/g  // Bing Webmaster Tools verification file
+    ],
+    dontRenameFile: [
+      /\.(html|txt)$/g,
+      /^\/(atom|sitemap)\.xml$/g
+    ],
+    dontUpdateReference: [
+      /\.(html|txt)$/g,
+      /\/(atom|sitemap)\.xml$/g
+    ]
   });
   return gulp.src('**/*', { cwd: buildDir, cwdbase: true, dot: true })
     .pipe(revisor.revision())

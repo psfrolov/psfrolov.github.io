@@ -1,7 +1,6 @@
 ---
 ---
 
-# www.robotstxt.org/
 
-# Sitemap location.
-Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+host: {{ site.url }}

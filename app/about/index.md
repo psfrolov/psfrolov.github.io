@@ -13,7 +13,7 @@ image:
 ---
 
 <div class="page-image">
-  <img src="{{ site.baseurl }}/img/pages/about.jpg" alt>
+  <img src="{{ site.baseurl }}/img/pages/about.jpg" alt="St. Andrew's Anglican Church, Moscow">
 </div>
 
 <article markdown="block">

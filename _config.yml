@@ -49,7 +49,9 @@ tag_page_dir: tag
 url: https://arkfps.github.io
 name: &sitename The Hermetic Vault
 title: *sitename
-description: A miscellanea of software development techniques.
+description: >-
+  A miscellanea of software development techniques: C++, generic programming,
+  design patterns, CI, and more.
 tagline: typedef typename template
 keywords: [C++, Programming, Software, Development]
 topic: Software Development

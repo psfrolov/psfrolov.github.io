@@ -1,8 +1,8 @@
 {
   "private": true,
   "devDependencies": {
-    "autoprefixer": "^6.2.3",
-    "browser-sync": "^2.11.0",
+    "autoprefixer": "^6.3.1",
+    "browser-sync": "^2.11.1",
     "css-mqpacker": "^4.0.0",
     "css-property-sorter": "^1.1.0",
     "del": "^2.0.2",
@@ -12,7 +12,7 @@
     "gulp-cached": "^1.1.0",
     "gulp-ext-replace": "^0.2.0",
     "gulp-gh-pages": "^0.5.4",
-    "gulp-htmlhint": "^0.3.0",
+    "gulp-htmlhint": "^0.3.1",
     "gulp-htmlmin": "^1.3.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-imgsizefix": "^1.3.1",
@@ -34,6 +34,6 @@
     "postcss-import": "^7.1.3",
     "postcss-reporter": "^1.3.0",
     "run-sequence": "^1.1.5",
-    "stylelint": "^3.2.1"
+    "stylelint": "^3.2.3"
   }
 }

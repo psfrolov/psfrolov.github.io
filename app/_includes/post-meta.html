@@ -33,7 +33,7 @@
     <ul class="inline">
       {% for tag in include.context.tags %}
       <li>
-        <a class="main-muted" href="{{ tag | tag_url }}" rel="tag">{{ tag | escape }}</a>{% if forloop.last %}.{% else %},{% endif %}
+        <a class="main-muted" href="{{ tag | tag_url | remove:'.html' }}" rel="tag">{{ tag }}</a>{% if forloop.last %}.{% else %},{% endif %}
       </li>
       {% endfor %}
     </ul>

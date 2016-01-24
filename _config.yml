@@ -14,7 +14,7 @@ gems:
   - jekyll-feed
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
-permalink: pretty
+permalink: /:categories/:title
 
 # Default page layouts.
 defaults:
@@ -28,6 +28,7 @@ defaults:
       type: posts
     values:
       layout: post
+      category: software-development
       comments: true
       schema: http://schema.org/BlogPosting
       og_prefix: 'article: http://ogp.me/ns/article#'

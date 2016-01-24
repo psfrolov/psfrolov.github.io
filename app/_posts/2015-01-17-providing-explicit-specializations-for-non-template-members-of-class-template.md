@@ -12,7 +12,6 @@ image:
   source:
     name: Jenna A, 6th grade (Thomas Middle School, Arlington Heights)
     url: http://www.econed-il.org/icee/econposter_11.shtml
-permalink: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template/
 ---
 
 C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>).

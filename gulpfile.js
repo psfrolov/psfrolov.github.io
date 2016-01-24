@@ -6,6 +6,7 @@ const accessibility = require('gulp-accessibility'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
       cached = require('gulp-cached'),
+      cleanUrls = require('clean-urls'),
       cssPropSort = require('css-property-sorter'),
       del = require('del'),
       doiuse = require('doiuse'),
@@ -194,12 +195,15 @@ gulp.task('_browsersync', () => {
   bs.init({
     server: {
       baseDir: serveDir,
-      middleware: (req, res, next) => {
-        // Correctly serve SVGZ assets.
-        if (url.parse(req.url).pathname.match(/\.svgz$/))
-          res.setHeader('Content-Encoding', 'gzip');
-        next();
-      }
+      middleware: [
+        cleanUrls(true, { root: serveDir }),
+        (req, res, next) => {
+          // Correctly serve SVGZ assets.
+          if (url.parse(req.url).pathname.match(/\.svgz$/))
+            res.setHeader('Content-Encoding', 'gzip');
+          next();
+        }
+      ]
     },
     https: {
       key: path.join(certsDir, 'srv-auth.key'),

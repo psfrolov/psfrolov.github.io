@@ -87,7 +87,7 @@ layout: default
       /* jshint ignore:start */
       var disqus_config = function () {
         this.page.url = "{{ site.url }}{{ site.baseurl }}{{ page.url }}";
-        this.page.identifier = "{{ page.id }}";
+        this.page.identifier = "{{ page.title | slugify }}";
         this.page.title = "{{ page.title }}";
       };
       (function() {

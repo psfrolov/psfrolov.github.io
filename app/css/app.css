@@ -141,7 +141,7 @@ body {
 .sidebar a, .sidebar h1, .sidebar h2, .sidebar p, .sidebar ul {
   color: {{ page.colours.white }};
   font-weight: normal;
-  text-shadow: {{ page.colours.black }} .1em .1em .2em;
+  text-shadow: {{ page.colours.black }} .1em .1em .1em;
 }
 
 .sidebar h1 {

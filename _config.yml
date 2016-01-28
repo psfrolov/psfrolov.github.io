@@ -47,7 +47,7 @@ tag_page_layout: tag-page
 tag_page_dir: tag
 
 # Custom variables.
-url: https://arkfps.github.io
+url: https://thehermeticvault.com
 name: &sitename The Hermetic Vault
 title: *sitename
 description: >-
@@ -57,7 +57,7 @@ tagline: typedef typename template
 keywords: [C++, Programming, Software, Development]
 topic: Software Development
 author: Pavel Frolov
-email: eW91cmVtYWlsQHlvdXJkb21haW4uY29t
+email: ZW1haWxAdGhlaGVybWV0aWN2YXVsdC5jb20=
 theme_colour: '#ac4142'
 
 disqus_shortname: arkfps

@@ -4,7 +4,7 @@ tags: [C++, Generic Programming, Windows API]
 description: >-
   This article shows how to build an RAII wrapper with the help of
   interesting static polymorphism technique based on explicit template
-  specialization.
+  specialisation.
 reading_time: 15
 image:
   url: /img/pages/overload-126.png
@@ -50,7 +50,7 @@ Also available [in Russian][url-russian-article].
 
 [url-overload]: http://accu.org/index.php/journals/c348/
 {: rel="external" }
-[url-previous-post]: {% post_url 2015-01-17-providing-explicit-specializations-for-non-template-members-of-class-template %}
+[url-previous-post]: {% post_url 2015-01-17-providing-explicit-specialisations-for-non-template-members-of-class-template %}
 [url-overload-article]: http://accu.org/index.php/journals/2086
 {: rel="external" }
 [url-raii]: http://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization

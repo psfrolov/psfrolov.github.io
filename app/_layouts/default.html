@@ -112,11 +112,7 @@
     <meta name="theme-color" content="{{ site.theme_colour }}">
 
     <!-- Page canonical URL. -->
-    {% if page.is_home %}
-    {% capture canonical_url %}{{ site.url }}{{ site.baseurl }}{% endcapture %}
-    {% else %}
     {% capture canonical_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-    {% endif %}
     <link rel="canonical" href="{{ canonical_url }}">
     <link itemprop="url mainEntityOfPage" href="{{ canonical_url }}">
     <meta property="og:url" content="{{ canonical_url }}">
@@ -233,8 +229,17 @@
       </nav>
       <hr>
       <footer>
+        <ul class="inline">
+          <li>
+            <a href="{{ site.baseurl }}/terms-and-conditions" title="Terms and Conditions"><small>Terms</small></a>
+            <small>‡</small>
+          </li>
+          <li>
+            <a href="{{ site.baseurl }}/privacy-policy" title="Privacy Policy"><small >Privacy</small></a>
+          </li>
+        </ul>
         <p>
-          <small class="white-muted">© {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small>
+          <small>© {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small>
         </p>
       </footer>
     </aside>

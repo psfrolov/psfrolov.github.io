@@ -2,9 +2,10 @@
   display: inline-block;
   width: 1em;
   height: 1em;
+  margin-bottom: .15em;
+  vertical-align: text-bottom;
   color: inherit;
   fill: currentColor;
-  vertical-align: text-top;
 }
 
 .icon-balance-scale {
@@ -27,7 +28,7 @@
   font-size: 2rem;
 }
 .icon-github {
-  margin: 0 .3rem;
+  margin: 0 .3rem .3rem;
 }
 
 .icon-facebook-square,

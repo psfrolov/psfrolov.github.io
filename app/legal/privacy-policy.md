@@ -2,7 +2,7 @@
 layout: default
 title: Privacy Policy
 description: >-
-  A privacy policy that discloses the ways a website gathers, uses, discloses,
+  A privacy policy that describes the ways a website gathers, uses, discloses,
   and manages a user's data.
 robots: noindex  
 ---

@@ -17,7 +17,7 @@
     {% if page.is_home or page.layout == 'post' %}
     {% capture title %}{{ page.title | liquify | escape }}{% endcapture %}
     {% else %}
-    {% capture title %}{{ page.title | liquify | escape }}—{{ site.title | escape }}{% endcapture %}
+    {% capture title %}{{ page.title | liquify | escape }} — {{ site.title | escape }}{% endcapture %}
     {% endif %}
     <title>{{ title }}</title>
     <meta itemprop="name" content="{{ title }}">
@@ -231,15 +231,15 @@
       <footer>
         <ul class="inline">
           <li>
-            <a href="{{ site.baseurl }}/terms-and-conditions" title="Terms and Conditions"><small>Terms</small></a>
+            <a href="{{ site.baseurl }}/legal/privacy-policy" title="Privacy Policy"><small>Privacy</small></a>
             <small>‡</small>
           </li>
           <li>
-            <a href="{{ site.baseurl }}/privacy-policy" title="Privacy Policy"><small >Privacy</small></a>
+            <a href="{{ site.baseurl }}/legal/disclaimer"><small>Disclaimer</small></a>
           </li>
         </ul>
         <p>
-          <small>© {{ site.time | date: '%Y' }} {{ site.url | remove:'https://' }}</small>
+          <small>© {{ site.time | date: '%Y' }} {{ site.fqdn }}</small>
         </p>
       </footer>
     </aside>

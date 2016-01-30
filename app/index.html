@@ -1,6 +1,6 @@
 ---
 layout: default
-schema: http://schema.org/Blog
+schema: https://schema.org/Blog
 title: '{{ site.title }}'
 description: '{{ site.description }}'
 keywords: '{{ site.keywords | join:"," }}'
@@ -14,7 +14,7 @@ is_home: true
 <article>
   <h1>Articles</h1>
   {% for post in paginator.posts %}
-  <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     {% include post-preview.html %}
   </article>
   {% endfor %}
@@ -23,7 +23,7 @@ is_home: true
   <nav class="pagination">
     <h2 class="visuallyhidden">Pagination</h2>
     {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
+    <a rel="next" class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
       <svg class="icon icon-chevron-left" role="img">
         <title>Arrow Left</title>
         <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-chevron-left"/>
@@ -41,7 +41,7 @@ is_home: true
     {% endif %}
     {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-    <a class="pagination-item newer" href="{{ site.baseurl }}/">
+    <a rel="prev" class="pagination-item newer" href="{{ site.baseurl }}/">
       Newer
       <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
@@ -49,7 +49,7 @@ is_home: true
       </svg>
     </a>
     {% else %}
-    <a class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
+    <a rel="prev" class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
       Newer
       <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
@@ -72,17 +72,23 @@ is_home: true
 <!-- https://developers.google.com/structured-data/site-name -->
 <script type="application/ld+json">
   {
-    "@context" : "http://schema.org",
+    "@context" : "https://schema.org",
     "@type" : "WebSite",
     "name" : {{ site.name | jsonify }},
     "url" : "{{ site.url }}"
   }
 </script>
+{% capture logo_url %}{{ site.baseurl }}/img/pages/logo2.png{% endcapture %}
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Organization",
     "url": "{{ site.url }}",
-    "logo": "{{ site.baseurl }}/img/pages/logo2.png"
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ logo_url }}",
+      "width": {{ logo_url | image_width }},
+      "height": {{ logo_url | image_height }}
+    }
   }
 </script>

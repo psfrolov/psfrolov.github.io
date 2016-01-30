@@ -1,6 +1,6 @@
 ---
 layout: default
-schema: http://schema.org/ContactPage
+schema: https://schema.org/ContactPage
 title: Contact
 description: '{{ site.title }} contact information.'
 robots: noindex
@@ -57,8 +57,10 @@ robots: noindex
                   required></textarea>
         <input type="text"
                name="_gotcha"
+               maxlength="20"
                style="display:none"
-               maxlength="20">
+               aria-hidden="true"
+               title="Honeypot">
       </div>
     </div>
     <div>

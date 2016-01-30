@@ -1,9 +1,13 @@
 ---
 title: Making Boost.Signals2 More OOP‐Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
-description: >-
-  This article suggests an observable mixin which makes Boost.Signals(2) more
-  easy to use in C++ classes.
+description: &description >-
+  The observer design pattern is by far the most popular and widely known among
+  behavioural design patterns. Unfortunately, unlike other mainstream languages
+  out there, the C++ standard library doesn't provide out of the box observer
+  implementation. This article suggests an observable mixin based on
+  Boost.Signals2 which makes it easy to build an observer.
+excerpt: *description  
 image:
   url: /img/pages/observer-design-pattern.png
   source:

@@ -15,7 +15,7 @@ colours:
   red: '#cb4437'
   blue: '#3372df'
 
-  green_muted: '#56efa5'
+  green_muted: '#98FB98'
   yellow_muted: '#ffd45b'
 ---
 
@@ -25,7 +25,6 @@ colours:
 @import '{{ site.baseurl }}/css/syntax.css';
 @import '{{ site.baseurl }}/css/fonts.css';
 @import '{{ site.baseurl }}/css/icons.css';
-@import '{{ site.baseurl }}/css/print.css';
 
 /* ------------------------------------------------------------------------- */
 
@@ -157,11 +156,10 @@ body {
 }
 
 .sidebar hr {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to right,
+                                    rgba(255, 255, 255, 0),
+                                    rgba(255, 255, 255, .75),
+                                    rgba(255, 255, 255, 0));
 }
 
 .sidebar small {
@@ -205,9 +203,9 @@ a.pagination-item:hover, a.pagination-item:focus {
   transition: background-color 500ms cubic-bezier(.23, 1, .32, 1);
 }
 
-a.pagination-item:active {
-
-}
+/*
+a.pagination-item:active {}
+*/
 
 @media (min-width: 30em) {
   .pagination {
@@ -300,9 +298,9 @@ button:focus {
   text-decoration: underline;
 }
 
-button:active {
-
-}
+/*
+button:active {}
+*/
 
 input:valid, textarea:valid {
   color: {{ page.colours.black }};
@@ -383,31 +381,31 @@ figure figcaption {
 /* Icons. */
 .nav-icon {
   transition: color 500ms cubic-bezier(.23, 1, .32, 1);
+  user-select: none;
 }
 
 .nav-icon:hover {
-  user-select: none;
   color: {{ site.theme_colour }};
   transition: color 500ms cubic-bezier(.23, 1, .32, 1);
 }
 
-.nav-icon:active {
-
-}
+/*
+.nav-icon:active {}
+*/
 
 .content-icon {
   transition: color 500ms cubic-bezier(.23, 1, .32, 1);
+  user-select: none;
 }
 
 .content-icon:hover {
-  user-select: none;
   color: {{ page.colours.black }};
   transition: color 500ms cubic-bezier(.23, 1, .32, 1);
 }
 
-.content-icon:active {
-
-}
+/*
+.content-icon:active {}
+*/
 
 /* ------------------------------------------------------------------------- */
 
@@ -465,19 +463,19 @@ hr {
   margin: 1em 0;
   border: 0;
   height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(64, 64, 64, 0),
-    rgba(64, 64, 64, 0.75),
-    rgba(64, 64, 64, 0));
+  background-image: linear-gradient(to right,
+                                    rgba(64, 64, 64, 0),
+                                    rgba(64, 64, 64, .75),
+                                    rgba(64, 64, 64, 0));
 }
 
 /* ------------------------------------------------------------------------- */
 
 /* Focus. */
-a:focus, input:focus, textarea:focus, button:focus {
 
-}
+/*
+a:focus, input:focus, textarea:focus, button:focus {}
+*/
 
 /* ------------------------------------------------------------------------- */
 
@@ -503,9 +501,9 @@ a:hover, a:focus {
   text-decoration: underline;
 }
 
-a:active {
-
-}
+/*
+a:active {}
+*/
 
 a.link-icon:hover, a.link-icon:focus {
   text-decoration: none;
@@ -647,11 +645,11 @@ blockquote, q {
   quotes: '“' '”' '‘' '’';
 }
 
-blockquote:before, q:before {
+blockquote::before, q::before {
   content: open-quote;
 }
 
-blockquote:after, q:after {
+blockquote::after, q::after {
   content: close-quote;
 }
 
@@ -743,20 +741,20 @@ ins::before {
   font-weight: bold;
 }
 
-del {
+/*
+del {}
+*/
 
-}
-
-s {
-
-}
+/*
+s {}
+*/
 
 .main-muted {
-  color:  {{ page.colours.main_muted }};
+  color: {{ page.colours.main_muted }};
 }
 
 .grey {
-  color:  {{ page.colours.grey }};
+  color: {{ page.colours.grey }};
 }
 
 /* ------------------------------------------------------------------------- */
@@ -774,3 +772,84 @@ s {
 }
 
 /* ------------------------------------------------------------------------- */
+
+/* Printing. */
+@media print {
+  *, *::before, *::after, *::first-letter {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster:
+    http://www.sanbeiji.com/archives/953 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a, a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 100%;
+    vertical-align: initial;
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+    font-size: 100%;
+    vertical-align: initial;
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+
+  a[href^='#']::after, a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre, blockquote, ins, del, s, strong > em {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /*
+   * Printing Tables:
+   * http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* ----------------------------------------------------------------------- */
+
+  address ul, address ul li {
+    display: block !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+  }
+
+  footer, nav, aside, button, .page-image, .reversefootnote {
+    display: none !important;
+  }
+}

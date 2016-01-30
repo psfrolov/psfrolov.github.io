@@ -42,16 +42,16 @@
 
     <!-- Page author. -->
     <meta name="author" content="{{ site.author | escape }}">
-    {% if page.schema != 'http://schema.org/BlogPosting' %}
+    {% if page.schema != 'https://schema.org/BlogPosting' %}
     <meta itemprop="author" content="{{ site.author | escape }}">
     {% endif %}
-    <link type="text/plain" href="{{ site.baseurl }}/humans.txt" rel="author">
+    <link rel="author" type="text/plain" href="{{ site.baseurl }}/humans.txt">
 
     <!-- Page image. -->
     {% if page.image %}
     {% capture page_image %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
     <!-- For posts we define "ImageObject" instead of simple "Image". -->
-    {% if page.schema != 'http://schema.org/BlogPosting' %}
+    {% if page.schema != 'https://schema.org/BlogPosting' %}
     <link itemprop="image" href="{{ page_image }}">
     {% endif %}
     <meta property="og:image" content="{{ page_image }}">
@@ -143,14 +143,14 @@
     {% endif %}
 
     <!-- Styles. -->
-    <link href="{{ site.baseurl }}/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/app.css">
   </head>
 
   <body>
     <aside class="sidebar container">
       <header>
         <h1>
-          <a href="{{ site.baseurl }}/">
+          <a rel="home" href="{{ site.baseurl }}/">
             <svg class="icon icon-balance-scale" role="img">
               <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-balance-scale"/>
             </svg><br>
@@ -182,7 +182,7 @@
         <ul class="inline">
           <li>
             {% assign title = 'Home' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}">
+            <a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}">
               <svg class="icon icon-home" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-home"/>
@@ -200,7 +200,7 @@
           </li>
           <li>
             {% assign title = 'News Feed' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}">
+            <a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}">
               <svg class="icon icon-feed" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-feed"/>
@@ -218,7 +218,7 @@
           </li>
           <li>
             {% assign title = 'About' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/about" rel="author" title="{{ title }}">
+            <a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about" title="{{ title }}">
               <svg class="icon icon-info" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-info"/>

@@ -1,10 +1,11 @@
 ---
 title: Resource Management with Explicit Template Specialisations
 tags: [C++, Generic Programming, Windows API]
-description: >-
-  This article shows how to build an RAII wrapper with the help of
-  interesting static polymorphism technique based on explicit template
-  specialisation.
+description: &description >-
+  Here’s my article from the April 2015 issue of Overload journal. It shows how
+  to build a convinient RAII wrapper with the help of interesting static
+  polymorphism technique based on explicit template specialisation.
+excerpt: *description
 reading_time: 15
 image:
   url: /img/pages/overload-126.png
@@ -53,7 +54,7 @@ Also available [in Russian][url-russian-article].
 [url-previous-post]: {% post_url 2015-01-17-providing-explicit-specialisations-for-non-template-members-of-class-template %}
 [url-overload-article]: http://accu.org/index.php/journals/2086
 {: rel="external" }
-[url-raii]: http://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization
+[url-raii]: https://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization
 {: rel="external" }
 [url-static-polymorphism]: https://en.wikipedia.org/wiki/Polymorphism_(computer_science)#Static_and_dynamic_polymorphism
 {: rel="external" }
@@ -61,5 +62,5 @@ Also available [in Russian][url-russian-article].
 {: rel="external" }
 [url-smart-pointer]: https://en.wikipedia.org/wiki/Smart_pointer
 {: rel="external" }
-[url-russian-article]: http://habrahabr.ru/company/pt/blog/255487/
+[url-russian-article]: https://habrahabr.ru/company/pt/blog/255487/
 {: rel="external" hreflang="ru-RU" }

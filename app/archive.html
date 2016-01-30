@@ -1,6 +1,6 @@
 ---
 layout: default
-schema: http://schema.org/CollectionPage
+schema: https://schema.org/CollectionPage
 title: Archive
 description: 'An archive of all the articles.'
 robots: noindex
@@ -9,7 +9,7 @@ robots: noindex
 <article>
   <h1>{{ page.title | liquify | escape }}</h1>
   {% for post in site.posts %}
-  <article itemscope itemtype="http://schema.org/BlogPosting">
+  <article itemscope itemtype="https://schema.org/BlogPosting">
     {% include post-preview.html %}
   </article>
   {% endfor %}

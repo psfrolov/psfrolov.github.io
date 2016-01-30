@@ -2,11 +2,12 @@
 title: >-
   Providing Explicit Specialisations for Non‐Template Members of Class Template
 tags: [C++, Generic Programming]
-description: >-
+description: &description >-
   It is a well-known fact that you can provide explicit specialisations for
   function templates and class templates. But it was a total surprise to me
   that you can define explicit specialisations for non‐template members of
   class template without specialising the class template itself!
+excerpt: *description  
 image:
   url: /img/pages/specialisation.jpg
   source:
@@ -186,7 +187,7 @@ fact, I've found only a couple of reference manuals mentioning it:
 
 [url-cppreference]: http://en.cppreference.com/w/cpp/language/template_specialization
 {: rel="external" }
-[url-zos-xl-cpp-reference]: http://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
+[url-zos-xl-cpp-reference]: https://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
 {: rel="external" }
 [url-type-safe-handles]: https://isocpp.org/blog/2015/01/type-safe-handles-in-c-emil-ernerfeldt
 {: rel="external" }

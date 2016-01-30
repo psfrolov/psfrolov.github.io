@@ -1,13 +1,13 @@
 ---
 layout: default
-schema: http://schema.org/AboutPage
+schema: https://schema.org/AboutPage
 og_prefix: 'fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#'
 og_type: profile
 title: About
 description: >-
   The intention of this site is to share ideas, tips, idioms, patterns,
   gotchas, issues, etc., that arises over the course of my professional
-  activity, many of which I hope would be useful for other developers.
+  activity, many of which I hope would be useful for software developers.
 image:
   url: /img/pages/profile.jpg
 ---
@@ -54,7 +54,7 @@ links below.
 <!-- https://developers.google.com/structured-data/customize/social-profiles -->
 <script type="application/ld+json">
   {
-    "@context" : "http://schema.org",
+    "@context" : "https://schema.org",
     "@type" : "Person",
     "name" : "Pavel Frolov",
     "url" : "{{ site.url }}{{ site.base_url }}{{ page.url }}",
@@ -75,7 +75,7 @@ links below.
 <!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {

@@ -1,6 +1,6 @@
 ---
 layout: default
-schema: http://schema.org/CollectionPage
+schema: https://schema.org/CollectionPage
 title: 'Articles tagged "{{ page.tag }}"'
 description: 'A collection of all articles with tag "{{ page.tag }}".'
 keywords: '{{ page.tag }}'
@@ -11,7 +11,7 @@ robots: noindex
 <article>
   <h1>{{ page.title | liquify | escape }}</h1>
   {% for post in page.posts %}
-    <article itemscope itemtype="http://schema.org/BlogPosting">
+    <article itemscope itemtype="https://schema.org/BlogPosting">
       {% include post-preview.html %}
     </article>
   {% endfor %}
@@ -20,7 +20,7 @@ robots: noindex
 <!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       {

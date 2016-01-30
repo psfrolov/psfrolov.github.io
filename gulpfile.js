@@ -160,14 +160,15 @@ gulp.task('copy', ['jekyll-build'], () =>
     .pipe(size({ title: 'copy' }))
 );
 
-// Revision assets (cache busting).
+// Revise assets (cache busting).
 gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () => {
   const revisor = new RevAll({
     dontGlobal: [
       /^\/\./g,  // dot-files
       /^\/favicon\.ico$/g,  // favicon
       /\/img\/pages/g,  // images for social sharing and rich snippets
-      /^\/BingSiteAuth\.xml$/g  // Bing Webmaster Tools verification file
+      /^\/BingSiteAuth\.xml$/g,  // Bing Webmaster Tools verification file
+      /^\/CNAME$/g  // GitHub Pages custom domain support
     ],
     dontRenameFile: [
       /\.(html|txt)$/g,
@@ -213,7 +214,7 @@ gulp.task('_browsersync', () => {
     browser: ['chrome', 'opera', 'firefox', 'iexplore'],
     reloadOnRestart: true
   });
-  gulp.watch(['*/**'], { cwd: srcDir }, ['build', bs.reload]);
+  gulp.watch(['**/*'], { cwd: srcDir }, ['build', bs.reload]);
 });
 gulp.task('serve', cb => runSeq('build', '_browsersync', cb));
 gulp.task('serve-clean', cb => runSeq('rebuild', '_browsersync', cb));
@@ -222,39 +223,36 @@ gulp.task('serve-clean', cb => runSeq('rebuild', '_browsersync', cb));
 gulp.task('jekyll-hyde', shell.task(
   'bundle exec jekyll hyde', { env: { JEKYLL_ENV: options.env } }
 ));
-gulp.task('jsonlint', () =>
+gulp.task('jsonlint', ['jekyll-build'], () =>
   gulp.src(jsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(cached('jsonlint'))
     .pipe(jsonlint())
     .pipe(jsonlint.reporter())
     .pipe(jsonlint.failAfterError())
 );
-gulp.task('stylelint', () =>
+gulp.task('stylelint', ['jekyll-build'], () =>
   gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(cached('stylelint'))
     .pipe(postcss([
       stylelint,
-      doiuse({
-        browsers: ['last 2 versions'],
-        ignore: ['css-resize', 'font-feature', 'rem', 'word-break']
-      }),
+      doiuse({ browsers: ['last 2 versions'] }),
       postcssReporter({ clearMessages: true, throwError: true })
     ]))
 );
-gulp.task('htmlhint', () =>
+gulp.task('htmlhint', ['jekyll-build'], () =>
   gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(cached('htmlhint'))
     .pipe(htmlhint({ htmlhintrc: path.join(__dirname, '.htmlhintrc') }))
     .pipe(htmlhint.reporter())
     .pipe(htmlhint.failReporter({ suppress: true }))
 );
-gulp.task('w3c', () =>
+gulp.task('w3c', ['build'], () =>
   gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(cached('w3c'))
     .pipe(w3cjs())
     .pipe(w3cjs.reporter())
 );
-gulp.task('a11y', () =>
+gulp.task('a11y', ['build'], () =>
   gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(accessibility({ accessibilityLevel: 'WCAG2AAA' }))
 );
@@ -276,7 +274,7 @@ gulp.task('_publish', () => {
       push: false
     }));
 });
-gulp.task('deploy', cb => runSeq('clean', 'build', 'lint', '_publish', cb));
+gulp.task('deploy', cb => runSeq('clean', 'build', '_publish', cb));
 
 // Default task.
 gulp.task('default', ['serve']);

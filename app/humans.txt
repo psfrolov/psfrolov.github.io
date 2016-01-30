@@ -49,4 +49,3 @@
   Formspree: https://formspree.io
   NameSilo: https://www.namesilo.com
   CloudFlare: https://www.cloudflare.com
-  

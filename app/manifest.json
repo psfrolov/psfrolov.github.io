@@ -3,7 +3,7 @@
 
 
 {
-	"name": "{{ site.title }}",
+	"name": {{ site.title | jsonify }},
 	"icons": [
 		{
 			"src": "{{ site.baseurl }}\/android-chrome-36x36.png",

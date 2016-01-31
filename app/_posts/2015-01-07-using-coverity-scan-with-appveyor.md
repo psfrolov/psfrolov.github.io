@@ -22,7 +22,7 @@ Moreover, it is completely free for open source projects.
 Java. Coverity Scan is used by some major Open Source projects such as Linux,
 Python, PostgreSQL, Apache Software Foundation projects.
 
-{{ page.excerpt }}
+{{ page.excerpt | escape }}
 
 ***The rest of the article assumes that you have a GitHub repository registered
 with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan

@@ -8,7 +8,7 @@ robots: noindex
 
 
 <article>
-  <h1>{{ page.title | liquify | escape }}</h1>
+  <h1>{{ page.title | escape }}</h1>
   <p class="drop-letter">
     Want to get in touch with me? Fill out the form below to send me a message
     and I will try to get back to you as soon as possible.
@@ -43,7 +43,7 @@ robots: noindex
                required>
         <input type="hidden"
                name="_subject"
-               value="{{ site.name }} Contact">
+               value="{{ site.name | escape }}">
       </div>
     </div>
     <div>

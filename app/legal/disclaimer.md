@@ -15,7 +15,7 @@ robots: noindex
 
 <article markdown="block">
 
-# {{ page.title | liquify | escape }}
+# {{ page.title | escape }}
 
 All the information on this website is published in good faith and for general
 information purpose only. I do not make any warranties about the completeness,

@@ -7,10 +7,10 @@ kramdown:
   input: GFM
   hard_wrap: false
 gems:
+  - liquid_pluralize
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging
-  - liquid_pluralize
   - jekyll-feed
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap

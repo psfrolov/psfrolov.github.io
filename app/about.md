@@ -18,7 +18,7 @@ image:
 
 <article markdown="block">
 
-# {{ page.title | liquify | escape }}
+# {{ page.title | escape }}
 
 Welcome to my place, stranger! The name's Paul. Once a SCADA/DCS applications
 builder involved in space ground‐based infrastructure projects (namely, Angara
@@ -26,7 +26,7 @@ Space Rocket Complex and Land Launch). Now a software developer in
 information security field.
 {: .drop-letter }
 
-{{ page.description }} My primary programming language (as well as an area of
+{{ page.description | escape }} My primary programming language (as well as an area of
 professional interests) is C++, so expect the majority of articles to be C++
 related. Speaking about C++, I'm particularly enthusiastic about generic
 programming paradigm. But fear not thou, my friend <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>,

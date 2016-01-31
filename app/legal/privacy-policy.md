@@ -9,7 +9,7 @@ robots: noindex
 
 <article markdown="block">
 
-# {{ page.title | liquify | escape }}
+# {{ page.title | escape }}
 
 This privacy policy document describes in detail the types of personal
 information collected and recorded by this

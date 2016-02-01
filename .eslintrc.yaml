@@ -139,7 +139,7 @@ rules:
   indent: [2, 2, { VariableDeclarator: { var: 2, let: 2, const: 3 } }]
   jsx-quotes: [0]
   key-spacing: [2]
-  linebreak-style: [2]
+  linebreak-style: [0]
   lines-around-comment: [2]
   max-depth: [2]
   max-len: [2, 79, 4, { ignoreUrls: true }]

@@ -278,8 +278,7 @@ gulp.task('_publish', () => {
     .pipe(ghPages({
       cacheDir: publishDir,
       remoteUrl: 'https://github.com/arkfps/arkfps.github.io.git',
-      branch: 'master',
-      push: false
+      branch: 'master'
     }));
 });
 gulp.task('deploy', cb => runSeq('clean', 'build', '_publish', cb));

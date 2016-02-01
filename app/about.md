@@ -12,8 +12,11 @@ image:
   url: /img/pages/profile.jpg
 ---
 
+
 <div class="page-image">
-  <img src="{{ site.baseurl }}/img/pages/about.jpg" alt="St. Andrew's Anglican Church, Moscow">
+  <img src="{{ site.baseurl }}/img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg"
+       alt="The Alchemist by Pieter Bruegel the Elder">
+  <small>The Alchemist by Pieter Bruegel the Elder</small>
 </div>
 
 <article markdown="block">

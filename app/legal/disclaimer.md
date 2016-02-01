@@ -1,21 +1,15 @@
 ---
-layout: default
 title: Disclaimer
 description: >-
   A website disclaimer that states the limitations of liability for the use of
   website and the information it contains.
 image:
-  url: /img/pages/disclaimer.jpg
+  url: /img/pages/saint-jerome-writing-by-caravaggio.jpg
+  name: &name Saint Jerome Writing by Caravaggio, Galleria Borghese, Rome
+  alt: *name
 robots: noindex  
 ---
 
-<div class="page-image">
-  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="Kozhin Mansion, Moscow">
-</div>
-
-<article markdown="block">
-
-# {{ page.title | escape }}
 
 All the information on this website is published in good faith and for general
 information purpose only. I do not make any warranties about the completeness,
@@ -43,5 +37,3 @@ its terms.**
 ---
 
 <small>*Last updated: {{ page.path | modified_time | date_to_long_string }}*.</small>
-
-</article>

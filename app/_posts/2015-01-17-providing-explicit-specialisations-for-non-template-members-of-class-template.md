@@ -9,10 +9,12 @@ description: &description >-
   class template without specialising the class template itself!
 excerpt: *description  
 image:
-  url: /img/pages/specialisation.jpg
+  url: /img/pages/goethe-schiller-monument.jpg
+  name: &name Goethe–Schiller Monument, Syracuse, New York State
+  alt: *name
   source:
-    name: Jenna A, 6th grade (Thomas Middle School, Arlington Heights)
-    url: http://www.econed-il.org/icee/econposter_11.shtml
+    url: https://en.wikipedia.org/wiki/File:Goethe-Schiller_Monument_-_Syracuse.jpg
+    name: Easchiff
 ---
 
 C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>).

@@ -21,6 +21,7 @@ defaults:
   - scope:
       type: pages
     values:
+      layout: page
       schema: https://schema.org/WebPage
       og_prefix: 'website: http://ogp.me/ns/website#'
       og_type: website

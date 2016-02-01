@@ -8,7 +8,12 @@ description: &description >-
   AppVeyor build process.
 excerpt: *description
 image:
-  url: /img/pages/coverity-scan-and-appveyor.png
+  url: /img/pages/codex-hammurabi.jpg
+  name: &name Codex Hammurabi, Louvre, Paris
+  alt: *name
+  source:
+    url: https://www.flickr.com/photos/batigolix/3332923984/in/photostream/
+    name: Boris Doesborg
 ---
 
 A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar

@@ -1,15 +1,18 @@
 ---
-layout: default
 title: Privacy Policy
 description: >-
   A privacy policy that describes the ways a website gathers, uses, discloses,
   and manages a user's data.
+image:
+  url: /img/pages/the-thinker-in-the-gates-of-hell-by-auguste-rodin.jpg
+  name: &name The Thinker in The Gates of Hell by Auguste Rodin, Musée Rodin, Paris
+  alt: *name
+  source:
+    url: https://commons.wikimedia.org/wiki/File:Le_penseur_de_la_Porte_de_lEnfer_(musée_Rodin)_(4528252054).jpg
+    name: Jean-Pierre Dalbéra
 robots: noindex  
 ---
 
-<article markdown="block">
-
-# {{ page.title | escape }}
 
 This privacy policy document describes in detail the types of personal
 information collected and recorded by this
@@ -55,8 +58,6 @@ to its terms.**
 ---
 
 <small>*Last updated: {{ page.path | modified_time | date_to_long_string }}*.</small>
-
-</article>
 
 *[IP]: Internet Protocol
 *[ISP]: Internet Service Provider

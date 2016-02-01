@@ -74,6 +74,14 @@ gulp.task('jekyll-build', shell.task(
   { env: { JEKYLL_ENV: options.env } }
 ));
 
+// Jekyll serve.
+gulp.task('jekyll-serve', shell.task(
+  `bundle exec jekyll serve -d ${jekyllBuildDir} -w -o \
+    --ssl-cert ${path.join(certsDir, 'srv-auth.crt')} \
+    --ssl-key ${path.join(certsDir, 'srv-auth.key')}`,
+  { env: { JEKYLL_ENV: options.env } }
+));
+
 // Process XML and JSON.
 gulp.task('xml&json', ['jekyll-build'], () =>
   gulp.src(jsonFiles.concat(xmlFiles),

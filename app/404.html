@@ -1,21 +1,31 @@
 ---
 layout: default
-title: Page Not Found (HTTP error 404)
-description: 'HTTP error 404: file or directory not found.'
+title: Page Not Found (HTTP 404 error)
+description: >-
+  The 404 or Not Found error message is an HTTP standard response code
+  indicating that the client was able to communicate with server, but the
+  server could not find the page requested.
 permalink: /404.html
 sitemap: false
+robots: noindex
 ---
 
 
 <article>
   <h1>{{ page.title | escape }}</h1>
-  <p>
+  <p class="drop-letter">
+    Sorry, the server could not find the page requested.
     <svg class="icon icon-frown-o" role="img">
       <title>Frown Face</title>
       <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-frown-o"/>
     </svg>
-    Sorry, I've misplaced that URL, or it's pointing to something that doesn't
-    exist. Please <a href="{{ site.baseurl }}/contact">contact me</a> if you
-    feel that you found a broken link.
+    Either I've misplaced that URL, or it's pointing to something that
+    doesn't exist. Please <a href="{{ site.baseurl }}/contact">contact me</a>
+    if you feel that you found a broken link.
   </p>
 </article>
+<div class="page-image">
+  <img src="{{ site.baseurl }}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg"
+       alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow">
+  <small>Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow</small>
+</div>

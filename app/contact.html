@@ -1,78 +1,77 @@
 ---
-layout: default
 schema: https://schema.org/ContactPage
 title: Contact
 description: '{{ site.title }} contact information.'
+image:
+  url: /img/pages/the-garden-of-earthly-delights-by-bosch.jpg
+  name: &name The Garden of Earthly Delights by Hieronymus Bosch, Museo del Prado, Madrid
+  alt: *name
 robots: noindex
 ---
 
 
-<article>
-  <h1>{{ page.title | escape }}</h1>
-  <p class="drop-letter">
-    Want to get in touch with me? Fill out the form below to send me a message
-    and I will try to get back to you as soon as possible.
-  </p>
-  <form name="contact" method="post">
-    <noscript>
-      <strong role="alert">
-        <em>Please enable JavaScript to use the contact form.</em>
-      </strong>
-    </noscript>
+<p class="drop-letter">
+  Want to get in touch with me? Fill out the form below to send me a message
+  and I will try to get back to you as soon as possible.
+</p>
+<form name="contact" method="post">
+  <noscript>
+    <strong role="alert">
+      <em>Please enable JavaScript to use the contact form.</em>
+    </strong>
+  </noscript>
+  <div>
+    <label for="contact-name">Name</label>
     <div>
-      <label for="contact-name">Name</label>
-      <div>
-        <input type="text"
-               id="contact-name"
-               name="name"
-               autocomplete="name"
-               placeholder="Derwydd Wensleydale"
-               maxlength="20"
-               required>
-      </div>
+      <input type="text"
+             id="contact-name"
+             name="name"
+             autocomplete="name"
+             placeholder="Derwydd Wensleydale"
+             maxlength="20"
+             required>
     </div>
+  </div>
+  <div>
+    <label for="contact-email">Email</label>
     <div>
-      <label for="contact-email">Email</label>
-      <div>
-        <input type="email"
-               id="contact-email"
-               name="email"
-               autocomplete="email"
-               placeholder="wiltshire@example.com"
-               maxlength="50"
-               required>
-        <input type="hidden"
-               name="_subject"
-               value="{{ site.name | escape }}">
-      </div>
+      <input type="email"
+             id="contact-email"
+             name="email"
+             autocomplete="email"
+             placeholder="wiltshire@example.com"
+             maxlength="50"
+             required>
+      <input type="hidden"
+             name="_subject"
+             value="{{ site.name | escape }}">
     </div>
+  </div>
+  <div>
+    <label for="contact-message">Message</label>
     <div>
-      <label for="contact-message">Message</label>
-      <div>
-        <textarea id="contact-message"
-                  name="message"
-                  placeholder="So, apart from casting runes, what other hobbies doth thou hast? Forbidden rituals, human sacrifices, torturing?"
-                  maxlength="5000"
-                  spellcheck="true"
-                  required></textarea>
-        <input type="text"
-               name="_gotcha"
-               maxlength="20"
-               style="display:none"
-               aria-hidden="true"
-               title="Honeypot">
-      </div>
+      <textarea id="contact-message"
+                name="message"
+                placeholder="So, apart from casting runes, what other hobbies doth thou hast? Forbidden rituals, human sacrifices, torturing?"
+                maxlength="5000"
+                spellcheck="true"
+                required></textarea>
+      <input type="text"
+             name="_gotcha"
+             maxlength="20"
+             style="display:none"
+             aria-hidden="true"
+             title="Honeypot">
     </div>
+  </div>
+  <div>
     <div>
-      <div>
-        <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
-      </div>
+      <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-paper-plane-o"/></svg></button>
     </div>
-  </form>
-  <hr>
-  {% include social-profiles.html %}
-</article>
-
+  </div>
+</form>
+<hr>
+{% include social-profiles.html %}
 
 <script>
   (function() {

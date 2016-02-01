@@ -9,10 +9,13 @@ description: &description >-
   Boost.Signals2 which makes it easy to build an observer.
 excerpt: *description  
 image:
-  url: /img/pages/observer-design-pattern.png
+  url: /img/pages/el-caracol-observatory.jpg
+  name: &name El Caracol observatory temple, Chichen Itza, Mexico
+  alt: *name
   source:
-    name: Tom McFarlin
-    url: http://tutsplus.com/authors/tom-mcfarlin
+    url: https://en.wikipedia.org/wiki/Wikipedia:Featured_picture_candidates/Chichen_Itza_Observatory_2_1.jpg
+    name: Fcb981
+
 ---
 
 The _observer_[^fn-observer] design pattern is by far the most popular and

@@ -9,6 +9,7 @@ excerpt: *description
 reading_time: 15
 image:
   url: /img/pages/overload-126.png
+  alt: 'Overload journal #126, April 2015'
 ---
 
 Here’s my article from the

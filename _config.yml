@@ -1,7 +1,7 @@
 # Build settings.
 source: app
 destination: dist/manual-jekyll-build
-include: [.nojekyll]  # disable Jekyll on GitHub Pages
+include: [.nojekyll, .gitattributes, .gitignore]
 kramdown:
   # GitHub Flavored Markdown.
   input: GFM

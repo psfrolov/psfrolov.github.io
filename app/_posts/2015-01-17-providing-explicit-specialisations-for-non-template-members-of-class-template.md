@@ -17,7 +17,7 @@ image:
     name: Easchiff
 ---
 
-C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>).
+C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-smile-o"/></svg>).
 {{ page.description | escape }}
 
 ## Technical Details

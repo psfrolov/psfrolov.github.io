@@ -32,7 +32,7 @@ information security field.
 {{ page.description | escape }} My primary programming language (as well as an area of
 professional interests) is C++, so expect the majority of articles to be C++
 related. Speaking about C++, I'm particularly enthusiastic about generic
-programming paradigm. But fear not thou, my friend <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svgz#icon-smile-o"/></svg>,
+programming paradigm. But fear not thou, my friend <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-smile-o"/></svg>,
 as I tend not to delve too deep into obscure realms of template metaprogramming
 and other experimental stuff, which—even though quite interesting on its own—is
 often appears to be of insufficient practical value for real world, day‐to‐day

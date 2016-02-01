@@ -10,7 +10,6 @@ const accessibility = require('gulp-accessibility'),
       cssPropSort = require('css-property-sorter'),
       del = require('del'),
       doiuse = require('doiuse'),
-      extReplace = require('gulp-ext-replace'),
       ghPages = require('gulp-gh-pages'),
       gulp = require('gulp'),
       gutil = require('gulp-util'),
@@ -36,8 +35,7 @@ const accessibility = require('gulp-accessibility'),
       uglify = require('gulp-uglify'),
       uncss = require('gulp-uncss'),
       url = require('url'),
-      w3cjs = require('gulp-w3cjs'),
-      zopfli = require('gulp-zopfli');
+      w3cjs = require('gulp-w3cjs');
 
 process.on('uncaughtException', er => { console.error(er); process.exit(1); });
 
@@ -121,7 +119,7 @@ gulp.task('js', ['jekyll-build'], () =>
 // Process SVG.
 gulp.task('svg', ['jekyll-build'], () =>
   gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer({ dest: buildDir, ext: '.svgz' }))
+    .pipe(newer({ dest: buildDir, ext: '.svg' }))
     .pipe(imagemin({
       multipass: true,
       svgoPlugins: [
@@ -130,8 +128,6 @@ gulp.task('svg', ['jekyll-build'], () =>
         { sortAttrs: true }
       ]
     }))
-    .pipe(zopfli({ append: false }))
-    .pipe(extReplace('.svgz'))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'svg' }))
 );

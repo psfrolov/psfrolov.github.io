@@ -1,0 +1,2 @@
+sitemap: https://thehermeticvault.com/sitemap.xml
+host: https://thehermeticvault.com

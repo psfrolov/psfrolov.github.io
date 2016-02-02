@@ -7,7 +7,7 @@ description: &description >-
   out there, the C++ standard library doesn't provide out of the box observer
   implementation. This article suggests an observable mixin based on
   Boost.Signals2 which makes it easy to build an observer.
-excerpt: *description  
+excerpt: *description
 image:
   url: /img/pages/el-caracol-observatory.jpg
   name: &name El Caracol observatory temple, Chichen Itza, Mexico
@@ -15,7 +15,7 @@ image:
   source:
     url: https://en.wikipedia.org/wiki/Wikipedia:Featured_picture_candidates/Chichen_Itza_Observatory_2_1.jpg
     name: Fcb981
-redirect_from: /2015/04/17/making-boost-signals2-more-oop-friendly/
+redirect_from: /2015/04/17/making-boost-signals2-more-oop-friendly.html
 ---
 
 The _observer_[^fn-observer] design pattern is by far the most popular and

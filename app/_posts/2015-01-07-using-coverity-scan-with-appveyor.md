@@ -14,7 +14,7 @@ image:
   source:
     url: https://www.flickr.com/photos/batigolix/3332923984/in/photostream/
     name: Boris Doesborg
-redirect_from: /2015/01/07/using-coverity-scan-with-appveyor/    
+redirect_from: /2015/01/07/using-coverity-scan-with-appveyor.html
 ---
 
 A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar

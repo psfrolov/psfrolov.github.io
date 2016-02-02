@@ -11,6 +11,7 @@ gems:
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging
+  - jekyll-redirect-from
   - jekyll-feed
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap

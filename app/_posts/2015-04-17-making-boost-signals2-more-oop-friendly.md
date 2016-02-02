@@ -15,7 +15,7 @@ image:
   source:
     url: https://en.wikipedia.org/wiki/Wikipedia:Featured_picture_candidates/Chichen_Itza_Observatory_2_1.jpg
     name: Fcb981
-
+redirect_from: /2015/04/17/making-boost-signals2-more-oop-friendly/
 ---
 
 The _observer_[^fn-observer] design pattern is by far the most popular and

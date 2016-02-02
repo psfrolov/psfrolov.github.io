@@ -10,6 +10,7 @@ reading_time: 15
 image:
   url: /img/pages/overload-126.png
   alt: 'Overload journal #126, April 2015'
+redirect_from: /2015/04/10/resource-management-with-explicit-template-specializations/
 ---
 
 Here’s my article from the

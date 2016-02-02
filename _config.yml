@@ -50,7 +50,8 @@ tag_page_dir: tag
 
 # Custom variables.
 fqdn: TheHermeticVault.com
-url: https://thehermeticvault.com
+url: &site_url https://thehermeticvault.com
+github: { url: *site_url }  # base URL for jekyll-redirect plugin
 name: &sitename The Hermetic Vault
 title: *sitename
 description: >-

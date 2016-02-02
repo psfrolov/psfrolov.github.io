@@ -3,6 +3,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "browser-sync": "^2.11.1",
+    "clean-urls": "^1.1.5",
     "css-mqpacker": "^4.0.0",
     "css-property-sorter": "^1.1.1",
     "del": "^2.2.0",

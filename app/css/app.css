@@ -356,9 +356,8 @@ img {
   border-radius: 5px;
 }
 
-figure, .page-image {
-  padding: .7rem 0;
-  margin: .3rem 0;
+figure {
+  margin: 1rem 0;
 }
 
 figure::after, .page-image::after {
@@ -375,6 +374,11 @@ figure img, .page-image img {
 figure figcaption {
   font-size: 80%;
   text-align: center;
+}
+
+.page-image {
+  padding: .7rem 0;
+  margin: .3rem 0;
 }
 
 .page-image small {

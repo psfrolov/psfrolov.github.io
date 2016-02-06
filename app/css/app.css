@@ -8,7 +8,7 @@ colours:
   black_muted: '#737373'
 
   white: '#fff'
-  white_muted: rgba(255, 255, 255, .75)
+  white_muted: rgba(255, 255, 255, .9)
 
   grey: '#787878'
   grey_muted: '#e0e0e0'
@@ -32,6 +32,7 @@ colours:
 /* Sizing algorithm. */
 html {
   box-sizing: border-box;
+  background-color: {{ page.colours.white }};
 }
 
 *, *::before, *::after {
@@ -115,7 +116,7 @@ body {
   text-align: center;
   font-family: 'metamorphous', 'Times New Roman', serif;
   font-size: 1.25rem;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 @media (min-width: 48rem) {
@@ -135,8 +136,12 @@ body {
   }
 }
 
-.sidebar header {
-  margin-bottom: 1.75rem;
+.sidebar header, .sidebar section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar footer {
+  line-height: 1;
 }
 
 .sidebar a, .sidebar h1, .sidebar h2, .sidebar p, .sidebar ul {
@@ -352,7 +357,8 @@ img {
 }
 
 figure, .page-image {
-  margin: 1rem 0;
+  padding: .7rem 0;
+  margin: .3rem 0;
 }
 
 figure::after, .page-image::after {
@@ -419,6 +425,8 @@ code {
   font-size: .8rem;
   color: {{ page.colours.blue }};
   border-radius: 3px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 pre {
@@ -429,8 +437,12 @@ pre {
   font-size: .7rem;
   line-height: 1.4;
   white-space: pre;
-  word-break: break-all;
-  word-wrap: break-word;
+}
+
+pre code {
+  overflow-wrap: normal;
+  word-wrap: normal;
+  overflow-x: auto;
 }
 
 pre, code, .gist .highlight, .gist .gist-meta,
@@ -526,9 +538,14 @@ ul.inline li {
 /* ------------------------------------------------------------------------- */
 
 /* Inline definition lists. */
+dl.inline {
+  line-height: 1.2;
+}
+
 dl.inline dt {
   display: inline;
   font-weight: normal;
+  white-space: nowrap;
 }
 
 dl.inline dt.new-line::before {
@@ -762,7 +779,7 @@ s {}
 /* Accessibility. */
 .visuallyhidden {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
   height: 1px;
   margin: -1px;
   overflow: hidden;

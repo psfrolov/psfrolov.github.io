@@ -152,6 +152,7 @@
         <h1>
           <a rel="home" href="{{ site.baseurl }}/">
             <svg class="icon icon-balance-scale" role="img">
+              <desc>A balance scale.</desc>
               <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-balance-scale"/>
             </svg><br>
             {{ site.title | escape }}
@@ -172,7 +173,7 @@
           {% assign tags = site.tags | keys | sort %}
           {% for tag in tags %}
           <li>
-            <a href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>{% if forloop.last == false %}&nbsp;‡{% endif %}
+            <a href="{{ tag | tag_url | remove:'.html' }}#top">{{ tag }}</a>{% if forloop.last == false %}&nbsp;‡{% endif %}
           </li>
           {% endfor %}
         </ul>
@@ -182,7 +183,7 @@
         <ul class="inline">
           <li>
             {% assign title = 'Home' %}
-            <a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}">
+            <a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#top" title="{{ title }}">
               <svg class="icon icon-home" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-home"/>
@@ -191,7 +192,7 @@
           </li>
           <li>
             {% assign title = 'Archive' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive" title="{{ title }}">
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#top" title="{{ title }}">
               <svg class="icon icon-list" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-list"/>
@@ -209,7 +210,7 @@
           </li>
           <li>
             {% assign title = 'Contact' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact" title="{{ title }}">
+            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#top" title="{{ title }}">
               <svg class="icon icon-question" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-question"/>
@@ -218,7 +219,7 @@
           </li>
           <li>
             {% assign title = 'About' %}
-            <a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about" title="{{ title }}">
+            <a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#top" title="{{ title }}">
               <svg class="icon icon-info" role="img">
                 <title>{{ title }}</title>
                 <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-info"/>
@@ -228,14 +229,14 @@
         </ul>
       </nav>
       <hr>
-      <footer>
+      <footer aria-label="Legal Information">
         <ul class="inline">
           <li>
-            <a href="{{ site.baseurl }}/legal/disclaimer"><small>Disclaimer</small></a>
+            <a href="{{ site.baseurl }}/legal/disclaimer#top"><small>Disclaimer</small></a>
             <small>‡</small>
           </li>
           <li>
-            <a href="{{ site.baseurl }}/legal/privacy-policy" title="Privacy Policy"><small>Privacy</small></a>
+            <a href="{{ site.baseurl }}/legal/privacy-policy#top" title="Privacy Policy"><small>Privacy</small></a>
           </li>
         </ul>
         <p>

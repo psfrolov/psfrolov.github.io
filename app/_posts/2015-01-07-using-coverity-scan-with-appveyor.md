@@ -76,8 +76,7 @@ so I'll stick to it for the rest of the article.
 ## Downloading Coverity Build Tool
 
 <ins>Coverity Build Tool now comes pre‐instaled on AppVeyor builder so this
-step is not necessary anymore. See the link in
-[comment by Mark Clearwater](#comment-1878112356) for more information.</ins>
+step is not necessary anymore.</ins>
 
 
 The first step may sound simple, but _one does not simply download Coverity

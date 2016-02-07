@@ -15,7 +15,7 @@ const accessibility = require('gulp-accessibility'),
       gutil = require('gulp-util'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
-      imageInliner = require('postcss-image-inliner'),
+      // imageInliner = require('postcss-image-inliner'),
       imagemin = require('gulp-imagemin'),
       imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
@@ -98,7 +98,7 @@ gulp.task('css', ['jekyll-build'], () =>
       autoprefixer({ browsers: ['last 2 versions'] }),
       mqpacker,
       cssPropSort,
-      imageInliner({ assetPaths: [jekyllBuildDir] }),
+      // imageInliner({ assetPaths: [jekyllBuildDir] }),
       postcssReporter({ clearMessages: true, throwError: true })
     ]))
     .pipe(uncss({ html: [path.join(jekyllBuildDir, '**/*.html')] }))

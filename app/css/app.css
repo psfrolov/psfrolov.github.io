@@ -16,7 +16,7 @@ colours:
   red: '#cb4437'
   blue: '#3372df'
 
-  green_muted: '#98FB98'
+  green_muted: '#98fb98'
   yellow_muted: '#ffd45b'
 ---
 
@@ -32,7 +32,6 @@ colours:
 /* Sizing algorithm. */
 html {
   box-sizing: border-box;
-  background-color: {{ page.colours.white }};
 }
 
 *, *::before, *::after {
@@ -59,7 +58,10 @@ html {
 }
 
 body {
-  background: scroll url({{ site.baseurl }}/img/content-bg-small.jpg);
+  background:
+    url({{ site.baseurl }}/img/content-bg-small.jpg)
+    scroll
+    {{ page.colours.white }};
   color: {{ page.colours.black }};
   /* Enable font kerning. */
   text-rendering: optimizeLegibility;
@@ -69,7 +71,7 @@ body {
 
 @media (min-width: 48em) {
   body {
-    background: scroll url({{ site.baseurl }}/img/content-bg-large.jpg);
+    background: url({{ site.baseurl }}/img/content-bg-large.jpg) scroll;
   }
 }
 
@@ -108,31 +110,32 @@ body {
 /* Sidebar. */
 .sidebar {
   background:
-    scroll
     url({{ site.baseurl }}/img/sidebar-bg-small.jpg)
-    no-repeat;
-  background-size: cover;
+    center/cover
+    no-repeat
+    scroll;
   padding: 1rem 1rem;
   text-align: center;
   font-family: 'metamorphous', 'Times New Roman', serif;
   font-size: 1.25rem;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 @media (min-width: 48rem) {
   .sidebar {
     position: fixed;
     background:
-      scroll
       url({{ site.baseurl }}/img/sidebar-bg-large.jpg)
-      no-repeat;
-    background-size: cover;
+      center/cover
+      no-repeat
+      scroll;
     top: 0;
     left: 0;
     bottom: 0;
     width: 18rem;
     text-align: center;
     overflow: auto;
+    line-height: 1.2;
   }
 }
 
@@ -140,8 +143,12 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.sidebar footer {
+.sidebar nav, .sidebar footer {
   line-height: 1;
+}
+
+.sidebar p, .sidebar footer {
+  margin-bottom: 0;
 }
 
 .sidebar a, .sidebar h1, .sidebar h2, .sidebar p, .sidebar ul {
@@ -451,7 +458,7 @@ pre code {
 
 pre, code, .gist .highlight, .gist .gist-meta,
 input, textarea {
-  background: scroll url({{ site.baseurl }}/img/code-bg.png) !important;
+  background: url({{ site.baseurl }}/img/code-bg.png) scroll !important;
 }
 
 pre code, .gist .blob-code-inner {
@@ -531,6 +538,8 @@ a.link-icon:hover, a.link-icon:focus {
 ul.inline {
   display: inline;
   list-style: none;
+  word-spacing: .2rem;
+  line-height: 1.5;
   padding: 0;
   margin: 0;
 }
@@ -539,11 +548,18 @@ ul.inline li {
   display: inline;
 }
 
+@media (min-width: 48em) {
+  ul.inline {
+    word-spacing: normal;
+    line-height: 1.2;
+  }
+}
+
 /* ------------------------------------------------------------------------- */
 
 /* Inline definition lists. */
 dl.inline {
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 dl.inline dt {
@@ -560,6 +576,17 @@ dl.inline dt.new-line::before {
 dl.inline dd {
   display: inline;
   margin: 0 1.5rem 0 0;
+  white-space: nowrap;
+}
+
+dl.inline dd.white-space-normal {
+  white-space: normal;
+}
+
+@media (min-width: 48em) {
+  dl.inline {
+    line-height: 1.2;
+  }
 }
 
 /* ------------------------------------------------------------------------- */
@@ -707,8 +734,18 @@ cite {
 /* ------------------------------------------------------------------------- */
 
 /* Footnotes. */
-a[href^='#fn:']::after, a[href^='#fnref:']::after {
-  content: none;
+sup[id^='fnref:'] {
+  font-size: inherit;
+  vertical-align: inherit;
+  position: inherit;
+}
+
+a.footnote::before, a.reversefootnote::before {
+  content: '[';
+}
+
+a.footnote::after, a.reversefootnote::after {
+  content: ']';
 }
 
 .footnotes {
@@ -718,6 +755,23 @@ a[href^='#fn:']::after, a[href^='#fnref:']::after {
 
 .footnotes p {
   margin-bottom: .3rem;
+}
+
+@media (min-width: 48em) {
+  sup[id^='fnref:'] {
+    font-size: 75%;
+    vertical-align: baseline;
+    position: relative;
+    top: -.5em;
+  }
+
+  a.footnote::before {
+    content: none;
+  }
+
+  a.footnote::after {
+    content: none;
+  }
 }
 
 /* ------------------------------------------------------------------------- */

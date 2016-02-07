@@ -24,7 +24,7 @@ defaults:
     values:
       layout: page
       schema: https://schema.org/WebPage
-      og_prefix: 'website: http://ogp.me/ns/website#'
+      og_prefix: 'fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#'
       og_type: website
   - scope:
       type: posts
@@ -33,7 +33,7 @@ defaults:
       category: software-development
       comments: true
       schema: https://schema.org/BlogPosting
-      og_prefix: 'article: http://ogp.me/ns/article#'
+      og_prefix: 'fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#'
       og_type: article
 
 # Pagination.

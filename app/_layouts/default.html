@@ -60,10 +60,15 @@
     <meta property="og:image:height" content="{{ page.image.url | image_height }}"/>
     {% endif %}
 
-    <!-- Open Graph site metadata. -->
+    <!-- Open Graph site/page metadata. -->
     <meta property="og:site_name" content="{{ site.name | escape }}">
     <meta property="og:type" content="{{ page.og_type }}">
     <meta property="og:locale" content="en_GB">
+    {% unless page.generated %}
+    <meta property="og:updated_time" content="{{ page.path | modified_time | date_to_xmlschema }}">
+    {% endunless %}
+    <meta property="og:rich_attachment" content="true">
+    <meta property="fb:profile_id" content="{{ site.facebook.id }}">
 
     <!-- Open Graph article metadata. -->
     {% if page.og_type == 'article' %}
@@ -78,7 +83,6 @@
 
     <!-- Open Graph profile metadata. -->
     {% if page.og_type == 'profile' %}
-    <meta property="fb:profile_id" content="{{ site.facebook.id }}">
     <meta property="profile:first_name" content="Pavel">
     <meta property="profile:last_name" content="Frolov">
     <meta property="profile:username" content="arkfps">
@@ -109,7 +113,7 @@
     <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="{{ site.theme_colour }}">
     <meta name="msapplication-TileColor" content="{{ site.theme_colour }}">
     <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
-    <meta name="theme-color" content="{{ site.theme_colour }}">
+    <meta name="theme-color" content="#404040">
 
     <!-- Page canonical URL. -->
     {% capture canonical_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
@@ -181,51 +185,11 @@
       <nav>
         <h2 class="visuallyhidden">Site Navigation</h2>
         <ul class="inline">
-          <li>
-            {% assign title = 'Home' %}
-            <a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#top" title="{{ title }}">
-              <svg class="icon icon-home" role="img">
-                <title>{{ title }}</title>
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-home"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            {% assign title = 'Archive' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#top" title="{{ title }}">
-              <svg class="icon icon-list" role="img">
-                <title>{{ title }}</title>
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-list"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            {% assign title = 'News Feed' %}
-            <a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}">
-              <svg class="icon icon-feed" role="img">
-                <title>{{ title }}</title>
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-feed"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            {% assign title = 'Contact' %}
-            <a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#top" title="{{ title }}">
-              <svg class="icon icon-question" role="img">
-                <title>{{ title }}</title>
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-question"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            {% assign title = 'About' %}
-            <a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#top" title="{{ title }}">
-              <svg class="icon icon-info" role="img">
-                <title>{{ title }}</title>
-                <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-info"/>
-              </svg>
-            </a>
-          </li>
+          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#top" title="{{ title }}">            <svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-home"/></svg></a></li>
+          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#top" title="{{ title }}">            <svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-list"/></svg></a></li>
+          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-feed"/></svg></a></li>
+          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#top" title="{{ title }}">            <svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-question"/></svg></a></li>
+          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#top" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-info"/></svg></a></li>
         </ul>
       </nav>
       <hr>

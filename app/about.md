@@ -1,7 +1,7 @@
 ---
 layout: default
 schema: https://schema.org/AboutPage
-og_prefix: 'fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#'
+og_prefix: 'profile: http://ogp.me/ns/profile#'
 og_type: profile
 title: About
 description: >-

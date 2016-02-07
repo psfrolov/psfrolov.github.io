@@ -2,7 +2,7 @@
 <html
   lang="en-GB"
   itemscope itemtype="{{ page.schema }}"
-  prefix="og: http://ogp.me/ns# {{ page.og_prefix }}">
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# {{ page.og_prefix }}">
 
   <head>
     <meta charset="utf-8">
@@ -68,7 +68,8 @@
     <meta property="og:updated_time" content="{{ page.path | modified_time | date_to_xmlschema }}">
     {% endunless %}
     <meta property="og:rich_attachment" content="true">
-    <meta property="fb:profile_id" content="{{ site.facebook.id }}">
+    <meta property="fb:app_id" content="{{ site.facebook.app_id }}">
+    <meta property="fb:profile_id" content="{{ site.facebook.profile_id }}">
 
     <!-- Open Graph article metadata. -->
     {% if page.og_type == 'article' %}

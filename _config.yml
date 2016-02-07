@@ -24,7 +24,7 @@ defaults:
     values:
       layout: page
       schema: https://schema.org/WebPage
-      og_prefix: 'fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#'
+      og_prefix: 'website: http://ogp.me/ns/website#'
       og_type: website
   - scope:
       type: posts
@@ -33,7 +33,7 @@ defaults:
       category: software-development
       comments: true
       schema: https://schema.org/BlogPosting
-      og_prefix: 'fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#'
+      og_prefix: 'article: http://ogp.me/ns/article#'
       og_type: article
 
 # Pagination.
@@ -69,7 +69,8 @@ github_profile: https://github.com/arkfps
 linkedin_profile: https://www.linkedin.com/in/psfrolov
 facebook:
   profile: https://www.facebook.com/psfrolov
-  id: 100005735232020
+  profile_id: 100005735232020
+  app_id: 1144049462274301
 twitter:
   profile: https://twitter.com/arkfps
   site_id: &twitter_site_id 4133911523

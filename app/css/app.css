@@ -384,8 +384,15 @@ figure figcaption {
 }
 
 .page-image {
-  padding: .7rem 0;
-  margin: .3rem 0;
+  display: none;
+}
+
+@media (min-width: 48em) {
+  .page-image {
+    display: block;
+    padding: .7rem 0;
+    margin: .3rem 0;
+  }
 }
 
 .page-image small {

@@ -538,7 +538,6 @@ a.link-icon:hover, a.link-icon:focus {
 ul.inline {
   display: inline;
   list-style: none;
-  word-spacing: .2rem;
   line-height: 1.5;
   padding: 0;
   margin: 0;
@@ -550,7 +549,6 @@ ul.inline li {
 
 @media (min-width: 48em) {
   ul.inline {
-    word-spacing: normal;
     line-height: 1.2;
   }
 }

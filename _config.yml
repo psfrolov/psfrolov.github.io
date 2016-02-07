@@ -73,5 +73,7 @@ facebook:
   app_id: 1144049462274301
 twitter:
   profile: https://twitter.com/arkfps
-  site_id: &twitter_site_id 4133911523
-  creator_id: *twitter_site_id
+  username: arkfps
+  user_id: &twitter_user_id 4133911523
+  site_id: *twitter_user_id
+  creator_id: *twitter_user_id

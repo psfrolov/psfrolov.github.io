@@ -8,7 +8,7 @@ GEM
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.10-x64-mingw32)
-    jekyll (3.0.2)
+    jekyll (3.0.3)
       colorator (~> 0.1)
       jekyll-sass-converter (~> 1.0)
       jekyll-watch (~> 1.1)
@@ -46,7 +46,7 @@ GEM
     octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
     rb-fsevent (0.9.7)
-    rb-inotify (0.9.5)
+    rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rouge (1.10.1)
     ruby-nuggets (1.0.0)
@@ -63,7 +63,7 @@ PLATFORMS
 
 DEPENDENCIES
   fastimage
-  jekyll (= 3.0.2)
+  jekyll (= 3.0.3)
   jekyll-feed
   jekyll-gist
   jekyll-paginate

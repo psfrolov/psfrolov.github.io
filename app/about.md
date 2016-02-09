@@ -13,7 +13,7 @@ image:
 ---
 
 
-<div class="page-image" id="top">
+<div class="page-image">
   <img src="{{ site.baseurl }}/img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg"
        alt="The Alchemist by Pieter Bruegel the Elder">
   <small>The Alchemist by Pieter Bruegel the Elder</small>
@@ -42,7 +42,7 @@ range of problem domains, but which at the same time are simple to implement,
 understand and maintain.
 
 I hope you'll find something valuable here. Feel free to drop me a line or two
-via [contact form]({{ site.baseurl }}/contact#top). Or use one of the social
+via [contact form]({{ site.baseurl }}/contact#main). Or use one of the social
 links below.
 
 *[DCS]: Distributed Control System

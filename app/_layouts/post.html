@@ -4,7 +4,7 @@ layout: default
 
 
 <!-- Post image. -->
-<div class="page-image" id="top" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+<div class="page-image" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
   <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}" itemprop="url contentUrl">
   <meta itemprop="width" content="{{ page.image.url | image_width }}">
   <meta itemprop="height" content="{{ page.image.url | image_height }}">
@@ -32,7 +32,7 @@ layout: default
     <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
     <ul class="inline">
       {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-      <li>{% assign title = 'Share on Facebook' %}<a rel="external" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=page&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | | append:'#top' | uri_escape }}" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Facebook' %}<a rel="external" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=page&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | append:'#main' | uri_escape }}" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
       <li>{% assign title = 'Share on Twitter' %}<a rel="external" class="link-icon content-icon" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&amp;url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}&amp;via={{ site.twitter.username }}" title="{{ title }}"><svg class="icon icon-twitter-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-twitter-square"/></svg></a></li>
       <li>{% assign title = 'Share on Reddit (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.reddit.com/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-reddit-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-reddit-square"/></svg></a></li>
       <li>{% assign title = 'Share on LinkedIn (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-linkedin-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-linkedin-square"/></svg></a></li>

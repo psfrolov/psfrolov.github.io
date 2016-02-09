@@ -53,7 +53,7 @@ Also available [in Russian][url-russian-article].
 
 [url-overload]: http://accu.org/index.php/journals/c348/
 {: rel="external" }
-[url-previous-post]: {% post_url 2015-01-17-providing-explicit-specialisations-for-non-template-members-of-class-template %}#top
+[url-previous-post]: {% post_url 2015-01-17-providing-explicit-specialisations-for-non-template-members-of-class-template %}#main
 [url-overload-article]: http://accu.org/index.php/journals/2086
 {: rel="external" }
 [url-raii]: https://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization

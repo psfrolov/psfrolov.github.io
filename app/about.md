@@ -23,9 +23,9 @@ image:
 
 # {{ page.title | escape }}
 
-Welcome to my place, stranger! The name's Paul. Once a SCADA/DCS applications
-builder involved in space ground‐based infrastructure projects (namely, Angara
-Space Rocket Complex and Land Launch). Now a software developer in
+Welcome to my place, stranger! The name's Paul. Once an industrial automation
+systems builder involved in space ground‐based infrastructure projects (namely,
+Angara Space Rocket Complex and Land Launch). Now a software developer in
 information security field.
 {: .drop-letter }
 

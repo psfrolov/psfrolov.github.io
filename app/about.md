@@ -10,6 +10,8 @@ description: >-
   activity, many of which I hope would be useful for software developers.
 image:
   url: /img/pages/profile.jpg
+twitter_image:
+  url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
 ---
 
 

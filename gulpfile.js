@@ -169,14 +169,16 @@ gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () => {
   const revisor = new RevAll({
     dontGlobal: [
       /^\/\./g,  // dot-files
-      /^\/favicon\.ico$/g,  // favicon
+      /^\/favicon/g,  // favicons
+      /^\/apple-touch-icon/g,  // iOS favicons
       /\/img\/pages/g,  // images for social sharing and rich snippets
       /^\/BingSiteAuth\.xml$/g,  // Bing Webmaster Tools verification file
       /^\/CNAME$/g  // GitHub Pages custom domain support
     ],
     dontRenameFile: [
       /\.(html|txt)$/g,
-      /^\/(atom|sitemap)\.xml$/g
+      /^\/(atom|sitemap)\.xml$/g,
+      /^\/browserconfig\.xml$/g
     ],
     dontUpdateReference: [
       /\.(html|txt)$/g,

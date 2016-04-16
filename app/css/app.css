@@ -22,18 +22,14 @@ colours:
 
 
 /* Inlined during post-processing. */
-@import '{{ site.baseurl }}/css/normalize.css';
-@import '{{ site.baseurl }}/css/syntax.css';
-@import '{{ site.baseurl }}/css/fonts.css';
-@import '{{ site.baseurl }}/css/icons.css';
+@import 'normalize.css';
+@import 'syntax.css';
+@import 'fonts.css';
+@import 'icons.css';
 
 /* ------------------------------------------------------------------------- */
 
-/* Sizing algorithm. */
-html {
-  box-sizing: border-box;
-}
-
+/* Sizing. */
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -42,7 +38,8 @@ html {
 
 /* Body. */
 html {
-  font-family: 'pt_sans', 'Arial', sans-serif;
+  box-sizing: border-box;
+  font-family: 'pt_sans', Arial, sans-serif;
 }
 
 @media (min-width: 48em) {
@@ -116,7 +113,7 @@ body {
     scroll;
   padding: 1rem 1rem;
   text-align: center;
-  font-family: 'metamorphous', 'Times New Roman', serif;
+  font-family: metamorphous, 'Times New Roman', serif;
   font-size: 1.25rem;
   line-height: 1.5;
 }
@@ -651,7 +648,7 @@ p.drop-letter, .drop-letter > p:first-child {
 }
 
 p.drop-letter::first-letter, .drop-letter > p:first-child::first-letter {
-  font-family: 'metamorphous', 'Times New Roman', serif;
+  font-family: metamorphous, 'Times New Roman', serif;
   text-shadow:
     -1px -1px 0 {{ page.colours.black }},
     1px -1px 0 {{ page.colours.black }},

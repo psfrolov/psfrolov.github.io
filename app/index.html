@@ -6,6 +6,8 @@ description: '{{ site.description }}'
 keywords: '{{ site.keywords | join:"," }}'
 image:
   url: /img/pages/logo3.png
+  name: &name '{{ site.title }}'
+  alt: *name
 is_home: true
 ---
 

@@ -11,14 +11,18 @@
   "id-unique": true,
   "src-not-empty": true,
   "title-require": true,
+
   "head-script-disabled": true,
+
   "alt-require": true,
+
   "doctype-html5": true,
   "id-class-value": true,
   "style-disabled": true,
   "inline-style-disabled": false,
   "inline-script-disabled": false,
   "space-tab-mixed-disabled": true,
+  "id-class-ad-disabled": true,
   "href-abs-or-rel": false,
   "attr-unsafe-chars": true,
 
@@ -65,6 +69,7 @@
     "bitwise": true,
     "curly": true,
     "eqeqeq": true,
+    "esversion": 6,
     "forin": true,
     "freeze": true,
     "funcscope": true,

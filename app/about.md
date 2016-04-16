@@ -12,13 +12,15 @@ image:
   url: /img/pages/profile.jpg
 twitter_image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
+  name: &name The Alchemist by Pieter Bruegel the Elder
+  alt: *name
 ---
 
 
 <div class="page-image">
-  <img src="{{ site.baseurl }}/img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg"
-       alt="The Alchemist by Pieter Bruegel the Elder">
-  <small>The Alchemist by Pieter Bruegel the Elder</small>
+  <img src="{{ site.baseurl }}{{ page.twitter_image.url }}"
+       alt="{{ page.twitter_image.alt }}">
+  <small>{{ page.twitter_image.name }}</small>
 </div>
 
 <article markdown="block">

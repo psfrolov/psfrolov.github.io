@@ -61,6 +61,9 @@
     {% endif %}
     {% if page.twitter_image %}
     <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.twitter_image.url }}">
+    <meta name="twitter:image:alt" content="{{ page.twitter_image.alt | liquify | escape }}">
+    {% else %}
+    <meta name="twitter:image:alt" content="{{ page.image.alt | liquify | escape }}">
     {% endif %}
 
     <!-- Open Graph site/page metadata. -->

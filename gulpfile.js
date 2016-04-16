@@ -6,8 +6,9 @@ const accessibility = require('gulp-accessibility'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
       cached = require('gulp-cached'),
+      cleanCss = require('gulp-clean-css'),
       cleanUrls = require('clean-urls'),
-      cssPropSort = require('css-property-sorter'),
+      cssDeclSort = require('css-declaration-sorter'),
       del = require('del'),
       doiuse = require('doiuse'),
       ghPages = require('gulp-gh-pages'),
@@ -19,7 +20,6 @@ const accessibility = require('gulp-accessibility'),
       imagemin = require('gulp-imagemin'),
       imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
-      minifyCss = require('gulp-minify-css'),
       minimist = require('minimist'),
       mqpacker = require('css-mqpacker'),
       newer = require('gulp-newer'),
@@ -94,15 +94,15 @@ gulp.task('xml&json', ['jekyll-build'], () =>
 gulp.task('css', ['jekyll-build'], () =>
   gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(postcss([
-      atImport({ path: jekyllBuildDir }),
+      atImport,
       autoprefixer({ browsers: ['last 2 versions'] }),
       mqpacker,
-      cssPropSort,
+      cssDeclSort,
       // imageInliner({ assetPaths: [jekyllBuildDir] }),
       postcssReporter({ clearMessages: true, throwError: true })
     ]))
     .pipe(uncss({ html: [path.join(jekyllBuildDir, '**/*.html')] }))
-    .pipe(minifyCss())
+    .pipe(cleanCss())
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'css' }))
 );
@@ -217,7 +217,8 @@ gulp.task('_browsersync', () => {
       cert: path.join(certsDir, 'srv-auth.crt')
     },
     online: false,
-    browser: ['chrome', 'opera', 'firefox', 'iexplore'],
+    browser: ['chrome', 'opera', 'firefox', 'iexplore',
+              'microsoft-edge:https://localhost:3000'],
     reloadOnRestart: true
   });
   gulp.watch(['**/*'], { cwd: srcDir }, ['build', bs.reload]);

@@ -138,19 +138,23 @@ gulp.task('html', ['jekyll-build'], () =>
     .pipe(newer(buildDir))
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
     .pipe(htmlmin({
-      removeComments: true,
+      collapseBooleanAttributes: true,
+      collapseInlineTagWhitespace: true,
       collapseWhitespace: true,
       conservativeCollapse: true,
-      collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
-      removeRedundantAttributes: true,
+      minifyCSS: true,
+      // eslint-disable-next-line camelcase
+      minifyJS: { output: { quote_style: 3 } },
       preventAttributesEscaping: true,
+      processScripts: ['application/ld+json'],
+      removeAttributeQuotes: true,
+      removeComments: true,
       removeEmptyAttributes: true,
+      removeRedundantAttributes: true,
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
-      minifyJS: true,
-      minifyCSS: true,
-      processScripts: ['application/ld+json']
+      sortAttributes: true,
+      sortClassName: true
     }))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'html' }))

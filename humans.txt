@@ -8,20 +8,19 @@
 # TECHNOLOGY COLOPHON
 
   # Languages
-  HTML: http://www.w3.org/html/
-  CSS: http://www.w3.org/Style/CSS/
+  HTML: https://www.w3.org/html/
+  CSS: https://www.w3.org/Style/CSS/
   JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-  Liquid: http://liquidmarkup.org
+  Liquid: https://shopify.github.io/liquid/
   Markdown: https://daringfireball.net/projects/markdown/
 
   # Development Tools
   Atom: https://atom.io/
   Google Chrome: https://www.google.com/chrome/
   Inkscape: https://inkscape.org
-  GIMP: http://www.gimp.org
-  X-Icon Editor: http://www.xiconeditor.com
+  GIMP: https://www.gimp.org
   Real Favicon Generator: https://realfavicongenerator.net
-  Font Squirell: http://www.fontsquirrel.com
+  Font Squirell: https://www.fontsquirrel.com
   IcoMoon App: https://icomoon.io/app
 
   # Build Tools

@@ -5,7 +5,6 @@ const accessibility = require('gulp-accessibility'),
       atImport = require('postcss-import'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
-      cached = require('gulp-cached'),
       cleanCss = require('gulp-clean-css'),
       cleanUrls = require('clean-urls'),
       cssDeclSort = require('css-declaration-sorter'),
@@ -16,13 +15,11 @@ const accessibility = require('gulp-accessibility'),
       gutil = require('gulp-util'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
-      // imageInliner = require('postcss-image-inliner'),
       imagemin = require('gulp-imagemin'),
       imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
       minimist = require('minimist'),
       mqpacker = require('css-mqpacker'),
-      newer = require('gulp-newer'),
       path = require('path'),
       postcss = require('gulp-postcss'),
       postcssReporter = require('postcss-reporter'),
@@ -31,7 +28,7 @@ const accessibility = require('gulp-accessibility'),
       runSeq = require('run-sequence'),
       shell = require('gulp-shell'),
       size = require('gulp-size'),
-      stylelint = require('stylelint'),
+      stylelint = require('gulp-stylelint'),
       uglify = require('gulp-uglify'),
       uncss = require('gulp-uncss'),
       url = require('url'),
@@ -68,15 +65,16 @@ const otherFiles = [
 
 // Jekyll build.
 gulp.task('jekyll-build', shell.task(
-  `bundle exec jekyll build -d ${jekyllBuildDir}`,
+  `bundle exec jekyll build --destination ${jekyllBuildDir} --trace`,
   { env: { JEKYLL_ENV: options.env } }
 ));
 
 // Jekyll serve.
 gulp.task('jekyll-serve', shell.task(
-  `bundle exec jekyll serve -d ${jekyllBuildDir} -w -o \
+  `bundle exec jekyll serve --destination ${jekyllBuildDir} --open-url \
     --ssl-cert ${path.join(certsDir, 'srv-auth.crt')} \
-    --ssl-key ${path.join(certsDir, 'srv-auth.key')}`,
+    --ssl-key ${path.join(certsDir, 'srv-auth.key')} \
+    --trace`,
   { env: { JEKYLL_ENV: options.env } }
 ));
 
@@ -84,7 +82,6 @@ gulp.task('jekyll-serve', shell.task(
 gulp.task('xml&json', ['jekyll-build'], () =>
   gulp.src(jsonFiles.concat(xmlFiles),
            { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer(buildDir))
     .pipe(prettyData({ type: 'minify' }))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'xml&json' }))
@@ -96,13 +93,12 @@ gulp.task('css', ['jekyll-build'], () =>
     .pipe(postcss([
       atImport,
       autoprefixer({ browsers: ['last 2 versions'] }),
-      mqpacker,
-      cssDeclSort,
-      // imageInliner({ assetPaths: [jekyllBuildDir] }),
-      postcssReporter({ clearMessages: true, throwError: true })
+      mqpacker({ sort: true }),
+      postcssReporter({ throwError: true })
     ]))
     .pipe(uncss({ html: [path.join(jekyllBuildDir, '**/*.html')] }))
     .pipe(cleanCss())
+    .pipe(postcss([cssDeclSort]))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'css' }))
 );
@@ -110,7 +106,6 @@ gulp.task('css', ['jekyll-build'], () =>
 // Process JavaScript.
 gulp.task('js', ['jekyll-build'], () =>
   gulp.src(jsFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer(buildDir))
     .pipe(uglify())
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'js' }))
@@ -119,15 +114,16 @@ gulp.task('js', ['jekyll-build'], () =>
 // Process SVG.
 gulp.task('svg', ['jekyll-build'], () =>
   gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer({ dest: buildDir, ext: '.svg' }))
-    .pipe(imagemin({
-      multipass: true,
-      svgoPlugins: [
-        { removeTitle: true },
-        { cleanupIDs: false },
-        { sortAttrs: true }
-      ]
-    }))
+    .pipe(imagemin([
+      imagemin.svgo({
+        multipass: true,
+        plugins: [
+          { removeTitle: true },
+          { cleanupIDs: false },
+          { sortAttrs: true }
+        ]
+      })
+    ]))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'svg' }))
 );
@@ -135,7 +131,6 @@ gulp.task('svg', ['jekyll-build'], () =>
 // Process HTML.
 gulp.task('html', ['jekyll-build'], () =>
   gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer(buildDir))
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
@@ -163,7 +158,6 @@ gulp.task('html', ['jekyll-build'], () =>
 // Copy miscellaneous files.
 gulp.task('copy', ['jekyll-build'], () =>
   gulp.src(otherFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(newer(buildDir))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'copy' }))
 );
@@ -181,12 +175,12 @@ gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () => {
     ],
     dontRenameFile: [
       /\.(html|txt)$/g,
-      /^\/(atom|sitemap)\.xml$/g,
+      /^\/(atom|sitemap|feed\.xslt)\.xml$/g,
       /^\/browserconfig\.xml$/g
     ],
     dontUpdateReference: [
       /\.(html|txt)$/g,
-      /\/(atom|sitemap)\.xml$/g
+      /\/(atom|sitemap|feed\.xslt)\.xml$/g
     ]
   });
   return gulp.src('**/*', { cwd: buildDir, cwdbase: true, dot: true })
@@ -202,27 +196,27 @@ gulp.task('rebuild', cb => runSeq('clean', 'build', cb));
 
 // Serve local site and watch for changes.
 gulp.task('_browsersync', () => {
+  const port = 3000;
   const bs = browserSync.create();
   bs.init({
-    server: {
-      baseDir: serveDir,
-      middleware: [
-        cleanUrls(true, { root: serveDir }),
-        (req, res, next) => {
-          // Correctly serve SVGZ assets.
-          if (url.parse(req.url).pathname.match(/\.svgz$/))
-            res.setHeader('Content-Encoding', 'gzip');
-          next();
-        }
-      ]
-    },
+    server: { baseDir: serveDir },
+    port,
+    middleware: [
+      cleanUrls(true, { root: serveDir }),
+      (req, res, next) => {
+        // Correctly serve SVGZ assets.
+        if (url.parse(req.url).pathname.match(/\.svgz$/))
+          res.setHeader('Content-Encoding', 'gzip');
+        next();
+      }
+    ],
     https: {
       key: path.join(certsDir, 'srv-auth.key'),
       cert: path.join(certsDir, 'srv-auth.crt')
     },
     online: false,
     browser: ['chrome', 'opera', 'firefox', 'iexplore',
-              'microsoft-edge:https://localhost:3000'],
+              `microsoft-edge:https://localhost:${port}`],
     reloadOnRestart: true
   });
   gulp.watch(['**/*'], { cwd: srcDir }, ['build', bs.reload]);
@@ -236,30 +230,26 @@ gulp.task('jekyll-hyde', shell.task(
 ));
 gulp.task('jsonlint', ['jekyll-build'], () =>
   gulp.src(jsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(cached('jsonlint'))
     .pipe(jsonlint())
     .pipe(jsonlint.reporter())
     .pipe(jsonlint.failAfterError())
 );
 gulp.task('stylelint', ['jekyll-build'], () =>
   gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(cached('stylelint'))
+    .pipe(stylelint({ reporters: [{ formatter: 'string', console: true }] }))
     .pipe(postcss([
-      stylelint,
       doiuse({ browsers: ['last 2 versions'] }),
-      postcssReporter({ clearMessages: true, throwError: true })
+      postcssReporter({ throwError: true })
     ]))
 );
 gulp.task('htmlhint', ['jekyll-build'], () =>
   gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(cached('htmlhint'))
     .pipe(htmlhint({ htmlhintrc: path.join(__dirname, '.htmlhintrc') }))
     .pipe(htmlhint.reporter())
     .pipe(htmlhint.failReporter({ suppress: true }))
 );
 gulp.task('w3c', ['build'], () =>
   gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
-    .pipe(cached('w3c'))
     .pipe(w3cjs())
     .pipe(w3cjs.reporter())
 );

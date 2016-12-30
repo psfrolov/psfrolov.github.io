@@ -2,10 +2,6 @@
 source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes, .gitignore]
-kramdown:
-  # GitHub Flavored Markdown.
-  input: GFM
-  hard_wrap: false
 gems:
   - liquid_pluralize
   - jekyll-gist
@@ -16,6 +12,7 @@ gems:
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
 permalink: /:categories/:title
+error_mode: strict  # for Liquid
 
 # Default page layouts.
 defaults:
@@ -60,20 +57,26 @@ description: >-
 tagline: typedef typename template
 keywords: [C++, Programming, Software, Development]
 topic: Software Development
-author: Pavel Frolov
-email: ZW1haWxAdGhlaGVybWV0aWN2YXVsdC5jb20=
+creator:
+  first_name: Pavel
+  last_name: Frolov
+  full_name: &creator_full_name Pavel Frolov
+  username: arkfps
+author: *creator_full_name  # for jekyll-feed plugin
+
+email: Y29udGFjdEB0aGVoZXJtZXRpY3ZhdWx0LmNvbQ==
 theme_colour: '#ac4142'
 
 disqus_shortname: arkfps
 github_profile: https://github.com/arkfps
-linkedin_profile: https://www.linkedin.com/in/psfrolov
+linkedin_profile: https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4
 facebook:
-  profile: https://www.facebook.com/psfrolov
+  profile: https://www.facebook.com/100005735232020
   profile_id: 100005735232020
   app_id: 1144049462274301
 twitter:
-  profile: https://twitter.com/arkfps
-  username: arkfps
+  profile: https://twitter.com/intent/user?user_id=4133911523
+  username: PavelSFrolov
   user_id: &twitter_user_id 4133911523
   site_id: *twitter_user_id
   creator_id: *twitter_user_id

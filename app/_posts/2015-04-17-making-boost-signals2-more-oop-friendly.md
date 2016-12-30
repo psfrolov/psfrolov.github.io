@@ -4,12 +4,13 @@ tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
 description: &description >-
   The observer design pattern is by far the most popular and widely known among
   behavioural design patterns. Unfortunately, unlike other mainstream languages
-  out there, the C++ standard library doesn't provide out of the box observer
+  out there, the C++ standard library doesn’t provide out of the box observer
   implementation. This article suggests an observable mixin based on
   Boost.Signals2 which makes it easy to build an observer.
 excerpt: *description
 image:
-  url: /img/pages/el-caracol-observatory.jpg
+  url: &url /img/pages/el-caracol-observatory.jpg
+  path: *url
   name: &name El Caracol observatory temple, Chichen Itza, Mexico
   alt: *name
   source:
@@ -62,7 +63,7 @@ private:
 };
 {% endhighlight %}
 
-For the sake of example, let's say that we are interested in only two events:
+For the sake of example, let’s say that we are interested in only two events:
 `ShowEvent` and `CloseEvent`:
 {% highlight c++ %}
 using ShowEvent = void();
@@ -132,7 +133,7 @@ without the use of macros. Or think of [Qt signals and slots]
 ## Implementing an Observable Mixin
 
 Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a
-high‐level view on what we will be discussing in this section. We'll continue
+high‐level view on what we will be discussing in this section. We’ll continue
 to use the window example from the previous section.
 <figure>
   <img src="{{ site.baseurl }}/img/figures/observable-mixin-uml-class-diagram.png" alt>
@@ -141,7 +142,7 @@ to use the window example from the previous section.
 
 ### The WindowObservers Class
 
-Obviously enough, we can't just put our signals into _homogeneous_ container
+Obviously enough, we can’t just put our signals into _homogeneous_ container
 like `std::vector` because of different event signatures. Fortunately, the C++
 standard library provides `std::tuple`, an integer‐indexed _heterogeneous
 container_ which solves our needs (alternatively, we can use a tag‐indexed
@@ -349,7 +350,7 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 [^fn-mixin]:
     A class that acts as the parent class, containing the desired
     functionality. A subclass can then inherit or simply reuse this
-    functionality, but without creating a rigid, single "is a" relationship
+    functionality, but without creating a rigid, single ‘is a’ relationship
     ([Wikipedia][url-mixin]).
 
 [^fn-uml]:
@@ -359,7 +360,7 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 
 [^fn-class-diagram]:
     In the UML a type of static structure diagram that describes the structure
-    of a system by showing the system's classes, their attributes, operations
+    of a system by showing the system’s classes, their attributes, operations
     (or methods), and the relationships among objects
     ([Wikipedia][url-class-diagram]).
 
@@ -377,7 +378,7 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 {: rel="external" }
 [url-mfc-message-maps]: https://msdn.microsoft.com/en-us/library/0x0cx6b1.aspx
 {: rel="external" }
-[url-qt-signals-and-slots]: http://doc.qt.io/qt-5/signalsandslots.html
+[url-qt-signals-and-slots]: https://doc.qt.io/qt-5/signalsandslots.html
 {: rel="external" }
 [url-vc-event-handling]: https://msdn.microsoft.com/en-us/library/ee2k0a7d(v=vs.120).aspx
 {: rel="external" }

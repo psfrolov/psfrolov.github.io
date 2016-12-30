@@ -8,7 +8,8 @@ description: &description >-
 excerpt: *description
 reading_time: 15
 image:
-  url: /img/pages/overload-126.png
+  url: &url /img/pages/overload-126.png
+  path: *url
   alt: 'Overload journal #126, April 2015'
 redirect_from: /2015/04/10/resource-management-with-explicit-template-specializations.html
 ---
@@ -51,10 +52,10 @@ Also available [in Russian][url-russian-article].
     features, such as automatic memory management or bounds checking
     ([Wikipedia][url-smart-pointer]).
 
-[url-overload]: http://accu.org/index.php/journals/c348/
+[url-overload]: https://accu.org/index.php/journals/c348/
 {: rel="external" }
 [url-previous-post]: {% post_url 2015-01-17-providing-explicit-specialisations-for-non-template-members-of-class-template %}#main
-[url-overload-article]: http://accu.org/index.php/journals/2086
+[url-overload-article]: https://accu.org/index.php/journals/2086
 {: rel="external" }
 [url-raii]: https://en.wikibooks.org/wiki/More_C++_Idioms/Resource_Acquisition_Is_Initialization
 {: rel="external" }

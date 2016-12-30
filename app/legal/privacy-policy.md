@@ -2,7 +2,7 @@
 title: Privacy Policy
 description: >-
   A privacy policy that describes the ways a website gathers, uses, discloses,
-  and manages a user's data.
+  and manages a user’s data.
 image:
   url: /img/pages/the-thinker-in-the-gates-of-hell-by-auguste-rodin.jpg
   name: &name The Thinker in The Gates of Hell by Auguste Rodin, Musée Rodin, Paris
@@ -22,11 +22,11 @@ website—**{{ site.fqdn }}**—and how it is used.
 ## Log Files
 Like many other websites, {{ site.fqdn }} makes use of log files. These files
 merely logs visitors to the site—usually a standard procedure for hosting
-companies and a part of hosting services' analytics. The information inside the
+companies and a part of hosting services’ analytics. The information inside the
 log files includes Internet Protocol (IP) addresses, browser type, Internet
 Service Provider (ISP), date/time stamp, referring/exit pages, and possibly the
 number of clicks. This information is used to analyse trends, administer the
-site, track user's movement around the site, and gather demographic
+site, track user’s movement around the site, and gather demographic
 information. IP addresses, and other such information are not linked to any
 information that is personally identifiable.
 
@@ -48,7 +48,7 @@ and their links here:
 
 If you wish to disable cookies, you may do so through your individual browser
 options. More detailed information about cookie management with specific web
-browsers can be found at the browsers' respective websites.
+browsers can be found at the browsers’ respective websites.
 [What Are Cookies?][url-cookies]
 
 ## Consent

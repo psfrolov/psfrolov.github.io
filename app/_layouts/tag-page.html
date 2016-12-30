@@ -1,8 +1,8 @@
 ---
 layout: default
 schema: https://schema.org/CollectionPage
-title: 'Articles tagged "{{ page.tag }}"'
-description: 'A collection of all articles with tag "{{ page.tag }}".'
+title: 'Articles tagged ‘{{ page.tag }}’'
+description: 'A collection of all articles with tag ‘{{ page.tag }}’.'
 keywords: '{{ page.tag }}'
 robots: noindex
 generated: true
@@ -10,7 +10,7 @@ generated: true
 
 
 <article>
-  <h1>{{ page.title | liquify | escape }}</h1>
+  <h1>{{ layout.title | liquify | escape }}</h1>
   {% for post in page.posts %}
     <article itemscope itemtype="https://schema.org/BlogPosting">
       {% include post-preview.html %}

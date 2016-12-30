@@ -8,7 +8,8 @@ description: &description >-
   AppVeyor build process.
 excerpt: *description
 image:
-  url: /img/pages/codex-hammurabi.jpg
+  url: &url /img/pages/codex-hammurabi.jpg
+  path: *url
   name: &name Codex Hammurabi, Louvre, Paris
   alt: *name
   source:
@@ -20,7 +21,7 @@ redirect_from: /2015/01/07/using-coverity-scan-with-appveyor.html
 A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar
 to [Travis CI][url-travis-ci] but for Windows developers. It enables you to
 build, test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server,
-WiX, among others (see [Instaled Software][url-appveyor-instaled-software]).
+WiX, among others (see [Installed Software][url-appveyor-installed-software]).
 Moreover, it is completely free for open source projects.
 
 [Coverity Scan][url-coverity-scan] is a free SaaS version of
@@ -51,13 +52,13 @@ One important thing to note when working with Coverity Scan is build
 submissions frequency. Coverity Scan [limits maximum number of submitted
 builds][url-coverity-scan-build-freq] on daily and weekly basis. But even with
 limits left out of scope it is probably impractical to run each and every build
-with Coverity Scan since it takes noticeably longer time to complete. Let's see
+with Coverity Scan since it takes noticeably longer time to complete. Let’s see
 how we can deal with it.
 
 ### Using Dedicated Branch
 
 Coverity Scan documentation suggests us to create a separate branch dedicated
-for code analysis (let's call it **analyse**). In that case, we can
+for code analysis (let’s call it **analyse**). In that case, we can
 conditionally enable Coverity Scan when building our project using
 `APPVEYOR_REPO_BRANCH` built‐in environment variable. Personally, I find this
 approach somewhat inconvenient: we need to keep our **analyse** branch in sync
@@ -71,11 +72,11 @@ For example, I use the following [crontab][url-crontab] expression to launch
 Coverity build at 5:00 p.m. UTC+03 on Friday: `0 14 * * 5`. Also there is a
 handy built‐in variable named `APPVEYOR_SCHEDULED_BUILD` which is set to `True`
 when the build is a scheduled one. I find this approach more convenient,
-so I'll stick to it for the rest of the article.
+so I’ll stick to it for the rest of the article.
 
 ## Downloading Coverity Build Tool
 
-<ins>Coverity Build Tool now comes pre‐instaled on AppVeyor builder so this
+<ins>Coverity Build Tool now comes pre‐installed on AppVeyor builder so this
 step is not necessary anymore.</ins>
 
 
@@ -93,10 +94,10 @@ install:
     # Here goes our code.
 {% endhighlight %}
 
-Let's deal with input data.
+Let’s deal with input data.
 
 The **Project name** is your Coverity Scan project name as seen in web UI.
-Usually it's the same as GitHub project name (`owner-name/repo-name`), in which
+Usually it’s the same as GitHub project name (`owner-name/repo-name`), in which
 case you can use convinient `APPVEYOR_REPO_NAME` built‐in variable for it.
 
 The **Project token** is used by Coverity Scan for automated build submissions.
@@ -188,7 +189,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
 {% endhighlight %}
 Things to note here:
 
-* I'm using predefined `CONFIGURATION` and `PLATFORM` variables to simulate
+* I’m using predefined `CONFIGURATION` and `PLATFORM` variables to simulate
   behaviour of AppVeyour buit-in MSBuild provider.
 * The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity
   Build Tool ZIP archive on the previous step.
@@ -198,13 +199,13 @@ Things to note here:
 ## Compressing Scan Data
 
 Coverity Scan requires the scan data collected during build to be compressed.
-We can easily do this with 7‐Zip which comes pre‐instaled on AppVeyor build
-worker. However, I'll show you pure PowerShell/.NET way of doing this
+We can easily do this with 7‐Zip which comes pre‐installed on AppVeyor build
+worker. However, I’ll demonstrate you pure PowerShell/.NET way of doing this
 which involves some nasty .NET bug and one cool PowerShell trick to workaround
 it.
 
 Currently, the only way to create ZIP archive in PowerShell which is available
-out of the box (that I'm aware of) is to use .NET
+out of the box (that I’m aware of) is to use .NET
 [System.IO.Compression.ZipFile API][url-dotnet-zipfile]:
 {% highlight powershell %}
 [IO.Compression.ZipFile]::CreateFromDirectory(
@@ -216,8 +217,8 @@ Unfortunately, if you try to upload ZIP file created with
 [bug][url-dotnet-zipfile-bug] in `IO.Compression.ZipFile` implementation due to
 which file names inside ZIP archive are encoded with backslashes as path
 separators (according to <cite>[ZIP format specification][url-zip-format-spec]
-</cite> <q>all slashes MUST be forward slashes '/' as opposed to backwards
-slashes '\\'</q>).
+</cite> <q>all slashes MUST be forward slashes “/” as opposed to backwards
+slashes “\\”</q>).
 As a result, such an archive cannot be unpacked on *nix systems (Coverity Scan
 is using Ubuntu currently).
 
@@ -265,7 +266,7 @@ Coverity Scan server we need to send
 multipart/form‐data[^fn-multipart] HTML form containing archived scan
 data along with some build metadata (the process is documented in **Upload a
 Project Build** page of your Coverity Scan project web GUI). This can be
-accomplished in many ways, I'll use
+accomplished in many ways, I’ll use
 [System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form‐data].
 
 First, we need to initialize `HttpClient` and `MultipartFormDataContent`:
@@ -280,7 +281,7 @@ $form = New-Object Net.Http.MultipartFormDataContent
 Note that `$client.Timeout` value must be large enough for the form to upload,
 otherwise exception will be thrown while sending data.
 
-Next, we'll fill form fields one by one. Those fields are **token**, **email**,
+Next, we’ll fill form fields one by one. Those fields are **token**, **email**,
 **file**, **version** and **description**.
 
 ### The Token Field
@@ -384,27 +385,27 @@ described in the article.
     form. Originally defined as part of HTML 4.0, it is most commonly used for
     submitting files via HTTP. Defined in [RFC 2388][url-rfc2388].
 
-[url-appveyor]: http://www.appveyor.com
+[url-appveyor]: https://www.appveyor.com
 {: rel="external" }
 [url-travis-ci]: https://travis-ci.org
 {: rel="external" }
-[url-appveyor-instaled-software]: http://www.appveyor.com/docs/installed-software
+[url-appveyor-installed-software]: https://www.appveyor.com/docs/installed-software/
 {: rel="external" }
-[url-appveyor-scheduled-builds]: http://www.appveyor.com/docs/build-configuration#scheduled-builds
+[url-appveyor-scheduled-builds]: https://www.appveyor.com/docs/build-configuration#scheduled-builds
 {: rel="external" }
-[url-appveyor-secure-variables]: http://www.appveyor.com/docs/build-configuration#secure-variables
+[url-appveyor-secure-variables]: https://www.appveyor.com/docs/build-configuration#secure-variables
 {: rel="external" }
 [url-coverity-scan]: https://scan.coverity.com
 {: rel="external" }
-[url-coverity]: http://www.coverity.com
+[url-coverity]: https://www.coverity.com
 {: rel="external" }
 [url-coverity-scan-build-freq]: https://scan.coverity.com/faq#frequency
 {: rel="external" }
 [url-coverity-community]: https://communities.coverity.com/message/6120#6120
 {: rel="external" }
-[url-crontab]: https://code.google.com/p/ncrontab/wiki/CrontabExpression
+[url-crontab]: https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression
 {: rel="external" }
-[url-invoke-webrequest]: https://technet.microsoft.com/en-us/library/hh849901.aspx
+[url-invoke-webrequest]: https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.utility/Invoke-WebRequest
 {: rel="external" }
 [url-dotnet-zipfile]: https://msdn.microsoft.com/en-us/library/system.io.compression.zipfile(v=vs.110).aspx
 {: rel="external" }

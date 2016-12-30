@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+
+{% capture schema %}{% if layout.schema %}{{ layout.schema }}{% else %}{{ page.schema }}{% endif %}{% endcapture %}
+
 <html
   lang="en-GB"
-  itemscope itemtype="{{ page.schema }}"
+  itemscope itemtype="{{ schema }}"
   prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# {{ page.og_prefix }}">
 
   <head>
@@ -17,23 +20,26 @@
     {% if page.is_home or page.layout == 'post' %}
     {% capture title %}{{ page.title | liquify | escape }}{% endcapture %}
     {% else %}
-    {% capture title %}{{ page.title | liquify | escape }} — {{ site.title | escape }}{% endcapture %}
+    {% capture _title %}{% if layout.title %}{{ layout.title }}{% else %}{{ page.title }}{% endif %}{% endcapture %}
+    {% capture title %}{{ _title | liquify | escape }} — {{ site.title | escape }}{% endcapture %}
     {% endif %}
     <title>{{ title }}</title>
     <meta itemprop="name" content="{{ title }}">
     <meta property="og:title" content="{{ title }}">
 
     <!-- Page description. -->
-    <meta name="description" content="{{ page.description | liquify | escape }}">
-    <meta itemprop="description" content="{{ page.description | liquify | escape }}">
-    <meta property="og:description" content="{{ page.description | liquify | escape }}">
+    {% capture description %}{% if layout.description %}{{ layout.description }}{% else %}{{ page.description }}{% endif %}{% endcapture %}
+    <meta name="description" content="{{ description | liquify | escape }}">
+    <meta itemprop="description" content="{{ description | liquify | escape }}">
+    <meta property="og:description" content="{{ description | liquify | escape }}">
 
     <!-- Page keywords. -->
-    {% if page.keywords %}
+    {% if layout.keywords %}
+    {% assign keywords = layout.keywords | liquify | escape %}
+    {% elsif page.keywords %}
     {% assign keywords = page.keywords | liquify | escape %}
     {% elsif page.tags %}
-    <!-- Use tags as keywords with the help of jekyll-tagging plugin. -->
-    {% assign keywords = page | keywords | escape %}
+    {% assign keywords = page.tags | join:',' | liquify | escape %}
     {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords }}">
@@ -41,9 +47,9 @@
     {% endif %}
 
     <!-- Page author. -->
-    <meta name="author" content="{{ site.author | escape }}">
-    {% if page.schema != 'https://schema.org/BlogPosting' %}
-    <meta itemprop="author" content="{{ site.author | escape }}">
+    <meta name="author" content="{{ site.creator.full_name | escape }}">
+    {% if schema != 'https://schema.org/BlogPosting' %}
+    <meta itemprop="author" content="{{ site.creator.full_name | escape }}">
     {% endif %}
     <link rel="author" type="text/plain" href="{{ site.baseurl }}/humans.txt">
 
@@ -51,7 +57,7 @@
     {% if page.image %}
     {% capture page_image %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
     <!-- For posts we define "ImageObject" instead of simple "Image". -->
-    {% if page.schema != 'https://schema.org/BlogPosting' %}
+    {% if schema != 'https://schema.org/BlogPosting' %}
     <link itemprop="image" href="{{ page_image }}">
     {% endif %}
     <meta property="og:image" content="{{ page_image }}">
@@ -62,7 +68,7 @@
     {% if page.twitter_image %}
     <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.twitter_image.url }}">
     <meta name="twitter:image:alt" content="{{ page.twitter_image.alt | liquify | escape }}">
-    {% else %}
+    {% elsif page.image %}
     <meta name="twitter:image:alt" content="{{ page.image.alt | liquify | escape }}">
     {% endif %}
 
@@ -70,7 +76,7 @@
     <meta property="og:site_name" content="{{ site.name | escape }}">
     <meta property="og:type" content="{{ page.og_type }}">
     <meta property="og:locale" content="en_GB">
-    {% unless page.generated %}
+    {% unless layout.generated %}
     <meta property="og:updated_time" content="{{ page.path | modified_time | date_to_xmlschema }}">
     {% endunless %}
     <meta property="og:rich_attachment" content="true">
@@ -90,9 +96,9 @@
 
     <!-- Open Graph profile metadata. -->
     {% if page.og_type == 'profile' %}
-    <meta property="profile:first_name" content="Pavel">
-    <meta property="profile:last_name" content="Frolov">
-    <meta property="profile:username" content="arkfps">
+    <meta property="profile:first_name" content="{{ site.creator.first_name | escape }}">
+    <meta property="profile:last_name" content="{{ site.creator.last_name | escape }}">
+    <meta property="profile:username" content="{{ site.creator.username | escape }}">
     <meta property="profile:gender" content="male">
     {% endif %}
 
@@ -102,24 +108,11 @@
     <meta name="twitter:creator:id" content="{{ site.twitter.creator_id }}">
 
     <!-- Favicon. -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ site.baseurl }}/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ site.baseurl }}/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ site.baseurl }}/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ site.baseurl }}/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ site.baseurl }}/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ site.baseurl }}/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ site.baseurl }}/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ site.baseurl }}/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
     <link rel="mask-icon" href="{{ site.baseurl }}/safari-pinned-tab.svg" color="{{ site.theme_colour }}">
-    <meta name="msapplication-TileColor" content="{{ site.theme_colour }}">
-    <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-144x144.png">
     <meta name="theme-color" content="#404040">
 
     <!-- Page canonical URL. -->
@@ -129,7 +122,9 @@
     <meta property="og:url" content="{{ canonical_url }}">
 
     <!-- Search engines indexing. -->
-    {% if page.robots %}
+    {% if layout.robots %}
+    <meta name="robots" content="{{ layout.robots }}">
+    {% elsif page.robots %}
     <meta name="robots" content="{{ page.robots }}">
     {% elsif paginator.previous_page %}
     <meta name="robots" content="noindex">
@@ -163,7 +158,6 @@
         <h1>
           <a rel="home" href="{{ site.baseurl }}/">
             <svg class="icon icon-balance-scale" role="img">
-              <desc>A balance scale.</desc>
               <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-balance-scale"/>
             </svg><br>
             {{ site.title | escape }}

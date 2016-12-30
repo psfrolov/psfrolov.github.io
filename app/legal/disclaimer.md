@@ -24,7 +24,7 @@ I strive to provide only quality links to useful and ethical websites, I have
 no control over the content and nature of these sites. These links to other
 websites do not imply a recommendation for all the content found on these
 sites. Site owners and content may change without notice and may occur before I
-have the opportunity to remove a link which may have gone "bad".
+have the opportunity to remove a link which may have gone ‘bad’.
 
 Please be also aware that when you leave {{ site.fqdn }}, other sites may have
 different privacy policies and terms which are beyond my control. Please be

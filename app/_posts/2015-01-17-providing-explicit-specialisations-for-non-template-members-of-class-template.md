@@ -9,7 +9,8 @@ description: &description >-
   class template without specialising the class template itself!
 excerpt: *description  
 image:
-  url: /img/pages/goethe-schiller-monument.jpg
+  url: &url /img/pages/goethe-schiller-monument.jpg
+  path: *url
   name: &name Goethe–Schiller Monument, Syracuse, New York State
   alt: *name
   source:
@@ -31,7 +32,7 @@ specialised:
 * member enumeration (since C++11);
 * member class.
 
-Let's see some examples:
+Let’s see some examples:
 {% gist arkfps/c15788b10323bd4d5c54 %}
 
 When this can be useful? Whenever you need some conditional logic for you
@@ -43,7 +44,7 @@ for the whole class due to large amount of code duplication. The better
 solution is to define specialisations only for those specific methods.
 
 Perhaps the most useful part of this feature is the ability to specialise
-member functions. Let's take a look at a concrete example.
+member functions. Let’s take a look at a concrete example.
 
 ## Implementing Generic RAII Wrapper for Resource Handles
 
@@ -146,7 +147,7 @@ private:
 {% endhighlight %}
 The problem is solved, but the cost is a lot of code duplication. As you
 can see, the only real difference between specialised and primary template
-is `Cleanup` method. Let's leave our `Handle` class definition as is and define
+is `Cleanup` method. Let’s leave our `Handle` class definition as is and define
 specialisation for `Cleanup` member function instead:
 {% highlight c++ %}
 template<> void Handle<OsInternetHandle>::Cleanup() {
@@ -172,7 +173,7 @@ _tag dispatching_[^fn-tag-dispatching]).
 
 Although described in <cite>Section 14.7 [temp.spec] of the C++ ISO/IEC
 standard</cite>, this unobvious feature is poorly documented elsewhere. In
-fact, I've found only a couple of reference manuals mentioning it:
+fact, I’ve found only a couple of reference manuals mentioning it:
 
 * [cppreference.com][url-cppreference];
 * [z/OS XL C/C++ Language Reference][url-zos-xl-cpp-reference].
@@ -190,7 +191,7 @@ fact, I've found only a couple of reference manuals mentioning it:
 
 [url-cppreference]: http://en.cppreference.com/w/cpp/language/template_specialization
 {: rel="external" }
-[url-zos-xl-cpp-reference]: https://www-01.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
+[url-zos-xl-cpp-reference]: https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.cbclx01/explicit_specialization.htm
 {: rel="external" }
 [url-type-safe-handles]: https://isocpp.org/blog/2015/01/type-safe-handles-in-c-emil-ernerfeldt
 {: rel="external" }

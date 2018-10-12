@@ -11,11 +11,7 @@
   "id-unique": true,
   "src-not-empty": true,
   "title-require": true,
-
-  "head-script-disabled": true,
-
   "alt-require": true,
-
   "doctype-html5": true,
   "id-class-value": false,
   "style-disabled": true,
@@ -25,6 +21,7 @@
   "id-class-ad-disabled": true,
   "href-abs-or-rel": false,
   "attr-unsafe-chars": true,
+  "head-script-disabled": true,
 
   "csslint": {
     "box-model": true,
@@ -53,6 +50,7 @@
     "overqualified-elements": true,
     "shorthand": true,
     "duplicate-background-images": true,
+    "order-alphabetical": true,
 
     "floats": true,
     "font-sizes": true,
@@ -69,30 +67,26 @@
     "bitwise": true,
     "curly": true,
     "eqeqeq": true,
+    "esversion": 6,
     "forin": true,
     "freeze": true,
-    "funcscope": true,
     "futurehostile": true,
     "globals": false,
-    "iterator": false,
     "latedef": true,
-
     "maxcomplexity": false,
     "maxdepth": false,
     "maxerr": 50,
     "maxparams": false,
     "maxstatements": false,
-
     "noarg": true,
     "nocomma": false,
     "nonbsp": true,
     "nonew": true,
-    "notypeof": true,
-
     "predef": false,
     "shadow": false,
     "singleGroups": true,
     "strict": true,
+    "trailingcomma": true,
     "undef": true,
     "unused": true,
     "varstmt": false,
@@ -104,9 +98,11 @@
     "eqnull": false,
     "evil": false,
     "expr": true,
+    "iterator": false,
     "lastsemic": false,
     "loopfunc": false,
     "moz": false,
+    "notypeof": false,
     "noyield": false,
     "plusplus": false,
     "proto": false,

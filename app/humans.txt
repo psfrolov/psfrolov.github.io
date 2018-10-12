@@ -15,7 +15,7 @@
   Markdown: https://daringfireball.net/projects/markdown/
 
   # Development Tools
-  Atom: https://atom.io/
+  Visual Studio Code: https://code.visualstudio.com
   Google Chrome: https://www.google.com/chrome/
   Inkscape: https://inkscape.org
   GIMP: https://www.gimp.org
@@ -25,7 +25,7 @@
 
   # Build Tools
   Jekyll: https://jekyllrb.com
-  Gulp: http://gulpjs.com
+  Gulp: https://gulpjs.com
   Browsersync: https://www.browsersync.io
 
   # Styles
@@ -35,7 +35,7 @@
 
   # Fonts
   PT Sans: https://www.google.com/fonts/specimen/PT+Sans
-  Ubuntu Mono: http://font.ubuntu.com
+  Ubuntu Mono: https://design.ubuntu.com/font/
   Metamorphous: https://www.google.com/fonts/specimen/Metamorphous
 
   # Icons

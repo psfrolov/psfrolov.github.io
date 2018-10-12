@@ -13,4 +13,4 @@ gem 'wdm', '~> 0.1.1' if Gem.win_platform?  # for jekyll --watch
 
 gem 'fastimage'
 gem 'liquid_pluralize'
-gem 'nokogiri'  # for liquid_reading_time
+gem 'liquid_reading_time'

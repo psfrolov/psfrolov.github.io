@@ -55,9 +55,7 @@ below.
       "{{ site.github_profile }}"
     ],
     "gender": "male",
-    "alumniOf": "Moscow State Industrial University",
-    "jobTitle": "Software Developer",
-    "worksFor": "Positive Technologies"
+    "jobTitle": "Software Developer"
   }
 </script>
 

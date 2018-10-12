@@ -2,8 +2,9 @@
 source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes, .gitignore]
-gems:
+plugins:
   - liquid_pluralize
+  - liquid_reading_time
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging
@@ -12,7 +13,11 @@ gems:
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
 permalink: /:categories/:title
-error_mode: strict  # for Liquid
+strict_front_matter: true
+liquid:
+  error_mode: strict
+  strict_filters: true
+  strict_variables: false
 
 # Default page layouts.
 defaults:
@@ -39,11 +44,15 @@ paginate: 10
 # Web feed (jekyll-feed).
 feed:
   path: atom.xml
-  # Jekyll-feed also makes use of url, name, description and author variables.
+  # Jekyll-feed also makes use of url, name, description, and author variables.
 
 # Tagging (jekyll-tagging).
 tag_page_layout: tag-page
 tag_page_dir: tag
+
+# Gists (jekyll-gist)
+gist:
+  noscript: false
 
 # Custom variables.
 fqdn: TheHermeticVault.com

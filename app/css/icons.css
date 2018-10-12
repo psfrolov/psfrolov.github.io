@@ -31,8 +31,7 @@
 .icon-facebook-square,
 .icon-twitter-square,
 .icon-reddit-square,
-.icon-linkedin-square,
-.icon-google-plus-square {
+.icon-linkedin-square {
   font-size: 2.2rem;
   margin: 0 .2rem;
 }
@@ -84,10 +83,6 @@
 
 .icon-feed {
 	width: 0.7864560410380363em;
-}
-
-.icon-google-plus-square {
-	width: 0.8571416462459638em;
 }
 
 .icon-smile-o {

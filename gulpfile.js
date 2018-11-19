@@ -270,7 +270,7 @@ gulp.task('lint',
 // Deploy.
 gulp.task('_publish', () => {
   if (options.env !== 'production') {
-    const msg = 'only "production" build can be published';
+    const msg = 'Only "production" build can be published.';
     throw new PluginError({ plugin: '<none>', message: msg });
   }
   return gulp.src(['**/*'], { cwd: serveDir, cwdbase: true, dot: true })

@@ -166,7 +166,7 @@ rules:
   func-call-spacing: error
   func-name-matching: error
   func-names: error
-  func-style: error
+  func-style: off
   function-paren-newline: off
   id-blacklist: error
   id-length: error
@@ -229,14 +229,14 @@ rules:
   prefer-object-spread: error
   quote-props: [error, consistent]
   quotes: [error, single]
-  require-jsdoc: error
+  require-jsdoc: off
   semi: error
   semi-spacing: error
   semi-style: error
   sort-keys: off
   sort-vars: [error, { ignoreCase: true } ]
   space-before-blocks: error
-  space-before-function-paren: error
+  space-before-function-paren: [error, never]
   space-in-parens: error
   space-infix-ops: error
   space-unary-ops: error

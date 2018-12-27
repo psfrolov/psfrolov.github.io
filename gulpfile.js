@@ -5,6 +5,7 @@ const accessibility = require('gulp-accessibility'),
       atImport = require('postcss-import'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
+      childProcess = require('child_process'),
       cleanUrls = require('clean-urls'),
       cssDeclSort = require('css-declaration-sorter'),
       del = require('del'),
@@ -19,14 +20,11 @@ const accessibility = require('gulp-accessibility'),
       minimist = require('minimist'),
       mqpacker = require('css-mqpacker'),
       path = require('path'),
-      PluginError = require('plugin-error'),
       postcss = require('gulp-postcss'),
       postcssClean = require('postcss-clean'),
       postcssReporter = require('postcss-reporter'),
       prettyData = require('gulp-pretty-data'),
       revAll = require('gulp-rev-all'),
-      runSeq = require('run-sequence'),
-      shell = require('gulp-shell'),
       size = require('gulp-size'),
       stylelint = require('gulp-stylelint'),
       uglify = require('gulp-uglify'),
@@ -62,39 +60,43 @@ const otherFiles = [
   'fnt/**/*'
 ];
 
+let webServer = null;
+
 // Jekyll build.
-gulp.task('jekyll-build', shell.task(
-  `bundle exec jekyll build --destination ${jekyllBuildDir} --trace`,
-  { env: { JEKYLL_ENV: options.env } }
-));
+function jekyllBuild() {
+  return childProcess.spawn(
+    `bundle exec jekyll build --destination ${jekyllBuildDir} --trace`,
+    { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } });
+}
+exports['jekyll-build'] = jekyllBuild;
 
 // Jekyll serve.
-gulp.task('jekyll-serve', shell.task(
+exports['jekyll-serve'] = () => childProcess.spawn(
   `bundle exec jekyll serve --destination ${jekyllBuildDir} \
     --ssl-key ${path.join(certsDir, 'srv-auth.key')} \
     --ssl-cert ${path.join(certsDir, 'srv-auth.crt')} \
     --port 3000 --open-url --livereload --trace`,
-  { env: { JEKYLL_ENV: options.env } }
-));
-
-// Process XML and JSON.
-gulp.task('xml&json', ['jekyll-build'], () =>
-  gulp.src(jsonFiles.concat(xmlFiles),
-           { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(prettyData({ type: 'minify' }))
-    .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'xml&json' }))
+  { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } }
 );
 
+// Process XML and JSON.
+function xmlAndJson() {
+  return gulp.src(jsonFiles.concat(xmlFiles),
+                  { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+    .pipe(prettyData({ type: 'minify' }))
+    .pipe(gulp.dest(buildDir))
+    .pipe(size({ title: 'xml&json' }));
+}
+
 // Process CSS.
-gulp.task('css', ['jekyll-build'], () =>
-  gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function css() {
+  return gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(postcss([
       atImport,
       autoprefixer,
       mqpacker({ sort: true }),
       uncss.postcssPlugin({
-        html: [path.join(jekyllBuildDir, '**/*.html')],
+        html: [path.join(jekyllBuildDir, '**', '*.html')],
         htmlroot: jekyllBuildDir
       }),
       postcssClean,
@@ -102,20 +104,20 @@ gulp.task('css', ['jekyll-build'], () =>
       postcssReporter({ throwError: true })
     ]))
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'css' }))
-);
+    .pipe(size({ title: 'css' }));
+}
 
 // Process JavaScript.
-gulp.task('js', ['jekyll-build'], () =>
-  gulp.src(jsFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function js() {
+  return gulp.src(jsFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(uglify())
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'js' }))
-);
+    .pipe(size({ title: 'js' }));
+}
 
 // Process SVG.
-gulp.task('svg', ['jekyll-build'], () =>
-  gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function svg() {
+  return gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(imagemin([
       imagemin.svgo({
         multipass: true,
@@ -123,12 +125,12 @@ gulp.task('svg', ['jekyll-build'], () =>
       })
     ]))
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'svg' }))
-);
+    .pipe(size({ title: 'svg' }));
+}
 
 // Process HTML.
-gulp.task('html', ['jekyll-build'], () =>
-  gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function html() {
+  return gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
@@ -150,19 +152,20 @@ gulp.task('html', ['jekyll-build'], () =>
       sortClassName: true
     }))
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'html' }))
-);
+    .pipe(size({ title: 'html' }));
+}
 
 // Copy miscellaneous files.
-gulp.task('copy', ['jekyll-build'], () =>
-  gulp.src(otherFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function copy() {
+  return gulp.src(otherFiles,
+                  { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(gulp.dest(buildDir))
-    .pipe(size({ title: 'copy' }))
-);
+    .pipe(size({ title: 'copy' }));
+}
 
 // Revise assets (cache busting).
-gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () =>
-  gulp.src('**/*', { cwd: buildDir, cwdbase: true, dot: true })
+function revision() {
+  return gulp.src('**/*', { cwd: buildDir, cwdbase: true, dot: true })
     .pipe(revAll.revision({
       dontGlobal: [
         /^\/\./gu,  // dot-files
@@ -183,19 +186,28 @@ gulp.task('revision', ['xml&json', 'css', 'js', 'svg', 'html', 'copy'], () =>
       ]
     }))
     .pipe(gulp.dest(serveDir))
-    .pipe(size({ title: 'revision' }))
-);
+    .pipe(size({ title: 'revision' }));
+}
 
 // Build.
-gulp.task('clean', () => del([outDir]));
-gulp.task('build', ['revision']);
-gulp.task('rebuild', cb => runSeq('clean', 'build', cb));
+function clean() {
+  return del([outDir]);
+}
+exports.clean = clean;
 
-// Serve local site and watch for changes.
-gulp.task('_browsersync', () => {
+const build = gulp.series(jekyllBuild,
+                          gulp.parallel(xmlAndJson, css, js, svg, html, copy),
+                          revision);
+exports.build = build;
+
+const rebuild = gulp.series(clean, build);
+exports.rebuild = rebuild;
+
+// Serve local site.
+function serve(cb) {
   const port = 3000;
-  const bs = browserSync.create();
-  bs.init({
+  webServer = browserSync.create();
+  webServer.init({
     server: { baseDir: serveDir },
     port,
     middleware: [
@@ -214,73 +226,98 @@ gulp.task('_browsersync', () => {
     online: false,
     browser: [
       'chrome',
-      'opera',
+      '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe',
       'firefox',
       'iexplore',
       `microsoft-edge:https://localhost:${port}`
     ],
     reloadOnRestart: true
   });
-  gulp.watch(['**/*'], { cwd: srcDir }, ['build', bs.reload]);
-});
-gulp.task('serve', cb => runSeq('build', '_browsersync', cb));
-gulp.task('serve-clean', cb => runSeq('rebuild', '_browsersync', cb));
+  cb();
+}
+
+function reloadServer(cb) {
+  webServer.reload();
+  cb();
+}
+
+function watch() {
+  return gulp.watch('**/*', { cwd: srcDir }, gulp.series(build, reloadServer));
+}
+
+exports.serve = gulp.series(build, serve, watch);
+exports['serve-clean'] = gulp.series(rebuild, serve);
 
 // Check source code.
-gulp.task('jekyll-hyde', shell.task(
-  'bundle exec jekyll hyde', { env: { JEKYLL_ENV: options.env } }
-));
-gulp.task('jsonlint', ['jekyll-build'], () =>
-  gulp.src(jsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+function jekyllHyde() {
+  return childProcess.spawn(
+    'bundle exec jekyll hyde',
+    { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } });
+}
+exports['jekyll-hyde'] = jekyllHyde;
+
+function jsonLint() {
+  return gulp.src(jsonFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(jsonlint())
     .pipe(jsonlint.reporter())
-    .pipe(jsonlint.failAfterError())
-);
-gulp.task('stylelint', ['jekyll-build'], () =>
-  gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+    .pipe(jsonlint.failAfterError());
+}
+exports.jsonlint = jsonLint;
+
+function styleLint() {
+  return gulp.src(cssFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(stylelint({ reporters: [ { formatter: 'string', console: true } ] }))
     .pipe(postcss([
       doiuse({ browsers: ['defaults'] }),
       postcssReporter({ throwError: true })
-    ]))
-);
-gulp.task('htmlhint', ['jekyll-build'], () =>
-  gulp.src(htmlFilesForLint, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+    ]));
+}
+exports.stylelint = styleLint;
+
+function htmlHint() {
+  return gulp.src(htmlFilesForLint,
+                  { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(htmlhint({ htmlhintrc: path.join(__dirname, '.htmlhintrc') }))
     .pipe(htmlhint.reporter())
-    .pipe(htmlhint.failAfterError({ suppress: true }))
-);
-gulp.task('w3c', ['build'], () =>
-  gulp.src(htmlFilesForLint, { cwd: serveDir, cwdbase: true, dot: true })
+    .pipe(htmlhint.failAfterError({ suppress: true }));
+}
+exports.htmlhint = htmlHint;
+
+function w3c() {
+  return gulp.src(htmlFilesForLint,
+                  { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(w3cjs())
-    .pipe(w3cjs.reporter())
-);
-gulp.task('a11y', ['build'], () =>
-  gulp.src(htmlFilesForLint, { cwd: serveDir, cwdbase: true, dot: true })
+    .pipe(w3cjs.reporter());
+}
+exports.w3c = w3c;
+
+function a11y() {
+  return gulp.src(htmlFilesForLint,
+                  { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(accessibility({
       accessibilityLevel: 'WCAG2AAA',
       reportLevels: { notice: false, warning: false, error: true },
       force: true
-    }))
-);
-gulp.task('lint',
-          ['jekyll-hyde', 'jsonlint', 'stylelint', 'htmlhint', 'w3c', 'a11y']
-);
+    }));
+}
+exports.a11y = a11y;
+
+exports.lint =
+  gulp.series(build, jekyllHyde, jsonLint, styleLint, htmlHint, w3c, a11y);
 
 // Deploy.
-gulp.task('_publish', () => {
-  if (options.env !== 'production') {
-    const msg = 'Only "production" build can be published.';
-    throw new PluginError({ plugin: '<none>', message: msg });
-  }
+function publish(cb) {
+  if (options.env !== 'production')
+    return cb(new Error('Only "production" build can be published.'));
+
   return gulp.src(['**/*'], { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(ghPages({
       cacheDir: publishDir,
       remoteUrl: 'https://github.com/arkfps/arkfps.github.io.git',
       branch: 'master'
     }));
-});
-gulp.task('deploy', cb => runSeq('clean', 'build', '_publish', cb));
+}
+exports.deploy = gulp.series(clean, build, publish);
 
 // Default task.
-gulp.task('default', ['serve']);
+exports.default = serve;

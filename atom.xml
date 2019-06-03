@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://thehermeticvault.com/atom.xml" rel="self" type="application/atom+xml" /><link href="https://thehermeticvault.com/" rel="alternate" type="text/html" /><updated>2018-12-27T19:39:10+03:00</updated><id>https://thehermeticvault.com/atom.xml</id><title type="html">The Hermetic Vault</title><subtitle>A miscellanea of software development techniques: C++, generic programming, design patterns, CI, and more.</subtitle><author><name>Pavel Frolov</name></author><entry><title type="html">Making Boost.Signals2 More OOP‐Friendly</title><link href="https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly" rel="alternate" type="text/html" title="Making Boost.Signals2 More OOP‐Friendly" /><published>2015-04-17T00:00:00+03:00</published><updated>2015-04-17T00:00:00+03:00</updated><id>https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly</id><content type="html" xml:base="https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly">&lt;p&gt;The &lt;em&gt;observer&lt;/em&gt;&lt;sup id=&quot;fnref:fn-observer&quot;&gt;&lt;a href=&quot;#fn:fn-observer&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; design pattern is by far the most popular and
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://thehermeticvault.com/atom.xml" rel="self" type="application/atom+xml" /><link href="https://thehermeticvault.com/" rel="alternate" type="text/html" /><updated>2019-06-04T00:47:00+03:00</updated><id>https://thehermeticvault.com/atom.xml</id><title type="html">The Hermetic Vault</title><subtitle>A miscellanea of software development techniques: C++, generic programming, design patterns, CI, and more.</subtitle><author><name>Pavel Frolov</name></author><entry><title type="html">Making Boost.Signals2 More OOP‐Friendly</title><link href="https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly" rel="alternate" type="text/html" title="Making Boost.Signals2 More OOP‐Friendly" /><published>2015-04-17T00:00:00+03:00</published><updated>2015-04-17T00:00:00+03:00</updated><id>https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly</id><content type="html" xml:base="https://thehermeticvault.com/software-development/making-boost-signals2-more-oop-friendly">&lt;p&gt;The &lt;em&gt;observer&lt;/em&gt;&lt;sup id=&quot;fnref:fn-observer&quot;&gt;&lt;a href=&quot;#fn:fn-observer&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; design pattern is by far the most popular and
 widely known among &lt;em&gt;behavioural patterns&lt;/em&gt;&lt;sup id=&quot;fnref:fn-behavioural-patterns&quot;&gt;&lt;a href=&quot;#fn:fn-behavioural-patterns&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.
 Unfortunately, unlike other mainstream languages out there, the C++ standard
 library doesn’t provide out of the box observer implementation. Luckily,
@@ -18,7 +18,7 @@ problem.&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;force_close&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// ...    &lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; class is probably wrapping some third‐party GUI library which is
@@ -31,13 +31,13 @@ happens in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&g
   &lt;span class=&quot;k&quot;&gt;explicit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 
-&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OnWindowShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OnWindowClose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;force_close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 
   &lt;span class=&quot;n&quot;&gt;Window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// ...  &lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;For the sake of example, let’s say that we are interested in only two events:
@@ -58,7 +58,7 @@ such as this, e.g. if there are no multiple handlers for a single event, we can
 use just &lt;code class=&quot;highlighter-rouge&quot;&gt;std::function&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;boost::signals2::signal&lt;/code&gt;):&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Window&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;force_close&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
@@ -69,13 +69,13 @@ use just &lt;code class=&quot;highlighter-rouge&quot;&gt;std::function&lt;/code&
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;show_signal_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forward&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-  &lt;span class=&quot;k&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  
+  &lt;span class=&quot;k&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;boost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signals2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;RegisterCloseObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;close_signal_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forward&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-  &lt;span class=&quot;c1&quot;&gt;// More registrars...  &lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// More registrars...&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NotifyShowObservers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -233,7 +233,7 @@ methods on &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; i
     &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;force_close&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;can_close&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;can_close&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;closing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;// Actually close the window.&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;// ...  &lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;closing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -259,7 +259,7 @@ methods on &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; i
 
   &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 
-&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OnWindowShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -270,14 +270,14 @@ methods on &lt;code class=&quot;highlighter-rouge&quot;&gt;Window&lt;/code&gt; i
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
   &lt;span class=&quot;n&quot;&gt;Window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// ...  &lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;putting-it-all-together&quot;&gt;Putting It All Together&lt;/h2&gt;
 
 &lt;p&gt;Here is a self‐sufficient test program which puts together the above code
 snippets:
-&lt;script src=&quot;https://gist.github.com/arkfps/07887b173776ebbb4aac.js?file=boost_signals_plus_std_tuple.cc&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/psfrolov/07887b173776ebbb4aac.js?file=boost_signals_plus_std_tuple.cc&quot;&gt; &lt;/script&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
@@ -289,7 +289,7 @@ extensions.&lt;/p&gt;
 &lt;p&gt;I have also experimented with alternative implementations, namely, the one
 based on &lt;code class=&quot;highlighter-rouge&quot;&gt;boost::fusion::map&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;std::tuple&lt;/code&gt; and the other which uses
 &lt;code class=&quot;highlighter-rouge&quot;&gt;std::function&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;boost::signals2::signal&lt;/code&gt;. You can find them in a
-&lt;a rel=&quot;external&quot; href=&quot;https://gist.github.com/arkfps/07887b173776ebbb4aac&quot;&gt;gist&lt;/a&gt;.&lt;/p&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://gist.github.com/psfrolov/07887b173776ebbb4aac&quot;&gt;gist&lt;/a&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -399,7 +399,7 @@ specialised:&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Let’s see some examples:
-&lt;script src=&quot;https://gist.github.com/arkfps/c15788b10323bd4d5c54.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/psfrolov/c15788b10323bd4d5c54.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;When this can be useful? Whenever you need some conditional logic for you
 class template based on template parameters, but that logic takes only a small
@@ -910,7 +910,7 @@ Coverity Scan project web GUI, and the final results will be delivered to you
 by email. Then use &lt;strong&gt;View Defects&lt;/strong&gt; button in Coverity Scan web GUI to start
 triaging discovered issues.&lt;/p&gt;
 
-&lt;p&gt;Here is full &lt;a rel=&quot;external&quot; href=&quot;https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml&quot;&gt;appveyor.yml&lt;/a&gt; utilising the approach
+&lt;p&gt;Here is full &lt;a rel=&quot;external&quot; href=&quot;https://github.com/psfrolov/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml&quot;&gt;appveyor.yml&lt;/a&gt; utilising the approach
 described in the article.&lt;/p&gt;
 
 &lt;hr /&gt;

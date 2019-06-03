@@ -16,7 +16,6 @@ image:
   source:
     url: https://en.wikipedia.org/wiki/Wikipedia:Featured_picture_candidates/Chichen_Itza_Observatory_2_1.jpg
     name: Fcb981
-redirect_from: /2015/04/17/making-boost-signals2-more-oop-friendly.html
 ---
 
 The _observer_[^fn-observer] design pattern is by far the most popular and
@@ -39,7 +38,7 @@ class Window {
 public:
   void Show();
   bool Close(bool force_close = false);
-  // ...    
+  // ...
 };
 {% endhighlight %}
 
@@ -53,13 +52,13 @@ public:
   explicit Application(Window& window);
   // ...
 
-private:    
+private:
   void OnWindowShow();
   bool OnWindowClose(bool force_close);
   // ...
 
   Window& window_;
-  // ...  
+  // ...
 };
 {% endhighlight %}
 
@@ -82,7 +81,7 @@ such as this, e.g. if there are no multiple handlers for a single event, we can
 use just `std::function` instead of `boost::signals2::signal`):
 {% highlight c++ %}
 class Window {
-public:    
+public:
   void Show();
   bool Close(bool force_close = false);
   // ...
@@ -93,13 +92,13 @@ public:
     return show_signal_.connect(std::forward<F>(f));
   }
 
-  template<typename F>  
+  template<typename F>
   boost::signals2::connection
   RegisterCloseObserver(F&& f) {
     return close_signal_.connect(std::forward<F>(f));
   }
 
-  // More registrars...  
+  // More registrars...
 
 protected:
   void NotifyShowObservers() const {
@@ -264,7 +263,7 @@ public:
     const bool closing{ force_close || !can_close || *can_close };
     if (closing) {
       // Actually close the window.
-      // ...  
+      // ...
     }
     return closing;
   }
@@ -291,7 +290,7 @@ public:
 
   // ...
 
-private:    
+private:
   void OnWindowShow() {
     // ...
   }
@@ -302,7 +301,7 @@ private:
   }
 
   Window& window_;
-  // ...  
+  // ...
 };
 {% endhighlight %}
 
@@ -310,7 +309,7 @@ private:
 
 Here is a self‐sufficient test program which puts together the above code
 snippets:
-{% gist arkfps/07887b173776ebbb4aac boost_signals_plus_std_tuple.cc %}
+{% gist psfrolov/07887b173776ebbb4aac boost_signals_plus_std_tuple.cc %}
 
 ## Conclusion
 
@@ -386,5 +385,5 @@ based on `boost::fusion::map` instead of `std::tuple` and the other which uses
 {: rel="external" }
 [url-class-diagram]: https://en.wikipedia.org/wiki/Class_diagram
 {: rel="external" }
-[url-observable-gist]: https://gist.github.com/arkfps/07887b173776ebbb4aac
+[url-observable-gist]: https://gist.github.com/psfrolov/07887b173776ebbb4aac
 {: rel="external" }

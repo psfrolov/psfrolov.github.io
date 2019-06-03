@@ -15,7 +15,6 @@ image:
   source:
     url: https://www.flickr.com/photos/batigolix/3332923984/in/photostream/
     name: Boris Doesborg
-redirect_from: /2015/01/07/using-coverity-scan-with-appveyor.html
 ---
 
 A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar
@@ -417,7 +416,7 @@ described in the article.
 {: rel="external" }
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
 {: rel="external" }
-[url-my-appveyor-yml]: https://github.com/arkfps/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml
+[url-my-appveyor-yml]: https://github.com/psfrolov/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml
 {: rel="external" }
 [url-saas]: https://en.wikipedia.org/wiki/Software_as_a_service
 {: rel="external" }

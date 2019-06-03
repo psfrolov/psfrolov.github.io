@@ -313,7 +313,7 @@ function publish(cb) {
   return gulp.src(['**/*'], { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(ghPages({
       cacheDir: publishDir,
-      remoteUrl: 'https://github.com/arkfps/arkfps.github.io.git',
+      remoteUrl: 'https://github.com/psfrolov/psfrolov.github.io.git',
       branch: 'master'
     }));
 }

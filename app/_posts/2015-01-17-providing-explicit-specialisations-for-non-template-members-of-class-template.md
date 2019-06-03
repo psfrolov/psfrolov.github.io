@@ -7,7 +7,7 @@ description: &description >-
   function templates and class templates. But it was a total surprise to me
   that you can define explicit specialisations for non‐template members of
   class template without specialising the class template itself!
-excerpt: *description  
+excerpt: *description
 image:
   url: &url /img/pages/goethe-schiller-monument.jpg
   path: *url
@@ -16,7 +16,6 @@ image:
   source:
     url: https://en.wikipedia.org/wiki/File:Goethe-Schiller_Monument_-_Syracuse.jpg
     name: Easchiff
-redirect_from: /2015/01/12/providing-explicit-specializations-for-non-template-members-of-class-template.html
 ---
 
 C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-smile-o"/></svg>).
@@ -33,7 +32,7 @@ specialised:
 * member class.
 
 Let’s see some examples:
-{% gist arkfps/c15788b10323bd4d5c54 %}
+{% gist psfrolov/c15788b10323bd4d5c54 %}
 
 When this can be useful? Whenever you need some conditional logic for you
 class template based on template parameters, but that logic takes only a small

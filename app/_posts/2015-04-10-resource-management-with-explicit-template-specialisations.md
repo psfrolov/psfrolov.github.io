@@ -11,7 +11,6 @@ image:
   url: &url /img/pages/overload-126.png
   path: *url
   alt: 'Overload journal #126, April 2015'
-redirect_from: /2015/04/10/resource-management-with-explicit-template-specializations.html
 ---
 
 Here’s my article from the

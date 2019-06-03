@@ -46,5 +46,4 @@
   GitHub Pages: https://pages.github.com
   Disqus Engage: https://publishers.disqus.com/engage
   Formspree: https://formspree.io
-  NameSilo: https://www.namesilo.com
   CloudFlare: https://www.cloudflare.com

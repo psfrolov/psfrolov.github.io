@@ -8,7 +8,6 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll/tagging
-  - jekyll-redirect-from
   - jekyll-feed
   # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
@@ -57,7 +56,6 @@ gist:
 # Custom variables.
 fqdn: TheHermeticVault.com
 url: &site_url https://thehermeticvault.com
-github: { url: *site_url }  # base URL for jekyll-redirect plugin
 name: &sitename The Hermetic Vault
 title: *sitename
 description: >-
@@ -70,14 +68,14 @@ creator:
   first_name: Pavel
   last_name: Frolov
   full_name: &creator_full_name Pavel Frolov
-  username: arkfps
+  username: psfrolov
 author: *creator_full_name  # for jekyll-feed plugin
 
 email: Y29udGFjdEB0aGVoZXJtZXRpY3ZhdWx0LmNvbQ==
 theme_colour: '#ac4142'
 
 disqus_shortname: arkfps
-github_profile: https://github.com/arkfps
+github_profile: https://github.com/psfrolov
 linkedin_profile: https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4
 facebook:
   profile: https://www.facebook.com/100005735232020

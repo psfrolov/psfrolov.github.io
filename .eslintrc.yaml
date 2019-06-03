@@ -112,6 +112,7 @@ rules:
   no-void: error
   no-warning-comments: error
   no-with: error
+  prefer-named-capture-group: error
   prefer-promise-reject-errors: error
   radix: error
   require-await: error

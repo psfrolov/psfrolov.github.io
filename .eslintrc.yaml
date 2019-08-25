@@ -168,6 +168,7 @@ rules:
   func-name-matching: error
   func-names: error
   func-style: off
+  function-call-argument-newline: consistent
   function-paren-newline: off
   id-blacklist: error
   id-length: error
@@ -186,7 +187,7 @@ rules:
   lines-between-class-members: error
   max-depth: error
   max-len: error
-  max-lines: error
+  max-lines: [error, { max: 500 } ]
   max-lines-per-function: error
   max-nested-callbacks: error
   max-params: error

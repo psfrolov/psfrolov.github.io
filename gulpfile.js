@@ -52,7 +52,6 @@ const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/**/*.js'];
 const svgFiles = ['svg/**/*.svg'];
 const htmlFiles = ['**/*.html'];
-const htmlFilesForLint = htmlFiles.concat(['!{google,yandex_}*.html']);
 const otherFiles = [
   '!*.{html,json,xml,svg}',
   '*',
@@ -172,17 +171,16 @@ function revision() {
         /^\/favicon/gu,  // favicons
         /^\/apple-touch-icon/gu,  // iOS favicons
         /\/img\/pages/gu,  // images for social sharing and rich snippets
-        /^\/BingSiteAuth\.xml$/gu,  // Bing Webmaster Tools verification file
         /^\/CNAME$/gu  // GitHub Pages custom domain support
       ],
       dontRenameFile: [
-        /\.(html|txt)$/gu,
-        /^\/(atom|sitemap|feed\.xslt)\.xml$/gu,
+        /\.(?:html|txt)$/gu,
+        /^\/(?:atom|sitemap|feed\.xslt)\.xml$/gu,
         /^\/browserconfig\.xml$/gu
       ],
       dontUpdateReference: [
-        /\.(html|txt)$/gu,
-        /\/(atom|sitemap|feed\.xslt)\.xml$/gu
+        /\.(?:html|txt)$/gu,
+        /\/(?:atom|sitemap|feed\.xslt)\.xml$/gu
       ]
     }))
     .pipe(gulp.dest(serveDir))
@@ -228,7 +226,6 @@ function serve(cb) {
       'chrome',
       '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe',
       'firefox',
-      'iexplore',
       `microsoft-edge:https://localhost:${port}`
     ],
     reloadOnRestart: true
@@ -275,7 +272,7 @@ function styleLint() {
 exports.stylelint = styleLint;
 
 function htmlHint() {
-  return gulp.src(htmlFilesForLint,
+  return gulp.src(htmlFiles,
                   { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(htmlhint({ htmlhintrc: path.join(__dirname, '.htmlhintrc') }))
     .pipe(htmlhint.reporter())
@@ -284,7 +281,7 @@ function htmlHint() {
 exports.htmlhint = htmlHint;
 
 function w3c() {
-  return gulp.src(htmlFilesForLint,
+  return gulp.src(htmlFiles,
                   { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(w3cjs())
     .pipe(w3cjs.reporter());
@@ -292,7 +289,7 @@ function w3c() {
 exports.w3c = w3c;
 
 function a11y() {
-  return gulp.src(htmlFilesForLint,
+  return gulp.src(htmlFiles,
                   { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(accessibility({
       accessibilityLevel: 'WCAG2AAA',

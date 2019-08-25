@@ -9,7 +9,7 @@ description: >-
   gotchas, issues, etc., that arises over the course of my professional
   activity, many of which I hope would be useful for other software developers.
 image:
-  url: /img/pages/profile.jpg
+  url: /img/pages/profile.png
 twitter_image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
   name: &name The Alchemist by Pieter Bruegel the Elder

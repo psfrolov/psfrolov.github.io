@@ -1,7 +1,7 @@
 # Build settings.
 source: app
 destination: dist/manual-jekyll-build
-include: [.nojekyll, .gitattributes, .gitignore]
+include: [.nojekyll, .gitattributes]
 plugins:
   - liquid_pluralize
   - liquid_reading_time

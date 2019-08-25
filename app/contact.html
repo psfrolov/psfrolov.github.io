@@ -55,16 +55,25 @@ robots: noindex
                 placeholder="So, apart from casting runes, what other hobbies doth thou hast? Forbidden rituals, human sacrifices, torturing?"
                 maxlength="5000"
                 spellcheck="true"
-                required></textarea>
+                required>
+      </textarea>
+      <input type="hidden"
+             name="_replyto">
+      <input type="hidden"
+             name="_subject"
+             value="{{ site.name }} Contact">
       <input type="hidden"
              name="_next"
              value="{{ site.baseurl }}/thank-you#main">
       <input type="text"
-             name="_gotcha"
+             name="_honey"
              maxlength="20"
              style="display:none"
              aria-hidden="true"
              title="Honeypot">
+      <input type="hidden"
+             name="_captcha"
+             value="false">
     </div>
   </div>
   <div>
@@ -81,15 +90,6 @@ robots: noindex
     'use strict';
     var form = document.forms.contact;
     // Dynamically construct email to make it harder for bots to sniff.
-    form.setAttribute('action', 'https://formspree.io/' + window.atob('{{ site.email }}'));
-    // Prevents submitting invalid form (for older browsers).
-    form.addEventListener('submit', function(evt) {
-      if (form.checkValidity() === false) {
-        evt.preventDefault();
-        alert('Please fill out all form fields correctly.');
-        return false;
-      }
-      return true;
-    });
+    form.setAttribute('action', 'https://formsubmit.co/' + window.atob('{{ site.email }}'));
   }());
 </script>

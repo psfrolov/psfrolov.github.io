@@ -430,7 +430,8 @@ figure figcaption {
 /* ------------------------------------------------------------------------- */
 
 /* Code. */
-code, pre, .gist .blob-code {
+code, pre,
+.gist .blob-num, .gist .blob-code {
   font-family: 'ubuntu_mono', 'Courier New', monospace !important;
 }
 
@@ -448,7 +449,6 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .7rem;
   line-height: 1.4;
   white-space: pre;
   overflow: auto;
@@ -458,18 +458,18 @@ pre code {
   overflow-wrap: normal;
   word-wrap: normal;
   overflow-x: auto;
+  padding: 0;
 }
 
-pre, code, .gist .highlight, .gist .gist-meta,
-input, textarea {
+pre, code,
+input, textarea,
+.gist .highlight {
   background: url({{ site.baseurl }}/img/code-bg.png) scroll !important;
 }
 
-pre code, .gist .blob-code-inner {
-  padding: 0;
-  font-size: .7rem !important;
-  color: inherit;
-  background-color: transparent;
+pre code,
+.gist .blob-num, .gist .blob-code {
+  font-size: .6rem !important;
 }
 
 .highlight {
@@ -479,6 +479,23 @@ pre code, .gist .blob-code-inner {
 
 .highlight pre {
   margin-bottom: 0;
+}
+
+.gist tr td:first-child { padding-left: 1rem !important; }
+.gist tr td:last-child { padding-right: 1rem !important; }
+.gist tr:first-child td { padding-top: 1rem !important; }
+.gist tr:last-child td { padding-bottom: 1rem !important; }
+
+.gist .blob-num {
+  pointer-events: none;
+}
+
+.gist .gist-meta {
+  display: none;
+}
+
+.gist .gist-file, .gist .gist-data {
+  border: none !important;
 }
 
 /* ------------------------------------------------------------------------- */

@@ -17,10 +17,8 @@
   # Development Tools
   Visual Studio Code: https://code.visualstudio.com
   Google Chrome: https://www.google.com/chrome/
-  Inkscape: https://inkscape.org
-  GIMP: https://www.gimp.org
   Real Favicon Generator: https://realfavicongenerator.net
-  Font Squirell: https://www.fontsquirrel.com
+  Font Squirrel: https://www.fontsquirrel.com
   IcoMoon App: https://icomoon.io/app
 
   # Build Tools
@@ -45,5 +43,6 @@
   # Services
   GitHub Pages: https://pages.github.com
   Disqus Engage: https://publishers.disqus.com/engage
-  Formspree: https://formspree.io
+  Formsubmit: https://formsubmit.co
+  ProtonMail: https://protonmail.com
   CloudFlare: https://www.cloudflare.com

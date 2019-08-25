@@ -31,28 +31,26 @@ layout: default
     <h2 class="visuallyhidden">Share</h2>
     <!-- Facebook JavaScript SDK. -->
     <script>
+      /* jshint ignore:start */
       window.fbAsyncInit = function() {
-        FB.init({ appId: '{{ site.facebook.app_id }}', version: 'v3.3' });
+        FB.init({ appId: '{{ site.facebook.app_id }}', version: 'v4.0' });
       };
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_GB/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+      /* jshint ignore:end */
     </script>
+    <script async defer src="https://connect.facebook.net/es_GB/sdk.js"></script>
     <!-- Twitter JavaScript API. -->
     <script>
+      /* jshint ignore:start */
       window.twttr = (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
         if (d.getElementById(id)) return t;
         js = d.createElement(s); js.id = id;
         js.src = "https://platform.twitter.com/widgets.js";
         fjs.parentNode.insertBefore(js, fjs);
-        t._e = []; t.ready = function(f) { t._e.push(f); };
+        t._e = [];  t.ready = function(f) { t._e.push(f); };
         return t;
       }(document, "script", "twitter-wjs"));
+      /* jshint ignore:end */
     </script>
     <ul class="inline">
       {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}

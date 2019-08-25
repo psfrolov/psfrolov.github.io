@@ -1,6 +1,6 @@
 ---
 title: Using Coverity Scan with AppVeyor
-tags: [AppVeyor, CI, Coverity, .NET, PowerShell, Static Analysis]
+tags: [CI, .NET, PowerShell, Static Analysis]
 description: &description >-
   Unlike Travis CI, AppVeyor currently lacks out of the box integration with
   Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
@@ -367,9 +367,6 @@ After uploading the scan data you can examine intermediate results in your
 Coverity Scan project web GUI, and the final results will be delivered to you
 by email. Then use **View Defects** button in Coverity Scan web GUI to start
 triaging discovered issues.
-
-Here is full [appveyor.yml][url-my-appveyor-yml] utilising the approach
-described in the article.
 
 *[CI]: Continuous Integration
 *[SaaS]: Software as a Service

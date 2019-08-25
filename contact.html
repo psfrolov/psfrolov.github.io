@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
     <!-- Security. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src https: data: 'unsafe-inline' wss:; form-action https:; block-all-mixed-content; base-uri 'self'; referrer origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src https: data: 'unsafe-inline' wss:; form-action https:; block-all-mixed-content; base-uri 'self'">
 
     <!-- Mobile devices responsiveness. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +30,9 @@
 
     <!-- Page keywords. -->
     
+    
+    <meta name="keywords" content="Boost,C++,Design Patterns,Generic Programming,OOP">
+    <meta itemprop="keywords" content="Boost,C++,Design Patterns,Generic Programming,OOP">
     
 
     <!-- Page author. -->
@@ -60,7 +63,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_GB">
     
-    <meta property="og:updated_time" content="2019-03-08T17:49:59+03:00">
+    <meta property="og:updated_time" content="2019-08-25T22:38:20+03:00">
     
     <meta property="og:rich_attachment" content="true">
     <meta property="fb:app_id" content="416481208892021">
@@ -107,7 +110,7 @@
     
 
     <!-- Styles. -->
-    <link rel="stylesheet" href="/css/app.4ca6638a.css">
+    <link rel="stylesheet" href="/css/app.345c0915.css">
   </head>
 
   <body>
@@ -140,10 +143,6 @@
           </li>
           
           <li>
-            <a href="/tag/appveyor#main">AppVeyor</a>&nbsp;‡
-          </li>
-          
-          <li>
             <a href="/tag/boost#main">Boost</a>&nbsp;‡
           </li>
           
@@ -153,10 +152,6 @@
           
           <li>
             <a href="/tag/ci#main">CI</a>&nbsp;‡
-          </li>
-          
-          <li>
-            <a href="/tag/coverity#main">Coverity</a>&nbsp;‡
           </li>
           
           <li>
@@ -272,16 +267,25 @@
                 placeholder="So, apart from casting runes, what other hobbies doth thou hast? Forbidden rituals, human sacrifices, torturing?"
                 maxlength="5000"
                 spellcheck="true"
-                required></textarea>
+                required>
+      </textarea>
+      <input type="hidden"
+             name="_replyto">
+      <input type="hidden"
+             name="_subject"
+             value="The Hermetic Vault Contact">
       <input type="hidden"
              name="_next"
              value="/thank-you#main">
       <input type="text"
-             name="_gotcha"
+             name="_honey"
              maxlength="20"
              style="display:none"
              aria-hidden="true"
              title="Honeypot">
+      <input type="hidden"
+             name="_captcha"
+             value="false">
     </div>
   </div>
   <div>
@@ -294,10 +298,10 @@
 <address>
   <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
   <ul class="inline">
-    <li><a rel="author external" class="link-icon content-icon" href="https://twitter.com/intent/user?user_id=4133911523" title="Twitter Profile"><svg class="icon icon-twitter" role="img"><title>Twitter Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-twitter"/></svg></a></li>
-    <li><a rel="author external" class="link-icon content-icon" href="https://www.facebook.com/100005735232020" title="Facebook Profile"><svg class="icon icon-facebook" role="img"><title>Facebook Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-facebook"/></svg></a></li>
-    <li><a rel="author external" class="link-icon content-icon" href="https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4" title="LinkedIn Profile"><svg class="icon icon-linkedin2" role="img"><title>LinkedIn Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-linkedin2"/></svg></a></li>
-    <li><a rel="author external" class="link-icon content-icon" href="https://github.com/psfrolov" title="GitHub Profile"><svg class="icon icon-github" role="img"><title>GitHub Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-github"/></svg></a></li>
+    <li><a rel="author external" class="link-icon content-icon" href="https://twitter.com/intent/user?user_id=4133911523" title="Twitter Profile" target="_blank"><svg class="icon icon-twitter" role="img"><title>Twitter Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-twitter"/></svg></a></li>
+    <li><a rel="author external" class="link-icon content-icon" href="https://www.facebook.com/100005735232020" title="Facebook Profile" target="_blank"><svg class="icon icon-facebook" role="img"><title>Facebook Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-facebook"/></svg></a></li>
+    <li><a rel="author external" class="link-icon content-icon" href="https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4" title="LinkedIn Profile" target="_blank"><svg class="icon icon-linkedin2" role="img"><title>LinkedIn Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-linkedin2"/></svg></a></li>
+    <li><a rel="author external" class="link-icon content-icon" href="https://github.com/psfrolov" title="GitHub Profile" target="_blank"><svg class="icon icon-github" role="img"><title>GitHub Profile</title><use xlink:href="/svg/symbol-defs.0648cdb8.svg#icon-github"/></svg></a></li>
   </ul>
 </address>
 
@@ -307,16 +311,7 @@
     'use strict';
     var form = document.forms.contact;
     // Dynamically construct email to make it harder for bots to sniff.
-    form.setAttribute('action', 'https://formspree.io/' + window.atob('Y29udGFjdEB0aGVoZXJtZXRpY3ZhdWx0LmNvbQ=='));
-    // Prevents submitting invalid form (for older browsers).
-    form.addEventListener('submit', function(evt) {
-      if (form.checkValidity() === false) {
-        evt.preventDefault();
-        alert('Please fill out all form fields correctly.');
-        return false;
-      }
-      return true;
-    });
+    form.setAttribute('action', 'https://formsubmit.co/' + window.atob('Y29udGFjdEB0aGVoZXJtZXRpY3ZhdWx0LmNvbQ=='));
   }());
 </script>
 

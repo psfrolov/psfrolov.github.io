@@ -14,7 +14,9 @@ robots: noindex
   Want to get in touch with me? Fill out the form below to send me a message
   and I will try to get back to you as soon as possible.
 </p>
-<form name="contact" method="post">
+<form name="contact"
+      action="https://formsubmit.co/dd7abe579c4a063e150e33897c968ce6"
+      method="POST">
   <noscript>
     <strong role="alert">
       <em>Please enable JavaScript to use the contact form.</em>
@@ -84,12 +86,3 @@ robots: noindex
 </form>
 <hr>
 {% include social-profiles.html %}
-
-<script>
-  (function() {
-    'use strict';
-    var form = document.forms.contact;
-    // Dynamically construct email to make it harder for bots to sniff.
-    form.setAttribute('action', 'https://formsubmit.co/' + window.atob('{{ site.email }}'));
-  }());
-</script>

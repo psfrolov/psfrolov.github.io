@@ -71,7 +71,6 @@ creator:
   username: psfrolov
 author: *creator_full_name  # for jekyll-feed plugin
 
-email: Y29udGFjdEB0aGVoZXJtZXRpY3ZhdWx0LmNvbQ==
 theme_colour: '#ac4142'
 
 disqus_shortname: arkfps

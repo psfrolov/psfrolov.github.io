@@ -80,7 +80,7 @@ rules:
 
   # Unit
   unit-blacklist: null
-  unit-whitelist: [px, em, rem, '%', ms]
+  unit-whitelist: [px, em, rem, '%', ms, mm]
 
   # Shorthand Property
   shorthand-property-no-redundant-values: true
@@ -195,7 +195,7 @@ rules:
   value-keyword-case: lower
 
   # Value List
-  value-list-comma-newline-after: always-multi-line
+  value-list-comma-newline-after: null
   value-list-comma-newline-before: never-multi-line
   value-list-comma-space-after: always-single-line
   value-list-comma-space-before: never

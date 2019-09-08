@@ -168,7 +168,7 @@ rules:
   func-name-matching: error
   func-names: error
   func-style: off
-  function-call-argument-newline: consistent
+  function-call-argument-newline: [error, consistent]
   function-paren-newline: off
   id-blacklist: error
   id-length: error
@@ -273,7 +273,7 @@ rules:
   prefer-numeric-literals: error
   prefer-rest-params: error
   prefer-spread: error
-  prefer-template: error
+  prefer-template: off
   require-yield: error
   rest-spread-spacing: error
   sort-imports: error

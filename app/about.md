@@ -9,8 +9,6 @@ description: >-
   gotchas, issues, etc., that arises over the course of my professional
   activity, many of which I hope would be useful for other software developers.
 image:
-  url: /img/pages/profile.png
-twitter_image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
   name: &name The Alchemist by Pieter Bruegel the Elder
   alt: *name
@@ -18,9 +16,12 @@ twitter_image:
 
 
 <div class="page-image">
-  <img src="{{ site.baseurl }}{{ page.twitter_image.url }}"
-       alt="{{ page.twitter_image.alt }}">
-  <small>{{ page.twitter_image.name }}</small>
+  {% capture image_url %}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
+  <img src="{{ image_url }}"
+       alt="{{ page.image.alt }}"
+       width="{{ image_url | image_width }}"
+       height="{{ image_url | image_height }}">
+  <small>{{ page.image.name }}</small>
 </div>
 
 <article markdown="block">
@@ -34,30 +35,9 @@ below.
 
 *Paul*
 
----
-
 {% include social-profiles.html %}
 
 </article>
-
-<!-- https://developers.google.com/structured-data/customize/social-profiles -->
-<script type="application/ld+json">
-  {
-    "@context" : "https://schema.org",
-    "@type" : "Person",
-    "name" : "{{ site.creator.full_name }}",
-    "url" : "{{ site.url }}{{ site.base_url }}{{ page.url }}",
-    "image": "{{ site.url }}{{ site.baseurl }}{{ page.image.url }}",
-    "sameAs" : [
-      "{{ site.facebook.profile }}",
-      "{{ site.twitter.profile }}",
-      "{{ site.linkedin_profile }}",
-      "{{ site.github_profile }}"
-    ],
-    "gender": "male",
-    "jobTitle": "Software Developer"
-  }
-</script>
 
 <!-- https://developers.google.com/structured-data/breadcrumbs -->
 <script type="application/ld+json">

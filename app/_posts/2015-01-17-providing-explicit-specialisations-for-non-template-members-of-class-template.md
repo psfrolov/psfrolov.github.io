@@ -18,7 +18,7 @@ image:
     name: Easchiff
 ---
 
-C++ is full of surprises (albeit not always good ones <svg class="icon icon-smile-o" role="img"><title>Smiley Face</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-smile-o"/></svg>).
+C++ is full of surprises (albeit not always good ones).
 {{ page.description | escape }}
 
 ## Technical Details
@@ -32,7 +32,81 @@ specialised:
 * member class.
 
 Let’s see some examples:
-{% gist psfrolov/c15788b10323bd4d5c54 %}
+{% highlight c++ %}
+#include <iostream>
+#include <string>
+
+
+template<typename T> class Foo {
+public:
+    std::string Method();
+    static std::string StaticMethod();
+    static const std::string StaticData;
+    enum class Enum;
+    struct InnerStruct{ static const std::string StaticData; };
+};
+
+template<typename T> std::string Foo<T>::Method() {
+    return "std::string Foo<T>::Method() - primary template.";
+}
+
+template<> std::string Foo<char>::Method() {
+    return "std::string Foo<T>::Method() - "
+        "explicit specialisation for <char>.";
+}
+
+template<typename T> std::string Foo<T>::StaticMethod() {
+    return "std::string Foo<T>::StaticMethod() - primary template.";
+}
+
+template<> std::string Foo<char>::StaticMethod() {
+    return "std::string Foo<char>::StaticMethod() - "
+        "explicit specialisation for <char>.";
+}
+
+template<typename T> const std::string Foo<T>::StaticData{
+    "std::string Foo<T>::StaticData - primary template." };
+
+template<> const std::string Foo<char>::StaticData{
+    "std::string Foo<char>::StaticData - "
+    "explicit specialisation for <char>." };
+
+template<typename T> enum class Foo<T>::Enum { Primary = 0 };
+
+template<> enum class Foo<char>::Enum { Specialised = 1 };
+
+template<typename T> const std::string Foo<T>::InnerStruct::StaticData{
+    "std::string Foo<T>::InnerStruct::StaticData - primary template." };
+
+template<> struct Foo<char>::InnerStruct{
+    static const std::string StaticData; };
+const std::string Foo<char>::InnerStruct::StaticData{
+    "std::string Foo<char>::InnerStruct::StaticData - "
+    "explicit specialisation for <char>." };
+
+
+int main() {
+    // Member function.
+    std::cout << Foo<int>().Method() << std::endl;
+    std::cout << Foo<char>().Method() << std::endl;
+
+    // Static member function.
+    std::cout << Foo<int>::StaticMethod() << std::endl;
+    std::cout << Foo<char>::StaticMethod() << std::endl;
+
+    // Static data member.
+    std::cout << Foo<int>::StaticData << std::endl;
+    std::cout << Foo<char>::StaticData << std::endl;
+
+    // Member enumeration.
+    std::cout << static_cast<int>(Foo<int>::Enum::Primary) << std::endl;
+    std::cout << static_cast<int>(Foo<char>::Enum::Specialised) << std::endl;
+
+    // Member class.
+    std::cout << Foo<int>::InnerStruct::StaticData << std::endl;
+    std::cout << Foo<char>::InnerStruct::StaticData << std::endl;
+}
+{% endhighlight %}
 
 When this can be useful? Whenever you need some conditional logic for you
 class template based on template parameters, but that logic takes only a small
@@ -48,7 +122,7 @@ member functions. Let’s take a look at a concrete example.
 ## Implementing Generic RAII Wrapper for Resource Handles
 
 Opaque resource handles are used in many OS‐level, networking, and database
-APIs. Usually such handles must be closed with some kind of **close_handle**
+APIs. Usually such handles must be closed with some kind of `close_handle`
 function. When dealing with handles in C++ you almost always want to use
 _RAII_[^fn-raii] wrapper to avoid handle leaks. We can define such a wrapper as
 follows:
@@ -58,39 +132,39 @@ follows:
 
 template<typename HandleType = OsHandle> class Handle {
 public:
-  Handle() = default;
-  explicit Handle(HandleType handle) : handle_{ handle } {}
+    Handle() = default;
+    explicit Handle(HandleType handle) : handle_{ handle } {}
 
-  ~Handle() { Cleanup(); }
+    ~Handle() { Cleanup(); }
 
-  // Noncopyable.
-  Handle(const Handle&) = delete;
-  Handle& operator=(const Handle&) = delete;
+    // Noncopyable.
+    Handle(const Handle&) = delete;
+    Handle& operator=(const Handle&) = delete;
 
-  // Movable.
-  Handle(Handle&& other) : handle_{ other.handle_ } { other.handle_ = {}; }
-  Handle& operator=(Handle&& other) {
-    assert(this != std::addressof(other));
-    Cleanup();
-    handle_ = other.handle_;
-    other.handle_ = {};
-    return *this;
-  }
+    // Movable.
+    Handle(Handle&& other) : handle_{ other.handle_ } { other.handle_ = {}; }
+    Handle& operator=(Handle&& other) {
+        assert(this != std::addressof(other));
+        Cleanup();
+        handle_ = other.handle_;
+        other.handle_ = {};
+        return *this;
+    }
 
-  HandleType* operator&() {
-    Cleanup();
-    return &handle_;
-  }
+    HandleType* operator&() {
+        Cleanup();
+        return &handle_;
+    }
 
-  explicit operator HandleType() const { return handle_; }
+    explicit operator HandleType() const { return handle_; }
 
 private:
-  void Cleanup() {
-    if (handle_)
-      CloseOsHandle(handle_);
-  }
+    void Cleanup() {
+        if (handle_)
+            CloseOsHandle(handle_);
+    }
 
-  HandleType handle_{};
+    HandleType handle_{};
 };
 {% endhighlight %}
 Here `OsHandle` is some common handle type in our hypothetical operating system
@@ -109,39 +183,39 @@ can specialise our `Handle` class for `OsInternetHandle`:
 {% highlight c++ %}
 template<> class Handle<OsInternetHandle> {
 public:
-  Handle() = default;
-  explicit Handle(OsInternetHandle handle) : handle_{ handle } {}
+    Handle() = default;
+    explicit Handle(OsInternetHandle handle) : handle_{ handle } {}
 
-  ~Handle() { Cleanup(); }
+    ~Handle() { Cleanup(); }
 
-  // Noncopyable.
-  Handle(const Handle&) = delete;
-  Handle& operator=(const Handle&) = delete;
+    // Noncopyable.
+    Handle(const Handle&) = delete;
+    Handle& operator=(const Handle&) = delete;
 
-  // Movable.
-  Handle(Handle&& other) : handle_{ other.handle_ } { other.handle_ = {}; }
-  Handle& operator=(Handle&& other) {
-    assert(this != std::addressof(other));
-    Cleanup();
-    handle_ = other.handle_;
-    other.handle_ = {};
-    return *this;
-  }
+    // Movable.
+    Handle(Handle&& other) : handle_{ other.handle_ } { other.handle_ = {}; }
+    Handle& operator=(Handle&& other) {
+        assert(this != std::addressof(other));
+        Cleanup();
+        handle_ = other.handle_;
+        other.handle_ = {};
+        return *this;
+    }
 
-  OsInternetHandle* operator&() {
-    Cleanup();
-    return &handle_;
-  }
+    OsInternetHandle* operator&() {
+        Cleanup();
+        return &handle_;
+    }
 
-  explicit operator OsInternetHandle() const { return handle_; }
+    explicit operator OsInternetHandle() const { return handle_; }
 
 private:
-  void Cleanup() {
-    if (handle_)
-      CloseOsInternetHandle(handle_);
-  }
+    void Cleanup() {
+        if (handle_)
+            CloseOsInternetHandle(handle_);
+    }
 
-  OsInternetHandle handle_{};
+    OsInternetHandle handle_{};
 };
 {% endhighlight %}
 The problem is solved, but the cost is a lot of code duplication. As you
@@ -150,8 +224,8 @@ is `Cleanup` method. Let’s leave our `Handle` class definition as is and defin
 specialisation for `Cleanup` member function instead:
 {% highlight c++ %}
 template<> void Handle<OsInternetHandle>::Cleanup() {
-  if (handle_)
-    CloseOsInternetHandle(handle_);
+    if (handle_)
+        CloseOsInternetHandle(handle_);
 }
 {% endhighlight %}
 This is much better for maintainability and works exactly like the class
@@ -177,9 +251,10 @@ fact, I’ve found only a couple of reference manuals mentioning it:
 * [cppreference.com][url-cppreference];
 * [z/OS XL C/C++ Language Reference][url-zos-xl-cpp-reference].
 
-*[RAII]: Resource Acquisition Is Initialization
-
 ---
+
+## Footnotes
+{: .screenreader-only }
 
 [^fn-raii]: [Resource Acquisition Is Initialization][url-raii].
 

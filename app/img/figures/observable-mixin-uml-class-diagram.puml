@@ -1,0 +1,68 @@
+@startuml Observable Mixin
+
+skinparam {
+  ' General style.
+  !$colourBlack = "#404040"
+  shadowing false
+  backgroundColor transparent
+  DefaultFontName alegreya-sans, sans-serif
+  DefaultFontColor $colourBlack
+
+  ' UML class diagram style.
+  !$colourRed = "#DarkRed"
+  style strictuml
+  arrowColor $colourRed
+  classAttributeIconSize 0
+  classBackgroundColor #Snow
+  classBorderColor $colourRed
+  packageBackgroundColor #NavajoWhite
+  packageBorderColor $colourBlack
+}
+
+package "User Code" {
+  class Application {
+    -void OnWindowShow()
+    -bool OnWindowClose(bool force_close)
+  }
+
+  class Window {
+    +void Show()
+    +bool Close(bool force_close = false)
+  }
+
+  class WindowObservers
+
+  enum ":" as Events <<enum>> {
+    ShowEvent
+    CloseEvent
+  }
+  hide Events methods
+
+  class ObserverTable <<type alias>>
+  hide ObserverTable members
+
+  Application o-- Window
+  Events --* WindowObservers
+  WindowObservers *- ObserverTable
+}
+
+package "Library Code" {
+  class Observable<Observers: typename> {
+    +boost::signals2::connection Register(F&& f)
+    #Observer::Result Notify(Args&&... args) const
+    -signals_ : Observers::ObserverTable
+  }
+
+  class Observer<Signature: typename> {
+    -signal_ : boost::signals2::signal<Signature>
+  }
+
+  Observable .|> Observer : "  //<<friend>>//"
+}
+
+Window --|> Observable
+WindowObservers ..|> Observable : //<<bind>>//\nObservers -> WindowObservers
+Observer "  1..*" --* "1   " WindowObservers
+ObserverTable "1 " ..|> "1..*  " Observer : //<<bind>>//\nSignature
+
+@enduml

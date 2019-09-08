@@ -7,16 +7,16 @@ image:
   url: /img/pages/saint-jerome-writing-by-caravaggio.jpg
   name: &name Saint Jerome Writing by Caravaggio, Galleria Borghese, Rome
   alt: *name
-robots: noindex  
 ---
 
 
-All the information on this website is published in good faith and for general
-information purpose only. I do not make any warranties about the completeness,
-reliability and accuracy of this information. Any action you take upon the
-information you find on this website—**{{ site.fqdn }}**—is
-strictly at your own risk. The author will not be liable for any losses and/or
-damages in connection with the use of the website.
+A&#8239;ll the information on this
+website&#8239;—&#8202;**{{ site.fqdn }}**&#8239;—&#8202;is published in good
+faith and for general information purpose only. I do not make any warranties
+about the completeness, reliability and accuracy of this information. Any
+action you take upon the information you find on this website is strictly at
+your own risk. The author will not be liable for any losses and/or damages in
+connection with the use of the website.
 {: .drop-letter }
 
 From the website, you can visit other websites by following hyperlinks. While
@@ -36,4 +36,4 @@ its terms.**
 
 ---
 
-<small>*Last updated: {{ page.path | modified_time | date_to_long_string }}*.</small>
+{% include last-updated.html %}

@@ -6,10 +6,13 @@ layout: default
 <!-- Page image. -->
 {% if page.image %}
 <div class="page-image">
-  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}">
+  <img src="{{ site.baseurl }}{{ page.image.url }}"
+       alt="{{ page.image.alt }}"
+       width="{{ page.image.url | image_width }}"
+       height="{{ page.image.url | image_height }}">
   {% if page.image.name %}
   <small>
-    {{ page.image.name }}{% if page.image.source %} (Image by <a href="{{ page.image.source.url }}" rel="external">{{ page.image.source.name | escape }}</a>){% endif %}
+    {{ page.image.name }}{% if page.image.source %}<br>(Image by <a href="{{ page.image.source.url }}" rel="external">{{ page.image.source.name | escape }}</a>){% endif %}
   </small>
   {% endif %}
 </div>

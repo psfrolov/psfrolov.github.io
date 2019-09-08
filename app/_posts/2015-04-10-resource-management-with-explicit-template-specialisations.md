@@ -31,9 +31,10 @@ file descriptors, OpenGL primitives, and so on.
 
 Also available [in Russian][url-russian-article].
 
-*[RAII]: Resource Acquisition Is Initialization
-
 ---
+
+## Footnotes
+{: .screenreader-only }
 
 [^fn-raii]: [Resource Acquisition Is Initialization][url-raii].
 

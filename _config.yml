@@ -2,14 +2,13 @@
 source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes]
-plugins:
+exclude: ['*.puml']
+plugins:  # in processing order
   - liquid_pluralize
   - liquid_reading_time
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll/tagging
+  - jekyll-paginate
   - jekyll-feed
-  # Sitemap plugin must be last to cover other plugins's (possible) output.
   - jekyll-sitemap
 permalink: /:categories/:title
 strict_front_matter: true
@@ -17,6 +16,8 @@ liquid:
   error_mode: strict
   strict_filters: true
   strict_variables: false
+kramdown:
+  footnote_backlink: ↑
 
 # Default page layouts.
 defaults:
@@ -36,8 +37,12 @@ defaults:
       schema: https://schema.org/BlogPosting
       og_prefix: 'article: http://ogp.me/ns/article#'
       og_type: article
+  - scope:
+      path: tag
+    values:
+      sitemap: false  # do not index tag pages
 
-# Pagination.
+# Pagination (jekyll-paginate).
 paginate: 10
 
 # Web feed (jekyll-feed).
@@ -48,10 +53,6 @@ feed:
 # Tagging (jekyll-tagging).
 tag_page_layout: tag-page
 tag_page_dir: tag
-
-# Gists (jekyll-gist)
-gist:
-  noscript: false
 
 # Custom variables.
 fqdn: TheHermeticVault.com
@@ -73,9 +74,12 @@ author: *creator_full_name  # for jekyll-feed plugin
 
 theme_colour: '#ac4142'
 
-disqus_shortname: arkfps
-github_profile: https://github.com/psfrolov
-linkedin_profile: https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4
+disqus:
+  shortname: arkfps
+github:
+  profile: https://github.com/psfrolov
+linkedin:
+  profile: https://www.linkedin.com/profile/view?id=AAIAAA9ggBMBXzMR8ZdzqQx1k_pNBI8nu3o85Z4
 facebook:
   profile: https://www.facebook.com/100005735232020
   profile_id: 100005735232020

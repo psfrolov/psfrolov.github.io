@@ -17,7 +17,9 @@ image:
     name: Boris Doesborg
 ---
 
-A[ppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar
+***The information in this article is largely outdated.***
+
+[AppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar
 to [Travis CI][url-travis-ci] but for Windows developers. It enables you to
 build, test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server,
 WiX, among others (see [Installed Software][url-appveyor-installed-software]).
@@ -35,7 +37,7 @@ with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan
 workflow (i.e. manually building your project with Coverity Build Tool and
 submitting results to Coverity Scan server).***
 
-## The Necessary Steps
+## Necessary Steps
 
 Analysing project source code with Coverity Scan involves the
 following steps:
@@ -57,11 +59,11 @@ how we can deal with it.
 ### Using Dedicated Branch
 
 Coverity Scan documentation suggests us to create a separate branch dedicated
-for code analysis (let’s call it **analyse**). In that case, we can
+for code analysis (let’s call it *analyse*). In that case, we can
 conditionally enable Coverity Scan when building our project using
 `APPVEYOR_REPO_BRANCH` built‐in environment variable. Personally, I find this
-approach somewhat inconvenient: we need to keep our **analyse** branch in sync
-with **develop** branch (although this can be automated if necessary).
+approach somewhat inconvenient: we need to keep our *analyse* branch in sync
+with *develop* branch (although this can be automated if necessary).
 
 ### Using Scheduled Builds
 
@@ -90,28 +92,28 @@ in `appveyor.yml`:
 {% highlight yaml %}
 install:
 - ps: |
-    # Here goes our code.
+      # Here goes our code.
 {% endhighlight %}
 
 Let’s deal with input data.
 
-The **Project name** is your Coverity Scan project name as seen in web UI.
+The *Project name* is your Coverity Scan project name as seen in web UI.
 Usually it’s the same as GitHub project name (`owner-name/repo-name`), in which
 case you can use convinient `APPVEYOR_REPO_NAME` built‐in variable for it.
 
-The **Project token** is used by Coverity Scan for automated build submissions.
-You can examine and regenerate it in your Coverity Scan web GUI **Project
-Settings** page. The token is meant to be kept in secret, so it is a good
+The *Project token* is used by Coverity Scan for automated build submissions.
+You can examine and regenerate it in your Coverity Scan web GUI *Project
+Settings* page. The token is meant to be kept in secret, so it is a good
 practice to use AppVeyor [Secure Variables][url-appveyor-secure-variables]
 feature to encrypt it:
 {% highlight yaml %}
 environment:
-  CoverityProjectToken:
-    secure: iNIJoA5yBGe4K1lV06g9Sta6kvcxeDxhnavNngxeEyE=
+    CoverityProjectToken:
+        secure: iNIJoA5yBGe4K1lV06g9Sta6kvcxeDxhnavNngxeEyE=
 {% endhighlight %}
 
-The **Download link** can be obtained from your Coverity Scan web GUI
-**Submit Build** page. Choose link for `Win64` platform (AppVeyor build worker
+The *Download link* can be obtained from your Coverity Scan web GUI
+*Submit Build* page. Choose link for `Win64` platform (AppVeyor build worker
 is 64‐bit Windows Server). In my case (the project language is `C++`), the
 download link is `https://scan.coverity.com/download/cxx/win_64`.
 
@@ -120,16 +122,18 @@ Now we can craft the HTTP request with the help of
 {% highlight powershell %}
 # Download Coverity Build Tool if we are doing scheduled build.
 if ($env:APPVEYOR_SCHEDULED_BUILD -eq "True") {
-  Invoke-WebRequest `
-    -Uri "https://scan.coverity.com/download/cxx/win_64" `
-    -Body @{ project = "$env:APPVEYOR_REPO_NAME";
-             token = "$env:CoverityProjectToken" } `
+    Invoke-WebRequest `
+        -Uri "https://scan.coverity.com/download/cxx/win_64" `
+        -Body @{
+            project = "$env:APPVEYOR_REPO_NAME"
+            token = "$env:CoverityProjectToken"
+        } `
     -OutFile "$env:APPVEYOR_BUILD_FOLDER\coverity.zip"
-  # Unzip downloaded package.
-  Add-Type -AssemblyName "System.IO.Compression.FileSystem"
-  [IO.Compression.ZipFile]::ExtractToDirectory(
-    "$env:APPVEYOR_BUILD_FOLDER\coverity.zip",
-    "$env:APPVEYOR_BUILD_FOLDER")
+    # Unzip downloaded package.
+    Add-Type -AssemblyName "System.IO.Compression.FileSystem"
+    [IO.Compression.ZipFile]::ExtractToDirectory(
+        "$env:APPVEYOR_BUILD_FOLDER\coverity.zip",
+        "$env:APPVEYOR_BUILD_FOLDER")
 }
 {% endhighlight %}
 
@@ -137,17 +141,17 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -eq "True") {
 
 The next step is to build the project with Coverity Build Tool. This means
 passing your build command to `cov-build.exe`:
-{% highlight batch %}
+{% highlight batchfile %}
 cov-build.exe --dir cov-int <build command>
 {% endhighlight %}
 Here `cov-int` is a name of directory to place collected scan data into.
 
 For example, if your build command is
-{% highlight batch %}
+{% highlight batchfile %}
 msbuild "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
 Then, corresponding Coverity Build command becomes
-{% highlight batch %}
+{% highlight batchfile %}
 cov-build.exe --dir cov-int msbuild.exe ^
 "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
@@ -156,29 +160,29 @@ custom build script:
 {% highlight yaml %}
 build_script:
 - ps: |
-    # Here goes our code.
+      # Here goes our code.
 {% endhighlight %}
 The actual PowerShell code snippet:
 {% highlight powershell %}
 # Define build command.
 $buildCmd = "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe"
 $buildArgs = @(
-  "/m",
-  "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
-  "/p:Configuration=$env:CONFIGURATION",
-  "/p:Platform=$env:PLATFORM")
+    "/m",
+    "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
+    "/p:Configuration=$env:CONFIGURATION",
+    "/p:Platform=$env:PLATFORM")
 
 # If build is not a scheduled one, then simply build the project with MSBuild.
 if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
-  & $buildCmd $buildArgs
-  return  # exit script
+    & $buildCmd $buildArgs
+    return  # exit script
 }
 
 # Else, build project with Coverity Scan.
 "Building project with Coverity Scan..."
 & ".\cov-analysis-win64-7.6.0\bin\cov-build.exe" `
-  --dir cov-int `
-  $buildCmd $buildArgs
+    --dir cov-int `
+    $buildCmd $buildArgs
 
 # Compress scan data.
 # ...
@@ -208,8 +212,8 @@ out of the box (that I’m aware of) is to use .NET
 [System.IO.Compression.ZipFile API][url-dotnet-zipfile]:
 {% highlight powershell %}
 [IO.Compression.ZipFile]::CreateFromDirectory(
-  "$env:APPVEYOR_BUILD_FOLDER\cov-int",
-  "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip")
+    "$env:APPVEYOR_BUILD_FOLDER\cov-int",
+    "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip")
 {% endhighlight %}
 Unfortunately, if you try to upload ZIP file created with
 `IO.Compression.ZipFile` the analysis will fail. The reason is a
@@ -217,8 +221,8 @@ Unfortunately, if you try to upload ZIP file created with
 which file names inside ZIP archive are encoded with backslashes as path
 separators (according to <cite>[ZIP format specification][url-zip-format-spec]
 </cite> <q>all slashes MUST be forward slashes “/” as opposed to backwards
-slashes “\\”</q>).
-As a result, such an archive cannot be unpacked on *nix systems (Coverity Scan
+slashes “\\” </q>).
+As a result, such an archive cannot be unpacked on _*nix_ systems (Coverity Scan
 is using Ubuntu currently).
 
 To workaround the bug, we need to create custom encoder for ZIP file name
@@ -228,22 +232,22 @@ script? Yep, we can!
 # Compress results.
 "Compressing Coverity results..."
 $zipEncoderDef = @'
-  namespace AnalyseCode {
-    public class PortableFileNameEncoder: System.Text.UTF8Encoding {
-      public PortableFileNameEncoder() {}
-      public override byte[] GetBytes(string entry) {
-        return base.GetBytes(entry.Replace("\\", "/"));
-      }
+    namespace AnalyseCode {
+        public class PortableFileNameEncoder: System.Text.UTF8Encoding {
+            public PortableFileNameEncoder() {}
+            public override byte[] GetBytes(string entry) {
+                return base.GetBytes(entry.Replace("\\", "/"));
+            }
+        }
     }
-  }
 '@
 Add-Type -TypeDefinition $zipEncoderDef
 [IO.Compression.ZipFile]::CreateFromDirectory(
-  "$env:APPVEYOR_BUILD_FOLDER\cov-int",
-  "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip",
-  [IO.Compression.CompressionLevel]::Optimal,
-  $true,  # include root directory
-  (New-Object AnalyseCode.PortableFileNameEncoder))
+    "$env:APPVEYOR_BUILD_FOLDER\cov-int",
+    "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip",
+    [IO.Compression.CompressionLevel]::Optimal,
+    $true,  # include root directory
+    (New-Object AnalyseCode.PortableFileNameEncoder))
 {% endhighlight %}
 Things to note:
 
@@ -263,10 +267,9 @@ Things to note:
 That last step is the most complex one. In order to upload scan data to
 Coverity Scan server we need to send
 multipart/form‐data[^fn-multipart] HTML form containing archived scan
-data along with some build metadata (the process is documented in **Upload a
-Project Build** page of your Coverity Scan project web GUI). This can be
-accomplished in many ways, I’ll use
-[System.Net.Http.MultipartFormDataContent][url-dotnet-multipart-form‐data].
+data along with some build metadata (the process is documented in *Upload a
+Project Build* page of your Coverity Scan project web GUI). This can be
+accomplished in many ways, I’ll use `System.Net.Http.MultipartFormDataContent`.
 
 First, we need to initialize `HttpClient` and `MultipartFormDataContent`:
 {% highlight powershell %}
@@ -280,65 +283,65 @@ $form = New-Object Net.Http.MultipartFormDataContent
 Note that `$client.Timeout` value must be large enough for the form to upload,
 otherwise exception will be thrown while sending data.
 
-Next, we’ll fill form fields one by one. Those fields are **token**, **email**,
-**file**, **version** and **description**.
+Next, we’ll fill form fields one by one. Those fields are *token*, *email*,
+*file*, *version* and *description*.
 
-### The Token Field
+### Token Field
 
-The **token** is our Coverity Scan project token we used before to download
+The *token* is our Coverity Scan project token we used before to download
 Coverity Build Tool.
 {% highlight powershell %}
 # Fill token field.
 [Net.Http.HttpContent]$formField =
-  New-Object Net.Http.StringContent($env:CoverityProjectToken)
-$form.Add($formField, "`"token`"")
+    New-Object Net.Http.StringContent($env:CoverityProjectToken)
+$form.Add($formField, '"token"')
 {% endhighlight %}
 
-### The Email Field
+### Email Field
 
-The **email** is an email address to which Coverity Scan should send a
+The *email* is an email address to which Coverity Scan should send a
 notification about analysis results.
 {% highlight powershell %}
 # Fill email field.
 $formField = New-Object Net.Http.StringContent($env:CoverityNotificationEmail)
-$form.Add($formField, "`"email`"")
+$form.Add($formField, '"email"')
 {% endhighlight %}
 I recommend you to secure your email:
 {% highlight yaml %}
 environment:
-  CoverityNotificationEmail:
-    secure: +eYz1A/Z8lciYhPTNqd7KgfkqxmG1nS/lOJqFjmvRdg=
+    CoverityNotificationEmail:
+        secure: +eYz1A/Z8lciYhPTNqd7KgfkqxmG1nS/lOJqFjmvRdg=
 {% endhighlight %}
 
-### The File Field
+### File Field
 
-The **file** is our zipped scan data produced earlier:
+The *file* is our zipped scan data produced earlier:
 {% highlight powershell %}
 # Fill file field.
 $fs = New-Object IO.FileStream(
-  "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip",
-  [IO.FileMode]::Open,
-  [IO.FileAccess]::Read)
+    "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip",
+    [IO.FileMode]::Open,
+    [IO.FileAccess]::Read)
 $formField = New-Object Net.Http.StreamContent($fs)
-$form.Add($formField, "`"file`"", "$env:APPVEYOR_PROJECT_NAME.zip")
+$form.Add($formField, '"file"', "$env:APPVEYOR_PROJECT_NAME.zip")
 {% endhighlight %}
 
-### The Version Field
+### Version Field
 
 Your need to set this field to the version of your build:
 {% highlight powershell %}
 # Fill version field.
 $formField = New-Object Net.Http.StringContent($env:APPVEYOR_BUILD_VERSION)
-$form.Add($formField, "`"version`"")
+$form.Add($formField, '"version"')
 {% endhighlight %}
 
-### The Description Field
+### Description Field
 
 An arbitrary text describing your build:
 {% highlight powershell %}
 # Fill description field.
 $formField = New-Object Net.Http.StringContent("AppVeyor scheduled build.")
-$form.Add($formField, "`"description`"")
+$form.Add($formField, '"description"')
 {% endhighlight %}
 
 Finally, we can submit the form:
@@ -347,9 +350,9 @@ Finally, we can submit the form:
 $url = "https://scan.coverity.com/builds?project=$env:APPVEYOR_REPO_NAME"
 $task = $client.PostAsync($url, $form)
 try {
-  $task.Wait()  # throws AggregateException on timeout
+    $task.Wait()  # throws AggregateException on timeout
 } catch [AggregateException] {
-  throw $_.Exception.InnerException
+    throw $_.Exception.InnerException
 }
 $task.Result
 $fs.Close()
@@ -365,13 +368,13 @@ Things to note:
 
 After uploading the scan data you can examine intermediate results in your
 Coverity Scan project web GUI, and the final results will be delivered to you
-by email. Then use **View Defects** button in Coverity Scan web GUI to start
+by email. Then use *View Defects* button in Coverity Scan web GUI to start
 triaging discovered issues.
 
-*[CI]: Continuous Integration
-*[SaaS]: Software as a Service
-
 ---
+
+## Footnotes
+{: .screenreader-only }
 
 [^fn-saas]: [Software as a Service][url-saas].
 [^fn-ci]: [Continuous Integration][url-ci].

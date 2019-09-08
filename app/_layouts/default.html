@@ -51,7 +51,6 @@
     {% if schema != 'https://schema.org/BlogPosting' %}
     <meta itemprop="author" content="{{ site.creator.full_name | escape }}">
     {% endif %}
-    <link rel="author" type="text/plain" href="{{ site.baseurl }}/humans.txt">
 
     <!-- Page image. -->
     {% if page.image %}
@@ -61,14 +60,10 @@
     <link itemprop="image" href="{{ page_image }}">
     {% endif %}
     <meta property="og:image" content="{{ page_image }}">
+    <meta property="og:image:alt" content="{{ page.image.alt | liquify | escape }}">
     <meta property="og:image:type" content="{{ page.image.url | image_mime_type }}"/>
     <meta property="og:image:width" content="{{ page.image.url | image_width }}"/>
     <meta property="og:image:height" content="{{ page.image.url | image_height }}"/>
-    {% endif %}
-    {% if page.twitter_image %}
-    <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.twitter_image.url }}">
-    <meta name="twitter:image:alt" content="{{ page.twitter_image.alt | liquify | escape }}">
-    {% elsif page.image %}
     <meta name="twitter:image:alt" content="{{ page.image.alt | liquify | escape }}">
     {% endif %}
 
@@ -99,7 +94,6 @@
     <meta property="profile:first_name" content="{{ site.creator.first_name | escape }}">
     <meta property="profile:last_name" content="{{ site.creator.last_name | escape }}">
     <meta property="profile:username" content="{{ site.creator.username | escape }}">
-    <meta property="profile:gender" content="male">
     {% endif %}
 
     <!-- Twitter Cards. -->
@@ -122,11 +116,7 @@
     <meta property="og:url" content="{{ canonical_url }}">
 
     <!-- Search engines indexing. -->
-    {% if layout.robots %}
-    <meta name="robots" content="{{ layout.robots }}">
-    {% elsif page.robots %}
-    <meta name="robots" content="{{ page.robots }}">
-    {% elsif paginator.previous_page %}
+    {% if layout.sitemap == false or page.sitemap == false or paginator.previous_page %}
     <meta name="robots" content="noindex">
     {% endif %}
 
@@ -149,6 +139,7 @@
     {% endif %}
 
     <!-- Styles. -->
+    <link rel="stylesheet" href="https://use.typekit.net/bck7qbl.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/app.css">
   </head>
 
@@ -158,7 +149,7 @@
         <h1>
           <a rel="home" href="{{ site.baseurl }}/">
             <svg class="icon icon-balance-scale" role="img">
-              <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-balance-scale"/>
+              <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-balance-scale"/>
             </svg><br>
             {{ site.title | escape }}
           </a>
@@ -171,29 +162,29 @@
         <h2>
           <svg class="icon icon-tags" role="img">
             <title>Site Tags</title>
-            <use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-tags"/>
+            <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-tags"/>
           </svg>
         </h2>
         <ul class="inline">
           {% assign tags = site.tags | keys | sort_natural %}
           {% for tag in tags %}
           <li>
-            <a href="{{ tag | tag_url | remove:'.html' }}#main">{{ tag }}</a>{% if forloop.last == false %}&nbsp;‡{% endif %}
+            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}#main">{{ tag | replace: ' ', '&nbsp;' }}</a>
           </li>
           {% endfor %}
         </ul>
       </section>
       <nav>
-        <h2 class="visuallyhidden">Site Navigation</h2>
+        <h2 class="screenreader-only">Site Navigation</h2>
         <ul class="inline">
-          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#main" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-home"/></svg></a></li>
-          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#main" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-list"/></svg></a></li>
-          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-feed"/></svg></a></li>
-          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#main" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-question"/></svg></a></li>
-          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#main" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-info"/></svg></a></li>
+          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#main" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-home"/></svg></a></li>
+          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#main" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-list"/></svg></a></li>
+          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#main" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-question"/></svg></a></li>
+          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#main" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-info"/></svg></a></li>
         </ul>
       </nav>
-      <hr>
+      <br>
       <footer aria-label="Legal Information">
         <ul class="inline">
           <li>
@@ -212,8 +203,5 @@
     <main class="content container" id="main">
       {{ content }}
     </main>
-
-    <!-- Svgxuse polyfill (for loading external SVG in IE9+). -->
-    <script src="{{ site.baseurl }}/js/svgxuse.js"></script>
   </body>
 </html>

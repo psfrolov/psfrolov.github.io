@@ -5,7 +5,11 @@ layout: default
 
 <!-- Post image. -->
 <div class="page-image" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}" itemprop="url contentUrl">
+  <img src="{{ site.baseurl }}{{ page.image.url }}"
+       alt="{{ page.image.alt }}"
+       width="{{ page.image.url | image_width }}"
+       height="{{ page.image.url | image_height }}"
+       itemprop="url contentUrl">
   <meta itemprop="width" content="{{ page.image.url | image_width }}">
   <meta itemprop="height" content="{{ page.image.url | image_height }}">
   {% if page.image.name %}
@@ -18,17 +22,17 @@ layout: default
 <!-- Post content. -->
 <article>
   <h1 itemprop="headline">{{ page.title | escape }}</h1>
-  <footer>
-    <h2 class="visuallyhidden">Metadata</h2>
+  <header>
+    <h2 class="screenreader-only">Metadata</h2>
     {% include post-meta.html context=page %}
-  </footer>
+  </header>
   <div class="drop-letter" itemprop="articleBody">
     {{ content }}
   </div>
 
   <!-- Social share buttons. -->
   <aside>
-    <h2 class="visuallyhidden">Share</h2>
+    <h2 class="screenreader-only">Share this Article</h2>
     <!-- Facebook JavaScript SDK. -->
     <script>
       /* jshint ignore:start */
@@ -54,17 +58,17 @@ layout: default
     </script>
     <ul class="inline">
       {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-      <li>{% assign title = 'Share on Facebook (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=page&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | uri_escape }}" onclick="FB.ui({ method: 'share', href: '{{ post_url | uri_escape }}' }, function(response){}); return false;" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
-      <li>{% assign title = 'Share on Twitter (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&amp;url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}&amp;via={{ site.twitter.username }}" title="{{ title }}"><svg class="icon icon-twitter-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-twitter-square"/></svg></a></li>
-      <li>{% assign title = 'Share on Reddit (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.reddit.com/r/programming/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-reddit-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-reddit-square"/></svg></a></li>
-      <li>{% assign title = 'Share on LinkedIn (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}&amp;source={{ site.name | uri_escape }}" onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=520,height=570');return false;" title="{{ title }}"><svg class="icon icon-linkedin-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-linkedin-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Facebook (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=page&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | uri_escape }}" onclick="FB.ui({ method: 'share', href: '{{ post_url | uri_escape }}' }, function(response){}); return false;" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Twitter (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&amp;url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}&amp;via={{ site.twitter.username }}" title="{{ title }}"><svg class="icon icon-twitter-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-twitter-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Reddit (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.reddit.com/r/programming/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-reddit-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-reddit-square"/></svg></a></li>
+      <li>{% assign title = 'Share on LinkedIn (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}&amp;source={{ site.name | uri_escape }}" onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=520,height=570');return false;" title="{{ title }}"><svg class="icon icon-linkedin-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-linkedin-square"/></svg></a></li>
     </ul>
   </aside>
 
   <!-- Disqus comments. -->
   {% if page.comments %}
   <aside>
-    <h2 class="visuallyhidden">Comments</h2>
+    <h2 class="screenreader-only">Comments</h2>
     <div id="disqus_thread"></div>
     <script>
       /* jshint ignore:start */
@@ -75,13 +79,13 @@ layout: default
       };
       (function() {
         var d = document, s = d.createElement('script');
-        s.src = 'https://{{ site.disqus_shortname }}.disqus.com/embed.js';
+        s.src = 'https://{{ site.disqus.shortname }}.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         })();
       /* jshint ignore:end */
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow external">comments powered by Disqus.</a></noscript>
+    <noscript><i>Please enable JavaScript to view the comments.</i></noscript>
   </aside>
   {% endif %}
 </article>

@@ -6,7 +6,7 @@ image:
   url: /img/pages/the-garden-of-earthly-delights-by-bosch.jpg
   name: &name The Garden of Earthly Delights by Hieronymus Bosch, Museo del Prado, Madrid
   alt: *name
-robots: noindex
+sitemap: false
 ---
 
 
@@ -65,7 +65,7 @@ robots: noindex
              value="{{ site.name }} Contact">
       <input type="hidden"
              name="_next"
-             value="{{ site.url }}/thank-you#main">
+             value="{{ site.url }}{{ site.baseurl }}/thank-you#main">
       <input type="text"
              name="_honey"
              maxlength="20"
@@ -79,9 +79,9 @@ robots: noindex
   </div>
   <div>
     <div>
-      <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><desc>A paper plane.</desc><use xlink:href="{{ site.baseurl }}/svg/symbol-defs.svg#icon-paper-plane-o"/></svg></button>
+      <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><desc>A paper plane.</desc><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-paper-plane-o"/></svg></button>
     </div>
   </div>
 </form>
-<hr>
+<br>
 {% include social-profiles.html %}

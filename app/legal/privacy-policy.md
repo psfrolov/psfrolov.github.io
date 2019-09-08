@@ -10,25 +10,24 @@ image:
   source:
     url: https://commons.wikimedia.org/wiki/File:Le_penseur_de_la_Porte_de_lEnfer_(musée_Rodin)_(4528252054).jpg
     name: Jean-Pierre Dalbéra
-robots: noindex  
 ---
 
 
-This privacy policy document describes in detail the types of personal
-information collected and recorded by this
-website—**{{ site.fqdn }}**—and how it is used.
+This privacy policy document describes the types of personal information
+collected and recorded by this
+website&#8239;—&#8202;**{{ site.fqdn }}**&#8239;—&#8202;and how it is used.
 {: .drop-letter }
 
 ## Log Files
 Like many other websites, {{ site.fqdn }} makes use of log files. These files
-merely logs visitors to the site—usually a standard procedure for hosting
-companies and a part of hosting services’ analytics. The information inside the
-log files includes Internet Protocol (IP) addresses, browser type, Internet
-Service Provider (ISP), date/time stamp, referring/exit pages, and possibly the
-number of clicks. This information is used to analyse trends, administer the
-site, track user’s movement around the site, and gather demographic
-information. IP addresses, and other such information are not linked to any
-information that is personally identifiable.
+merely logs visitors to the site&#8239;—&#8202;usually a standard procedure for
+hosting companies and a part of hosting services’ analytics. The information
+inside the log files includes Internet Protocol (IP) addresses, browser type,
+Internet Service Provider (ISP), date/time stamp, referring/exit pages, and
+possibly the number of clicks. This information is used to analyse trends,
+administer the site, track user’s movement around the site, and gather
+demographic information. IP addresses, and other such information are not
+linked to any information that is personally identifiable.
 
 ## Cookies and Web Beacons
 {{ site.fqdn }} does not use cookies. {{ site.fqdn }} is powered by third-party
@@ -42,7 +41,7 @@ and their links here:
 * Disqus
   * [Privacy Policy][url-disqus-privacy]
   * [Use of Cookies][url-disqus-cookies]
-* CloudFlare
+* Cloudflare
   * [Privacy Policy][url-cloudflare-privacy]
   * [Use of Cookies][url-cloudflare-cookies]
 
@@ -57,10 +56,7 @@ to its terms.**
 
 ---
 
-<small>*Last updated: {{ page.path | modified_time | date_to_long_string }}*.</small>
-
-*[IP]: Internet Protocol
-*[ISP]: Internet Service Provider
+{% include last-updated.html %}
 
 [url-disqus-privacy]: https://help.disqus.com/customer/portal/articles/466259-privacy-policy
 {: rel="external" }

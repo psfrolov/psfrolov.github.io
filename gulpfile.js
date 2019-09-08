@@ -1,35 +1,37 @@
 'use strict';
 
+// Node modules.
+const fs = require('fs'),
+      http2 = require('http2'),
+      path = require('path');
+
 // Gulp plugins.
 const accessibility = require('gulp-accessibility'),
       atImport = require('postcss-import'),
       autoprefixer = require('autoprefixer'),
       browserSync = require('browser-sync'),
-      childProcess = require('child_process'),
-      cleanUrls = require('clean-urls'),
       cssDeclSort = require('css-declaration-sorter'),
       del = require('del'),
       doiuse = require('doiuse'),
+      execa = require('gulp-execa'),
       ghPages = require('gulp-gh-pages'),
       gulp = require('gulp'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
-      imagemin = require('gulp-imagemin'),
-      imgsizefix = require('gulp-imgsizefix'),
       jsonlint = require('gulp-jsonlint'),
       minimist = require('minimist'),
       mqpacker = require('css-mqpacker'),
-      path = require('path'),
       postcss = require('gulp-postcss'),
       postcssClean = require('postcss-clean'),
       postcssReporter = require('postcss-reporter'),
       prettyData = require('gulp-pretty-data'),
       revAll = require('gulp-rev-all'),
       size = require('gulp-size'),
+      stringReplace = require('gulp-string-replace'),
       stylelint = require('gulp-stylelint'),
+      svgo = require('gulp-svgo'),
       uglify = require('gulp-uglify'),
       uncss = require('uncss'),
-      url = require('url'),
       w3cjs = require('gulp-w3cjs');
 
 // Command line options.
@@ -47,35 +49,36 @@ const publishDir = path.join(outDir, 'publish');
 
 // Resource patterns.
 const jsonFiles = ['*.json'];
-const xmlFiles = ['*.{xml,svg}'];
+const xmlFiles = ['*.xml'];
 const cssFiles = ['css/app*.css'];
-const jsFiles = ['js/**/*.js'];
-const svgFiles = ['svg/**/*.svg'];
+const jsFiles = ['js/*.js'];
+const svgFiles = ['**/*.svg'];
 const htmlFiles = ['**/*.html'];
+const plantUmlFiles = ['img/figures/*.puml'];
 const otherFiles = [
   '!*.{html,json,xml,svg}',
   '*',
-  'img/**/*',
-  'fnt/**/*'
+  'img/**/*.{png,jpg}'
 ];
+const filesToWatch = ['app/**/*', '_config.yml', 'gulpfile.js'];
 
 let webServer = null;
 
 // Jekyll build.
 function jekyllBuild() {
-  return childProcess.spawn(
+  return execa.exec(
     `bundle exec jekyll build --destination ${jekyllBuildDir} --trace`,
-    { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } });
+    { env: { JEKYLL_ENV: options.env } });
 }
 exports['jekyll-build'] = jekyllBuild;
 
 // Jekyll serve.
-exports['jekyll-serve'] = () => childProcess.spawn(
-  `bundle exec jekyll serve --destination ${jekyllBuildDir} \
-    --ssl-key ${path.join(certsDir, 'srv-auth.key')} \
-    --ssl-cert ${path.join(certsDir, 'srv-auth.crt')} \
+exports['jekyll-serve'] = execa.task(
+  `bundle exec jekyll serve --destination ${jekyllBuildDir}
+    --ssl-key ${path.join(certsDir, 'srv-auth.key')}
+    --ssl-cert ${path.join(certsDir, 'srv-auth.crt')}
     --port 3000 --open-url --livereload --trace`,
-  { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } }
+  { env: { JEKYLL_ENV: options.env } }
 );
 
 // Process XML and JSON.
@@ -117,12 +120,21 @@ function js() {
 // Process SVG.
 function svg() {
   return gulp.src(svgFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(imagemin([
-      imagemin.svgo({
-        multipass: true,
-        plugins: [ { cleanupIDs: false }, { sortAttrs: true } ]
-      })
-    ]))
+    .pipe(svgo({
+      multipass: true,
+      plugins: [
+        { cleanupIDs: false },
+        { removeDimensions: true },
+        { removeViewBox: false },
+        {
+          removeAttributesBySelector: {
+            selector: 'svg',
+            attributes: ['style', 'preserveAspectRatio']
+          }
+        },
+        { sortAttrs: true }
+      ]
+    }))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'svg' }));
 }
@@ -130,7 +142,6 @@ function svg() {
 // Process HTML.
 function html() {
   return gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
-    .pipe(imgsizefix({ paths: { [jekyllBuildDir]: ['/'] }, force: true }))
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
       collapseInlineTagWhitespace: true,
@@ -152,6 +163,27 @@ function html() {
     }))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'html' }));
+}
+
+
+// Generate UML diagrams.
+function uml() {
+  return gulp.src(plantUmlFiles, { cwd: srcDir, cwdbase: true, dot: true })
+    .pipe(execa.stream(file => {
+      const format = 'svg';
+      file.extname = `.${format}`;
+      return {
+        input: file.contents,
+        command:
+          `plantumlc -t${format} -nometadata -pipe -failfast -nbthreads auto`
+      };
+    }))
+    .pipe(stringReplace(/<\?xml[\s\S]+?>/gu, match => match +
+      // Include Adobe Fonts project for custom fonts.
+      '<?xml-stylesheet href="https://use.typekit.net/bck7qbl.css"?>'
+    ))
+    .pipe(gulp.dest(jekyllBuildDir))
+    .pipe(size({ title: 'uml' }));
 }
 
 // Copy miscellaneous files.
@@ -194,7 +226,9 @@ function clean() {
 exports.clean = clean;
 
 const build = gulp.series(jekyllBuild,
-                          gulp.parallel(xmlAndJson, css, js, svg, html, copy),
+                          uml,
+                          gulp.parallel(xmlAndJson, css, js, svg, copy),
+                          html,
                           revision);
 exports.build = build;
 
@@ -203,34 +237,53 @@ exports.rebuild = rebuild;
 
 // Serve local site.
 function serve(cb) {
-  const port = 3000;
-  webServer = browserSync.create();
-  webServer.init({
-    server: { baseDir: serveDir },
-    port,
-    middleware: [
-      cleanUrls(true, { root: serveDir }),
-      (req, res, next) => {
-        // Correctly serve SVGZ assets.
-        if (url.parse(req.url).pathname.match(/\.svgz$/u))
-          res.setHeader('Content-Encoding', 'gzip');
-        next();
-      }
-    ],
-    https: {
-      key: path.join(certsDir, 'srv-auth.key'),
-      cert: path.join(certsDir, 'srv-auth.crt')
-    },
-    online: false,
-    browser: [
-      'chrome',
-      '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe',
-      'firefox',
-      `microsoft-edge:https://localhost:${port}`
-    ],
-    reloadOnRestart: true
+  fs.readFile(path.join(serveDir, '404.html'), (error, pageNotFound) => {
+    if (error) return cb(error);
+    const serverPort = 3000;
+    webServer = browserSync.create();
+    webServer.init({
+      server: {
+        baseDir: serveDir,
+        serveStaticOptions: {
+          dotfiles: 'allow',  // e.g., ".net.html"
+          extensions: ['html'],  // serve pages without trailing slash
+          fallthrough: true,  // enable 404 error
+          redirect: false  // serve home page without trailing slash
+        }
+      },
+      port: serverPort,
+      middleware: [
+        (req, res, next) => {  // redirect home page to canonical link
+          if (req.url !== '/index.html') return next();
+          const movedPermanently = 302;
+          res.writeHead(movedPermanently, { 'Location': '/' });
+          return res.end();
+        }
+      ],
+      https: {
+        key: path.join(certsDir, 'srv-auth.key'),
+        cert: path.join(certsDir, 'srv-auth.crt')
+      },
+      httpModule: http2,
+      cwd: serveDir,
+      callbacks: {
+        ready: (ignored, bs) =>
+          bs.addMiddleware('*', (req, res) => {  // handle 404 error
+            res.write(pageNotFound);
+            res.end();
+          })
+      },
+      online: false,
+      browser: [
+        'chrome',
+        'firefox',
+        '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe',
+        `microsoft-edge:https://localhost:${serverPort}`
+      ],
+      reloadOnRestart: true
+    });
+    return cb();
   });
-  cb();
 }
 
 function reloadServer(cb) {
@@ -239,7 +292,9 @@ function reloadServer(cb) {
 }
 
 function watch() {
-  return gulp.watch('**/*', { cwd: srcDir }, gulp.series(build, reloadServer));
+  return gulp.watch(filesToWatch,
+                    { cwd: __dirname },
+                    gulp.series(build, reloadServer));
 }
 
 exports.serve = gulp.series(build, serve, watch);
@@ -247,9 +302,8 @@ exports['serve-clean'] = gulp.series(rebuild, serve);
 
 // Check source code.
 function jekyllHyde() {
-  return childProcess.spawn(
-    'bundle exec jekyll hyde',
-    { stdio: 'inherit', shell: true, env: { JEKYLL_ENV: options.env } });
+  return execa.exec('bundle exec jekyll hyde',
+                    { env: { JEKYLL_ENV: options.env } });
 }
 exports['jekyll-hyde'] = jekyllHyde;
 
@@ -272,8 +326,7 @@ function styleLint() {
 exports.stylelint = styleLint;
 
 function htmlHint() {
-  return gulp.src(htmlFiles,
-                  { cwd: jekyllBuildDir, cwdbase: true, dot: true })
+  return gulp.src(htmlFiles, { cwd: jekyllBuildDir, cwdbase: true, dot: true })
     .pipe(htmlhint({ htmlhintrc: path.join(__dirname, '.htmlhintrc') }))
     .pipe(htmlhint.reporter())
     .pipe(htmlhint.failAfterError({ suppress: true }));
@@ -281,16 +334,14 @@ function htmlHint() {
 exports.htmlhint = htmlHint;
 
 function w3c() {
-  return gulp.src(htmlFiles,
-                  { cwd: serveDir, cwdbase: true, dot: true })
+  return gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(w3cjs())
     .pipe(w3cjs.reporter());
 }
 exports.w3c = w3c;
 
 function a11y() {
-  return gulp.src(htmlFiles,
-                  { cwd: serveDir, cwdbase: true, dot: true })
+  return gulp.src(htmlFiles, { cwd: serveDir, cwdbase: true, dot: true })
     .pipe(accessibility({
       accessibilityLevel: 'WCAG2AAA',
       reportLevels: { notice: false, warning: false, error: true },

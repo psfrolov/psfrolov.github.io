@@ -4,6 +4,7 @@ skinparam {
   ' General style.
   !$colourBlack = "#404040"
   shadowing false
+  padding 2
   backgroundColor transparent
   DefaultFontName alegreya-sans, sans-serif
   DefaultFontColor $colourBlack
@@ -61,7 +62,7 @@ package "Library Code" {
 }
 
 Window --|> Observable
-WindowObservers ..|> Observable : //<<bind>>//\nObservers -> WindowObservers
+WindowObservers ..|> Observable : //<<bind>>//\nObservers → WindowObservers
 Observer "  1..*" --* "1   " WindowObservers
 ObserverTable "1 " ..|> "1..*  " Observer : //<<bind>>//\nSignature
 

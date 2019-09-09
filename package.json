@@ -7,7 +7,7 @@
     "css-mqpacker": "^7.0.0",
     "del": "^5.1.0",
     "doiuse": "^4.2.0",
-    "eslint": "^6.2.2",
+    "eslint": "^6.3.0",
     "gulp": "^4.0.2",
     "gulp-accessibility": "^3.1.1",
     "gulp-execa": "^1.0.1",
@@ -30,7 +30,7 @@
     "postcss-reporter": "^6.0.1",
     "stylelint": "^10.1.0",
     "stylelint-csstree-validator": "^1.5.2",
-    "uncss": "^0.16.2"
+    "uncss": "^0.17.2"
   },
   "browserslist": [
     "defaults"

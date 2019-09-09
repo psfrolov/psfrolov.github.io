@@ -672,7 +672,9 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
       'sups';
   }
 
-  a.footnote::before, a.footnote::after { content: none; }
+  a.footnote::before { content: ' '; }
+
+  a.footnote::after { content: none; }
 
   .footnotes p:first-child::before {
     content: counter(footnote) ' ';
@@ -777,5 +779,5 @@ Printing
   /* Page breaks. */
   p, h2, h3, h4, h5, h6 { orphans: 3; widows: 3; }
   h2, h3, h4, h5, h6 { break-after: avoid-page; }
-  figure { break-inside: avoid-page; }
+  figcaption { break-before: avoid-page; }
 }

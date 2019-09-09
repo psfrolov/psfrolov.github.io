@@ -194,7 +194,7 @@ rules:
   max-statements: error
   max-statements-per-line: error
   multiline-comment-style: error
-  multiline-ternary: error
+  multiline-ternary: [error, always-multiline]
   new-cap: error
   new-parens: error
   newline-per-chained-call: error
@@ -213,7 +213,7 @@ rules:
   no-plusplus: error
   no-restricted-syntax: error
   no-tabs: error
-  no-ternary: error
+  no-ternary: off
   no-trailing-spaces: error
   no-underscore-dangle: error
   no-unneeded-ternary: error

@@ -62,6 +62,7 @@ const otherFiles = [
 ];
 const filesToWatch = ['app/**/*', '_config.yml', 'gulpfile.js'];
 
+const isWindows = process.platform === 'win32';
 let webServer = null;
 
 // Jekyll build.
@@ -75,9 +76,9 @@ exports['jekyll-build'] = jekyllBuild;
 // Jekyll serve.
 exports['jekyll-serve'] = execa.task(
   `bundle exec jekyll serve --destination ${jekyllBuildDir}
-    --ssl-key ${path.join(certsDir, 'srv-auth.key')}
-    --ssl-cert ${path.join(certsDir, 'srv-auth.crt')}
-    --port 3000 --open-url --livereload --trace`,
+    --ssl-key ${path.join(path.relative(srcDir, certsDir), 'srv-auth.key')}
+    --ssl-cert ${path.join(path.relative(srcDir, certsDir), 'srv-auth.crt')}
+    --port 3000 --open-url --trace`,
   { env: { JEKYLL_ENV: options.env } }
 );
 
@@ -171,11 +172,12 @@ function uml() {
   return gulp.src(plantUmlFiles, { cwd: srcDir, cwdbase: true, dot: true })
     .pipe(execa.stream(file => {
       const format = 'svg';
+      const plantuml = isWindows ? 'plantumlc' : 'plantuml';
       file.extname = `.${format}`;
       return {
         input: file.contents,
         command:
-          `plantumlc -t${format} -nometadata -pipe -failfast -nbthreads auto`
+          `${plantuml} -t${format} -nometadata -pipe -failfast -nbthreads auto`
       };
     }))
     .pipe(stringReplace(/<\?xml[\s\S]+?>/gu, match => match +
@@ -275,10 +277,10 @@ function serve(cb) {
       },
       online: false,
       browser: [
-        'chrome',
         'firefox',
-        '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe',
-        `microsoft-edge:https://localhost:${serverPort}`
+        isWindows ? 'chrome' : 'google chrome',
+        isWindows ? '%LOCALAPPDATA%\\Programs\\Opera\\launcher.exe' : 'opera',
+        isWindows ? `microsoft-edge:https://localhost:${serverPort}` : 'safari'
       ],
       reloadOnRestart: true
     });

@@ -20,7 +20,6 @@ const accessibility = require('gulp-accessibility'),
       htmlmin = require('gulp-htmlmin'),
       jsonlint = require('gulp-jsonlint'),
       minimist = require('minimist'),
-      mqpacker = require('css-mqpacker'),
       postcss = require('gulp-postcss'),
       postcssClean = require('postcss-clean'),
       postcssReporter = require('postcss-reporter'),
@@ -97,14 +96,13 @@ function css() {
     .pipe(postcss([
       atImport,
       autoprefixer,
-      mqpacker({ sort: true }),
       uncss.postcssPlugin({
         html: [path.join(jekyllBuildDir, '**', '*.html')],
         htmlroot: jekyllBuildDir
       }),
-      postcssClean,
+      postcssClean({ level: 2 }),
       cssDeclSort,
-      postcssReporter({ throwError: true })
+      postcssReporter({ clearReportedMessages: true, throwError: true })
     ]))
     .pipe(gulp.dest(buildDir))
     .pipe(size({ title: 'css' }));

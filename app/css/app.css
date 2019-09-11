@@ -59,14 +59,10 @@ html {
 
 body {
   background:
-    url(/img/content-bg-small.jpg)
+    url(/img/content-bg.jpg)
     scroll
     var(--colour-white);
   color: var(--colour-black);
-}
-
-@media (min-width: 48em) {
-  body { background: url(/img/content-bg-large.jpg) scroll; }
 }
 
 /* ----------------------------------------------------------------------------
@@ -484,9 +480,27 @@ ul, ol, dl {
   margin-bottom: 1rem;
 }
 
+li { margin-bottom: .25rem; }
+
+li ul, li ol { margin-top: .25rem; }
+
 dt { font-weight: bold; }
 
 dd { margin-bottom: .5rem; }
+
+/* ----------------------------------------------------------------------------
+Unordered Lists
+---------------------------------------------------------------------------- */
+
+ul { list-style: none; }
+
+ul li::before {
+  content: '•';
+  font-feature-settings: var(--font-common-settings), 'case';
+  display: inline-block;
+  width: .6rem;
+  margin-left: -.6rem;
+}
 
 /* ----------------------------------------------------------------------------
 Inline Lists
@@ -501,6 +515,8 @@ ul.inline {
 }
 
 ul.inline li { display: inline; }
+
+ul.inline li::before { content: none; }
 
 @media (min-width: 48em) {
   ul.inline { line-height: 1.2; }
@@ -567,7 +583,7 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
 }
 
 .footnotes p:first-child::before {
-  content: counter(footnote) ' ';
+  content: counter(footnote);
   font-feature-settings: var(--font-common-settings), 'sups';
   font-weight: bold;
   color: var(--colour-brown);

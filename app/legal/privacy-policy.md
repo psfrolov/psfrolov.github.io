@@ -29,7 +29,7 @@ administer the site, track user’s movement around the site, and gather
 demographic information. IP addresses, and other such information are not
 linked to any information that is personally identifiable.
 
-## Cookies and Web Beacons
+## Cookies
 {{ site.fqdn }} does not use cookies. {{ site.fqdn }} is powered by third-party
 services which *do* use cookies. You should consult the respective privacy
 policies of these third-party servers for more detailed information on their
@@ -48,7 +48,6 @@ and their links here:
 If you wish to disable cookies, you may do so through your individual browser
 options. More detailed information about cookie management with specific web
 browsers can be found at the browsers’ respective websites.
-[What Are Cookies?][url-cookies]
 
 ## Consent
 **By using {{ site.fqdn }}, you hereby consent to this privacy policy and agree
@@ -65,6 +64,4 @@ to its terms.**
 [url-cloudflare-privacy]: https://www.cloudflare.com/security-policy/
 {: rel="external" }
 [url-cloudflare-cookies]: https://support.cloudflare.com/hc/en-us/articles/200170156-What-does-the-CloudFlare-cfduid-cookie-do-
-{: rel="external" }
-[url-cookies]: https://en.wikipedia.org/wiki/HTTP_cookie
 {: rel="external" }

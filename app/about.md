@@ -7,7 +7,8 @@ title: About
 description: >-
   The intention of this site is to share ideas, tips, idioms, patterns,
   gotchas, issues, etc., that arises over the course of my professional
-  activity, many of which I hope would be useful for other software developers.
+  activity and hobby projects, many of which I hope would be useful for other
+  software developers.
 image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
   name: &name The Alchemist by Pieter Bruegel the Elder
@@ -17,10 +18,7 @@ image:
 
 <div class="page-image">
   {% capture image_url %}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
-  <img src="{{ image_url }}"
-       alt="{{ page.image.alt }}"
-       width="{{ image_url | image_width }}"
-       height="{{ image_url | image_height }}">
+  <img src="{{ image_url }}" alt="{{ page.image.alt }}" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
   <small>{{ page.image.name }}</small>
 </div>
 

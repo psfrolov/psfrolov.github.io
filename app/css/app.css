@@ -71,9 +71,8 @@ Layout
 
 .container {
   max-width: 38rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   margin: auto;
+  padding: 1rem;
 }
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
@@ -84,10 +83,7 @@ Layout
   }
 }
 
-.content {
-  padding-top: 1rem;
-  padding-bottom: 4rem;
-}
+.content { padding-bottom: 4rem; }
 
 @media screen and (min-width: 48em) {
   .content {
@@ -116,7 +112,6 @@ Sidebar
     no-repeat
     scroll;
   max-width: 100%;
-  padding: 1rem;
   text-align: center;
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';

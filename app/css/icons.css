@@ -88,13 +88,14 @@ Post Metadata
 ---------------------------------------------------------------------------- */
 
 .icon-clock-o {
-  width: .857em;
+  width: .7rem;
+  margin-bottom: .08rem;
 }
-
 .icon-newspaper-o {
-  width: 1.143em;
+  width: .97rem;
+  margin-bottom: .04rem;
 }
-
 .icon-tags {
-  width: 1.059em;
+  width: .8rem;
+  margin-bottom: .07rem;
 }

@@ -76,6 +76,14 @@ Layout
   margin: auto;
 }
 
+/* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
+@supports(padding: max(0rem)) {
+  .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
 .content {
   padding-top: 1rem;
   padding-bottom: 4rem;
@@ -107,6 +115,7 @@ Sidebar
     center/cover
     no-repeat
     scroll;
+  max-width: 100%;
   padding: 1rem;
   text-align: center;
   font-feature-settings: var(--font-common-settings),

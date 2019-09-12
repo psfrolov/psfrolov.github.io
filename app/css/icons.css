@@ -7,6 +7,9 @@
   fill: currentColor;
 }
 
+/* ----------------------------------------------------------------------------
+Site Logo
+---------------------------------------------------------------------------- */
 
 .icon-balance-scale {
   font-size: 1.25em;
@@ -14,30 +17,49 @@
   width: 1.214em;
 }
 
+/* ----------------------------------------------------------------------------
+Site Navigation
+---------------------------------------------------------------------------- */
 
 .icon-home, .icon-list, .icon-feed, .icon-question, .icon-info {
   font-size: 2rem;
   margin: 0 .3rem;
 }
-.icon-home { width: 0.928em; }
-.icon-list { width: 0.999em; }
-.icon-feed { width: 0.786em; }
+
+.icon-home { width: .928em; }
+
+.icon-list { width: .999em; }
+
+.icon-feed { width: .786em; }
+
 .icon-question {
   margin-left: -.1rem;
-  width: 0.622em;
+  width: .622em;
 }
-.icon-info { width: 0.357em; }
 
+.icon-info { width: .357em; }
 
-.icon-chevron-left { width: 0.7500009983778em; }
-.icon-chevron-right {	width: 0.6785712540149689em; }
+/* ----------------------------------------------------------------------------
+Pagination
+---------------------------------------------------------------------------- */
 
+.icon-chevron-left { width: .75em; }
+
+.icon-chevron-right {	width: .679em; }
+
+/* ----------------------------------------------------------------------------
+Social Links
+---------------------------------------------------------------------------- */
 
 .icon-twitter, .icon-facebook, .icon-linkedin2, .icon-github {
   font-size: 2rem;
 }
+
 .icon-github { margin: 0 .3rem; }
 
+/* ----------------------------------------------------------------------------
+Share Links
+---------------------------------------------------------------------------- */
 
 .icon-facebook-square,
 .icon-twitter-square,
@@ -46,27 +68,33 @@
   font-size: 2.2rem;
   margin: 0 .2rem;
 }
+
 .icon-facebook-square {	width: 0.857em; }
 .icon-twitter-square { width: 0.857em; }
 .icon-reddit-square {	width: 0.857em; }
 .icon-linkedin-square {	width: 0.857em; }
 
+/* ----------------------------------------------------------------------------
+Send Button
+---------------------------------------------------------------------------- */
 
 .icon-paper-plane-o {
   width: .83rem;
   margin-bottom: .09rem;
 }
 
+/* ----------------------------------------------------------------------------
+Post Metadata
+---------------------------------------------------------------------------- */
 
 .icon-clock-o {
-  width: .7rem;
-  margin-bottom: .08rem;
+  width: .857em;
 }
+
 .icon-newspaper-o {
-  width: .97rem;
-  margin-bottom: .04rem;
+  width: 1.143em;
 }
+
 .icon-tags {
-  width: .8rem;
-  margin-bottom: .07rem;
+  width: 1.059em;
 }

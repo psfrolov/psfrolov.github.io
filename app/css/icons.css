@@ -2,7 +2,7 @@
   display: inline-block;
   width: 1em;
   height: 1em;
-  vertical-align: text-bottom;
+  vertical-align: middle;
   color: inherit;
   fill: currentColor;
 }
@@ -82,7 +82,7 @@ Send Button
   width: .85em;
   height: .85em;
   position: relative;
-  top: -.27em;
+  top: -.1em;
 }
 
 /* ----------------------------------------------------------------------------
@@ -90,20 +90,22 @@ Post Metadata
 ---------------------------------------------------------------------------- */
 
 .icon-clock-o {
-  width: .85em;
-  height: .85em;
-  position: relative;
-  top: -.2em;
-}
-
-.icon-newspaper-o {
+  width: .8em;
+  height: .8em;
   position: relative;
   top: -.1em;
 }
 
-.icon-tags {
-  width: .86em;
-  height: .86em;
+.icon-newspaper-o {
   position: relative;
-  top: -.21em;
+  width: .95em;
+  height: .95em;
+  top: -.06em;
+}
+
+.icon-tags {
+  width: .79em;
+  height: .79em;
+  position: relative;
+  top: -.1em;
 }

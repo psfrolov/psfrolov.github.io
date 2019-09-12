@@ -79,8 +79,10 @@ Send Button
 ---------------------------------------------------------------------------- */
 
 .icon-paper-plane-o {
-  width: .83rem;
-  margin-bottom: .09rem;
+  width: .85em;
+  height: .85em;
+  position: relative;
+  top: -.27em;
 }
 
 /* ----------------------------------------------------------------------------
@@ -88,14 +90,20 @@ Post Metadata
 ---------------------------------------------------------------------------- */
 
 .icon-clock-o {
-  width: .7rem;
-  margin-bottom: .08rem;
+  width: .85em;
+  height: .85em;
+  position: relative;
+  top: -.2em;
 }
+
 .icon-newspaper-o {
-  width: .97rem;
-  margin-bottom: .04rem;
+  position: relative;
+  top: -.1em;
 }
+
 .icon-tags {
-  width: .8rem;
-  margin-bottom: .07rem;
+  width: .86em;
+  height: .86em;
+  position: relative;
+  top: -.21em;
 }

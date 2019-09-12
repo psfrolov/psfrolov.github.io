@@ -73,7 +73,7 @@ Layout
 }
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
-@supports(padding: max(0)) {
+@supports(padding: max(0rem)) {
   .container {
     padding-left: max(1rem, env(safe-area-inset-left));
     padding-right: max(1rem, env(safe-area-inset-right));

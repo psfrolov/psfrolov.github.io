@@ -1,45 +1,51 @@
 <!-- Inserted just after post tile. -->
 <dl class="inline grey">
-  <dt>
-    <svg class="icon icon-clock-o" role="img">
-      <desc>A clock.</desc>
-      <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-clock-o"/>
-    </svg>
-    Published:
-  </dt>
-  <dd>
-    <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.
-  </dd>
-  <dt>
-    <svg class="icon icon-newspaper-o" role="img">
-      <desc>A newspaper.</desc>
-      <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-newspaper-o"/>
-    </svg>
-    Reading time:
-  </dt>
-  <dd>
-    {% if include.context.reading_time %}
-    {% assign reading_time = include.context.reading_time %}
-    {% else %}
-    {% assign reading_time = include.context.content | reading_time %}
-    {% endif %}
-    <time datetime="PT{{ reading_time }}M" itemprop="timeRequired">{{ reading_time | pluralize:'minute' }}</time>.
-  </dd>
-  <dt class="new-line">
-    <svg class="icon icon-tags" role="img">
-      <title>Tags</title>
-      <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-tags"/>
-    </svg>
-  </dt>
-  <dd class="white-space-normal">
-    <ul class="inline">
-      {% for tag in include.context.tags %}
-      <li>
-        <a rel="tag" class="main-muted" href="{{ tag | tag_url | remove:'.html' }}#main">{{ tag }}</a>{% if forloop.last %}.{% else %},{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </dd>
+  <div>
+    <dt>
+      <svg class="icon icon-clock-o" role="img">
+        <desc>A clock.</desc>
+        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-clock-o"/>
+      </svg>
+      Published:
+    </dt>
+    <dd>
+      <time datetime="{{ include.context.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.context.date | date_to_string }}</time>.
+    </dd>
+  </div>
+  <div>
+    <dt>
+      <svg class="icon icon-newspaper-o" role="img">
+        <desc>A newspaper.</desc>
+        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-newspaper-o"/>
+      </svg>
+      Reading time:
+    </dt>
+    <dd>
+      {% if include.context.reading_time %}
+      {% assign reading_time = include.context.reading_time %}
+      {% else %}
+      {% assign reading_time = include.context.content | reading_time %}
+      {% endif %}
+      <time datetime="PT{{ reading_time }}M" itemprop="timeRequired">{{ reading_time | pluralize:'minute' }}</time>.
+    </dd>
+  </div>
+  <div class="new-line wrap-text">
+    <dt>
+      <svg class="icon icon-tags" role="img">
+        <title>Tags</title>
+        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-tags"/>
+      </svg>
+    </dt>
+    <dd>
+      <ul class="inline">
+        {% for tag in include.context.tags %}
+        <li>
+          <a rel="tag" class="main-muted" href="{{ tag | tag_url | remove:'.html' }}#main">{{ tag }}</a>{% if forloop.last %}.{% else %},{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </dd>
+  </div>
 </dl>
 <meta itemprop="wordCount" content="{{ include.context.content | number_of_words }}">
 <meta itemprop="articleSection about" content="{{ site.topic | escape }}">

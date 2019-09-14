@@ -103,13 +103,8 @@ Layout
 Sidebar
 ---------------------------------------------------------------------------- */
 
-/* Sidebar. */
 .sidebar {
-  background:
-    url(/img/sidebar-bg-small.jpg)
-    center/cover
-    no-repeat
-    scroll;
+  background: url(/img/sidebar-bg-small.jpg) center/cover no-repeat scroll;
   max-width: 100%;
   text-align: center;
   font-feature-settings: var(--font-common-settings),
@@ -122,11 +117,7 @@ Sidebar
 @media screen and (min-width: 48rem) {
   .sidebar {
     position: fixed;
-    background:
-      url(/img/sidebar-bg-large.jpg)
-      center/cover
-      no-repeat
-      scroll;
+    background: url(/img/sidebar-bg-large.jpg) center/cover no-repeat scroll;
     top: 0;
     left: 0;
     bottom: 0;
@@ -324,7 +315,7 @@ figure figcaption {
   text-align: center;
 }
 
-.page-image { display: none; } /* do not show on mobile devices */
+.page-image { display: none; }  /* do not show on mobile devices */
 
 @media (min-width: 48em) {
   .page-image {
@@ -439,7 +430,7 @@ hr {
   height: 0;
   margin: 1em 0;
   padding: 0;
-  border: 0;
+  border-style: none;
   color: var(--colour-brown);
   text-align: center;
   line-height: 1px;
@@ -531,32 +522,32 @@ ul.inline li::before { content: none; }
 }
 
 /* ----------------------------------------------------------------------------
-Inline Definition Lists
+Inline Definition Lists (Metadata)
 ---------------------------------------------------------------------------- */
 
 dl.inline { line-height: 1.5; }
 
-dl.inline dt {
+@media (min-width: 48em) {
+  dl.inline { line-height: 1.2; }
+}
+
+dl.inline > div {
   display: inline;
-  font-weight: normal;
   white-space: nowrap;
 }
 
-dl.inline .new-line::before {
-  content: '';
-  display: block;
+dl.inline > div.new-line { display: block; }  /* force line break */
+
+dl.inline > div.wrap-text { white-space: normal; }
+
+dl.inline dt {
+  display: inline;
+  font-weight: normal;
 }
 
 dl.inline dd {
   display: inline;
-  white-space: nowrap;
   margin: 0 1.5rem 0 0;
-}
-
-dl.inline .white-space-normal { white-space: normal; }
-
-@media (min-width: 48em) {
-  dl.inline { line-height: 1.2; }
 }
 
 /* ----------------------------------------------------------------------------
@@ -716,7 +707,7 @@ q { color: var(--colour-brown); }
 cite { font-style: italic; }
 
 /* ----------------------------------------------------------------------------
-Text Styling & Typography
+Text Styling
 ---------------------------------------------------------------------------- */
 
 b, strong { font-weight: bold; }
@@ -799,11 +790,11 @@ Printing
   /* Print background images. */
   main { color-adjust: exact; }
 
-  /* Page margins. */
+  /* Set page margins. */
   @page :left { margin: 20mm 25mm 20mm 20mm; }
   @page :right { margin: 20mm 20mm 20mm 25mm; }
 
-  /* Page breaks. */
+  /* Specify page breaks. */
   p, h2, h3, h4, h5, h6 { orphans: 3; widows: 3; }
   h2, h3, h4, h5, h6 { break-after: avoid-page; }
   figcaption { break-before: avoid-page; }

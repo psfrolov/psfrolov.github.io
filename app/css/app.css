@@ -80,18 +80,6 @@ Layout
     padding-left: max(var(--padding-base), env(safe-area-inset-left));
     padding-right: max(var(--padding-base), env(safe-area-inset-right));
   }
-
-  @media screen and (min-width: 64em) {
-    .sidebar {
-      padding-left: max(var(--padding-base), env(safe-area-inset-left));
-      padding-right: var(--padding-base);
-    }
-
-    .content {
-      padding-left: var(--padding-base);
-      padding-right: max(var(--padding-base), env(safe-area-inset-right));
-    }
-  }
 }
 
 .content { padding-bottom: 4rem; }
@@ -495,8 +483,13 @@ ul, ol, dl {
   margin-bottom: 1rem;
 }
 
-li { margin-bottom: .25rem; }
+ul, ol {
+  /* Consistent indentation. */
+  margin-left: 0;
+  padding-left: 2rem;
+}
 
+li { margin-bottom: .25rem; }
 li ul, li ol { margin-top: .25rem; }
 
 dt { font-weight: bold; }
@@ -769,9 +762,7 @@ ins::before {
 /* sub {} */
 /* sup {} */
 
-.ordn {
-  font-feature-settings: var(--font-common-settings), 'ordn';
-}
+.ordn { font-feature-settings: var(--font-common-settings), 'ordn'; }
 
 .main-muted { color: var(--colour-main-muted); }
 
@@ -802,6 +793,7 @@ Printing
     display: none !important;
   }
 
+  /* Remove link destination arrows. */
   a::after { content: '' !important; }
 
   /* Print background images. */

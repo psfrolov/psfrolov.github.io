@@ -124,6 +124,7 @@ Sidebar
     width: 18rem;
     text-align: center;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     line-height: 1.2;
   }
 }

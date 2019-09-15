@@ -13,6 +13,11 @@ module Jekyll
       FastImage.size(prepare_path(path), :raise_on_failure=>true)[1]
     end
 
+    def image_aspect_ratio(path)
+      size = FastImage.size(prepare_path(path), :raise_on_failure=>true)
+      size[0].to_f / size[1]
+    end
+
     def image_mime_type(path)
       'image/' +
         FastImage.type(prepare_path(path), :raise_on_failure=>true).to_s

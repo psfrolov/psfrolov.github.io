@@ -289,48 +289,74 @@ label::after {
 ::placeholder { color: var(--colour-grey); }
 
 /* ----------------------------------------------------------------------------
-Images
+Images & Figures
 ---------------------------------------------------------------------------- */
 
-img, object {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 0 1rem;
-  border-radius: 5px;
-}
+.page-image, figure { margin: 1rem 0; }
 
-figure { margin: 1rem 0; }
+.page-image img, figure img, figure object { margin-bottom: .1rem; }
 
-figure::after, .page-image::after {
+.page-image::after, figure::after {
   /* Clearfix. */
   content: '';
   display: table;
   clear: both;
 }
 
-figure img, figure object, .page-image img { margin-bottom: .1rem; }
+/* ----------------------------------------------------------------------------
+Page Images
+---------------------------------------------------------------------------- */
 
-figure figcaption {
-  font-size: 80%;
-  text-align: center;
-}
-
-.page-image { display: none; }  /* do not show on mobile devices */
+.page-image { display: none; }  /* do not show on small screens */
 
 @media (min-width: 48em) {
   .page-image {
+    position: relative;
     display: block;
-    padding: .7rem 0;
-    margin: .3rem 0;
   }
+
+  .page-image::before {
+    content: '';
+    display: block;
+    /* Allocate space for image to prevent page reflow. */
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+}
+
+.page-image img {
+  display: block;
+  /* Put image into allocated padding area. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 .page-image small {
   font-family: var(--font-secondary);
+  opacity: .75;
   float: right;
   text-align: right;
-  opacity: .75;
+}
+
+/* ----------------------------------------------------------------------------
+Figures
+---------------------------------------------------------------------------- */
+
+figure { margin: 1rem 0; }
+
+figure img, figure object {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+figure figcaption {
+  font-size: 80%;
+  text-align: center;
 }
 
 /* ----------------------------------------------------------------------------

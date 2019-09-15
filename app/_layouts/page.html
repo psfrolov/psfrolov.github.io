@@ -5,8 +5,8 @@ layout: default
 
 <!-- Page image. -->
 {% if page.image %}
-<div class="page-image">
-  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}" width="{{ page.image.url | image_width }}" height="{{ page.image.url | image_height }}">
+<div class="page-image" style="--aspect-ratio:{{ page.image.url | image_aspect_ratio }};">
+  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}">
   {% if page.image.name %}
   <small>
     {{ page.image.name }}{% if page.image.source %}<br>(Image by <a href="{{ page.image.source.url }}" rel="external">{{ page.image.source.name | escape }}</a>){% endif %}

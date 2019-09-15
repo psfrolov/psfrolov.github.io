@@ -19,8 +19,8 @@ sitemap: false
     you found a broken link.
   </p>
 </article>
-<div class="page-image">
-  {% capture image_url %}{{ site.baseurl }}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
-  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
+{% capture image_url %}{{ site.baseurl }}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
+<div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
+  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow">
   <small>Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow</small>
 </div>

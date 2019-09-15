@@ -124,7 +124,7 @@ Sidebar
     width: 18rem;
     text-align: center;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
     line-height: 1.2;
   }
 }
@@ -294,8 +294,6 @@ Images & Figures
 
 .page-image, figure { margin: 1rem 0; }
 
-.page-image img, figure img, figure object { margin-bottom: .1rem; }
-
 .page-image::after, figure::after {
   /* Clearfix. */
   content: '';
@@ -339,13 +337,12 @@ Page Images
   opacity: .75;
   float: right;
   text-align: right;
+  margin-top: .1rem;
 }
 
 /* ----------------------------------------------------------------------------
 Figures
 ---------------------------------------------------------------------------- */
-
-figure { margin: 1rem 0; }
 
 figure img, figure object {
   display: block;

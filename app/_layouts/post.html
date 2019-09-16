@@ -29,35 +29,12 @@ layout: default
   <!-- Social share buttons. -->
   <aside>
     <h2 class="screenreader-only">Share this Article</h2>
-    <!-- Facebook JavaScript SDK. -->
-    <script>
-      /* jshint ignore:start */
-      window.fbAsyncInit = function() {
-        FB.init({ appId: '{{ site.facebook.app_id }}', version: 'v4.0' });
-      };
-      /* jshint ignore:end */
-    </script>
-    <script async defer src="https://connect.facebook.net/es_GB/sdk.js"></script>
-    <!-- Twitter JavaScript API. -->
-    <script>
-      /* jshint ignore:start */
-      window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        t._e = [];  t.ready = function(f) { t._e.push(f); };
-        return t;
-      }(document, "script", "twitter-wjs"));
-      /* jshint ignore:end */
-    </script>
     <ul class="inline">
       {% capture post_url %}{{ site.url }}{{ site.baseurl }}{{ page.url }}{% endcapture %}
-      <li>{% assign title = 'Share on Facebook (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=popup&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | uri_escape }}" onclick="FB.ui({ method: 'share', href: '{{ post_url | uri_escape }}' }, function(response){}); return false;" target="_blank" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
-      <li>{% assign title = 'Share on Twitter (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&amp;url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}&amp;via={{ site.twitter.username }}" target="_blank" title="{{ title }}"><svg class="icon icon-twitter-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-twitter-square"/></svg></a></li>
-      <li>{% assign title = 'Share on Reddit (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.reddit.com/r/programming/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-reddit-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-reddit-square"/></svg></a></li>
-      <li>{% assign title = 'Share on LinkedIn (opens new window)' %}<a rel="external" class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}&amp;source={{ site.name | uri_escape }}" onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=520,height=570');return false;" target="_blank" title="{{ title }}"><svg class="icon icon-linkedin-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-linkedin-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Facebook (opens new window)' %}<a rel="external noopener" class="link-icon content-icon" href="https://www.facebook.com/dialog/share?app_id={{ site.facebook.app_id }}&amp;display=page&amp;href={{ post_url | uri_escape }}&amp;redirect_uri={{ post_url | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-facebook-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-facebook-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Twitter (opens new window)' %}<a rel="external noopener" class="link-icon content-icon" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&amp;url={{ post_url | uri_escape }}&amp;hashtags={{ page | keywords | remove:' ' | replace:'+','p' | replace:'.','dot' | uri_escape }}&amp;via={{ site.twitter.username }}" target="_blank" title="{{ title }}"><svg class="icon icon-twitter-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-twitter-square"/></svg></a></li>
+      <li>{% assign title = 'Share on Reddit (opens new window)' %}<a rel="external noopener" class="link-icon content-icon" href="https://www.reddit.com/r/programming/submit?url={{ post_url | uri_escape }}&amp;title={{ page.title | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-reddit-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-reddit-square"/></svg></a></li>
+      <li>{% assign title = 'Share on LinkedIn (opens new window)' %}<a rel="external noopener" class="link-icon content-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ post_url | uri_escape }}&amp;source={{ site.name | uri_escape }}" target="_blank" title="{{ title }}"><svg class="icon icon-linkedin-square" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-linkedin-square"/></svg></a></li>
     </ul>
   </aside>
 

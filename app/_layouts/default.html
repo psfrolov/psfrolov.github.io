@@ -166,7 +166,7 @@
           {% assign tags = site.tags | keys | sort_natural %}
           {% for tag in tags %}
           <li>
-            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}#main">{{ tag | replace: ' ', '&nbsp;' }}</a>
+            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag | replace: ' ', '&nbsp;' }}</a>
           </li>
           {% endfor %}
         </ul>
@@ -174,22 +174,22 @@
       <nav>
         <h2 class="screenreader-only">Site Navigation</h2>
         <ul class="inline">
-          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/#main" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-home"/></svg></a></li>
-          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive#main" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-list"/></svg></a></li>
+          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-home"/></svg></a></li>
+          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-list"/></svg></a></li>
           <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
-          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact#main" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-question"/></svg></a></li>
-          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about#main" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-info"/></svg></a></li>
+          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-question"/></svg></a></li>
+          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-info"/></svg></a></li>
         </ul>
       </nav>
       <br>
       <footer aria-label="Legal Information">
         <ul class="inline">
           <li>
-            <a href="{{ site.baseurl }}/legal/disclaimer#main"><small>Disclaimer</small></a>
+            <a href="{{ site.baseurl }}/legal/disclaimer"><small>Disclaimer</small></a>
             <small>‡</small>
           </li>
           <li>
-            <a href="{{ site.baseurl }}/legal/privacy-policy#main" title="Privacy Policy"><small>Privacy</small></a>
+            <a href="{{ site.baseurl }}/legal/privacy-policy" title="Privacy Policy"><small>Privacy</small></a>
           </li>
         </ul>
         <p>
@@ -200,5 +200,14 @@
     <main class="content container" id="main">
       {{ content }}
     </main>
+    <script>
+      window.onpageshow = (event) => {
+        'use strict';
+        if (!event.persisted) {
+          const main = document.getElementById('main');
+          if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+    </script>
   </body>
 </html>

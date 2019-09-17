@@ -27,7 +27,7 @@ image:
 # {{ page.title | escape }}
 
 {{ page.description | escape }} Feel free to contact me via
-[contact form]({{ site.baseurl }}/contact#main). Or use one of the social links
+[contact form]({{ site.baseurl }}/contact). Or use one of the social links
 below.
 {: .drop-letter }
 

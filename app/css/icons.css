@@ -58,23 +58,6 @@ Social Links
 .icon-github { margin: 0 .3rem; }
 
 /* ----------------------------------------------------------------------------
-Share Links
----------------------------------------------------------------------------- */
-
-.icon-facebook-square,
-.icon-twitter-square,
-.icon-reddit-square,
-.icon-linkedin-square {
-  font-size: 2.2rem;
-  margin: 0 .2rem;
-}
-
-.icon-facebook-square {	width: 0.857em; }
-.icon-twitter-square { width: 0.857em; }
-.icon-reddit-square {	width: 0.857em; }
-.icon-linkedin-square {	width: 0.857em; }
-
-/* ----------------------------------------------------------------------------
 Send Button
 ---------------------------------------------------------------------------- */
 

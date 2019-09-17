@@ -86,7 +86,6 @@ facebook:
   app_id: 416481208892021
 twitter:
   profile: https://twitter.com/intent/user?user_id=4133911523
-  username: PavelSFrolov
   user_id: &twitter_user_id 4133911523
   site_id: *twitter_user_id
   creator_id: *twitter_user_id

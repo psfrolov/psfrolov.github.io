@@ -201,9 +201,11 @@
       {{ content }}
     </main>
     <script>
-      window.onpageshow = (event) => {
+      window.onpageshow = () => {
         'use strict';
-        if (!event.persisted) {
+        if (performance.getEntriesByType('navigation')[0].type !==
+          'back_forward')
+        {
           const main = document.getElementById('main');
           if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
         }

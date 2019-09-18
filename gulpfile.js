@@ -47,8 +47,8 @@ const serveDir = path.join(outDir, 'serve');
 const publishDir = path.join(outDir, 'publish');
 
 // Resource patterns.
-const jsonFiles = ['*.json'];
-const xmlFiles = ['*.xml'];
+const jsonFiles = ['**/*.json'];
+const xmlFiles = ['**/*.xml'];
 const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/*.js'];
 const svgFiles = ['**/*.svg'];
@@ -207,12 +207,14 @@ function revision() {
       ],
       dontRenameFile: [
         /\.(?:html|txt)$/gu,
-        /^\/(?:atom|sitemap|feed\.xslt)\.xml$/gu,
-        /^\/browserconfig\.xml$/gu
+        '/sitemap.xml',
+        '/feed.xml',
+        '/browserconfig.xml'
       ],
       dontUpdateReference: [
         /\.(?:html|txt)$/gu,
-        /\/(?:atom|sitemap|feed\.xslt)\.xml$/gu
+        '/sitemap.xml',
+        '/feed.xml'
       ]
     }))
     .pipe(gulp.dest(serveDir))
@@ -246,7 +248,7 @@ function serve(cb) {
         baseDir: serveDir,
         serveStaticOptions: {
           dotfiles: 'allow',  // e.g., ".net.html"
-          extensions: ['html'],  // serve pages without trailing slash
+          extensions: ['html', 'xml'],  // serve pages without trailing slash
           fallthrough: true,  // enable 404 error
           redirect: false  // serve home page without trailing slash
         }

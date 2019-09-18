@@ -47,7 +47,7 @@ paginate: 10
 
 # Web feed (jekyll-feed).
 feed:
-  path: atom.xml
+  path: feed.xml
   # Jekyll-feed also makes use of url, name, description, and author variables.
 
 # Tagging (jekyll-tagging).

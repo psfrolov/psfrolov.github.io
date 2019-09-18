@@ -132,7 +132,7 @@
 
     <!-- Web feed autodiscovery. -->
     {% if page.is_home %}
-    {% feed_meta %}
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.url }}{{ site.baseurl }}/feed">
     {% endif %}
 
     <!-- Styles. -->
@@ -176,7 +176,7 @@
         <ul class="inline">
           <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="{{ site.baseurl }}/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-home"/></svg></a></li>
           <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-list"/></svg></a></li>
-          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/{{ site.feed.path }}" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="{{ site.baseurl }}/feed" title="{{ title }}"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
           <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="{{ site.baseurl }}/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-question"/></svg></a></li>
           <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="{{ site.baseurl }}/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-info"/></svg></a></li>
         </ul>
@@ -200,10 +200,12 @@
     <main class="content container" id="main">
       {{ content }}
     </main>
+    {% unless page.is_home %}
     <script>
       window.onpageshow = (evt) => {
         'use strict';
         // Scroll view to main content area of page if not coming from history.
+        if (window.location.hash) return;  // ignore URLs with fragment
         const nav = performance.getEntriesByType('navigation');
         if (nav.length) {  // for Chrome/Opera, Firefox, Edge
           if (nav[0].type === 'back_forward') return;
@@ -214,5 +216,6 @@
         if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
       };
     </script>
+    {% endunless %}
   </body>
 </html>

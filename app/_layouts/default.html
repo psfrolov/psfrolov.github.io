@@ -201,14 +201,17 @@
       {{ content }}
     </main>
     <script>
-      window.onpageshow = () => {
+      window.onpageshow = (evt) => {
         'use strict';
-        if (performance.getEntriesByType('navigation')[0].type !==
-          'back_forward')
-        {
-          const main = document.getElementById('main');
-          if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
+        // Scroll view to main content area of page if not coming from history.
+        const nav = performance.getEntriesByType('navigation');
+        if (nav.length) {  // for Chrome/Opera, Firefox, Edge
+          if (nav[0].type === 'back_forward') return;
+        } else if (evt.persisted) { // for Safari
+          return;
         }
+        const main = document.getElementById('main');
+        if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
       };
     </script>
   </body>

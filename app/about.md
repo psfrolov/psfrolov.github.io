@@ -18,7 +18,7 @@ image:
 
 {% capture image_url %}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
 <div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="{{ page.image.alt }}">
+  <img src="{{ image_url }}" alt="{{ page.image.alt }}" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
   <small>{{ page.image.name }}</small>
 </div>
 

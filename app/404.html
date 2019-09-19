@@ -21,6 +21,6 @@ sitemap: false
 </article>
 {% capture image_url %}{{ site.baseurl }}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
 <div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow">
+  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
   <small>Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow</small>
 </div>

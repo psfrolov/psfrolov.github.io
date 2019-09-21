@@ -14,7 +14,7 @@ const accessibility = require('gulp-accessibility'),
       del = require('del'),
       doiuse = require('doiuse'),
       execa = require('gulp-execa'),
-      ghPages = require('gulp-gh-pages'),
+      ghPages = require('gh-pages'),
       gulp = require('gulp'),
       htmlhint = require('gulp-htmlhint'),
       htmlmin = require('gulp-htmlmin'),
@@ -44,7 +44,6 @@ const jekyllBuildDir = path.join(outDir, 'jekyll-build');
 const buildDir = path.join(outDir, 'build');
 const certsDir = path.join(__dirname, 'test-certs');
 const serveDir = path.join(outDir, 'serve');
-const publishDir = path.join(outDir, 'publish');
 
 // Resource patterns.
 const cssFiles = ['css/app*.css'];
@@ -55,8 +54,8 @@ const xmlFiles = ['**/*.xml'];
 const svgFiles = ['**/*.svg'];
 const htmlFiles = ['**/*.html'];
 const otherFiles = [
-  '!*.{json,xml,svg, html}',
   '*',
+  '!*.{json,xml,svg,html}',
   'img/**/*.{png,jpg}'
 ];
 const filesToWatch = ['app/**/*', '_config.yml', 'gulpfile.js'];
@@ -360,12 +359,15 @@ function publish(cb) {
   if (options.env !== 'production')
     return cb(new Error('Only "production" build can be published.'));
 
-  return gulp.src(['**/*'], { cwd: serveDir, cwdbase: true, dot: true })
-    .pipe(ghPages({
-      cacheDir: publishDir,
+  return ghPages.publish(
+    serveDir,
+    {
+      branch: 'master',
+      dotfiles: true,
       remoteUrl: 'https://github.com/psfrolov/psfrolov.github.io.git',
-      branch: 'master'
-    }));
+      message: `Website update ${new Date(Date.now()).toLocaleString()}.`
+    },
+    cb);
 }
 exports.deploy = gulp.series(clean, build, publish);
 

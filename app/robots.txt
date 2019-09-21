@@ -3,5 +3,5 @@ layout: null
 ---
 
 
-sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+sitemap: {{ site.url }}/sitemap.xml
 host: {{ site.url }}

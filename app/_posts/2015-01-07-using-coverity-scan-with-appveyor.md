@@ -1,4 +1,5 @@
 ---
+uuid: urn:uuid:1a7a870e-0b45-4187-bf77-6ea25b91dcba
 title: Using Coverity Scan with AppVeyor
 tags: [CI, .NET, PowerShell, Static Analysis]
 description: &description >-

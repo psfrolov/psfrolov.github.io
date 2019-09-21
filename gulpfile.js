@@ -47,15 +47,15 @@ const serveDir = path.join(outDir, 'serve');
 const publishDir = path.join(outDir, 'publish');
 
 // Resource patterns.
-const jsonFiles = ['**/*.json'];
-const xmlFiles = ['**/*.xml'];
 const cssFiles = ['css/app*.css'];
 const jsFiles = ['js/*.js'];
+const plantUmlFiles = ['img/figures/*.puml'];
+const jsonFiles = ['**/*.json'];
+const xmlFiles = ['**/*.xml'];
 const svgFiles = ['**/*.svg'];
 const htmlFiles = ['**/*.html'];
-const plantUmlFiles = ['img/figures/*.puml'];
 const otherFiles = [
-  '!*.{html,json,xml,svg}',
+  '!*.{json,xml,svg, html}',
   '*',
   'img/**/*.{png,jpg}'
 ];

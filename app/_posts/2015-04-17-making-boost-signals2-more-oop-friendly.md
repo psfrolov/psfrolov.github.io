@@ -1,12 +1,12 @@
 ---
+uuid: urn:uuid:b5e5a495-748d-41bd-b31f-5b06229fdf09
 title: Making Boost.Signals2 More OOP‐Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
 description: &description >-
-  The observer design pattern is by far the most popular and widely known among
-  behavioural design patterns. Unfortunately, unlike other mainstream languages
-  out there, the C++ standard library doesn’t provide out of the box observer
-  implementation. This article suggests an observable mixin based on
-  Boost.Signals2 which makes it easy to build an observer.
+  Unfortunately, unlike other mainstream languages, the C++ standard library
+  doesn’t provide out of the box observer implementation. This article suggests
+  an observable mixin based on Boost.Signals2 which makes it easy to build an
+  observer.
 excerpt: *description
 image:
   url: &url /img/pages/el-caracol-observatory.jpg
@@ -135,7 +135,7 @@ Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a
 high‐level view on what we will be discussing in this section. We’ll continue
 to use the window example from the previous section.
 <figure>
-  <object data="{{ site.baseurl }}/img/figures/observable-mixin-uml-class-diagram.svg"
+  <object data="/img/figures/observable-mixin-uml-class-diagram.svg"
           type="image/svg+xml"
           role="img">
   </object>

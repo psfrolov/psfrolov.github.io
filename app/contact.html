@@ -46,7 +46,7 @@ sitemap: false
              required>
       <input type="hidden"
              name="_subject"
-             value="{{ site.name | escape }}">
+             value="{{ site.title | escape }}">
     </div>
   </div>
   <div>
@@ -62,10 +62,10 @@ sitemap: false
              name="_replyto">
       <input type="hidden"
              name="_subject"
-             value="{{ site.name }} Contact">
+             value="{{ site.title }} Contact">
       <input type="hidden"
              name="_next"
-             value="{{ site.url }}{{ site.baseurl }}/thank-you">
+             value="{{ site.url }}/thank-you">
       <input type="text"
              name="_honey"
              maxlength="20"
@@ -79,7 +79,7 @@ sitemap: false
   </div>
   <div>
     <div>
-      <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><desc>A paper plane.</desc><use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-paper-plane-o"/></svg></button>
+      <button type="submit">Send <svg class="icon icon-paper-plane-o" role="img"><desc>A paper plane.</desc><use xlink:href="/icn/symbol-defs.svg#icon-paper-plane-o"/></svg></button>
     </div>
   </div>
 </form>

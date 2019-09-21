@@ -15,12 +15,12 @@ sitemap: false
   <p class="drop-letter">
     Sorry, the server could not find the page requested. Either I've misplaced
     that URL, or it's pointing to something that doesn't exist. Please
-    <a href="{{ site.baseurl }}/contact">contact me</a> if you feel that
+    <a href="/contact">contact me</a> if you feel that
     you found a broken link.
   </p>
 </article>
-{% capture image_url %}{{ site.baseurl }}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
+{% capture image_url %}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
 <div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
+  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow">
   <small>Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow</small>
 </div>

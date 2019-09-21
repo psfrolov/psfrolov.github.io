@@ -5,7 +5,7 @@ title: '{{ site.title }}'
 description: '{{ site.description }}'
 keywords: '{{ site.keywords | join:"," }}'
 image:
-  url: /img/pages/logo3.png
+  url: /img/pages/website-logo.png
   name: &name '{{ site.title }}'
   alt: *name
 is_home: true
@@ -25,10 +25,10 @@ is_home: true
   <nav class="pagination">
     <h2 class="screenreader-only">Pagination</h2>
     {% if paginator.next_page %}
-    <a rel="next" class="pagination-item older" href="{{ site.baseurl }}/page{{ paginator.next_page }}">
+    <a rel="next" class="pagination-item older" href="/page{{ paginator.next_page }}">
       <svg class="icon icon-chevron-left" role="img">
         <title>Arrow Left</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-chevron-left"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-left"/>
       </svg>
       Older
     </a>
@@ -36,26 +36,26 @@ is_home: true
     <span class="pagination-item older">
       <svg class="icon icon-chevron-left" role="img">
         <title>Arrow Left</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-chevron-left"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-left"/>
       </svg>
       Older
     </span>
     {% endif %}
     {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-    <a rel="prev" class="pagination-item newer" href="{{ site.baseurl }}/">
+    <a rel="prev" class="pagination-item newer" href="/">
       Newer
       <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-chevron-right"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
       </svg>
     </a>
     {% else %}
-    <a rel="prev" class="pagination-item newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">
+    <a rel="prev" class="pagination-item newer" href="/page{{ paginator.previous_page }}">
       Newer
       <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-chevron-right"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
       </svg>
     </a>
     {% endif %}
@@ -64,7 +64,7 @@ is_home: true
       Newer
       <svg class="icon icon-chevron-right" role="img">
         <title>Arrow Right</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-chevron-right"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
       </svg>
     </span>
     {% endif %}
@@ -76,11 +76,11 @@ is_home: true
   {
     "@context" : "https://schema.org",
     "@type" : "WebSite",
-    "name" : {{ site.name | jsonify }},
+    "name" : {{ site.title | jsonify }},
     "url" : "{{ site.url }}"
   }
 </script>
-{% capture logo_url %}{{ site.baseurl }}/img/pages/logo3.png{% endcapture %}
+{% capture logo_url %}/img/pages/organisation-logo.png{% endcapture %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",

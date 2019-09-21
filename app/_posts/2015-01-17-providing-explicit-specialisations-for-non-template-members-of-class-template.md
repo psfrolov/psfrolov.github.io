@@ -1,4 +1,5 @@
 ---
+uuid: urn:uuid:09e7137d-33df-4c82-bfde-574f3289bea6
 title: >-
   Providing Explicit Specialisations for Non‐Template Members of Class Template
 tags: [C++, Generic Programming]

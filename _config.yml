@@ -7,8 +7,8 @@ plugins:  # in processing order
   - liquid_pluralize
   - liquid_reading_time
   - jekyll/tagging
+  - jekyll-last-modified-at
   - jekyll-paginate
-  - jekyll-feed
   - jekyll-sitemap
 permalink: /:categories/:title
 strict_front_matter: true
@@ -45,20 +45,15 @@ defaults:
 # Pagination (jekyll-paginate).
 paginate: 10
 
-# Web feed (jekyll-feed).
-feed:
-  path: feed.xml
-  # Jekyll-feed also makes use of url, name, description, and author variables.
-
 # Tagging (jekyll-tagging).
 tag_page_layout: tag-page
 tag_page_dir: tag
 
 # Custom variables.
+uuid: urn:uuid:31ee1aa6-10b9-4fd9-b913-cdc50a76d9d8
 fqdn: TheHermeticVault.com
-url: &site_url https://thehermeticvault.com
-name: &sitename The Hermetic Vault
-title: *sitename
+url: https://thehermeticvault.com
+title: The Hermetic Vault
 description: >-
   A miscellanea of software development techniques: C++, generic programming,
   design patterns, CI, and more.
@@ -68,11 +63,12 @@ topic: Software Development
 creator:
   first_name: Pavel
   last_name: Frolov
-  full_name: &creator_full_name Pavel Frolov
+  full_name: Pavel Frolov
   username: psfrolov
-author: *creator_full_name  # for jekyll-feed plugin
 
-theme_colour: '#ac4142'
+colours:
+  main: '#ac4142'
+  black: '#404040'
 
 disqus:
   shortname: arkfps

@@ -7,15 +7,15 @@ layout: null
   "name": {{ site.title | jsonify }},
   "icons": [
     {
-      "src": "{{ site.baseurl }}\/android-chrome-192x192.png",
+      "src": "\/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image\/png"
     },
     {
-      "src": "{{ site.baseurl }}\/android-chrome-384x384.png",
+      "src": "\/android-chrome-384x384.png",
       "sizes": "384x384",
       "type": "image\/png"
     }
   ],
-  "theme_color": {{ site.theme_colour | jsonify }}
+  "theme_color": {{ site.colours.main | jsonify }}
 }

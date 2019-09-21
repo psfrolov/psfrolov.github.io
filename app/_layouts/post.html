@@ -5,7 +5,7 @@ layout: default
 
 <!-- Post image. -->
 <div class="page-image" style="--aspect-ratio:{{ page.image.url | image_aspect_ratio }};" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-  <img src="{{ site.baseurl }}{{ page.image.url }}" alt="{{ page.image.alt }}" width="{{ page.image.url | image_width }}" height="{{ page.image.url | image_height }}" itemprop="url contentUrl">
+  <img src="{{ page.image.url }}" alt="{{ page.image.alt }}" class="webfeedsFeaturedVisual" itemprop="url contentUrl">
   <meta itemprop="width" content="{{ page.image.url | image_width }}">
   <meta itemprop="height" content="{{ page.image.url | image_height }}">
   {% if page.image.name %}
@@ -32,10 +32,9 @@ layout: default
     <h2 class="screenreader-only">Comments</h2>
     <div id="disqus_thread"></div>
     <script>
-      /* jshint ignore:start */
       var disqus_config = function () {
-        this.page.url = "{{ site.url }}{{ site.baseurl }}{{ page.url }}";
-        this.page.identifier = "{{ page.title | slugify:'latin' }}";
+        this.page.url = "{{ site.url }}{{ page.url }}";
+        this.page.identifier = "{{ page.uuid }}";
         this.page.title = "{{ page.title }}";
       };
       (function() {
@@ -44,7 +43,6 @@ layout: default
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         })();
-      /* jshint ignore:end */
     </script>
     <noscript><i>Please enable JavaScript to view the comments.</i></noscript>
   </aside>
@@ -62,7 +60,7 @@ layout: default
         "@type": "ListItem",
         "position": 1,
         "item": {
-          "@id": "{{ site.url}}{{ site.baseurl }}",
+          "@id": "{{ site.url}}",
           "name": "Home"
         }
       },
@@ -70,7 +68,7 @@ layout: default
         "@type": "ListItem",
         "position": 2,
         "item": {
-          "@id": "{{ site.url}}{{ site.baseurl }}{{ tag | tag_url | remove:'.html' }}",
+          "@id": "{{ site.url}}{{ tag | tag_url | remove:'.html' }}",
           "name": {{ tag | jsonify }}
         }
       },
@@ -78,7 +76,7 @@ layout: default
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+          "@id": "{{ site.url }}{{ page.url }}",
           "name": {{ page.title | jsonify }}
         }
       }

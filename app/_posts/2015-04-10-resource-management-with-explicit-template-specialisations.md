@@ -1,4 +1,5 @@
 ---
+uuid: urn:uuid:cc8a2d84-a51a-4de8-867e-05ffec616448
 title: Resource Management with Explicit Template Specialisations
 tags: [C++, Generic Programming, Windows API]
 description: &description >-

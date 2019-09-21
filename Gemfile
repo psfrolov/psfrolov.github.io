@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll'
-gem 'jekyll-feed'
+gem 'jekyll-last-modified-at'
 gem 'jekyll-paginate'
 gem 'jekyll-sitemap'
 gem 'jekyll-tagging'

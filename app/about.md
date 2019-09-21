@@ -16,9 +16,9 @@ image:
 ---
 
 
-{% capture image_url %}{{ site.baseurl }}{{ page.image.url }}{% endcapture %}
+{% capture image_url %}{{ page.image.url }}{% endcapture %}
 <div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="{{ page.image.alt }}" width="{{ image_url | image_width }}" height="{{ image_url | image_height }}">
+  <img src="{{ image_url }}" alt="{{ page.image.alt }}">
   <small>{{ page.image.name }}</small>
 </div>
 
@@ -27,7 +27,7 @@ image:
 # {{ page.title | escape }}
 
 {{ page.description | escape }} Feel free to contact me via
-[contact form]({{ site.baseurl }}/contact). Or use one of the social links
+[contact form](/contact). Or use one of the social links
 below.
 {: .drop-letter }
 
@@ -47,7 +47,7 @@ below.
         "@type": "ListItem",
         "position": 1,
         "item": {
-          "@id": "{{ site.url}}{{ site.baseurl }}",
+          "@id": "{{ site.url}}",
           "name": "Home"
         }
       },
@@ -55,7 +55,7 @@ below.
         "@type": "ListItem",
         "position": 2,
         "item": {
-          "@id": "{{ site.url}}{{ site.baseurl }}{{ page.url }}",
+          "@id": "{{ site.url}}{{ page.url }}",
           "name": {{ page.title | jsonify }}
         }
       }

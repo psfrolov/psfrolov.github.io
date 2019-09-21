@@ -4,7 +4,7 @@
     <dt>
       <svg class="icon icon-clock-o" role="img">
         <desc>A clock.</desc>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-clock-o"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-clock-o"/>
       </svg>
       Published:
     </dt>
@@ -16,7 +16,7 @@
     <dt>
       <svg class="icon icon-newspaper-o" role="img">
         <desc>A newspaper.</desc>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-newspaper-o"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-newspaper-o"/>
       </svg>
       Reading time:
     </dt>
@@ -33,7 +33,7 @@
     <dt>
       <svg class="icon icon-tags" role="img">
         <title>Tags</title>
-        <use xlink:href="{{ site.baseurl }}/icn/symbol-defs.svg#icon-tags"/>
+        <use xlink:href="/icn/symbol-defs.svg#icon-tags"/>
       </svg>
     </dt>
     <dd>
@@ -53,10 +53,10 @@
 <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
   <meta itemprop="name" content="{{ site.title | escape }}">
   <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-    {% capture logo_url %}{{ site.baseurl }}/img/pages/logo.png{% endcapture %}
+    {% capture logo_url %}/img/pages/publisher-logo.png{% endcapture %}
     <link itemprop="url contentUrl" href="{{ logo_url }}">
     <meta itemprop="width" content="{{ logo_url | image_width }}">
     <meta itemprop="height" content="{{ logo_url | image_height }}">
   </span>
 </span>
-<meta itemprop="dateModified" content="{{ include.context.path | modified_time | date_to_xmlschema }}">
+<meta itemprop="dateModified" content="{{ include.context.last_modified_at | date_to_xmlschema }}">

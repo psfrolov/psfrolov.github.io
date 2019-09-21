@@ -1,12 +1,12 @@
 <h2 itemprop="name headline">
-  <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title | escape }}</a>
-  <meta itemprop="url mainEntityOfPage" content="{{ site.url }}{{ site.baseurl }}{{ post.url }}">
+  <a href="{{ post.url }}">{{ post.title | escape }}</a>
+  <meta itemprop="url mainEntityOfPage" content="{{ site.url }}{{ post.url }}">
 </h2>
 <header>
   <h3 class="screenreader-only">Metadata</h3>
   {% include post-meta.html context=post %}
   <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-    <link itemprop="url contentUrl" href="{{ site.baseurl }}{{ post.image.url }}">
+    <link itemprop="url contentUrl" href="{{ post.image.url }}">
     <meta itemprop="width" content="{{ post.image.url | image_width }}">
     <meta itemprop="height" content="{{ post.image.url | image_height }}">
   </div>

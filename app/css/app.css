@@ -13,10 +13,10 @@ Custom Properties
 ---------------------------------------------------------------------------- */
 
 :root {
-  --colour-main: {{ site.theme_colour }};
+  --colour-main: {{ site.colours.main }};
   --colour-main-muted: rgba(172, 65, 66, .75);
 
-  --colour-black: #404040;
+  --colour-black: {{ site.colours.black }};
   --colour-black-muted: #737373;
 
   --colour-white: #fff;
@@ -704,9 +704,9 @@ Quotations
 
 blockquote, q { quotes: '‘' '’' '“' '”'; }
 
-blockquote::before, q::before { content: open-quote; }
+blockquote > p::before, q::before { content: open-quote; }
 
-blockquote::after, q::after { content: close-quote; }
+blockquote > p::after, q::after { content: close-quote; }
 
 blockquote {
   padding: .5rem var(--padding-base);

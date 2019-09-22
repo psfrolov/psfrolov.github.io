@@ -15,6 +15,7 @@ Custom Properties
 :root {
   --colour-main: {{ site.colours.main }};
   --colour-main-muted: rgba(172, 65, 66, .75);
+  --colour-page-background: #e7d9cc;
 
   --colour-black: {{ site.colours.black }};
   --colour-black-muted: #737373;
@@ -32,14 +33,10 @@ Custom Properties
   --font-main: alegreya, serif;
   --font-secondary: alegreya-sans, sans-serif;
 
+  --line-height-base: 1.25;
+
   --padding-base: 1rem;
 }
-
-/* ----------------------------------------------------------------------------
-Sizing
----------------------------------------------------------------------------- */
-
-*, *::before, *::after { box-sizing: inherit; }
 
 /* ----------------------------------------------------------------------------
 Body
@@ -47,20 +44,16 @@ Body
 
 html {
   box-sizing: border-box;
+  line-height: var(--line-height-base);
+  font-size: calc(.9vw + .9vh + .4vmin);
   font-family: var(--font-main);
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum';
 }
 
-@media (min-width: 48em) {
-  html { font-size: 16px; }
-}
-
-@media (min-width: 58em) {
-  html { font-size: 20px; }
-}
+*, *::before, *::after { box-sizing: inherit; }
 
 body {
-  background: url(/img/content-bg.jpg) scroll #e7d9cc;
+  background: url(/img/content-bg.jpg) scroll var(--colour-page-background);
   color: var(--colour-black);
 }
 
@@ -68,7 +61,7 @@ body {
 Layout
 ---------------------------------------------------------------------------- */
 
-.container {
+.sidebar, .content {
   max-width: 38rem;
   margin: auto;
   padding: var(--padding-base);
@@ -76,26 +69,31 @@ Layout
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
 @supports(padding: max(1rem)) {
-  .container {
+  .sidebar, .content {
     padding-left: max(var(--padding-base), env(safe-area-inset-left));
     padding-right: max(var(--padding-base), env(safe-area-inset-right));
   }
 }
 
-.content { padding-bottom: 4rem; }
-
-@media screen and (min-width: 48em) {
-  .content {
-    max-width: 38rem;
-    margin-left: 20rem;
-    margin-right: 2rem;
+@media screen and (min-width: 48rem) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
   }
 }
 
-@media screen and (min-width: 64em) {
+.content { padding-bottom: 4rem; }
+
+@media screen and (min-width: 48rem) {
   .content {
-    margin-left: 22rem;
-    margin-right: 4rem;
+    max-width: 33em;  /* approx. 66 characters line width */
+    margin-left: 20rem;
+    margin-right: 2rem;
   }
 }
 
@@ -105,27 +103,18 @@ Sidebar
 
 .sidebar {
   background: url(/img/sidebar-bg-small.jpg) center/cover no-repeat scroll;
-  max-width: 100%;
+  max-width: 100%;  /* make background image full-bleed */
   text-align: center;
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: var(--line-height-base);
   user-select: none;
 }
 
 @media screen and (min-width: 48rem) {
   .sidebar {
-    position: fixed;
     background: url(/img/sidebar-bg-large.jpg) center/cover no-repeat scroll;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 18rem;
-    text-align: center;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
-    line-height: 1.2;
   }
 }
 
@@ -142,7 +131,7 @@ Sidebar
 }
 
 .sidebar h1 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   line-height: 1;
   margin: .5rem 0;
 }
@@ -157,7 +146,7 @@ Sidebar
   color: var(--colour-white-muted);
 }
 
-.sidebar .icon-wrapper { filter: drop-shadow(.1rem .1rem .1rem black); }
+.sidebar .icon-wrapper { filter: drop-shadow(.1em .1em .1em black); }
 
 /* ----------------------------------------------------------------------------
 Pagination
@@ -190,7 +179,7 @@ a.pagination-item:hover, a.pagination-item:focus {
 
 /* a.pagination-item:active {} */
 
-@media (min-width: 30em) {
+@media (min-width: 48rem) {
   .pagination { margin: 3rem 0; }
 
   .pagination-item {
@@ -305,20 +294,16 @@ Images & Figures
 Page Images
 ---------------------------------------------------------------------------- */
 
-.page-image { display: none; }  /* do not show on small screens */
+.page-image {
+  position: relative;
+  display: block;
+}
 
-@media (min-width: 48em) {
-  .page-image {
-    position: relative;
-    display: block;
-  }
-
-  .page-image::before {
-    content: '';
-    display: block;
-    /* Allocate space for image to prevent page reflow. */
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
-  }
+.page-image::before {
+  content: '';
+  display: block;
+  /* Allocate space for image to prevent page reflow. */
+  padding-bottom: calc(100% / (var(--aspect-ratio)));
 }
 
 .page-image img {
@@ -334,9 +319,9 @@ Page Images
 
 .page-image small {
   font-family: var(--font-secondary);
+  text-align: right;
   opacity: .75;
   float: right;
-  text-align: right;
   margin-top: .1rem;
 }
 
@@ -450,6 +435,7 @@ Horizontal Rule
 ---------------------------------------------------------------------------- */
 
 hr {
+  /* Hide rule. */
   display: block;
   height: 0;
   margin: 1em 0;
@@ -532,7 +518,7 @@ Inline Lists
 ul.inline {
   display: inline;
   list-style: none;
-  line-height: 1.5;
+  line-height: 1.4;
   padding: 0;
   margin: 0;
 }
@@ -541,8 +527,8 @@ ul.inline li { display: inline; }
 
 ul.inline li::before { content: none; }
 
-@media (min-width: 48em) {
-  ul.inline { line-height: 1.2; }
+@media (min-width: 48rem) {
+  ul.inline { line-height: var(--line-height-base); }
 }
 
 /* ----------------------------------------------------------------------------
@@ -551,8 +537,8 @@ Inline Definition Lists (Metadata)
 
 dl.inline { line-height: 1.5; }
 
-@media (min-width: 48em) {
-  dl.inline { line-height: 1.2; }
+@media (min-width: 48rem) {
+  dl.inline { line-height: var(--line-height-base); }
 }
 
 dl.inline > div {
@@ -615,13 +601,12 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
   margin-left: -.5rem;
 }
 
-@media (min-width: 48em), print {
+@media (min-width: 48rem), print {
   sup[id^='fnref:'] {
     font-feature-settings: var(--font-common-settings), 'sups';
   }
 
   a.footnote::before { content: ' '; }
-
   a.footnote::after { content: none; }
 }
 
@@ -634,7 +619,7 @@ h1, h2, h3, h4, h5, h6 {
     'dlig', 'swsh', 'onum', 'pnum';
   font-weight: normal;
   margin-bottom: .5rem;
-  line-height: 1.25;
+  line-height: var(--line-height-base);
 }
 
 h1 {
@@ -709,17 +694,10 @@ blockquote > p::before, q::before { content: open-quote; }
 blockquote > p::after, q::after { content: close-quote; }
 
 blockquote {
-  padding: .5rem var(--padding-base);
+  padding: 0 var(--padding-base);
   margin: .8rem 0;
   border-left: .07rem solid var(--colour-brown);
   color: var(--colour-brown);
-}
-
-@media (min-width: 30em) {
-  blockquote {
-    padding-right: 5rem;
-    padding-left: 1.25rem;
-  }
 }
 
 blockquote p { display: inline; }

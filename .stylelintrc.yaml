@@ -80,7 +80,7 @@ rules:
 
   # Unit
   unit-blacklist: null
-  unit-whitelist: [px, em, rem, '%', ms, mm]
+  unit-whitelist: [px, em, rem, vw, vh, vmin, '%', ms, mm]
 
   # Shorthand Property
   shorthand-property-no-redundant-values: true

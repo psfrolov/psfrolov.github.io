@@ -92,6 +92,7 @@ Layout
     width: 33vw;
     overflow: auto;
     -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
+    will-change: transform;  /* optimize page repaint during scrolling */
   }
 }
 

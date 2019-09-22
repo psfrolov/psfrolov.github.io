@@ -144,7 +144,7 @@
     <aside class="sidebar container">
       <header>
         <h1>
-          <a rel="home" href="/">
+          <a class="icon-wrapper" rel="home" href="/">
             <svg class="icon icon-balance-scale" role="img">
               <use xlink:href="/icn/symbol-defs.svg#icon-balance-scale"/>
             </svg><br>
@@ -156,7 +156,7 @@
         </p>
       </header>
       <section>
-        <h2>
+        <h2 class="icon-wrapper">
           <svg class="icon icon-tags" role="img">
             <title>Site Tags</title>
             <use xlink:href="/icn/symbol-defs.svg#icon-tags"/>
@@ -174,11 +174,11 @@
       <nav>
         <h2 class="screenreader-only">Site Navigation</h2>
         <ul class="inline">
-          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
-          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
-          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
-          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
-          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
+          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon icon-wrapper" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
+          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon icon-wrapper" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
+          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon icon-wrapper" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon icon-wrapper" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
+          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon icon-wrapper" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
         </ul>
       </nav>
       <br>

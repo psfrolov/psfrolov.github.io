@@ -157,7 +157,7 @@ Sidebar
   color: var(--colour-white-muted);
 }
 
-.sidebar .icon { filter: drop-shadow(.1rem .1rem .1rem black); }
+.sidebar .icon-wrapper { filter: drop-shadow(.1rem .1rem .1rem black); }
 
 /* ----------------------------------------------------------------------------
 Pagination

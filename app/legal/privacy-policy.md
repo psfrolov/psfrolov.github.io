@@ -7,9 +7,6 @@ image:
   url: /img/pages/the-thinker-in-the-gates-of-hell-by-auguste-rodin.jpg
   name: &name The Thinker in The Gates of Hell by Auguste Rodin, Musée Rodin, Paris
   alt: *name
-  source:
-    url: https://commons.wikimedia.org/wiki/File:Le_penseur_de_la_Porte_de_lEnfer_(musée_Rodin)_(4528252054).jpg
-    name: Jean-Pierre Dalbéra
 ---
 
 

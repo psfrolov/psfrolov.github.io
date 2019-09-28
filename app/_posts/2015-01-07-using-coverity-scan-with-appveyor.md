@@ -13,9 +13,6 @@ image:
   path: *url
   name: &name Codex Hammurabi, Louvre, Paris
   alt: *name
-  source:
-    url: https://www.flickr.com/photos/batigolix/3332923984/in/photostream/
-    name: Boris Doesborg
 ---
 
 ***The information in this article is largely outdated.***

@@ -14,9 +14,6 @@ image:
   path: *url
   name: &name Goethe–Schiller Monument, Syracuse, New York State
   alt: *name
-  source:
-    url: https://en.wikipedia.org/wiki/File:Goethe-Schiller_Monument_-_Syracuse.jpg
-    name: Easchiff
 ---
 
 C++ is full of surprises (albeit not always good ones).

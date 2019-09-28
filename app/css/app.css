@@ -349,6 +349,7 @@ figure img, figure object {
 
 figure figcaption {
   font-size: 80%;
+  margin-bottom: .5rem;
   text-align: center;
 }
 
@@ -414,7 +415,7 @@ pre code {
   padding: 0;
 }
 
-pre, input, textarea, strong > em, ins {
+input, textarea, strong > em, ins, figure {
   background: url(/img/code-bg.png) scroll;
   border-radius: 5px;
 }
@@ -546,11 +547,7 @@ ul.inline li::before { content: none; }
 Inline Definition Lists (Metadata)
 ---------------------------------------------------------------------------- */
 
-dl.inline { line-height: 1.5; }
-
-@media screen and (min-width: 36em) {
-  dl.inline { line-height: var(--line-height-base); }
-}
+dl.inline { line-height: var(--line-height-base); }
 
 dl.inline > div {
   display: inline;
@@ -654,7 +651,7 @@ h3, h4, h5, h6 {
 Text Sections
 ---------------------------------------------------------------------------- */
 
-p { line-height: 1.4; }
+main p { line-height: 1.4; }
 
 p, aside {
   margin-top: 0;

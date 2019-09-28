@@ -13,9 +13,6 @@ image:
   path: *url
   name: &name El Caracol observatory temple, Chichen Itza, Mexico
   alt: *name
-  source:
-    url: https://en.wikipedia.org/wiki/Wikipedia:Featured_picture_candidates/Chichen_Itza_Observatory_2_1.jpg
-    name: Fcb981
 ---
 
 The _observer_[^fn-observer] design pattern is by far the most popular and

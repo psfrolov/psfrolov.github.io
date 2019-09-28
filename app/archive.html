@@ -3,10 +3,18 @@ layout: default
 schema: https://schema.org/CollectionPage
 title: Archive
 description: 'An archive of all the articles.'
+image:
+  url: /img/pages/strahov-monastery-theological-library.jpg
+  name: &name Strahov Monastery Theological Library
+  alt: *name
 sitemap: false
 ---
 
-
+{% capture image_url %}{{ page.image.url }}{% endcapture %}
+<div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
+  <img src="{{ image_url }}" alt="{{ page.image.alt }}">
+  <small>{{ page.image.name }}</small>
+</div>
 <article>
   <h1>{{ page.title | escape }}</h1>
   {% for post in site.posts %}

@@ -64,6 +64,7 @@ html {
 body {
   background: url(/img/content-bg.jpg) scroll var(--colour-page-background);
   color: var(--colour-black);
+  overscroll-behavior: none;
 }
 
 /* ----------------------------------------------------------------------------

@@ -35,7 +35,8 @@ Custom Properties
 
   --line-height-base: 1.25;
 
-  --padding-base: 1rem;
+  --padding-text: 1rem;
+  --padding-block: 4vw;
 }
 
 /* ----------------------------------------------------------------------------
@@ -71,19 +72,38 @@ body {
 Layout
 ---------------------------------------------------------------------------- */
 
-.sidebar, .content {
-  margin: auto;
-  padding: var(--padding-base);
+.sidebar {
+  margin: 0;
+  padding: var(--padding-block) var(--padding-text);
+}
+
+.content {
+  margin: 0 auto;
+  padding: var(--padding-block);
 }
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
 @supports(padding: max(1rem)) {
-  .sidebar, .content {
-    padding-left: max(var(--padding-base), env(safe-area-inset-left));
-    padding-right: max(var(--padding-base), env(safe-area-inset-right));
+  .sidebar {
+    padding:
+      max(var(--padding-block), env(safe-area-inset-top))
+      max(var(--padding-text), env(safe-area-inset-right))
+      max(var(--padding-block), env(safe-area-inset-bottom))
+      max(var(--padding-text), env(safe-area-inset-left));
+  }
+
+  .content {
+    padding:
+      max(var(--padding-block), env(safe-area-inset-top))
+      max(var(--padding-block), env(safe-area-inset-right))
+      max(var(--padding-block), env(safe-area-inset-bottom))
+      max(var(--padding-block), env(safe-area-inset-left));
   }
 }
 
+.content { max-width: 35em; }  /* approx. 70 characters line width */
+
+/* Static sidebar. */
 @media screen and (min-width: 36em) {
   .sidebar {
     position: fixed;
@@ -95,18 +115,8 @@ Layout
     -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
     will-change: transform;  /* optimize page repaint during scrolling */
   }
-}
 
-.content {
-  padding-bottom: 4rem;
-  max-width: 33em;  /* approx. 66 characters line width */
-}
-
-@media screen and (min-width: 36em) {
-  .content {
-    margin-left: calc(33vw + 2rem);
-    margin-right: 2rem;
-  }
+  .content { margin-left: 33vw; }
 }
 
 /* ----------------------------------------------------------------------------
@@ -145,7 +155,7 @@ Sidebar
 .sidebar h1 {
   font-size: 2.2rem;
   line-height: 1;
-  margin: .5rem 0;
+  margin: 0 0 .5rem 0;
 }
 
 .sidebar h2 {
@@ -154,7 +164,7 @@ Sidebar
 }
 
 .sidebar small {
-  font-size: 80%;
+  font-size: 70%;
   color: var(--colour-white-muted);
 }
 
@@ -174,7 +184,7 @@ Pagination
 
 .pagination-item {
   display: block;
-  padding: var(--padding-base);
+  padding: var(--padding-text);
   border: 1px solid var(--colour-grey-muted);
   user-select: none;
   transition: background-color 500ms cubic-bezier(.23, 1, .32, 1);
@@ -293,7 +303,7 @@ label::after {
 Images & Figures
 ---------------------------------------------------------------------------- */
 
-.page-image, figure { margin: 1rem 0; }
+.page-image, figure { margin: 0 0 1rem 0; }
 
 .page-image::after, figure::after {
   /* Clearfix. */
@@ -402,7 +412,7 @@ pre {
   display: block;
   margin-top: 0;
   margin-bottom: 1rem;
-  padding: var(--padding-base);
+  padding: var(--padding-text);
   line-height: 1.4;
   white-space: pre;
   overflow: auto;
@@ -430,7 +440,7 @@ table.rouge-table {
 td.gl.gutter, td.code, td.code > pre { padding: 0; }
 
 pre.lineno {
-  padding: 0 var(--padding-base) 0 0;
+  padding: 0 var(--padding-text) 0 0;
   text-align: center;
 }
 
@@ -627,7 +637,7 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
   font-weight: normal;
-  margin-bottom: .5rem;
+  margin: 0 0 .5rem 0;
   line-height: var(--line-height-base);
 }
 
@@ -703,7 +713,7 @@ blockquote > p::before, q::before { content: open-quote; }
 blockquote > p::after, q::after { content: close-quote; }
 
 blockquote {
-  padding: 0 var(--padding-base);
+  padding: 0 var(--padding-text);
   margin: .8rem 0;
   border-left: .07rem solid var(--colour-brown);
   color: var(--colour-brown);

@@ -36,7 +36,8 @@ Custom Properties
   --line-height-base: 1.25;
 
   --padding-text: 1rem;
-  --padding-block: 4vw;
+  --padding-block-flexible: 4vw;
+  --padding-block-fixed: 2rem;
 }
 
 /* ----------------------------------------------------------------------------
@@ -72,37 +73,20 @@ body {
 Layout
 ---------------------------------------------------------------------------- */
 
+
+/* Layout with .sidebar as site header. */
 .sidebar {
   margin: 0;
-  padding: var(--padding-block) var(--padding-text);
+  padding: var(--padding-block-fixed) var(--padding-block-flexible);
 }
 
 .content {
   margin: 0 auto;
-  padding: var(--padding-block);
+  padding: var(--padding-block-fixed) var(--padding-block-flexible);
   max-width: 35em;  /* approx. 70 characters line width */
 }
 
-/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
-@supports(padding: max(1rem)) {
-  .sidebar {
-    padding:
-      var(--padding-block)
-      max(var(--padding-text), env(safe-area-inset-right))
-      var(--padding-block)
-      max(var(--padding-text), env(safe-area-inset-left));
-  }
-
-  .content {
-    padding:
-      var(--padding-block)
-      max(var(--padding-block), env(safe-area-inset-right))
-      var(--padding-block)
-      max(var(--padding-block), env(safe-area-inset-left));
-  }
-}
-
-/* Static sidebar. */
+/* Layout with .sidebar as static sidebar. */
 @media screen and (min-width: 36em) {
   .sidebar {
     position: fixed;
@@ -113,9 +97,32 @@ Layout
     overflow: auto;
     -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
     will-change: transform;  /* optimize page repaint during scrolling */
+    padding: var(--padding-block-flexible) var(--padding-text);
   }
 
-  .content { margin-left: 33vw; }
+  .content {
+    margin-left: 33vw;
+    padding: var(--padding-block-flexible);
+  }
+}
+
+/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
+@supports(padding: max(1rem)) {
+  .sidebar {
+    padding:
+      var(--padding-block-flexible)
+      max(var(--padding-text), env(safe-area-inset-right))
+      var(--padding-block-flexible)
+      max(var(--padding-text), env(safe-area-inset-left));
+  }
+
+  .content {
+    padding:
+      var(--padding-block-flexible)
+      max(var(--padding-block-flexible), env(safe-area-inset-right))
+      var(--padding-block-flexible)
+      max(var(--padding-block-flexible), env(safe-area-inset-left));
+  }
 }
 
 /* ----------------------------------------------------------------------------

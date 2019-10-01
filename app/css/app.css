@@ -86,6 +86,17 @@ Layout
   max-width: 35em;  /* approx. 70 characters line width */
 }
 
+/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
+@supports(padding: max(1rem)) {
+  .sidebar, .content {
+    padding:
+      var(--padding-block-fixed)
+      max(var(--padding-block-flexible), env(safe-area-inset-right))
+      var(--padding-block-fixed)
+      max(var(--padding-block-flexible), env(safe-area-inset-left));
+  }
+}
+
 /* Layout with .sidebar as static sidebar. */
 @media screen and (min-width: 36em) {
   .sidebar {
@@ -104,24 +115,23 @@ Layout
     margin-left: 33vw;
     padding: var(--padding-block-flexible);
   }
-}
 
-/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
-@supports(padding: max(1rem)) {
-  .sidebar {
-    padding:
-      var(--padding-block-flexible)
-      max(var(--padding-text), env(safe-area-inset-right))
-      var(--padding-block-flexible)
-      max(var(--padding-text), env(safe-area-inset-left));
-  }
+  @supports(padding: max(1rem)) {
+    .sidebar {
+      padding:
+        var(--padding-block-flexible)
+        max(var(--padding-text), env(safe-area-inset-right))
+        var(--padding-block-flexible)
+        max(var(--padding-text), env(safe-area-inset-left));
+    }
 
-  .content {
-    padding:
-      var(--padding-block-flexible)
-      max(var(--padding-block-flexible), env(safe-area-inset-right))
-      var(--padding-block-flexible)
-      max(var(--padding-block-flexible), env(safe-area-inset-left));
+    .content {
+      padding:
+        var(--padding-block-flexible)
+        max(var(--padding-block-flexible), env(safe-area-inset-right))
+        var(--padding-block-flexible)
+        max(var(--padding-block-flexible), env(safe-area-inset-left));
+    }
   }
 }
 

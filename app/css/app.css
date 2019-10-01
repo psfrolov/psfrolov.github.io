@@ -80,28 +80,27 @@ Layout
 .content {
   margin: 0 auto;
   padding: var(--padding-block);
+  max-width: 35em;  /* approx. 70 characters line width */
 }
 
-/* Adjust padding for devices with non-rectangular screens (e.g., iPhone). */
+/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
 @supports(padding: max(1rem)) {
   .sidebar {
     padding:
-      max(var(--padding-block), env(safe-area-inset-top))
+      var(--padding-block)
       max(var(--padding-text), env(safe-area-inset-right))
-      max(var(--padding-block), env(safe-area-inset-bottom))
+      var(--padding-block)
       max(var(--padding-text), env(safe-area-inset-left));
   }
 
   .content {
     padding:
-      max(var(--padding-block), env(safe-area-inset-top))
+      var(--padding-block)
       max(var(--padding-block), env(safe-area-inset-right))
-      max(var(--padding-block), env(safe-area-inset-bottom))
+      var(--padding-block)
       max(var(--padding-block), env(safe-area-inset-left));
   }
 }
-
-.content { max-width: 35em; }  /* approx. 70 characters line width */
 
 /* Static sidebar. */
 @media screen and (min-width: 36em) {
@@ -155,7 +154,7 @@ Sidebar
 .sidebar h1 {
   font-size: 2.2rem;
   line-height: 1;
-  margin: 0 0 .5rem 0;
+  margin: 0 0 .5rem;
 }
 
 .sidebar h2 {
@@ -303,7 +302,7 @@ label::after {
 Images & Figures
 ---------------------------------------------------------------------------- */
 
-.page-image, figure { margin: 0 0 1rem 0; }
+.page-image, figure { margin: 0 0 1rem; }
 
 .page-image::after, figure::after {
   /* Clearfix. */
@@ -637,7 +636,7 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
   font-weight: normal;
-  margin: 0 0 .5rem 0;
+  margin: 0 0 .5rem;
   line-height: var(--line-height-base);
 }
 
@@ -740,10 +739,11 @@ strong > em {
   padding: .3rem;
   font-weight: normal;
   font-style: normal;
+  border: 1px solid var(--colour-grey-muted);
 }
 
 strong > em::before {
-  content: '[nb] ';
+  content: '[n.b.] ';
   font-weight: bold;
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum', 'smcp';
 }
@@ -754,6 +754,7 @@ ins {
   display: inline-block;
   padding: .3rem;
   text-decoration: none;
+  border: 1px solid var(--colour-grey-muted);
 }
 
 ins::before {

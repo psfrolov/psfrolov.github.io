@@ -53,12 +53,14 @@ html {
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum';
 }
 
+/* Minimum font size. */
 @media screen and (max-width: 1000px) {
-  html { font-size: 16px; }  /* maximum font size */
+  html { font-size: 16px; }
 }
 
+/* Maximum font size. */
 @media screen and (min-width: 1375px) {
-  html { font-size: 22px; }  /* maximum font size */
+  html { font-size: 22px; }
 }
 
 *, *::before, *::after { box-sizing: inherit; }
@@ -73,7 +75,6 @@ body {
 Layout
 ---------------------------------------------------------------------------- */
 
-
 /* Layout with .sidebar as site header. */
 .sidebar {
   margin: 0;
@@ -83,7 +84,11 @@ Layout
 .content {
   margin: 0 auto;
   padding: var(--padding-block-fixed) var(--padding-block-flexible);
-  max-width: 35em;  /* approx. 70 characters line width */
+}
+
+.content > div {
+  margin: auto;  /* centre content horizontally */
+  max-width: 33em;  /* approx. 66 characters line width */
 }
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
@@ -319,7 +324,7 @@ label::after {
 Images & Figures
 ---------------------------------------------------------------------------- */
 
-.page-image, figure { margin: 0 0 1rem; }
+.page-image, figure { margin: 0 auto 1rem; }
 
 .page-image::after, figure::after {
   /* Clearfix. */
@@ -335,6 +340,7 @@ Page Images
 .page-image {
   position: relative;
   display: block;
+  width: 100%;
 }
 
 .page-image::before {
@@ -465,9 +471,7 @@ pre.lineno {
   border-radius: 4px;
 }
 
-.highlight pre {
-  margin-bottom: 0;
-}
+.highlight pre { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------------------
 Horizontal Rule
@@ -530,6 +534,7 @@ ul, ol {
 }
 
 li { margin-bottom: .25rem; }
+
 li ul, li ol { margin-top: .25rem; }
 
 dt { font-weight: bold; }
@@ -558,8 +563,8 @@ ul.inline {
   display: inline;
   list-style: none;
   line-height: 1.4;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 ul.inline li { display: inline; }

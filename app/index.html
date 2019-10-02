@@ -14,61 +14,15 @@ is_home: true
 
 <!-- Posts preview. -->
 <article>
-  <h1>Articles</h1>
-  {% for post in paginator.posts %}
+  <h1>Latest Articles</h1>
+  {% for post in site.posts limit:2 %}
   <article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     {% include post-preview.html %}
   </article>
   {% endfor %}
-
-  <!-- Paginator. -->
-  <nav class="pagination">
-    <h2 class="screenreader-only">Pagination</h2>
-    {% if paginator.next_page %}
-    <a rel="next" class="pagination-item older" href="/page{{ paginator.next_page }}">
-      <svg class="icon icon-chevron-left" role="img">
-        <title>Arrow Left</title>
-        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-left"/>
-      </svg>
-      Older
-    </a>
-    {% else %}
-    <span class="pagination-item older">
-      <svg class="icon icon-chevron-left" role="img">
-        <title>Arrow Left</title>
-        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-left"/>
-      </svg>
-      Older
-    </span>
-    {% endif %}
-    {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-    <a rel="prev" class="pagination-item newer" href="/">
-      Newer
-      <svg class="icon icon-chevron-right" role="img">
-        <title>Arrow Right</title>
-        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
-      </svg>
-    </a>
-    {% else %}
-    <a rel="prev" class="pagination-item newer" href="/page{{ paginator.previous_page }}">
-      Newer
-      <svg class="icon icon-chevron-right" role="img">
-        <title>Arrow Right</title>
-        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
-      </svg>
-    </a>
-    {% endif %}
-    {% else %}
-    <span class="pagination-item newer">
-      Newer
-      <svg class="icon icon-chevron-right" role="img">
-        <title>Arrow Right</title>
-        <use xlink:href="/icn/symbol-defs.svg#icon-chevron-right"/>
-      </svg>
-    </span>
-    {% endif %}
-  </nav>
+  <h2>
+    <a class="main-muted" href="/archive">— More Articles —</a>
+  </h2>
 </article>
 
 <!-- https://developers.google.com/structured-data/site-name -->

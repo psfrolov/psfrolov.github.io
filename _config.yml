@@ -8,7 +8,6 @@ plugins:  # in processing order
   - liquid_reading_time
   - jekyll/tagging
   - jekyll-last-modified-at
-  - jekyll-paginate
   - jekyll-sitemap
 permalink: /:categories/:title
 strict_front_matter: true
@@ -41,9 +40,6 @@ defaults:
       path: tag
     values:
       sitemap: false  # do not index tag pages
-
-# Pagination (jekyll-paginate).
-paginate: 10
 
 # Tagging (jekyll-tagging).
 tag_page_layout: tag-page

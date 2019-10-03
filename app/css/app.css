@@ -86,11 +86,6 @@ Layout
   padding: var(--padding-block-fixed) var(--padding-block-flexible);
 }
 
-.content > div {
-  margin: auto;  /* centre content horizontally */
-  max-width: 33em;  /* approx. 66 characters line width */
-}
-
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
 @supports(padding: max(1rem)) {
   .sidebar, .content {
@@ -190,6 +185,15 @@ Sidebar
 }
 
 .sidebar .icon-wrapper { filter: drop-shadow(.1em .1em .1em black); }
+
+/* ----------------------------------------------------------------------------
+Content
+---------------------------------------------------------------------------- */
+
+.content > div {
+  margin: auto;  /* centre text block horizontally */
+  max-width: 33em;  /* approx. 66 characters line width */
+}
 
 /* ----------------------------------------------------------------------------
 Forms
@@ -376,6 +380,7 @@ code {
   color: var(--colour-brown);
   overflow-wrap: break-word;
   word-wrap: break-word;
+  hyphens: manual;
 }
 
 pre {
@@ -631,7 +636,25 @@ h3, h4, h5, h6 {
 Text Sections
 ---------------------------------------------------------------------------- */
 
-main p { line-height: 1.4; }
+main p {
+  line-height: 1.4;
+
+  text-align: justify;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  /* Hyphenation. */
+  hyphens: auto;
+
+  -ms-hyphenate-limit-chars: 6 3 2;
+  -webkit-hyphenate-limit-before: 3;  /* legacy */
+  -webkit-hyphenate-limit-after: 2;  /* legacy */
+
+  -ms-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-lines: 2;
+
+  -ms-hyphenate-limit-last: always;
+}
 
 p, aside {
   margin-top: 0;
@@ -688,7 +711,7 @@ blockquote {
   color: var(--colour-brown);
 }
 
-blockquote p { display: inline; }
+blockquote p { display: inline-block; }
 
 blockquote p:last-child { margin-bottom: 0; }
 

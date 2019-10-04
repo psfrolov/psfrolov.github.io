@@ -16,7 +16,7 @@ image:
 </div>
 <article>
   <h1>{{ page.title | escape }}</h1>
-  {% for post in site.posts %}
+  {% for post in site.posts offset:2 %}
   <article itemscope itemtype="https://schema.org/BlogPosting">
     {% include post-preview.html %}
   </article>

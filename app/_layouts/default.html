@@ -166,7 +166,7 @@
           {% assign tags = site.tags | keys | sort_natural %}
           {% for tag in tags %}
           <li>
-            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag | replace: ' ', '&nbsp;' }}</a>
+            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>
           </li>
           {% endfor %}
         </ul>

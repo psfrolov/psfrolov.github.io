@@ -184,6 +184,8 @@ Sidebar
   color: var(--colour-white-muted);
 }
 
+.sidebar .inline li { white-space: nowrap; }
+
 .sidebar .icon-wrapper { filter: drop-shadow(.1em .1em .1em black); }
 
 /* ----------------------------------------------------------------------------

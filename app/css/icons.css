@@ -13,7 +13,7 @@ Site Logo
 
 .icon-balance-scale {
   font-size: 1.25em;
-  margin-bottom: .3rem;
+  margin-bottom: .2em;
   width: 1.214em;
 }
 
@@ -22,8 +22,8 @@ Site Navigation
 ---------------------------------------------------------------------------- */
 
 .icon-home, .icon-list, .icon-feed, .icon-question, .icon-info {
-  font-size: 2rem;
-  margin: 0 .3rem;
+  font-size: 1.6em;
+  margin: 0 .15em;
 }
 
 .icon-home { width: .928em; }

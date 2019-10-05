@@ -142,60 +142,61 @@
 
   <body>
     <aside class="sidebar">
-      <header>
-        <h1>
-          <a class="icon-wrapper" rel="home" href="/">
-            <svg class="icon icon-balance-scale" role="img">
-              <use xlink:href="/icn/symbol-defs.svg#icon-balance-scale"/>
-            </svg><br>
-            {{ site.title | escape }}
-          </a>
-        </h1>
-        <p>
-          {{ site.tagline | escape }}
-        </p>
-      </header>
-      <section>
-        <h2 class="icon-wrapper">
-          <svg class="icon icon-tags" role="img">
-            <title>Site Tags</title>
-            <use xlink:href="/icn/symbol-defs.svg#icon-tags"/>
-          </svg>
-        </h2>
-        <ul class="inline">
-          {% assign tags = site.tags | keys | sort_natural %}
-          {% for tag in tags %}
-          <li>
-            {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      <nav>
-        <h2 class="screenreader-only">Site Navigation</h2>
-        <ul class="inline">
-          <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon icon-wrapper" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
-          <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon icon-wrapper" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
-          <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon icon-wrapper" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
-          <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon icon-wrapper" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
-          <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon icon-wrapper" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
-        </ul>
-      </nav>
-      <br>
-      <footer aria-label="Legal Information">
-        <ul class="inline">
-          <li>
-            <a href="/legal/disclaimer"><small>Disclaimer</small></a>
-            <small>‡</small>
-          </li>
-          <li>
-            <a href="/legal/privacy-policy" title="Privacy Policy"><small>Privacy</small></a>
-          </li>
-        </ul>
-        <p>
-          <small>© {{ site.time | date: '%Y' }} {{ site.fqdn }}</small>
-        </p>
-      </footer>
+      <div>
+        <header>
+          <h1>
+            <a class="icon-wrapper" rel="home" href="/">
+              <svg class="icon icon-balance-scale" role="img">
+                <use xlink:href="/icn/symbol-defs.svg#icon-balance-scale"/>
+              </svg><br>
+              {{ site.title | escape }}
+            </a>
+          </h1>
+          <p>
+            {{ site.tagline | escape }}
+          </p>
+        </header>
+        <section class="tags">
+          <h2 class="icon-wrapper">
+            <svg class="icon icon-tags" role="img">
+              <title>Site Tags</title>
+              <use xlink:href="/icn/symbol-defs.svg#icon-tags"/>
+            </svg>
+          </h2>
+          <ul class="inline">
+            {% assign tags = site.tags | keys | sort_natural %}
+            {% for tag in tags %}
+            <li>
+              {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        <nav>
+          <h2 class="screenreader-only">Site Navigation</h2>
+          <ul class="inline">
+            <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon icon-wrapper" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
+            <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon icon-wrapper" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
+            <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon icon-wrapper" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+            <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon icon-wrapper" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
+            <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon icon-wrapper" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
+          </ul>
+        </nav>
+        <footer aria-label="Legal Information">
+          <ul class="inline">
+            <li>
+              <a href="/legal/disclaimer"><small>Disclaimer</small></a>
+              <small>‡</small>
+            </li>
+            <li>
+              <a href="/legal/privacy-policy" title="Privacy Policy"><small>Privacy</small></a>
+            </li>
+          </ul>
+          <p>
+            <small>© {{ site.time | date: '%Y' }} {{ site.fqdn }}</small>
+          </p>
+        </footer>
+      </div>
     </aside>
     <main class="content" id="main">
       <div>

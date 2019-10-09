@@ -142,9 +142,8 @@ passing your build command to `cov-build.exe`:
 {% highlight batchfile %}
 cov-build.exe --dir cov-int <build command>
 {% endhighlight %}
-Here `cov-int` is a name of directory to place collected scan data into.
-
-For example, if your build command is
+Here `cov-int` is a name of directory to place collected scan data into. For
+example, if your build command is
 {% highlight batchfile %}
 msbuild "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}

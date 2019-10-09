@@ -203,22 +203,5 @@
         {{ content }}
       </div>
     </main>
-    {% unless page.is_home %}
-    <script>
-      window.onpageshow = (evt) => {
-        'use strict';
-        // Scroll view to main content area of page if not coming from history.
-        if (window.location.hash) return;  // ignore URLs with fragment
-        const nav = performance.getEntriesByType('navigation');
-        if (nav.length) {  // for Chrome/Opera, Firefox, Edge
-          if (nav[0].type === 'back_forward') return;
-        } else if (evt.persisted) { // for Safari
-          return;
-        }
-        const main = document.getElementById('main');
-        if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
-      };
-    </script>
-    {% endunless %}
   </body>
 </html>

@@ -861,7 +861,7 @@ i, em { font-style: italic; }
 
 strong > em {
   display: inline-block;
-  margin: 0 0 0 var(--spacing-extra-loose-em);
+  margin: 0;
   padding: var(--spacing-tight);
   font-weight: normal;
   font-style: normal;
@@ -881,7 +881,7 @@ small {
 
 ins {
   display: inline-block;
-  margin: 0 0 0 var(--spacing-extra-loose-em);
+  margin: 0;
   padding: var(--spacing-tight);
   text-decoration: none;
   border: 1px solid var(--colour-grey-muted);

@@ -36,8 +36,8 @@ Custom Properties
   --font-secondary: alegreya-sans, sans-serif;
 
   /* Regular font size. */
-  --frmin: 16;  /* minimum font size, px */
-  --frmax: 22;  /* maximum font size, px */
+  --frmin: 16;  /* minimum font size (for narrow viewport), px */
+  --frmax: 22;  /* maximum font size (for wide viewport), px */
   --wfmin: 1000;  /* viewport width at minimum font size, px */
   --wfmax: 1375;  /* viewport width at maximum font size, px */
   --font-size-regular: calc(
@@ -45,15 +45,15 @@ Custom Properties
     (var(--wfmax) - var(--wfmin)) + var(--frmin) * 1px
   );
 
-  /* Type scale limit ratios. */
-  --rmin: 1.125; /* minimum type scale ratio (major second interval) */
-  --rmax: 1.25; /* maximum type scale ratio (major third interval) */
+  /* Minimum and maximum type scale ratios. */
+  --rmin: 1.125;  /* minimum type scale ratio (major second interval) */
+  --rmax: 1.25;  /* maximum type scale ratio (major third interval) */
   --wrmin: 22.5;  /* viewport width at minimum type scale ratio, rem */
   --wrmax: 36;  /* viewport width at maximum type scale ratio, rem */
 
   /* Small font size. */
-  --fsmin: calc(1 / var(--rmin));
-  --fsmax: calc(1 / var(--rmax));
+  --fsmin: calc(1 / var(--rmin));  /* rem */
+  --fsmax: calc(1 / var(--rmax));  /* rem */
   --font-size-small: calc(
     (100vw - var(--wrmin) * 1rem) * (var(--fsmax) - var(--fsmin)) /
     (var(--wrmax) - var(--wrmin)) + var(--fsmin) * 1rem
@@ -197,20 +197,20 @@ body {
 Layout
 ---------------------------------------------------------------------------- */
 
-/* Layout with .sidebar as site header. */
-.sidebar {
+/* Layout with #site-header as site header. */
+#site-header {
   margin: 0;
   padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
 }
 
-.content {
+#main-content {
   margin: 0 auto;
   padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
 }
 
 /* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
 @supports(padding: max(1rem)) {
-  .sidebar, .content {
+  #site-header, #main-content {
     padding:
       var(--spacing-extra-loose-rem)
       max(var(--spacing-loose-fluid), env(safe-area-inset-right))
@@ -219,11 +219,11 @@ Layout
   }
 }
 
-/* Layout with .sidebar as static sidebar. */
+/* Layout with #site-header as static sidebar. */
 @media screen and (min-width: 36rem) {
-  .sidebar, .content { --sidebar-width: 33vw; }
+  #site-header, #main-content { --sidebar-width: 33vw; }
 
-  .sidebar {
+  #site-header {
     padding: var(--spacing-loose-fluid) var(--spacing-regular-rem);
     width: var(--sidebar-width);
 
@@ -241,7 +241,7 @@ Layout
     align-items: center;
   }
 
-  .content {
+  #main-content {
     margin-left: var(--sidebar-width);
     padding: var(--spacing-loose-fluid);
 
@@ -253,7 +253,7 @@ Layout
   }
 
   @supports(padding: max(1rem)) {
-    .sidebar {
+    #site-header {
       padding:
         var(--spacing-loose-fluid)
         max(var(--spacing-regular-rem), env(safe-area-inset-right))
@@ -261,7 +261,7 @@ Layout
         max(var(--spacing-regular-rem), env(safe-area-inset-left));
     }
 
-    .content {
+    #main-content {
       padding:
         var(--spacing-loose-fluid)
         max(var(--spacing-loose-fluid), env(safe-area-inset-right))
@@ -272,11 +272,11 @@ Layout
 }
 
 /* ----------------------------------------------------------------------------
-Sidebar
+Site header
 ---------------------------------------------------------------------------- */
 
-.sidebar {
-  background: url(/img/sidebar-bg-small.jpg) center/cover no-repeat scroll;
+#site-header {
+  background: url(/img/header-bg.jpg) center/cover no-repeat scroll;
   max-width: 100%;  /* make background image viewport-width */
   text-align: center;
   font-feature-settings: var(--font-common-settings),
@@ -287,17 +287,17 @@ Sidebar
 }
 
 @media screen and (min-width: 36rem) {
-  .sidebar {
-    background: url(/img/sidebar-bg-large.jpg) center/cover no-repeat scroll;
+  #site-header {
+    background: url(/img/sidebar-bg.jpg) center/cover no-repeat scroll;
   }
 
   /* Hide site tags for small height screens to prevent vertical overflow. */
   @media screen and (max-height: 414px) {
-    .sidebar .tags { display: none; }
+    #site-header .site-tags { display: none; }
   }
 }
 
-.sidebar > div {
+#site-header > div {
   /* Centre content in case of horizontal overflow. */
   min-width: 0;
   display: flex;
@@ -305,46 +305,59 @@ Sidebar
   align-items: center;
 }
 
-.sidebar > div > * { margin: 0 0 var(--spacing-loose); }
-
-.sidebar footer { margin-bottom: 0; }
-
-.sidebar nav { line-height: var(--line-height-extra-tight); }
-
-.sidebar p { margin: 0; }
-
-.sidebar a, .sidebar h1, .sidebar h2, .sidebar p, .sidebar ul {
-  color: var(--colour-white);
-  font-weight: normal;
-  text-shadow: var(--colour-black) .1em .1em .1em;
+#site-header > div > * {
+  margin: 0 0 var(--spacing-loose);
+  filter: drop-shadow(.1em .1em .1em black);
 }
 
-.sidebar h1 {
+#site-header .site-title {
   margin: 0 0 .25em;
   font-size: var(--font-size-display);
   line-height: var(--line-height-extra-tight);
 }
 
-.sidebar h2 {
+#site-header .site-tags-title {
   display: inline;
+  color: var(--colour-white);
   font-size: 1em;
 }
 
-.sidebar small {
+#site-header .site-tag { white-space: nowrap; }
+
+#site-header .site-nav { line-height: var(--line-height-extra-tight); }
+
+#site-header .nav-icon { transition: color var(--transition-regular); }
+
+/* #site-header .nav-icon:active {} */
+
+#site-header .nav-icon:hover {
+  color: var(--colour-main);
+  transition: color var(--transition-regular);
+}
+
+#site-header .site-legal {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+#site-header a { color: var(--colour-white); }
+
+#site-header p {
+  margin: 0;
+  color: var(--colour-white);
+}
+
+#site-header small {
   color: var(--colour-white-muted);
   font-size: var(--font-size-small);
   line-height: var(--line-height-extra-tight);
 }
 
-.sidebar .inline li, .sidebar footer { white-space: nowrap; }
-
-.sidebar .icon-wrapper { filter: drop-shadow(.1em .1em .1em black); }
-
 /* ----------------------------------------------------------------------------
-Content
+Man content
 ---------------------------------------------------------------------------- */
 
-.content > div {
+#main-content > div {
   max-width: var(--line-length);
   min-width: 0;  /* prevents "white-space: pre;" from breaking flex layout */
 }
@@ -509,18 +522,6 @@ figure figcaption {
 /* ----------------------------------------------------------------------------
 Icons
 ---------------------------------------------------------------------------- */
-
-.nav-icon {
-  transition: color var(--transition-regular);
-  user-select: none;
-}
-
-.nav-icon:hover {
-  color: var(--colour-main);
-  transition: color var(--transition-regular);
-}
-
-/* .nav-icon:active {} */
 
 .content-icon {
   transition: color var(--transition-regular);

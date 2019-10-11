@@ -141,14 +141,15 @@
   </head>
 
   <body>
-    <aside class="sidebar">
+    <aside id="site-header">
       <div>
         <header>
-          <h1>
-            <a class="icon-wrapper" rel="home" href="/">
+          <h1 class="site-title">
+            <a rel="home" href="/">
               <svg class="icon icon-balance-scale" role="img">
                 <use xlink:href="/icn/symbol-defs.svg#icon-balance-scale"/>
-              </svg><br>
+              </svg>
+              <br>
               {{ site.title | escape }}
             </a>
           </h1>
@@ -156,8 +157,8 @@
             {{ site.tagline | escape }}
           </p>
         </header>
-        <section class="tags">
-          <h2 class="icon-wrapper">
+        <section class="site-tags">
+          <h2 class="site-tags-title">
             <svg class="icon icon-tags" role="img">
               <title>Site Tags</title>
               <use xlink:href="/icn/symbol-defs.svg#icon-tags"/>
@@ -166,23 +167,24 @@
           <ul class="inline">
             {% assign tags = site.tags | keys | sort_natural %}
             {% for tag in tags %}
-            <li>
+            <li class="site-tag">
               {% if forloop.first == false %} {% endif %}<a href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>{% if forloop.last == false %} {% endif %}
             </li>
             {% endfor %}
           </ul>
         </section>
-        <nav>
+        <nav class="site-nav">
           <h2 class="screenreader-only">Site Navigation</h2>
           <ul class="inline">
-            <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon icon-wrapper" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
-            <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon icon-wrapper" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
-            <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon icon-wrapper" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
-            <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon icon-wrapper" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
-            <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon icon-wrapper" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
+            <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
+            <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
+            <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+            <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
+            <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
           </ul>
         </nav>
-        <footer aria-label="Legal Information">
+        <footer class="site-legal">
+          <h2 class="screenreader-only">Legal Information</h2>
           <ul class="inline">
             <li>
               <a href="/legal/disclaimer"><small>Disclaimer</small></a>
@@ -198,7 +200,7 @@
         </footer>
       </div>
     </aside>
-    <main class="content" id="main">
+    <main id="main-content">
       <div>
         {{ content }}
       </div>
@@ -215,7 +217,7 @@
         } else if (evt.persisted) { // for Safari
           return;
         }
-        const main = document.getElementById('main');
+        const main = document.getElementById('main-content');
         if (main.scrollIntoView) main.scrollIntoView({ behavior: 'smooth' });
       };
     </script>

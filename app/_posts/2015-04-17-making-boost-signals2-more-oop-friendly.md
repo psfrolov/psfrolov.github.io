@@ -131,7 +131,7 @@ without the use of macros. Or think of [Qt signals and slots]
 Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a
 high‐level view on what we will be discussing in this section. We’ll continue
 to use the window example from the previous section.
-<figure>
+<figure style="--aspect-ratio: calc(676 / 556);">
   <object data="/img/figures/observable-mixin-uml-class-diagram.svg"
           type="image/svg+xml"
           role="img">

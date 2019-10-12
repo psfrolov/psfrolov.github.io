@@ -455,7 +455,19 @@ label::after {
 Images & Figures
 ---------------------------------------------------------------------------- */
 
-.page-image, figure { margin: .5rem auto var(--spacing-regular-rem); }
+.page-image, figure {
+  margin: .5rem auto var(--spacing-regular-rem);
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.page-image::before, figure::before {
+  content: '';
+  display: block;
+  /* Allocate space for image to prevent page reflow. */
+  padding-bottom: calc(100% / (var(--aspect-ratio)));  /* defined in html */
+}
 
 .page-image::after, figure::after {
   /* Clearfix. */
@@ -464,24 +476,7 @@ Images & Figures
   clear: both;
 }
 
-/* ----------------------------------------------------------------------------
-Page Images
----------------------------------------------------------------------------- */
-
-.page-image {
-  display: block;
-  position: relative;
-  width: 100%;
-}
-
-.page-image::before {
-  content: '';
-  display: block;
-  /* Allocate space for image to prevent page reflow. */
-  padding-bottom: calc(100% / (var(--aspect-ratio)));  /* defined in html */
-}
-
-.page-image img {
+.page-image img, figure object {
   display: block;
   /* Put image into allocated padding area. */
   position: absolute;
@@ -498,17 +493,6 @@ Page Images
   text-align: right;
   color: var(--colour-grey);
   float: right;
-}
-
-/* ----------------------------------------------------------------------------
-Figures
----------------------------------------------------------------------------- */
-
-figure img, figure object {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--border-radius);
 }
 
 figure figcaption {

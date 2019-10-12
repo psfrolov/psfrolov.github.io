@@ -140,7 +140,7 @@ Custom Properties
 }
 
 /* Type scale limits override for layout with sidebar. */
-@media screen and (min-width: 36rem) {
+@media screen and (min-width: 36em) {
   :root {
     --wrmin: 42;  /* viewport width at minimum type scale ratio, rem */
     --wrmax: 78;  /* viewport width at maximum type scale ratio, rem */
@@ -149,8 +149,8 @@ Custom Properties
 
 /* Minimum type scale font sizes. */
 @media
-  screen and (max-width: 22.5rem),
-  screen and (min-width: 36rem) and (max-width: 42rem) {
+  screen and (max-width: 22.5em),
+  screen and (min-width: 36em) and (max-width: 42em) {
   :root {
     --font-size-small: calc(1rem / var(--rmin));
     --font-size-big: calc(1rem * var(--rmin));
@@ -162,7 +162,7 @@ Custom Properties
 }
 
 /* Maximum type scale font sizes. */
-@media screen and (min-width: 78rem) {
+@media screen and (min-width: 78em) {
   :root {
     --font-size-small: calc(1rem / var(--rmax));
     --font-size-big: calc(1rem * var(--rmax));
@@ -220,7 +220,7 @@ Layout
 }
 
 /* Layout with #site-header as static sidebar. */
-@media screen and (min-width: 36rem) {
+@media screen and (min-width: 36em) {
   #site-header, #main-content { --sidebar-width: 33vw; }
 
   #site-header {
@@ -286,7 +286,7 @@ Site header
   user-select: none;
 }
 
-@media screen and (min-width: 36rem) {
+@media screen and (min-width: 36em) {
   #site-header {
     background: url(/img/sidebar-bg.jpg) center/cover no-repeat scroll;
   }
@@ -389,7 +389,7 @@ label {
     0;
 }
 
-@media screen and (min-width: 36rem) {
+@media screen and (min-width: 36em) {
   form > div:last-child { margin-top: 0; }
 
   label {
@@ -736,7 +736,7 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
   font-weight: bold;
 }
 
-@media screen and (min-width: 36rem), print {
+@media screen and (min-width: 36em), print {
   sup[id^='fnref:'] {
     font-feature-settings: var(--font-common-settings), 'sups';
   }

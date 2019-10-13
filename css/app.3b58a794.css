@@ -11,7 +11,7 @@
   );--font-size-head:calc(
     (100vw - var(--wrmin) * 1rem) * (var(--fhmax) - var(--fhmin)) /
     (var(--wrmax) - var(--wrmin)) + var(--fhmin) * 1rem
-  );--font-size-regular:calc(
+  );--font-size-regular:calc(  
     (100vw - var(--wfmin) * 1px) * (var(--frmax) - var(--frmin)) /
     (var(--wfmax) - var(--wfmin)) + var(--frmin) * 1px
   );--font-size-small:calc(

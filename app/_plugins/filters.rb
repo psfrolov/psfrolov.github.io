@@ -6,31 +6,44 @@ module Jekyll
   module ImageMetadataFilter
 
     def image_width(path)
-      FastImage.size(prepare_path(path), :raise_on_failure=>true)[0]
+      FastImage.size(resolve_path(path), :raise_on_failure=>true)[0]
     end
 
     def image_height(path)
-      FastImage.size(prepare_path(path), :raise_on_failure=>true)[1]
+      FastImage.size(resolve_path(path), :raise_on_failure=>true)[1]
     end
 
     def image_aspect_ratio(path)
-      size = FastImage.size(prepare_path(path), :raise_on_failure=>true)
-      size[0].to_f / size[1]
+      path = resolve_path(path)
+      if File.extname(path) == '.svg'
+        img = File.open(path) { |f| Nokogiri::XML(f) }
+        viewbox = img.at_xpath('/xmlns:svg/@viewBox')
+        raise 'Failed to find viewbox attribute.' if !viewbox
+        viewbox_attrs = viewbox.value.split(' ').map(&:to_f)
+        viewbox_attrs[2] / viewbox_attrs[3]
+      else  # raster images
+        size = FastImage.size(path, :raise_on_failure=>true)
+        size[0].to_f / size[1]
+      end
     end
 
     def image_mime_type(path)
       'image/' +
-        FastImage.type(prepare_path(path), :raise_on_failure=>true).to_s
+        FastImage.type(resolve_path(path), :raise_on_failure=>true).to_s
     end
 
   private
 
-    def prepare_path(path)
+    def resolve_path(path)
       if path.start_with?("/")  # is local path
-        File.join(@context.registers[:site].config['source'], path)
-      else
-        path
+        for location in ['source', 'destination']
+          resolved_path = File.join(@context.registers[:site].config[location],
+                                    path)
+          return resolved_path if File.file?(resolved_path)
+        end
+        raise "Failed to find file #{path}."
       end
+      return path
     end
 
   end

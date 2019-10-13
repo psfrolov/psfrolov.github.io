@@ -2,7 +2,8 @@
 source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes]
-exclude: ['*.puml']
+exclude: ['*.puml']  # PlantUML source diagrams
+keep_files: ['img/figures/*.svg']  # PlantUML generated diagrams
 plugins:  # in processing order
   - liquid_pluralize
   - liquid_reading_time

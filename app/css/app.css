@@ -40,7 +40,7 @@ Custom Properties
   --frmax: 22;  /* maximum font size (for wide viewport), px */
   --wfmin: 1000;  /* viewport width at minimum font size, px */
   --wfmax: 1375;  /* viewport width at maximum font size, px */
-  --font-size-regular: calc(
+  --font-size-regular: calc(  /* map 100vw → font-size-regular */
     (100vw - var(--wfmin) * 1px) * (var(--frmax) - var(--frmin)) /
     (var(--wfmax) - var(--wfmin)) + var(--frmin) * 1px
   );

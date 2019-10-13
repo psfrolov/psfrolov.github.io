@@ -226,8 +226,8 @@ function clean() {
 }
 exports.clean = clean;
 
-const build = gulp.series(jekyllBuild,
-                          uml,
+const build = gulp.series(uml,
+                          jekyllBuild,
                           gulp.parallel(xmlAndJson, css, js, svg, copy),
                           html,
                           revision);

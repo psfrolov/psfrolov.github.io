@@ -531,17 +531,17 @@ code {
 
 pre {
   margin: 0;
+  padding: var(--spacing-regular-rem);
   line-height: var(--line-height-tight);
+  overflow: auto;
 }
 
 .highlight {
   margin: 0 0 var(--spacing-regular-em);
-  padding: var(--spacing-regular-rem);
   font-size: var(--font-size-small);
-  overflow: auto;
 }
 
-input, textarea, strong > em, ins, figure, .highlight {
+input, textarea, strong > em, ins, figure, pre {
   background: url(/img/code-bg.png) local;
   border-radius: var(--border-radius);
 }

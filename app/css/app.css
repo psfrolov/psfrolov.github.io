@@ -188,7 +188,7 @@ html {
 *, *::before, *::after { box-sizing: inherit; }
 
 body {
-  background: url(/img/content-bg.jpg) scroll var(--colour-page-background);
+  background: var(--colour-page-background) url(/img/content-bg.jpg);
   color: var(--colour-black);
   overscroll-behavior: none;
 }
@@ -235,10 +235,7 @@ Layout
     overflow: auto;
     -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
     will-change: transform;  /* optimize page repaint during scrolling */
-
-    /* Centre sidebar content vertically. */
-    display: flex;
-    align-items: center;
+    display: flex;  /* centre sidebar content by using margin:auto on child */
   }
 
   #main-content {
@@ -247,9 +244,7 @@ Layout
 
     /* Centre main content vertically and horizontally. */
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;  /* centre main content by using margin:auto on child */
   }
 
   @supports(padding: max(1rem)) {
@@ -276,8 +271,7 @@ Site header
 ---------------------------------------------------------------------------- */
 
 #site-header {
-  background: url(/img/header-bg.jpg) center/cover no-repeat scroll;
-  max-width: 100%;  /* make background image viewport-width */
+  background: url(/img/header-bg.jpg) center/cover no-repeat;
   text-align: center;
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
@@ -288,7 +282,7 @@ Site header
 
 @media screen and (min-width: 36em) {
   #site-header {
-    background: url(/img/sidebar-bg.jpg) center/cover no-repeat scroll;
+    background: url(/img/sidebar-bg.jpg) center/cover no-repeat;
   }
 
   /* Hide site tags for small height screens to prevent vertical overflow. */
@@ -298,6 +292,7 @@ Site header
 }
 
 #site-header > div {
+  margin: auto; /* centre content */
   /* Centre content in case of horizontal overflow. */
   min-width: 0;
   display: flex;
@@ -358,8 +353,9 @@ Man content
 ---------------------------------------------------------------------------- */
 
 #main-content > div {
+  margin: auto; /* centre content */
+  min-width: 0;  /* prevents white-space:pre from breaking flex layout */
   max-width: var(--line-length);
-  min-width: 0;  /* prevents "white-space: pre;" from breaking flex layout */
 }
 
 /* ----------------------------------------------------------------------------
@@ -530,48 +526,23 @@ code, pre {
 
 code {
   color: var(--colour-brown);
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   hyphens: manual;
 }
 
 pre {
-  display: block;
   margin: 0;
-  padding: var(--spacing-regular-rem);
   line-height: var(--line-height-tight);
-  white-space: pre;
-  overflow: auto;
-}
-
-pre code {
-  padding: 0;
-  font-size: var(--font-size-small);
-  overflow-wrap: normal;
-  word-wrap: normal;
-  overflow-x: auto;
-}
-
-input, textarea, strong > em, ins, figure {
-  background: url(/img/code-bg.png) scroll;
-  border-radius: var(--border-radius);
-}
-
-/* Code with line numbers. */
-table.rouge-table {
-  margin: 0;
-  border: none;
-}
-
-td.gl.gutter, td.code, td.code > pre { padding: 0; }
-
-pre.lineno {
-  padding: 0 var(--spacing-regular-rem) 0 0;
-  text-align: center;
 }
 
 .highlight {
   margin: 0 0 var(--spacing-regular-em);
+  padding: var(--spacing-regular-rem);
+  font-size: var(--font-size-small);
+  overflow: auto;
+}
+
+input, textarea, strong > em, ins, figure, .highlight {
+  background: url(/img/code-bg.png) local;
   border-radius: var(--border-radius);
 }
 

@@ -531,7 +531,6 @@ code {
 
 pre {
   margin: 0;
-  padding: var(--spacing-regular-rem);
   line-height: var(--line-height-tight);
   overflow: auto;
 }
@@ -540,6 +539,14 @@ pre {
   margin: 0 0 var(--spacing-regular-em);
   font-size: var(--font-size-small);
 }
+
+.highlight > pre > code {
+  /* Padding must be set here and not on parent pre in order for right padding
+  to work on horizontal overflow across browsers. */
+  padding: var(--spacing-regular-rem);
+  display: inline-block;
+}
+
 
 input, textarea, strong > em, ins, figure, pre {
   background: url(/img/code-bg.png) local;

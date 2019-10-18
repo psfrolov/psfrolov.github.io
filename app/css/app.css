@@ -532,23 +532,35 @@ code {
 pre {
   margin: 0;
   line-height: var(--line-height-tight);
-  overflow: auto;
 }
 
 .highlight {
   margin: 0 0 var(--spacing-regular-em);
   font-size: var(--font-size-small);
+  overflow: auto;
 }
+
+.highlight > pre { display: flex; }  /* align children horizontally */
 
 .highlight > pre > code {
-  /* Padding must be set here and not on parent pre in order for right padding
-  to work on horizontal overflow across browsers. */
-  padding: var(--spacing-regular-rem);
-  display: inline-block;
+  padding:
+    var(--spacing-regular-rem)
+    0  /* we emulate padding-right in pre::after rule below */
+    var(--spacing-regular-rem)
+    var(--spacing-regular-rem);
+  display: block;
+  flex-shrink: 0;  /* prevents flex items overlapping each other in Safari */
 }
 
+.highlight > pre::after {
+  /* Emulate padding-right with empty element because true padding-right is
+  inconsistent across browsers in case of horizontal overflow. */
+  content: '';
+  display: block;
+  min-width: var(--spacing-regular-rem);  /* padding-right */
+}
 
-input, textarea, strong > em, ins, figure, pre {
+input, textarea, strong > em, ins, figure, .highlight {
   background: url(/img/code-bg.png) local;
   border-radius: var(--border-radius);
 }

@@ -224,7 +224,8 @@ Layout
   #site-header, #main-content { --sidebar-width: 33vw; }
 
   #site-header {
-    padding: var(--spacing-loose-fluid) var(--spacing-regular-rem);
+    /* We emulate vertical padding with empty element due to browser issues. */
+    padding: 0 var(--spacing-regular-rem);
     width: var(--sidebar-width);
 
     position: fixed;
@@ -238,6 +239,14 @@ Layout
     display: flex;  /* centre sidebar content by using margin:auto on child */
   }
 
+  #site-header > div::before, #site-header > div::after {
+    /* Emulate vertical padding with empty element because padding-bottom is
+    inconsistent across browsers in case of vertical overflow. */
+    content: '';
+    display: block;
+    min-height: var(--spacing-loose-fluid);
+  }
+
   #main-content {
     margin-left: var(--sidebar-width);
     padding: var(--spacing-loose-fluid);
@@ -249,18 +258,16 @@ Layout
 
   @supports(padding: max(1rem)) {
     #site-header {
-      padding:
-        var(--spacing-loose-fluid)
-        max(var(--spacing-regular-rem), env(safe-area-inset-right))
-        var(--spacing-loose-fluid)
+      padding-right:
+        max(var(--spacing-regular-rem), env(safe-area-inset-right));
+      padding-left:
         max(var(--spacing-regular-rem), env(safe-area-inset-left));
     }
 
     #main-content {
-      padding:
-        var(--spacing-loose-fluid)
-        max(var(--spacing-loose-fluid), env(safe-area-inset-right))
-        var(--spacing-loose-fluid)
+      padding-right:
+        max(var(--spacing-loose-fluid), env(safe-area-inset-right));
+      padding-left:
         max(var(--spacing-loose-fluid), env(safe-area-inset-left));
     }
   }
@@ -545,11 +552,11 @@ pre {
 .highlight > pre > code {
   padding:
     var(--spacing-regular-rem)
-    0  /* we emulate padding-right in pre::after rule below */
+    0  /* we emulate padding-right with empty element due to browser issues */
     var(--spacing-regular-rem)
     var(--spacing-regular-rem);
   display: block;
-  flex-shrink: 0;  /* prevents flex items overlapping each other in Safari */
+  flex-shrink: 0;  /* prevents flex items from overlap in Safari */
 }
 
 .highlight > pre::after {

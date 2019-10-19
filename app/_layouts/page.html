@@ -4,16 +4,7 @@ layout: default
 
 
 <!-- Page image. -->
-{% if page.image %}
-<div class="page-image" style="--aspect-ratio:{{ page.image.url | image_aspect_ratio }};">
-  <img src="{{ page.image.url }}" alt="{{ page.image.alt }}">
-  {% if page.image.name %}
-  <small>
-    {{ page.image.name }}{% if page.image.source %}<br>(Image by <a href="{{ page.image.source.url }}" rel="external">{{ page.image.source.name | escape }}</a>){% endif %}
-  </small>
-  {% endif %}
-</div>
-{% endif %}
+{% if page.image %}{% include page-image.html image=page.image %}{% endif %}
 
 <!-- Page content. -->
 <article>

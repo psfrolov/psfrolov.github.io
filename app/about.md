@@ -16,19 +16,14 @@ image:
 ---
 
 
-{% capture image_url %}{{ page.image.url }}{% endcapture %}
-<div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="{{ page.image.alt }}">
-  <small>{{ page.image.name }}</small>
-</div>
+{% include page-image.html image=page.image %}
 
 <article markdown="block">
 
 # {{ page.title | escape }}
 
 {{ page.description | escape }} Feel free to contact me via
-[contact form](/contact). Or use one of the social links
-below.
+[contact form](/contact). Or use one of the social links below.
 {: .drop-letter }
 
 *Paul*

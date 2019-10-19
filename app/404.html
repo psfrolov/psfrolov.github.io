@@ -5,6 +5,10 @@ description: >-
   The 404 or Not Found error message is an HTTP standard response code
   indicating that the client was able to communicate with server, but the
   server could not find the page requested.
+image:
+  url: /img/pages/black-suprematic-square-by-kazimir-malevich.jpg
+  name: &name Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow
+  alt: *name
 permalink: /404.html
 sitemap: false
 ---
@@ -19,8 +23,4 @@ sitemap: false
     you found a broken link.
   </p>
 </article>
-{% capture image_url %}/img/pages/black-suprematic-square-by-kazimir-malevich.jpg{% endcapture %}
-<div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow">
-  <small>Black Suprematic Square by Kazimir Malevich, Tretyakov Gallery, Moscow</small>
-</div>
+{% include page-image.html image=page.image %}

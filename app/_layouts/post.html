@@ -4,16 +4,7 @@ layout: default
 
 
 <!-- Post image. -->
-<div class="page-image" style="--aspect-ratio:{{ page.image.url | image_aspect_ratio }};" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-  <img src="{{ page.image.url }}" alt="{{ page.image.alt }}" class="webfeedsFeaturedVisual" itemprop="url contentUrl">
-  <meta itemprop="width" content="{{ page.image.url | image_width }}">
-  <meta itemprop="height" content="{{ page.image.url | image_height }}">
-  {% if page.image.name %}
-  <small>
-    {{ page.image.name }}{% if page.image.source %}<br>(Image by <a href="{{ page.image.source.url }}" rel="external" itemprop="author">{{ page.image.source.name | escape }}</a>){% endif %}
-  </small>
-  {% endif %}
-</div>
+{% include page-image.html image=page.image %}
 
 <!-- Post content. -->
 <article>

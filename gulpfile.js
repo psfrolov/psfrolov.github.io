@@ -128,7 +128,7 @@ function svg() {
         {
           removeAttributesBySelector: {
             selector: 'svg',
-            attributes: ['preserveAspectRatio']
+            attributes: ['style', 'preserveAspectRatio']
           }
         },
         { removeStyleElement: true },

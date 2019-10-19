@@ -1,0 +1,8 @@
+<div class="page-image" style="--aspect-ratio:{{ include.image.url | image_aspect_ratio }};" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+  <img src="{{ include.image.url }}" alt="{{ include.image.alt }}" class="webfeedsFeaturedVisual" itemprop="url contentUrl">
+  <meta itemprop="width" content="{{ include.image.url | image_width }}">
+  <meta itemprop="height" content="{{ include.image.url | image_height }}">
+  {% if include.image.name %}
+  <small>{{ include.image.name }}</small>
+  {% endif %}
+</div>

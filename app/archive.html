@@ -9,11 +9,8 @@ image:
   alt: *name
 ---
 
-{% capture image_url %}{{ page.image.url }}{% endcapture %}
-<div class="page-image" style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <img src="{{ image_url }}" alt="{{ page.image.alt }}">
-  <small>{{ page.image.name }}</small>
-</div>
+{% include page-image.html image=page.image %}
+
 <article>
   <h1>{{ page.title | escape }}</h1>
   {% for post in site.posts offset:2 %}

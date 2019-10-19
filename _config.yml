@@ -3,7 +3,6 @@ source: app
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes]
 exclude: ['img/figures']  # PlantUML source diagrams
-keep_files: ['img/figures']  # PlantUML generated diagrams
 plugins:  # in processing order
   - liquid_pluralize
   - liquid_reading_time

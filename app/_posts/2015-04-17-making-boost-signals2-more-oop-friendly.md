@@ -131,9 +131,8 @@ without the use of macros. Or think of [Qt signals and slots]
 Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a
 high‐level view on what we will be discussing in this section. We’ll continue
 to use the window example from the previous section.
-{% capture image_url %}/img/figures/observable-mixin-uml-class-diagram.svg{% endcapture %}
-<figure style="--aspect-ratio:{{ image_url | image_aspect_ratio }};">
-  <object data="{{ image_url }}" type="image/svg+xml" role="img"></object>
+<figure>
+  <img src="/img/figures/observable-mixin-uml-class-diagram.svg">
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 

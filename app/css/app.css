@@ -479,7 +479,7 @@ Images & Figures
   clear: both;
 }
 
-.page-image img, figure object {
+.page-image img {
   display: block;
   /* Put image into allocated padding area. */
   position: absolute;
@@ -487,8 +487,15 @@ Images & Figures
   left: 0;
   width: 100%;
   height: auto;
-  border-radius: var(--border-radius);
 }
+
+/* uncss:ignore */
+figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* uncss:ignore end */
 
 .page-image small {
   margin: var(--spacing-extra-tight) 0 0;

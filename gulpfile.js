@@ -205,6 +205,7 @@ function revision() {
         /^\/favicon/gu,  // favicons
         /^\/apple-touch-icon/gu,  // iOS favicons
         /\/img\/pages/gu,  // images for social sharing and rich snippets
+        /\/icn\/feed/gu,  // web feed icons
         /^\/CNAME$/gu  // GitHub Pages custom domain support
       ],
       dontRenameFile: [

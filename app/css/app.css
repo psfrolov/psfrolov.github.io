@@ -188,7 +188,7 @@ html {
 *, *::before, *::after { box-sizing: inherit; }
 
 body {
-  background: var(--colour-page-background) url(/img/content-bg.jpg);
+  background-color: var(--colour-page-background);
   color: var(--colour-black);
   overscroll-behavior: none;
 }
@@ -362,6 +362,8 @@ Site header
 Man content
 ---------------------------------------------------------------------------- */
 
+#main-content { background: url(/img/content-bg.jpg);
+}
 #main-content > div {
   margin: auto; /* centre content */
   min-width: 0;  /* prevents white-space:pre from breaking flex layout */

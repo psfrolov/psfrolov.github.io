@@ -15,10 +15,10 @@ layout: null
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <rights>© {{ site.time | date: '%Y' }} {{ site.fqdn }}</rights>
 
-  <icon>{{ site.url }}/img/feed-icon.svg</icon>
-  <logo>{{ site.url }}/img/feed-logo.svg</logo>
-  <webfeeds:icon>{{ site.url }}/img/feed-icon.svg</webfeeds:icon>
-  <webfeeds:logo>{{ site.url }}/img/feed-logo.svg</webfeeds:logo>
+  <icon>{{ site.url }}/icn/feed/icon.svg</icon>
+  <logo>{{ site.url }}/icn/feed/logo.svg</logo>
+  <webfeeds:icon>{{ site.url }}/icn/feed/icon.svg</webfeeds:icon>
+  <webfeeds:logo>{{ site.url }}/icn/feed/logo.svg</webfeeds:logo>
   <webfeeds:accentColor>{{ site.colours.main | slice:1,site.colours.main.size }}</webfeeds:accentColor>
 
   {% for post in site.posts %}

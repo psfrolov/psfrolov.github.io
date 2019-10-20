@@ -12,12 +12,12 @@ image:
 
 This privacy policy document describes the types of personal information
 collected and recorded by this
-website&#8239;—&#8202;**{{ site.fqdn }}**&#8239;—&#8202;and how it is used.
+website&#8202;—&#8202;**{{ site.fqdn }}**&#8202;—&#8202;and how it is used.
 {: .drop-letter }
 
 ## Log Files
 Like many other websites, {{ site.fqdn }} makes use of log files. These files
-merely logs visitors to the site&#8239;—&#8202;usually a standard procedure for
+merely logs visitors to the site&#8202;—&#8202;usually a standard procedure for
 hosting companies and a part of hosting services’ analytics. The information
 inside the log files includes Internet Protocol (IP) addresses, browser type,
 Internet Service Provider (ISP), date/time stamp, referring/exit pages, and

@@ -210,13 +210,13 @@ function revision() {
       dontRenameFile: [
         /\.(?:html|txt)$/gu,
         '/sitemap.xml',
-        '/feed.xml',
+        '/news/feed-test.xml',
         '/browserconfig.xml'
       ],
       dontUpdateReference: [
         /\.(?:html|txt)$/gu,
         '/sitemap.xml',
-        '/feed.xml'
+        '/news/feed-test.xml'
       ]
     }))
     .pipe(gulp.dest(serveDir))

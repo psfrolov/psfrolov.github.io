@@ -12,7 +12,7 @@ excerpt: *description
 image:
   url: &url /img/pages/goethe-schiller-monument.jpg
   path: *url
-  name: &name Goethe–Schiller Monument, Syracuse, New York State
+  name: &name Goethe – Schiller Monument, Syracuse, New York State
   alt: *name
 ---
 

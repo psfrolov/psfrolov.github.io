@@ -11,7 +11,9 @@ description: >-
   software developers.
 image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
-  name: &name The Alchemist by Pieter Bruegel the Elder
+  name: &name >-
+    The Alchemist by Pieter Bruegel the Elder, National Gallery of Art,
+    Washington, D.C.
   alt: *name
 ---
 

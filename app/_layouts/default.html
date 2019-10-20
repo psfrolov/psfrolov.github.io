@@ -132,7 +132,7 @@
 
     <!-- Web feed autodiscovery. -->
     {% if page.is_home %}
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }} Blog Feed" href="{{ site.url }}/feed">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }} Blog Feed" href="{{ site.url }}/news/feed-test">
     {% endif %}
 
     <!-- Styles. -->
@@ -172,7 +172,7 @@
           <ul class="inline">
             <li>{% assign title = 'Home' %}<a rel="home" class="link-icon nav-icon" href="/" title="{{ title }}"><svg class="icon icon-home" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-home"/></svg></a></li>
             <li>{% assign title = 'Archive' %}<a class="link-icon nav-icon" href="/archive" title="{{ title }}"><svg class="icon icon-list" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-list"/></svg></a></li>
-            <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="/feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
+            <li>{% assign title = 'News Feed' %}<a rel="home alternate" class="link-icon nav-icon" href="/news-feed" title="{{ title }}" type="application/atom+xml"><svg class="icon icon-feed" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-feed"/></svg></a></li>
             <li>{% assign title = 'Contact' %}<a class="link-icon nav-icon" href="/contact" title="{{ title }}"><svg class="icon icon-question" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-question"/></svg></a></li>
             <li>{% assign title = 'About' %}<a rel="author" class="link-icon nav-icon" href="/about" title="{{ title }}"><svg class="icon icon-info" role="img"><title>{{ title }}</title><use xlink:href="/icn/symbol-defs.svg#icon-info"/></svg></a></li>
           </ul>

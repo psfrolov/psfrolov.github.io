@@ -190,7 +190,6 @@ html {
 body {
   background-color: var(--colour-page-background);
   color: var(--colour-black);
-  overscroll-behavior: none;
 }
 
 /* ----------------------------------------------------------------------------
@@ -201,6 +200,7 @@ Layout
 #site-header {
   margin: 0;
   padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
+  overscroll-behavior-y: none;  /* disable scroll chaining */
 }
 
 #main-content {
@@ -362,8 +362,8 @@ Site header
 Man content
 ---------------------------------------------------------------------------- */
 
-#main-content { background: url(/img/content-bg.jpg);
-}
+#main-content { background: url(/img/content-bg.jpg); }
+
 #main-content > div {
   margin: auto; /* centre content */
   min-width: 0;  /* prevents white-space:pre from breaking flex layout */

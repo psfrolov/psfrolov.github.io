@@ -4,7 +4,7 @@ layout: null
 
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
-  <link href="{{ site.url }}/news/3" rel="self" type="application/atom+xml"/>
+  <link href="{{ site.url }}/news/feed-test5" rel="self" type="application/atom+xml"/>
   <link href="{{ site.url }}/" rel="alternate" type="text/html"/>
 
   <id>{{ site.uuid }}</id>
@@ -15,10 +15,12 @@ layout: null
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <rights>© {{ site.time | date: '%Y' }} {{ site.fqdn }}</rights>
 
-  <icon>{{ site.url }}/icn/feed/icon.svg</icon>
+  <icon>{{ site.url }}/icn/feed/icon.2.svg</icon>
+  <webfeeds:icon>{{ site.url }}/icn/feed/icon.2.svg</webfeeds:icon>
+
   <logo>{{ site.url }}/icn/feed/logo.svg</logo>
-  <webfeeds:icon>{{ site.url }}/icn/feed/icon.svg</webfeeds:icon>
   <webfeeds:logo>{{ site.url }}/icn/feed/logo.svg</webfeeds:logo>
+
   <webfeeds:accentColor>{{ site.colours.main | slice:1,site.colours.main.size }}</webfeeds:accentColor>
 
   {% for post in site.posts %}

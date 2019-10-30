@@ -376,4 +376,4 @@ function publish(cb) {
 exports.deploy = gulp.series(clean, build, publish);
 
 // Default task.
-exports.default = serve;
+exports.default = exports.serve;

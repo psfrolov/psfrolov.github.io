@@ -8,8 +8,7 @@ image:
 sitemap: false
 ---
 
-Thank you for having taken time to provide me with your feedback.
-{{ page.description | escape }} I'll look over it and try to respond shortly.
+Thank you for having taken time to provide me with your feedback. {{ page.description | escape }} I'll look over it and try to respond shortly.
 {: .drop-letter }
 
 {% include social-profiles.html %}

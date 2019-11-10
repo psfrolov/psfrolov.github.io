@@ -17,15 +17,13 @@ image:
   alt: *name
 ---
 
-
 {% include page-image.html image=page.image %}
 
 <article markdown="block">
 
 # {{ page.title | escape }}
 
-{{ page.description | escape }} Feel free to contact me via
-[contact form](/contact). Or use one of the social links below.
+{{ page.description | escape }} Feel free to contact me via [contact form](/contact). Or use one of the social links below.
 {: .drop-letter }
 
 *Paul*

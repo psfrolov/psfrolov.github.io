@@ -12,15 +12,13 @@ image:
   alt: *name
 ---
 
-
 {% include page-image.html image=page.image %}
 
 <article markdown="block">
 
 # {{ page.title | escape }}
 
-Use the following URL in news aggregator or web feed reader to get notified of
-new articles on this website: `{{ site.url }}/news/feed-test5`
+Use the following URL in news aggregator or web feed reader to get notified of new articles on this website: `{{ site.url }}/news/feed-test5`
 ([link](/news/feed-test5)).
 
 

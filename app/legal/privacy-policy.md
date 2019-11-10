@@ -9,31 +9,14 @@ image:
   alt: *name
 ---
 
-
-This privacy policy document describes the types of personal information
-collected and recorded by this
-website&#8202;—&#8202;**{{ site.fqdn }}**&#8202;—&#8202;and how it is used.
+This privacy policy document describes the types of personal information collected and recorded by this website&#8202;—&#8202;**{{ site.fqdn }}**&#8202;—&#8202;and how it is used.
 {: .drop-letter }
 
 ## Log Files
-Like many other websites, {{ site.fqdn }} makes use of log files. These files
-merely logs visitors to the site&#8202;—&#8202;usually a standard procedure for
-hosting companies and a part of hosting services’ analytics. The information
-inside the log files includes Internet Protocol (IP) addresses, browser type,
-Internet Service Provider (ISP), date/time stamp, referring/exit pages, and
-possibly the number of clicks. This information is used to analyse trends,
-administer the site, track user’s movement around the site, and gather
-demographic information. IP addresses, and other such information are not
-linked to any information that is personally identifiable.
+Like many other websites, {{ site.fqdn }} makes use of log files. These files merely logs visitors to the site&#8202;—&#8202;usually a standard procedure for hosting companies and a part of hosting services’ analytics. The information inside the log files includes Internet Protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamp, referring/exit pages, and possibly the number of clicks. This information is used to analyse trends, administer the site, track user’s movement around the site, and gather demographic information. IP addresses, and other such information are not linked to any information that is personally identifiable.
 
 ## Cookies
-{{ site.fqdn }} does not use cookies. {{ site.fqdn }} is powered by third-party
-services which *do* use cookies. You should consult the respective privacy
-policies of these third-party servers for more detailed information on their
-practices as well as for instructions about how to opt-out of certain
-practices if possible. {{ site.fqdn }} privacy policy does not apply to such
-web services. You may find a comprehensive listing of these privacy policies
-and their links here:
+{{ site.fqdn }} does not use cookies. {{ site.fqdn }} is powered by third-party services which *do* use cookies. You should consult the respective privacy policies of these third-party servers for more detailed information on their practices as well as for instructions about how to opt-out of certain practices if possible. {{ site.fqdn }} privacy policy does not apply to such web services. You may find a comprehensive listing of these privacy policies and their links here:
 
 * Disqus
   * [Privacy Policy][url-disqus-privacy]
@@ -42,13 +25,10 @@ and their links here:
   * [Privacy Policy][url-cloudflare-privacy]
   * [Use of Cookies][url-cloudflare-cookies]
 
-If you wish to disable cookies, you may do so through your individual browser
-options. More detailed information about cookie management with specific web
-browsers can be found at the browsers’ respective websites.
+If you wish to disable cookies, you may do so through your individual browser options. More detailed information about cookie management with specific web browsers can be found at the browsers’ respective websites.
 
 ## Consent
-**By using {{ site.fqdn }}, you hereby consent to this privacy policy and agree
-to its terms.**
+**By using {{ site.fqdn }}, you hereby consent to this privacy policy and agree to its terms.**
 
 ---
 

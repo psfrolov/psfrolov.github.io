@@ -190,6 +190,7 @@ html {
 body {
   background-color: var(--colour-page-background);
   color: var(--colour-black);
+  overscroll-behavior-y: none;  /* disable vertical overscrolling */
 }
 
 /* ----------------------------------------------------------------------------

@@ -4,15 +4,11 @@ schema: https://schema.org/AboutPage
 og_prefix: 'profile: http://ogp.me/ns/profile#'
 og_type: profile
 title: About
-description: >-
-  The intention of this site is to share ideas, tips, idioms, patterns,
-  gotchas, issues, etc., that arises over the course of my professional
-  activity and hobby projects, many of which I hope would be useful for other
-  software developers.
+description: 'The intention of this site is to share ideas, tips, idioms, patterns, gotchas, issues, etc., many of which I hope would be useful for other software developers.'
 image:
   url: /img/pages/the-alchemist-by-pieter-bruegel-the-elder.jpg
   name: &name >-
-    The Alchemist by Pieter Bruegel the Elder, National Gallery of Art,
+    <i>The Alchemist</i> by Pieter Bruegel the Elder, National Gallery of Art,
     Washington, D.C.
   alt: *name
 ---
@@ -21,9 +17,9 @@ image:
 
 <article markdown="block">
 
-# {{ page.title | escape }}
+# {{ page.title }}
 
-{{ page.description | escape }} Feel free to contact me via [contact form](/contact). Or use one of the social links below.
+{{ page.description }} Feel free to contact me via [contact form](/contact). Or use one of the social links below.
 {: .drop-letter }
 
 *Paul*

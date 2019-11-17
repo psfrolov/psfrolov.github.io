@@ -1,14 +1,10 @@
 ---
 layout: default
 title: News Feed
-description: >-
-  Use the link provided in this page in news aggregator or web feed reader to
-  get notified of new articles on this website.
+description: 'Use the link provided in this page in news aggregator or web feed reader to get notified of new articles on this website.'
 image:
   url: /img/pages/the-quarrel-of-oberon-and-titania-by-joseph-noel-paton.jpg
-  name: &name >-
-    The Quarrel of Oberon and Titania by Joseph Noel Paton, Scottish National
-    Gallery, Edinburgh
+  name: &name <i>The Quarrel of Oberon and Titania</i> by Joseph Noel Paton, Scottish National Gallery, Edinburgh
   alt: *name
 ---
 
@@ -16,7 +12,7 @@ image:
 
 <article markdown="block">
 
-# {{ page.title | escape }}
+# {{ page.title }}
 
 Use the following URL in news aggregator or web feed reader to get notified of new articles on this website: `{{ site.url }}/news/feed-test5`
 ([link](/news/feed-test5)).

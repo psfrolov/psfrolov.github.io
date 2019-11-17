@@ -26,9 +26,9 @@
 
     <!-- Page description. -->
     {% capture description %}{% if layout.description %}{{ layout.description }}{% else %}{{ page.description }}{% endif %}{% endcapture %}
-    <meta name="description" content="{{ description | liquify | escape }}">
-    <meta itemprop="description" content="{{ description | liquify | escape }}">
-    <meta property="og:description" content="{{ description | liquify | escape }}">
+    <meta name="description" content="{{ description | liquify | strip_html | escape }}">
+    <meta itemprop="description" content="{{ description | liquify | strip_html | escape }}">
+    <meta property="og:description" content="{{ description | liquify | strip_html | escape }}">
 
     <!-- Page keywords. -->
     {% if layout.keywords %}
@@ -36,7 +36,7 @@
     {% elsif page.keywords %}
     {% assign keywords = page.keywords | liquify | escape %}
     {% elsif page.tags %}
-    {% assign keywords = page.tags | join:',' | liquify | escape %}
+    {% assign keywords = page.tags | join:',' | escape %}
     {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords }}">
@@ -57,11 +57,11 @@
     <link itemprop="image" href="{{ page_image }}">
     {% endif %}
     <meta property="og:image" content="{{ page_image }}">
-    <meta property="og:image:alt" content="{{ page.image.alt | liquify | escape }}">
+    <meta property="og:image:alt" content="{{ page.image.alt | liquify | strip_html | escape }}">
     <meta property="og:image:type" content="{{ page.image.url | image_mime_type }}"/>
     <meta property="og:image:width" content="{{ page.image.url | image_width }}"/>
     <meta property="og:image:height" content="{{ page.image.url | image_height }}"/>
-    <meta name="twitter:image:alt" content="{{ page.image.alt | liquify | escape }}">
+    <meta name="twitter:image:alt" content="{{ page.image.alt | liquify | strip_html | escape }}">
     {% endif %}
 
     <!-- Open Graph site/page metadata. -->

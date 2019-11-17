@@ -12,7 +12,7 @@ image:
 {% include page-image.html image=page.image %}
 
 <article>
-  <h1>{{ page.title | escape }}</h1>
+  <h1>{{ page.title }}</h1>
   {% for post in site.posts offset:2 %}
   <article itemscope itemtype="https://schema.org/BlogPosting">
     {% include post-preview.html %}

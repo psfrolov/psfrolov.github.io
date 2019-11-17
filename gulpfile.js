@@ -250,7 +250,7 @@ function serve(cb) {
       server: {
         baseDir: serveDir,
         serveStaticOptions: {
-          dotfiles: 'allow',  // e.g., ".net.html"
+          dotfiles: 'allow',  // e.g. ".net.html"
           extensions: ['html', 'xml'],  // serve pages without trailing slash
           fallthrough: true,  // enable 404 error
           redirect: false  // serve home page without trailing slash

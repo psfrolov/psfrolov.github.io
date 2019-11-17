@@ -209,7 +209,7 @@ Layout
   padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
 }
 
-/* Adjust padding for devices with non-rectangular screens (e.g., iPhone X). */
+/* Adjust padding for devices with non-rectangular screens (e.g. iPhone X). */
 @supports(padding: max(1rem)) {
   #site-header, #main-content {
     padding:
@@ -633,7 +633,37 @@ ul, ol, dl { margin: 0 0 var(--spacing-regular-em); }
 
 ul, ol { padding: 0 0 0 var(--spacing-extra-loose-em); }
 
+/* Remove vertical space between paragraph and following list. */
+p + ul, p + ol { margin-top: calc(var(--spacing-regular-em) * -1); }
+
 li, li ul, li ol { margin: 0; }
+
+/* ----------------------------------------------------------------------------
+Ordered Lists
+---------------------------------------------------------------------------- */
+
+ol {
+  list-style: none;
+  counter-reset: number-counter;
+}
+
+ol > li::before {
+  counter-increment: number-counter;
+  content: counter(number-counter) '.\00a0';
+  display: inline-block;
+  margin-left: -1em;
+  width: 1em;
+  text-align: right;
+  font-feature-settings: var(--font-common-settings), 'case';
+}
+
+ol ol { counter-reset: alpha-counter; }
+
+ol ol > li::before {
+  counter-increment: alpha-counter;
+  content: counter(alpha-counter, lower-alpha) '.\00a0';
+  font-style: italic;
+}
 
 /* ----------------------------------------------------------------------------
 Unordered Lists
@@ -641,11 +671,12 @@ Unordered Lists
 
 ul { list-style: none; }
 
-ul li::before {
-  content: '•';
+ul > li::before {
+  content: '•\2002';
   display: inline-block;
-  margin-left: -.6em;
-  width: .6em;
+  margin-left: -1em;
+  width: 1em;
+  text-align: right;
   font-feature-settings: var(--font-common-settings), 'case';
 }
 
@@ -713,18 +744,19 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
   counter-reset: footnote;
 }
 
-.footnotes li {
-  margin: 0;
-  counter-increment: footnote;
-}
+.footnotes li { margin: 0; }
+
+.footnotes li::before { content: none; }
 
 .footnotes p { margin-bottom: var(--spacing-tight); }
 
 .footnotes p:first-child::before {
-  content: counter(footnote);
+  counter-increment: footnote;
+  content: counter(footnote) '\00a0';
   display: inline-block;
-  margin-left: -.5em;
-  width: .5em;
+  margin-left: -1em;
+  width: 1em;
+  text-align: right;
   color: var(--colour-brown);
   font-feature-settings: var(--font-common-settings), 'sups';
   font-weight: bold;
@@ -836,10 +868,6 @@ blockquote {
   border-left: .07em solid var(--colour-brown);
 }
 
-blockquote > p::before, q::before { content: open-quote; }
-
-blockquote > p::after, q::after { content: close-quote; }
-
 blockquote p { display: inline-block; }
 
 blockquote p:last-child { margin-bottom: 0; }
@@ -899,6 +927,8 @@ ins::before {
 
 /* sub {} */
 /* sup {} */
+
+.c2sc { font-feature-settings: var(--font-common-settings), 'c2sc'; }
 
 .main-muted { color: var(--colour-main-muted); }
 

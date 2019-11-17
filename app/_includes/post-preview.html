@@ -1,5 +1,5 @@
 <h2 itemprop="name headline">
-  <a href="{{ post.url }}">{{ post.title | escape }}</a>
+  <a href="{{ post.url }}">{{ post.title | liquify | escape }}</a>
   <meta itemprop="url mainEntityOfPage" content="{{ site.url }}{{ post.url }}">
 </h2>
 <header>
@@ -10,8 +10,8 @@
     <meta itemprop="width" content="{{ post.image.url | image_width }}">
     <meta itemprop="height" content="{{ post.image.url | image_height }}">
   </div>
-  <meta itemprop="description" content="{{ post.description | liquify | escape }}">
+  <meta itemprop="description" content="{{ post.description | liquify | strip_html | escape }}">
 </header>
 <p class="drop-letter">
-  {{ post.excerpt | strip_footnotes | remove:'<p>' | remove:'</p>' }}
+  {{ post.excerpt | liquify | strip_footnotes | remove:'<p>' | remove:'</p>' }}
 </p>

@@ -1,11 +1,9 @@
 ---
 title: Disclaimer
-description: >-
-  A website disclaimer that states the limitations of liability for the use of
-  website and the information it contains.
+description: 'A website disclaimer that states the limitations of liability for the use of website and the information it contains.'
 image:
   url: /img/pages/saint-jerome-writing-by-caravaggio.jpg
-  name: &name Saint Jerome Writing by Caravaggio, Galleria Borghese, Rome
+  name: &name <i>Saint Jerome Writing</i> by Caravaggio, Galleria Borghese, Rome
   alt: *name
 ---
 

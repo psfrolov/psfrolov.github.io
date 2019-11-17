@@ -2,26 +2,22 @@
 uuid: urn:uuid:1a7a870e-0b45-4187-bf77-6ea25b91dcba
 title: Using Coverity Scan with AppVeyor
 tags: [CI, .NET, PowerShell, Static Analysis]
-description: &description >-
-  Unlike Travis CI, AppVeyor currently lacks out of the box integration with
-  Coverity Scan. In this article I’ll show you how to enable Coverity Scan code
-  analysis for your project by injecting custom PowerShell scripts into
-  AppVeyor build process.
+description: &description 'Unlike Travis CI, AppVeyor currently lacks out of the box integration with Coverity Scan. In this article I’ll show you how to enable Coverity Scan code analysis for your project by injecting custom PowerShell scripts into AppVeyor build process.'
 excerpt: *description
 image:
   url: &url /img/pages/codex-hammurabi.jpg
   path: *url
-  name: &name Codex Hammurabi, Louvre, Paris
+  name: &name <i>Codex Hammurabi</i>, Louvre, Paris
   alt: *name
 ---
 
 ***The information in this article is largely outdated.***
 
-[AppVeyor][url-appveyor] is an awesome SaaS[^fn-saas] CI[^fn-ci] server similar to [Travis CI][url-travis-ci] but for Windows developers. It enables you to build, test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX, among others (see [Installed Software][url-appveyor-installed-software]). Moreover, it is completely free for open source projects.
+[AppVeyor][url-appveyor] is an awesome SaaS CI server similar to [Travis CI][url-travis-ci] but for Windows developers. It enables you to build, test and deploy all sorts of projects: C/C++, .NET, IIS, SQL Server, WiX, among others (see [Installed Software][url-appveyor-installed-software]). Moreover, it is completely free for open source projects.
 
-[Coverity Scan][url-coverity-scan] is a free SaaS version of [Coverity][url-coverity], static code analysis solution for C/C++, C# and Java. Coverity Scan is used by some major Open Source projects such as Linux, Python, PostgreSQL, Apache Software Foundation projects.
+[Coverity Scan][url-coverity-scan] is a free SaaS version of [Coverity][url-coverity], static code analysis solution for C/C++, C# and Java. Coverity Scan is used by some major open source projects such as Linux, Python, PostgreSQL, Apache Software Foundation projects.
 
-{{ page.excerpt | escape }}
+{{ page.excerpt }}
 
 ***The rest of the article assumes that you have a GitHub repository registered with both AppVeyor and Coverity Scan, and you are familiar with Coverity Scan workflow (i.e. manually building your project with Coverity Build Tool and submitting results to Coverity Scan server).***
 
@@ -29,9 +25,9 @@ image:
 
 Analysing project source code with Coverity Scan involves the following steps:
 
-1. [Download Coverity Build Tool](#downloading-coverity-build-tool).
-2. [Build project with Coverity Build Tool](#building-project-with-coverity-build-tool).
-3. [Compress scan data](#compressing-scan-data).
+1. [Download Coverity Build Tool](#downloading-coverity-build-tool);
+2. [Build project with Coverity Build Tool](#building-project-with-coverity-build-tool);
+3. [Compress scan data](#compressing-scan-data);
 4. [Upload scan data to Coverity Scan server](#uploading-scan-data-to-coverity-scan-server).
 
 ## A Note on Scan Data Submissions Frequency
@@ -44,7 +40,7 @@ Coverity Scan documentation suggests us to create a separate branch dedicated fo
 
 ### Using Scheduled Builds
 
-Alternatively, we can use AppVeyor [Scheduled Builds][url-appveyor-scheduled-builds] feature to run Coverity Scan. For example, I use the following [crontab][url-crontab] expression to launch Coverity build at 5:00 p.m. UTC+03 on Friday: `0 14 * * 5`. Also there is a handy built‐in variable named `APPVEYOR_SCHEDULED_BUILD` which is set to `True` when the build is a scheduled one. I find this approach more convenient, so I’ll stick to it for the rest of the article.
+Alternatively, we can use AppVeyor [Scheduled Builds][url-appveyor-scheduled-builds] feature to run Coverity Scan. For example I use the following [crontab][url-crontab] expression to launch Coverity build at 5:00 p.m. <span class="c2sc">UTC</span>+03 on Friday: `0 14 * * 5`. Also there is a handy built‐in variable named `APPVEYOR_SCHEDULED_BUILD` which is set to `True` when the build is a scheduled one. I find this approach more convenient, so I’ll stick to it for the rest of the article.
 
 ## Downloading Coverity Build Tool
 
@@ -61,9 +57,9 @@ install:
 
 Let’s deal with input data.
 
-The *Project name* is your Coverity Scan project name as seen in web UI. Usually it’s the same as GitHub project name (`owner-name/repo-name`), in which case you can use convinient `APPVEYOR_REPO_NAME` built‐in variable for it.
+The *Project name* is your Coverity Scan project name as seen in web UI. Usually it’s the same as GitHub project name (`owner-name/repo-name`), in which case you can use convenient `APPVEYOR_REPO_NAME` built‐in variable for it.
 
-The *Project token* is used by Coverity Scan for automated build submissions. You can examine and regenerate it in your Coverity Scan web GUI *Project Settings* page. The token is meant to be kept in secret, so it is a good practice to use AppVeyor [Secure Variables][url-appveyor-secure-variables] feature to encrypt it:
+The *Project token* is used by Coverity Scan for automated build submissions. You can examine and regenerate it in your Coverity Scan web GUI ‘Project Settings’ page. The token is meant to be kept in secret, so it is a good practice to use AppVeyor [Secure Variables][url-appveyor-secure-variables] feature to encrypt it:
 {% highlight yaml %}
 environment:
     CoverityProjectToken:
@@ -97,7 +93,7 @@ The next step is to build the project with Coverity Build Tool. This means passi
 {% highlight batchfile %}
 cov-build.exe --dir cov-int <build command>
 {% endhighlight %}
-Here `cov-int` is a name of directory to place collected scan data into. For example, if your build command is
+Here `cov-int` is a name of directory to place collected scan data into. For example if your build command is
 {% highlight batchfile %}
 msbuild "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 {% endhighlight %}
@@ -143,7 +139,7 @@ if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
 Things to note here:
 
 * I’m using predefined `CONFIGURATION` and `PLATFORM` variables to simulate   behaviour of AppVeyour buit-in MSBuild provider.
-* The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity   Build Tool ZIP archive on the previous step.
+* The directory `cov-analysis-win64-7.6.0` is created by extracting Coverity Build Tool ZIP archive on the previous step.
 * After building the project with Coverity Build Tool there will be directory   named `cov-int` under `APPVEYOR_BUILD_FOLDER`.
 
 ## Compressing Scan Data
@@ -184,13 +180,13 @@ Things to note:
 
 * `Add-Type -TypeDefinition $zipEncoderDef` defines new C# class, a custom   encoder which replaces back slashes with forward slashes. The object of this class is passed as last parameter to `CreateFromDirectory` method.
 * The fourth parameter of `CreateFromDirectory` is `true` to indicate that `$env:APPVEYOR_BUILD_FOLDER\cov-int` directory must be included into archive as a root directory (otherwise, only content of `cov-int` is included). That is required by Coverity Scan.
-* After compressing the scan data there will be file named `<APPVEYOR_PROJECT_NAME>.zip` under `APPVEYOR_BUILD_FOLDER`.
+* After compressing the scan data the file named `<APPVEYOR_PROJECT_NAME>.zip` will be cerated under `APPVEYOR_BUILD_FOLDER`.
 
 ## Uploading Scan Data to Coverity Scan Server
 
-That last step is the most complex one. In order to upload scan data to Coverity Scan server we need to send multipart/form‐data[^fn-multipart] HTML form containing archived scan data along with some build metadata (the process is documented in *Upload a Project Build* page of your Coverity Scan project web GUI). This can be accomplished in many ways, I’ll use `System.Net.Http.MultipartFormDataContent`.
+That last step is the most complex one. In order to upload scan data to Coverity Scan server we need to send multipart/form‐data[^fn-multipart] HTML form containing archived scan data along with some build metadata (the process is documented in ‘Upload a Project Build’ page of your Coverity Scan project web GUI). This can be accomplished in many ways, I’ll use `System.Net.Http.MultipartFormDataContent`.
 
-First, we need to initialize `HttpClient` and `MultipartFormDataContent`:
+First, we need to initialise `HttpClient` and `MultipartFormDataContent`:
 {% highlight powershell %}
 # Upload results to Coverity server.
 "Uploading Coverity results..."
@@ -279,15 +275,12 @@ Things to note:
 
 ## Examining the Results
 
-After uploading the scan data you can examine intermediate results in your Coverity Scan project web GUI, and the final results will be delivered to you by email. Then use *View Defects* button in Coverity Scan web GUI to start triaging discovered issues.
+After uploading the scan data you can examine intermediate results in your Coverity Scan project web GUI, and the final results will be delivered to you by email. Then use ‘View Defects’ button in Coverity Scan web GUI to start triaging discovered issues.
 
 ---
 
 ## Footnotes
 {: .screenreader-only }
-
-[^fn-saas]: [Software as a Service][url-saas].
-[^fn-ci]: [Continuous Integration][url-ci].
 
 [^fn-multipart]:
     A multipart/form-data is used to express values submitted through a web form. Originally defined as part of HTML 4.0, it is most commonly used for submitting files via HTTP. Defined in [RFC 2388][url-rfc2388].
@@ -318,15 +311,7 @@ After uploading the scan data you can examine intermediate results in your Cover
 {: rel="external" }
 [url-dotnet-zipfile-bug]: https://connect.microsoft.com/VisualStudio/feedback/details/862380/archive-created-with-system-io-compression-zipfile-createfromdirectory-does-not-preserve-directories-structure-when-unpacked-on-mac-os
 {: rel="external" }
-[url-dotnet-multipart-form-data]: https://msdn.microsoft.com/en-us/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
-{: rel="external" }
 [url-rfc2388]: https://tools.ietf.org/html/rfc2388
 {: rel="external" }
 [url-zip-format-spec]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
-{: rel="external" }
-[url-my-appveyor-yml]: https://github.com/psfrolov/smart-splash/blob/34ab7d398c8b1c824779b92cdd7175e27575a88b/appveyor.yml
-{: rel="external" }
-[url-saas]: https://en.wikipedia.org/wiki/Software_as_a_service
-{: rel="external" }
-[url-ci]: https://en.wikipedia.org/wiki/Continuous_integration
 {: rel="external" }

@@ -2,11 +2,7 @@
 uuid: urn:uuid:b5e5a495-748d-41bd-b31f-5b06229fdf09
 title: Making Boost.Signals2 More OOP‐Friendly
 tags: [Boost, C++, Design Patterns, Generic Programming, OOP]
-description: &description >-
-  Unfortunately, unlike other mainstream languages, the C++ standard library
-  doesn’t provide out of the box observer implementation. This article suggests
-  an observable mixin based on Boost.Signals2 which makes it easy to build an
-  observer.
+description: &description 'Unfortunately, unlike other mainstream languages, the C++ standard library doesn’t provide out of the box observer implementation. This article suggests an observable mixin based on Boost.Signals2 which makes it easy to build an observer.'
 excerpt: *description
 image:
   url: &url /img/pages/el-caracol-observatory.jpg
@@ -15,7 +11,7 @@ image:
   alt: *name
 ---
 
-The _observer_[^fn-observer] design pattern is by far the most popular and widely known among _behavioural patterns_[^fn-behavioural-patterns]. Unfortunately, unlike other mainstream languages out there, the C++ standard library doesn't provide out of the box observer implementation. Luckily, [Boost][url-boost] contains [Signals2][url-signals2], a _signal/slot_[^fn-signals-slots] library which can serve as a basis for an observer. Using Signals2 as it is, however, is not so convenient in object‐oriented program due to the need of manually coded _register_ and _notify_ class methods for each of signal/slot pairs. This article suggests an _observable_ _mixin_[^fn-mixin] which attempts to solve the outlined problem.
+The observer[^fn-observer] design pattern is by far the most popular and widely known among behavioural design patterns[^fn-behavioural-patterns]. Unfortunately, unlike other mainstream languages out there, the C++ standard library doesn't provide out of the box observer implementation. Luckily, [Boost][url-boost] contains [Signals2][url-signals2], a signal/slot[^fn-signals-slots] library which can serve as a basis for an observer. Using Signals2 as it is, however, is not so convenient in object‐oriented program due to the need of manually coded _register_ and _notify_ class methods for each of signal/slot pairs. This article suggests an _observable_ mixin[^fn-mixin] which attempts to solve the outlined problem.
 
 ## Motivating Example
 
@@ -98,9 +94,9 @@ The main issue with the above code, as you can see, is that _register_ and _noti
 
 ## Implementing Observable Mixin
 
-Here is a _UML_[^fn-uml] _class diagram_[^fn-class-diagram] which presents a high‐level view on what we will be discussing in this section. We’ll continue to use the window example from the previous section.
+Here is a UML class diagram which presents a high‐level view on what we will be discussing in this section. We’ll continue to use the window example from the previous section.
 <figure>
-  <img src="/img/figures/observable-mixin-uml-class-diagram.svg">
+  <img src="/img/figures/observable-mixin-uml-class-diagram.svg" alt>
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 
@@ -400,16 +396,10 @@ I have also experimented with alternative implementations, namely, the one based
     Used to manage relationships, interaction, algorithms and responsibilities between objects. The [behavioural pattern][url-behavioural-patterns] focuses on the interaction between the cooperating objects in a manner that the objects are communicating while maintaining loose coupling.
 
 [^fn-signals-slots]:
-    A language construct for communication between objects which makes it easy to implement the Observer pattern while avoiding boilerplate code. For example, GUI widgets can send signals containing event information which can be received by other controls using special functions known as slots.
+    A language construct for communication between objects which makes it easy to implement the observer pattern while avoiding boilerplate code. For example GUI widgets can send signals containing event information which can be received by other controls using special functions known as slots.
 
 [^fn-mixin]:
     A class that acts as the parent class, containing the desired functionality. A subclass can then inherit or simply reuse this functionality, but without creating a rigid, single ‘is a’ relationship ([Wikipedia][url-mixin]).
-
-[^fn-uml]:
-    A general‐purpose, developmental, modeling language in the field of software engineering, that is intended to provide a standard way to visualise the design of a system ([Wikipedia][url-uml]).
-
-[^fn-class-diagram]:
-    In the UML a type of static structure diagram that describes the structure of a system by showing the system’s classes, their attributes, operations (or methods), and the relationships among objects ([Wikipedia][url-class-diagram]).
 
 [url-observer]: https://sourcemaking.com/design_patterns/observer
 {: rel="external" }
@@ -428,10 +418,6 @@ I have also experimented with alternative implementations, namely, the one based
 [url-qt-signals-and-slots]: https://doc.qt.io/qt-5/signalsandslots.html
 {: rel="external" }
 [url-vc-event-handling]: https://msdn.microsoft.com/en-us/library/ee2k0a7d(v=vs.120).aspx
-{: rel="external" }
-[url-uml]: https://en.wikipedia.org/wiki/Unified_Modeling_Language
-{: rel="external" }
-[url-class-diagram]: https://en.wikipedia.org/wiki/Class_diagram
 {: rel="external" }
 [url-observable-gist]: https://gist.github.com/psfrolov/07887b173776ebbb4aac
 {: rel="external" }

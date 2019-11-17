@@ -1,11 +1,9 @@
 ---
 title: Privacy Policy
-description: >-
-  A privacy policy that describes the ways a website gathers, uses, discloses,
-  and manages a user’s data.
+description: 'A privacy policy that describes the ways a website gathers, uses, discloses, and manages a user’s data.'
 image:
   url: /img/pages/the-thinker-in-the-gates-of-hell-by-auguste-rodin.jpg
-  name: &name The Thinker in The Gates of Hell by Auguste Rodin, Musée Rodin, Paris
+  name: &name <i>The Thinker in The Gates of Hell</i> by Auguste Rodin, Musée Rodin, Paris
   alt: *name
 ---
 
@@ -18,12 +16,12 @@ Like many other websites, {{ site.fqdn }} makes use of log files. These files me
 ## Cookies
 {{ site.fqdn }} does not use cookies. {{ site.fqdn }} is powered by third-party services which *do* use cookies. You should consult the respective privacy policies of these third-party servers for more detailed information on their practices as well as for instructions about how to opt-out of certain practices if possible. {{ site.fqdn }} privacy policy does not apply to such web services. You may find a comprehensive listing of these privacy policies and their links here:
 
-* Disqus
-  * [Privacy Policy][url-disqus-privacy]
-  * [Use of Cookies][url-disqus-cookies]
-* Cloudflare
-  * [Privacy Policy][url-cloudflare-privacy]
-  * [Use of Cookies][url-cloudflare-cookies]
+1. Disqus:
+    1. [Privacy Policy][url-disqus-privacy];
+    2. [Use of Cookies][url-disqus-cookies].
+2. Cloudflare:
+    1. [Privacy Policy][url-cloudflare-privacy];
+    2. [Use of Cookies][url-cloudflare-cookies].
 
 If you wish to disable cookies, you may do so through your individual browser options. More detailed information about cookie management with specific web browsers can be found at the browsers’ respective websites.
 

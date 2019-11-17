@@ -48,6 +48,7 @@ Custom Properties
   /* Minimum and maximum type scale ratios. */
   --rmin: 1.125;  /* minimum type scale ratio (major second interval) */
   --rmax: 1.25;  /* maximum type scale ratio (major third interval) */
+  --rprint: var(--rmax);  /* type scale ratio for printing */
   --wrmin: 22.5;  /* viewport width at minimum type scale ratio, rem */
   --wrmax: 36;  /* viewport width at maximum type scale ratio, rem */
 
@@ -170,6 +171,18 @@ Custom Properties
     --font-size-subhead2: calc(var(--font-size-subhead) * var(--rmax));
     --font-size-head: calc(var(--font-size-subhead2) * var(--rmax));
     --font-size-display: calc(var(--font-size-head) * var(--rmax));
+  }
+}
+
+/* Font sizes for printing. */
+@media print {
+  :root {
+    --font-size-small: calc(1rem / var(--rprint));
+    --font-size-big: calc(1rem * var(--rprint));
+    --font-size-subhead: calc(var(--font-size-big) * var(--rprint));
+    --font-size-subhead2: calc(var(--font-size-subhead) * var(--rprint));
+    --font-size-head: calc(var(--font-size-subhead2) * var(--rprint));
+    --font-size-display: calc(var(--font-size-head) * var(--rprint));
   }
 }
 
@@ -829,17 +842,20 @@ article > header, article > footer { font-family: var(--font-secondary); }
 
 address { text-align: center; }
 
-p.drop-letter, .drop-letter > p:first-child { margin-top: 1.25em; }
+@media screen {  /* not for printing */
+  p.drop-letter, .drop-letter > p:first-child { margin-top: 1.25em; }
 
-p.drop-letter::first-letter, .drop-letter > p:first-child::first-letter {
-  font-size: var(--font-size-display);
-  line-height: 0;
-  color: var(--colour-main);
-  text-shadow:
-    -1px -1px 0 var(--colour-black),
-    1px -1px 0 var(--colour-black),
-    -1px 1px 0 var(--colour-black),
-    1px 1px 0 var(--colour-black);
+  p.drop-letter::first-letter, .drop-letter > p:first-child::first-letter {
+    font-size: var(--font-size-display);
+    line-height: 0;
+    color: var(--colour-main);
+    text-shadow:
+      -1px -1px 0 var(--colour-black),
+      1px -1px 0 var(--colour-black),
+      -1px 1px 0 var(--colour-black),
+      1px 1px 0 var(--colour-black);
+  }
+
 }
 
 /* ----------------------------------------------------------------------------
@@ -962,15 +978,12 @@ Printing
   /* Remove link destination arrows. */
   a::after { content: none !important; }
 
-  /* Print background images. */
-  main { color-adjust: exact; }
-
   /* Set page margins. */
   @page :left { margin: 20mm 25mm 20mm 20mm; }
   @page :right { margin: 20mm 20mm 20mm 25mm; }
 
-  /* Specify page breaks behaviour. */
+  /* Specify page break behaviour. */
   p, h2, h3, h4, h5, h6 { orphans: 3; widows: 3; }
-  h2, h3, h4, h5, h6 { break-after: avoid-page; }
-  figcaption { break-before: avoid-page; }
+  h2, h3, h4, h5, h6 { page-break-after: avoid; }
+  figcaption { page-break-before: avoid; }
 }

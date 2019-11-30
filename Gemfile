@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll'
-gem 'jekyll-last-modified-at'
+gem 'jekyll-last-modified-at', '1.1.0'
 gem 'jekyll-sitemap'
 gem 'jekyll-tagging'
 

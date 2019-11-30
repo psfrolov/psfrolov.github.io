@@ -96,7 +96,7 @@ The main issue with the above code, as you can see, is that _register_ and _noti
 
 Here is a UML class diagram which presents a high‐level view on what we will be discussing in this section. We’ll continue to use the window example from the previous section.
 <figure>
-  <img src="/img/figures/observable-mixin-uml-class-diagram.svg" alt>
+  <img src="/img/figures/observable-mixin-uml-class-diagram.svg">
   <figcaption>Observable Mixin UML Class Diagram</figcaption>
 </figure>
 

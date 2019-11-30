@@ -14,8 +14,8 @@ image:
 
 # {{ page.title }}
 
-Use the following URL in news aggregator or web feed reader to get notified of new articles on this website: `{{ site.url }}/news/feed-test6`
-([link](/news/feed-test6)).
+Use the following URL in news aggregator or web feed reader to get notified of new articles on this website: `{{ site.url }}/news/feed`
+([link](/news/feed)).
 
 
 {% include social-profiles.html %}

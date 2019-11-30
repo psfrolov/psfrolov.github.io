@@ -19,6 +19,7 @@ rules:
   no-control-regex: error
   no-debugger: error
   no-dupe-args: error
+  no-dupe-else-if: error
   no-dupe-keys: error
   no-duplicate-case: error
   no-empty: error
@@ -36,6 +37,7 @@ rules:
   no-obj-calls: error
   no-prototype-builtins: error
   no-regex-spaces: error
+  no-setter-return: error
   no-sparse-arrays: error
   no-template-curly-in-string: error
   no-unexpected-multiline: error
@@ -60,11 +62,13 @@ rules:
   dot-location: [error, property]
   dot-notation: error
   eqeqeq: error
+  grouped-accessor-pairs: error
   guard-for-in: error
   max-classes-per-file: error
   no-alert: error
   no-caller: error
   no-case-declarations: error
+  no-constructor-return: error
   no-div-regex: error
   no-else-return: error
   no-empty-function: error
@@ -231,6 +235,7 @@ rules:
   operator-linebreak: error
   padded-blocks: [error, never]
   padding-line-between-statements: error
+  prefer-exponentiation-operator: error
   prefer-object-spread: error
   quote-props: [error, consistent]
   quotes: [error, single]

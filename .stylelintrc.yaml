@@ -1,4 +1,6 @@
-plugins: [stylelint-csstree-validator]
+plugins:
+  - stylelint-csstree-validator
+  - stylelint-order
 
 rules:
   # Possible Errors -----------------------------------------------------------
@@ -6,7 +8,7 @@ rules:
   # Colour
   color-no-invalid-hex: true
 
-  # Font Familiy
+  # Font Family
   font-family-no-duplicate-names: true
   font-family-no-missing-generic-family-keyword: true
 
@@ -160,7 +162,7 @@ rules:
   color-hex-case: lower
   color-hex-length: short
 
-  # Font Familiy
+  # Font Family
   font-family-name-quotes: always-where-recommended
 
   # Font Weight
@@ -283,7 +285,7 @@ rules:
   comment-whitespace-inside: always
 
   # General / Sheet
-  indentation: [2, ignore: [inside-parens]]
+  indentation: [2, ignore: [inside-parens, param]]
   linebreaks: unix
   max-empty-lines: 2
   max-line-length: 79
@@ -292,7 +294,11 @@ rules:
   no-empty-first-line: true
   unicode-bom: never
 
-  # Plugins -------------------------------------------------------------------
+  # Plugin rules --------------------------------------------------------------
 
-  # CSSTree-Validator Plugin
+  # stylelint-csstree-validator
   csstree/validator: true
+
+  # stylelint-order
+  order/order: [custom-properties, declarations, rules, at-rules]
+  order/properties-alphabetical-order: true

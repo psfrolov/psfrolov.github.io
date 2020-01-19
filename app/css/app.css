@@ -150,8 +150,8 @@ Custom Properties
 
 /* Minimum type scale font sizes. */
 @media
-  screen and (max-width: 22.5em),
-  screen and (min-width: 36em) and (max-width: 42em) {
+    screen and (max-width: 22.5em),
+    screen and (min-width: 36em) and (max-width: 42em) {
   :root {
     --font-size-small: calc(1rem / var(--rmin));
     --font-size-big: calc(1rem * var(--rmin));
@@ -192,9 +192,9 @@ Body
 
 html {
   box-sizing: border-box;
-  font-size: var(--font-size-regular);
   font-family: var(--font-main);
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum';
+  font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
 }
 
@@ -203,7 +203,7 @@ html {
 body {
   background-color: var(--colour-page-background);
   color: var(--colour-black);
-  overscroll-behavior-y: none;  /* disable vertical overscrolling */
+  overscroll-behavior-y: none;  /* disable vertical over-scrolling */
 }
 
 /* ----------------------------------------------------------------------------
@@ -213,8 +213,8 @@ Layout
 /* Layout with #site-header as site header. */
 #site-header {
   margin: 0;
-  padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
   overscroll-behavior-y: none;  /* disable scroll chaining */
+  padding: var(--spacing-extra-loose-rem) var(--spacing-loose-fluid);
 }
 
 #main-content {
@@ -238,19 +238,17 @@ Layout
   #site-header, #main-content { --sidebar-width: 33vw; }
 
   #site-header {
-    /* We emulate vertical padding with empty element due to browser issues. */
-    padding: 0 var(--spacing-regular-rem);
-    width: var(--sidebar-width);
-
-    position: fixed;
-    top: 0;
-    left: 0;
     bottom: 0;
-
+    display: flex;  /* centre sidebar content by using margin:auto on child */
+    left: 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;  /* fix sidebar scrolling on iOS */
-    will-change: transform;  /* optimize page repaint during scrolling */
-    display: flex;  /* centre sidebar content by using margin:auto on child */
+    /* We emulate vertical padding with empty element due to browser issues. */
+    padding: 0 var(--spacing-regular-rem);
+    position: fixed;
+    top: 0;
+    width: var(--sidebar-width);
+    will-change: transform;  /* optimise page repaint during scrolling */
   }
 
   #site-header > div::before, #site-header > div::after {
@@ -262,27 +260,25 @@ Layout
   }
 
   #main-content {
+    display: flex;  /* to centre main content by using margin:auto on child */
     margin-left: var(--sidebar-width);
+    min-height: 100vh;  /* centre main content vertically */
     padding: var(--spacing-loose-fluid);
-
-    /* Centre main content vertically and horizontally. */
-    min-height: 100vh;
-    display: flex;  /* centre main content by using margin:auto on child */
   }
 
   @supports(padding: max(1rem)) {
     #site-header {
-      padding-right:
-        max(var(--spacing-regular-rem), env(safe-area-inset-right));
       padding-left:
         max(var(--spacing-regular-rem), env(safe-area-inset-left));
+      padding-right:
+        max(var(--spacing-regular-rem), env(safe-area-inset-right));
     }
 
     #main-content {
-      padding-right:
-        max(var(--spacing-loose-fluid), env(safe-area-inset-right));
       padding-left:
         max(var(--spacing-loose-fluid), env(safe-area-inset-left));
+      padding-right:
+        max(var(--spacing-loose-fluid), env(safe-area-inset-right));
     }
   }
 }
@@ -293,11 +289,11 @@ Site header
 
 #site-header {
   background: url(/img/header-bg.jpg) center/cover no-repeat;
-  text-align: center;
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
   font-size: var(--font-size-big);
   line-height: var(--line-height-tight);
+  text-align: center;
   user-select: none;
 }
 
@@ -313,28 +309,28 @@ Site header
 }
 
 #site-header > div {
-  margin: auto; /* centre content */
   /* Centre content in case of horizontal overflow. */
-  min-width: 0;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: auto;  /* centre content */
+  min-width: 0;
 }
 
 #site-header > div > * {
-  margin: 0 0 var(--spacing-loose);
   filter: drop-shadow(.1em .1em .1em black);
+  margin: 0 0 var(--spacing-loose);
 }
 
 #site-header .site-title {
-  margin: 0 0 .25em;
   font-size: var(--font-size-display);
   line-height: var(--line-height-extra-tight);
+  margin: 0 0 .25em;
 }
 
 #site-header .site-tags-title {
-  display: inline;
   color: var(--colour-white);
+  display: inline;
   font-size: 1em;
 }
 
@@ -362,8 +358,8 @@ Site header
 #site-header a { color: var(--colour-white); }
 
 #site-header p {
-  margin: 0;
   color: var(--colour-white);
+  margin: 0;
 }
 
 #site-header small {
@@ -379,9 +375,9 @@ Man content
 #main-content { background: url(/img/content-bg.jpg); }
 
 #main-content > div {
-  margin: auto; /* centre content */
-  min-width: 0;  /* prevents white-space:pre from breaking flex layout */
+  margin: auto;  /* centre content */
   max-width: var(--line-length);
+  min-width: 0;  /* prevents white-space:pre from breaking flex layout */
 }
 
 /* ----------------------------------------------------------------------------
@@ -395,9 +391,9 @@ label, textarea, input, button {
 }
 
 form > div {
+  clear: both;
   margin: 0 0 var(--spacing-regular-em);
   overflow: hidden;
-  clear: both;
 }
 
 form > div:last-child { margin-top: 1.5em; }
@@ -415,46 +411,46 @@ label {
   form > div:last-child { margin-top: 0; }
 
   label {
-    width: 20%;
+    border: 1px solid transparent;  /* to align label text with input text */
     float: left;
     text-align: right;
-    border: 1px solid transparent;  /* to align label text with input text */
+    width: 20%;
   }
 
   form > div > div {
-    width: 80%;
     float: right;
+    width: 80%;
   }
 }
 
 textarea {
-  width: 100%;
+  border: 1px solid var(--colour-grey-muted);
   min-height: 7.5em;
   padding: var(--spacing-tight);
-  border: 1px solid var(--colour-grey-muted);
   resize: vertical;
+  width: 100%;
 }
 
 input {
-  width: 15em;
-  padding: var(--spacing-tight);
   border: 1px solid var(--colour-grey-muted);
+  padding: var(--spacing-tight);
+  width: 15em;
 }
 
 button {
+  background-color: var(--colour-main);
+  border: 1px solid var(--colour-black-muted);
+  color: var(--colour-white);
   font-weight: bold;
   padding: var(--spacing-tight);
-  background-color: var(--colour-main);
-  transition: background-color var(--transition-regular);
-  color: var(--colour-white);
   text-align: center;
-  border: 1px solid var(--colour-black-muted);
+  transition: background-color var(--transition-regular);
   user-select: none;
 }
 
 button:hover {
-  text-decoration: underline;
   background-color: var(--colour-black);
+  text-decoration: underline;
   transition: background-color var(--transition-regular);
 }
 
@@ -467,8 +463,8 @@ input:valid, textarea:valid { color: var(--colour-black); }
 input:invalid, textarea:invalid { color: var(--colour-red); }
 
 label::after {
-  content: '*';  /* all form fields are mandatory */
   color: var(--colour-red);
+  content: '*';  /* all form fields are mandatory */
 }
 
 ::placeholder { color: var(--colour-grey); }
@@ -478,8 +474,8 @@ Images & Figures
 ---------------------------------------------------------------------------- */
 
 .page-image, figure {
-  margin: .5rem auto var(--spacing-regular-rem);
   display: block;
+  margin: .5rem auto var(--spacing-regular-rem);
   position: relative;
   width: 100%;
 }
@@ -493,42 +489,42 @@ Images & Figures
 
 .page-image::after, figure::after {
   /* Clearfix. */
+  clear: both;
   content: '';
   display: table;
-  clear: both;
 }
 
 .page-image img {
   display: block;
   /* Put image into allocated padding area. */
+  height: auto;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: auto;
 }
 
 /* uncss:ignore */
 figure svg {
   display: block;
-  width: 100%;
   height: auto;
+  width: 100%;
 }
 /* uncss:ignore end */
 
 .page-image small {
-  margin: var(--spacing-extra-tight) 0 0;
-  font-family: var(--font-secondary);
-  text-align: right;
   color: var(--colour-grey);
   float: right;
+  font-family: var(--font-secondary);
+  margin: var(--spacing-extra-tight) 0 0;
+  text-align: right;
 }
 
 figure figcaption {
-  margin: 0 0 var(--spacing-tight);
   font-family: var(--font-secondary);
   font-size: var(--font-size-small);
   line-height: var(--line-height-extra-tight);
+  margin: 0 0 var(--spacing-tight);
   text-align: center;
 }
 
@@ -563,26 +559,26 @@ code {
 }
 
 pre {
-  margin: 0;
   line-height: var(--line-height-tight);
+  margin: 0;
 }
 
 .highlight {
-  margin: 0 0 var(--spacing-regular-em);
   font-size: var(--font-size-small);
+  margin: 0 0 var(--spacing-regular-em);
   overflow: auto;
 }
 
 .highlight > pre { display: flex; }  /* align children horizontally */
 
 .highlight > pre > code {
+  display: block;
+  flex-shrink: 0;  /* prevents flex items from overlapping in Safari */
   padding:
     var(--spacing-regular-rem)
     0  /* we emulate padding-right with empty element due to browser issues */
     var(--spacing-regular-rem)
     var(--spacing-regular-rem);
-  display: block;
-  flex-shrink: 0;  /* prevents flex items from overlap in Safari */
 }
 
 .highlight > pre::after {
@@ -603,19 +599,18 @@ Horizontal Rule
 ---------------------------------------------------------------------------- */
 
 hr {
-  /* Hide rule. */
+  /* Hide default rule to display custom one with 'content' property. */
+  border-style: none;
+  color: var(--colour-brown);
   display: block;
+  height: 0;
+  line-height: 1px;
   margin: 0 0 var(--spacing-regular-em);
   padding: 0;
-  height: 0;
-  border-style: none;
-  line-height: 1px;
-
-  color: var(--colour-brown);
   text-align: center;
 }
 
-hr::after { content: '— § —'; }
+hr::after { content: '—\200a§\200a—'; }  /* HAIR SPACE */
 
 /* ----------------------------------------------------------------------------
 Links
@@ -646,7 +641,7 @@ ul, ol, dl { margin: 0 0 var(--spacing-regular-em); }
 
 ul, ol { padding: 0 0 0 var(--spacing-extra-loose-em); }
 
-/* Remove vertical space between paragraph and following list. */
+/* Remove vertical spacing between paragraph and following list. */
 p + ul, p + ol { margin-top: calc(var(--spacing-regular-em) * -1); }
 
 li, li ul, li ol { margin: 0; }
@@ -656,25 +651,25 @@ Ordered Lists
 ---------------------------------------------------------------------------- */
 
 ol {
-  list-style: none;
   counter-reset: number-counter;
+  list-style: none;
 }
 
 ol > li::before {
+  content: counter(number-counter) '.\00a0';  /* NO-BREAK SPACE */
   counter-increment: number-counter;
-  content: counter(number-counter) '.\00a0';
   display: inline-block;
-  margin-left: -1em;
-  width: 1em;
-  text-align: right;
   font-feature-settings: var(--font-common-settings), 'case';
+  margin-left: -1em;
+  text-align: right;
+  width: 1em;
 }
 
 ol ol { counter-reset: alpha-counter; }
 
 ol ol > li::before {
+  content: counter(alpha-counter, lower-alpha) '.\00a0';  /* NO-BREAK SPACE */
   counter-increment: alpha-counter;
-  content: counter(alpha-counter, lower-alpha) '.\00a0';
   font-style: italic;
 }
 
@@ -685,12 +680,12 @@ Unordered Lists
 ul { list-style: none; }
 
 ul > li::before {
-  content: '•\2002';
+  content: '•\2002';  /* EN SPACE */
   display: inline-block;
-  margin-left: -1em;
-  width: 1em;
-  text-align: right;
   font-feature-settings: var(--font-common-settings), 'case';
+  margin-left: -1em;
+  text-align: right;
+  width: 1em;
 }
 
 /* ----------------------------------------------------------------------------
@@ -699,9 +694,9 @@ Inline Lists
 
 ul.inline {
   display: inline;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
 ul.inline li { display: inherit; }
@@ -738,9 +733,9 @@ Footnotes
 ---------------------------------------------------------------------------- */
 
 sup[id^='fnref:'] {
+  font-size: inherit;
   position: inherit;
   vertical-align: inherit;
-  font-size: inherit;
 }
 
 a.footnote::before, a.reversefootnote::before { content: '['; }
@@ -748,13 +743,13 @@ a.footnote::before, a.reversefootnote::before { content: '['; }
 a.footnote::after, a.reversefootnote::after { content: ']'; }
 
 .footnotes {
-  margin: 0 0 var(--spacing-regular-em);
   font-size: var(--font-size-small);
+  margin: 0 0 var(--spacing-regular-em);
 }
 
 .footnotes ol {
-  list-style: none;
   counter-reset: footnote;
+  list-style: none;
 }
 
 .footnotes li { margin: 0; }
@@ -764,15 +759,15 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
 .footnotes p { margin-bottom: var(--spacing-tight); }
 
 .footnotes p:first-child::before {
-  counter-increment: footnote;
-  content: counter(footnote) '\00a0';
-  display: inline-block;
-  margin-left: -1em;
-  width: 1em;
-  text-align: right;
   color: var(--colour-brown);
+  content: counter(footnote) '\00a0';  /* NO-BREAK SPACE */
+  counter-increment: footnote;
+  display: inline-block;
   font-feature-settings: var(--font-common-settings), 'sups';
   font-weight: bold;
+  margin-left: -1em;
+  text-align: right;
+  width: 1em;
 }
 
 @media screen and (min-width: 36em), print {
@@ -781,7 +776,6 @@ a.footnote::after, a.reversefootnote::after { content: ']'; }
   }
 
   a.footnote::before { content: ' '; }
-
   a.footnote::after { content: none; }
 }
 
@@ -790,18 +784,18 @@ Headings
 ---------------------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-  margin: var(--spacing-regular-rem) 0 .5rem;
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum';
   font-weight: normal;
+  margin: var(--spacing-regular-rem) 0 .5rem;
 }
 
 h1 {
-  margin-top: 0;  /* prevent excessive space above h1 in header layout */
   font-feature-settings: var(--font-common-settings),
     'dlig', 'swsh', 'onum', 'pnum', 'smcp';
   font-size: var(--font-size-head);
   line-height: var(--line-height-tight);
+  margin-top: 0;  /* prevent excessive space above h1 in header layout */
 }
 
 h2 {
@@ -819,19 +813,19 @@ Text Sections
 ---------------------------------------------------------------------------- */
 
 main p {
-  margin: 0 0 var(--spacing-regular-em);
-
   /* Hyphenation. */
-  hyphens: auto;
+  -webkit-hyphenate-limit-after: 2;  /* legacy */
+  -webkit-hyphenate-limit-before: 3;  /* legacy */
 
   -ms-hyphenate-limit-chars: 6 3 2;
-  -webkit-hyphenate-limit-before: 3;  /* legacy */
-  -webkit-hyphenate-limit-after: 2;  /* legacy */
+  -ms-hyphenate-limit-last: always;
 
   -ms-hyphenate-limit-lines: 2;
   -webkit-hyphenate-limit-lines: 2;
 
-  -ms-hyphenate-limit-last: always;
+  hyphens: auto;
+
+  margin: 0 0 var(--spacing-regular-em);
 }
 
 aside { margin: var(--spacing-regular-em) 0; }
@@ -846,9 +840,9 @@ address { text-align: center; }
   p.drop-letter, .drop-letter > p:first-child { margin-top: 1.25em; }
 
   p.drop-letter::first-letter, .drop-letter > p:first-child::first-letter {
+    color: var(--colour-main);
     font-size: var(--font-size-display);
     line-height: 0;
-    color: var(--colour-main);
     text-shadow:
       -1px -1px 0 var(--colour-black),
       1px -1px 0 var(--colour-black),
@@ -862,9 +856,9 @@ Abbreviations
 ---------------------------------------------------------------------------- */
 
 abbr[title] {
-  font-style: italic;
-  cursor: help;
   border-bottom: none !important;
+  cursor: help;
+  font-style: italic;
   text-decoration: none !important;
 }
 
@@ -873,14 +867,14 @@ Quotations
 ---------------------------------------------------------------------------- */
 
 blockquote, q {
-  quotes: '‘' '’' '“' '”';
   color: var(--colour-brown);
+  quotes: '‘' '’' '“' '”';
 }
 
 blockquote {
+  border-left: .07em solid var(--colour-brown);
   margin: .8em 0;
   padding: 0 0 0 var(--spacing-regular-rem);
-  border-left: .07em solid var(--colour-brown);
 }
 
 blockquote p { display: inline-block; }
@@ -898,18 +892,18 @@ b, strong { font-weight: bold; }
 i, em { font-style: italic; }
 
 strong > em {
+  border: 1px solid var(--colour-grey-muted);
   display: inline-block;
+  font-style: normal;
+  font-weight: normal;
   margin: 0;
   padding: var(--spacing-tight);
-  font-weight: normal;
-  font-style: normal;
-  border: 1px solid var(--colour-grey-muted);
 }
 
 strong > em::before {
   content: '[n.b.] ';
-  font-weight: bold;
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum', 'smcp';
+  font-weight: bold;
 }
 
 small {
@@ -918,17 +912,17 @@ small {
 }
 
 ins {
+  border: 1px solid var(--colour-grey-muted);
   display: inline-block;
   margin: 0;
   padding: var(--spacing-tight);
   text-decoration: none;
-  border: 1px solid var(--colour-grey-muted);
 }
 
 ins::before {
   content: '[update] ';
-  font-weight: bold;
   font-feature-settings: var(--font-common-settings), 'onum', 'pnum', 'smcp';
+  font-weight: bold;
 }
 
 /* del {} */
@@ -944,24 +938,22 @@ ins::before {
 /* sup {} */
 
 .c2sc { font-feature-settings: var(--font-common-settings), 'c2sc'; }
-
-.main-muted { color: var(--colour-main-muted); }
-
-.grey { color: var(--colour-grey); }
+.aux-link { color: var(--colour-main-muted); }
+.aux-text { color: var(--colour-grey); }
 
 /* ----------------------------------------------------------------------------
 Accessibility
 ---------------------------------------------------------------------------- */
 
 .screenreader-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
   margin: -1px;
+  overflow: hidden;
   padding: 0;
   position: absolute;
   width: 1px;
-  height: 1px;
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
 }
 
 /* ----------------------------------------------------------------------------
@@ -977,12 +969,12 @@ Printing
   /* Remove link destination arrows. */
   a::after { content: none !important; }
 
-  /* Set page margins. */
-  @page :left { margin: 20mm 25mm 20mm 20mm; }
-  @page :right { margin: 20mm 20mm 20mm 25mm; }
-
   /* Specify page break behaviour. */
   p, h2, h3, h4, h5, h6 { orphans: 3; widows: 3; }
   h2, h3, h4, h5, h6 { page-break-after: avoid; }
   figcaption { page-break-before: avoid; }
+
+  /* Set page margins. */
+  @page :left { margin: 20mm 25mm 20mm 20mm; }
+  @page :right { margin: 20mm 20mm 20mm 25mm; }
 }

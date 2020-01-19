@@ -44,9 +44,9 @@ rules:
   no-unreachable: error
   no-unsafe-finally: error
   no-unsafe-negation: error
+  no-useless-backreference: error
   require-atomic-updates: error
   use-isnan: error
-  valid-jsdoc: error
   valid-typeof: error
 
   # Best Practices
@@ -58,6 +58,7 @@ rules:
   consistent-return: error
   curly: [error, multi, consistent]
   default-case: error
+  default-case-last: error
   default-param-last: error
   dot-location: [error, property]
   dot-notation: error
@@ -112,6 +113,7 @@ rules:
   no-unused-expressions: error
   no-unused-labels: error
   no-useless-call: error
+  no-useless-catch: error
   no-useless-concat: error
   no-useless-escape: error
   no-useless-return: error
@@ -239,7 +241,6 @@ rules:
   prefer-object-spread: error
   quote-props: [error, consistent]
   quotes: [error, single]
-  require-jsdoc: off
   semi: error
   semi-spacing: error
   semi-style: error
@@ -268,6 +269,7 @@ rules:
   no-dupe-class-members: error
   no-duplicate-imports: error
   no-new-symbol: error
+  no-restricted-exports: error
   no-restricted-imports: error
   no-this-before-super: error
   no-useless-computed-key: error

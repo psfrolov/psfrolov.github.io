@@ -1,5 +1,5 @@
 <!-- Inserted just after post tile. -->
-<dl class="inline grey">
+<dl class="inline aux-text">
   <div>
     <dt>
       <svg class="icon icon-clock-o" role="img">
@@ -40,7 +40,7 @@
       <ul class="inline">
         {% for tag in include.context.tags %}
         <li>
-          <a rel="tag" class="main-muted" href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>{% if forloop.last %}.{% else %},{% endif %}
+          <a rel="tag" class="aux-link" href="{{ tag | tag_url | remove:'.html' }}">{{ tag }}</a>{% if forloop.last %}.{% else %},{% endif %}
         </li>
         {% endfor %}
       </ul>

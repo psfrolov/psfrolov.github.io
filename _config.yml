@@ -1,5 +1,5 @@
 # Build settings.
-source: app
+source: site
 destination: dist/manual-jekyll-build
 include: [.nojekyll, .gitattributes]
 exclude: ['img/figures']  # PlantUML source diagrams

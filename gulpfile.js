@@ -38,7 +38,7 @@ const knownOptions = { string: 'env', default: { env: 'development' } };
 const options = minimist(process.argv.slice(2), knownOptions);
 
 // Directories.
-const srcDir = path.join(__dirname, 'app');
+const srcDir = path.join(__dirname, 'site');
 const outDir = path.join(__dirname, 'dist', options.env);
 const jekyllBuildDir = path.join(outDir, 'jekyll-build');
 const buildDir = path.join(outDir, 'build');
@@ -46,7 +46,7 @@ const certsDir = path.join(__dirname, 'test-certs');
 const serveDir = path.join(outDir, 'serve');
 
 // Resource patterns.
-const cssFiles = ['css/app*.css'];
+const cssFiles = ['css/site*.css'];
 const jsFiles = ['js/*.js'];
 const plantUmlFiles = ['img/figures/*.puml'];
 const jsonFiles = ['**/*.json'];
@@ -58,7 +58,7 @@ const otherFiles = [
   '!*.{json,xml,svg,html}',
   'img/**/*.{png,jpg}'
 ];
-const filesToWatch = ['app/**/*', '_config.yml', 'gulpfile.js'];
+const filesToWatch = ['site/**/*', '_config.yml', 'gulpfile.js'];
 
 const isWindows = process.platform === 'win32';
 let webServer = null;

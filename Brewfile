@@ -1,0 +1,7 @@
+brew "git"
+brew "node"
+brew "plantuml"
+brew "ruby"
+cask "firefox"
+cask "google-chrome"
+cask "opera"
